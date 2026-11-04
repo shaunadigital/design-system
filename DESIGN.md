@@ -104,6 +104,33 @@ switch is in the header and the first visit follows the system setting. To stay 
     Again. (Koa was retired; add an error role to tokens.json only if Dusk ever needs it.)
   - Every state change is announced in a polite live region. Reduced motion: no caret blink, no pulse, text arrives
     in chunks.
+- Sidebar, menu and dialog (`src/components/v2/AppShell.astro`, live on /system#app-shell):
+  - Sidebar: 280px wide, `--sand`, padding 16px, a `<nav>` with a label. New Chat (`.btn--fill`, full width) first,
+    then each section label (label style, `--muted`), 24px below it. Rows are 44px tall, 12px side padding,
+    `--radius-sm`, `--text-small`, 4px apart, one line with an ellipsis. The open chat has `aria-current="page"`, a
+    `--card` row, bold text and a 3px ink bar on the left, so it never relies on colour. Chat titles are what a person
+    wrote: sentence case, marked `data-user-content`. Under 720px the sidebar folds behind a Chats button
+    (`aria-expanded`).
+  - Each row has a 44px More button on its right (three dots, `aria-label="More for <title>"`, `aria-haspopup="menu"`).
+  - Menu: the same spec as the composer's Context menu. 220px, 4px padding, `--radius-md`, `--card`, 1px border in
+    `rgba(var(--ink-rgb), 0.14)`, shadow `0 18px 40px -20px rgba(var(--shadow-rgb), 0.45)`. It opens 8px below its
+    button with their right edges lined up, or above when there's no room. Items are 44px, 12px side padding,
+    `--radius-sm`, `--text-small`, Title Case; hover and focus are `--sand`, focus adds a 2px inset `--accent-text`
+    ring. A 1px divider sits before a destructive item, and Delete stays ink, never red.
+  - Menu keys: Enter, Space or the down arrow opens it on the first item, the up arrow on the last. Arrows move and
+    wrap, Home and End jump, a letter jumps to the item that starts with it, Esc closes and returns focus to the
+    button, Tab closes and moves on, a click outside closes it.
+  - Dialog: a native `<dialog>` opened with `showModal()`, so focus stays inside, the page behind is inert and Esc
+    closes it. Up to 440px wide, centred, padding 32px, `--radius-card`, `--card`, shadow
+    `0 24px 48px -24px rgba(var(--shadow-rgb), 0.35)`, backdrop `rgba(var(--ink-rgb), 0.4)`. The title is an item
+    title (`.t-item`), a question for anything destructive ("Delete this chat?"). The message is `--text-body`
+    `--muted`, 12px below, and names the thing and what happens to it. A field (label style, then a 44px box on
+    `--paper`) sits 24px below the message. Buttons are right-aligned, 24px apart, 32px below: Cancel (`.btn--text`)
+    first, the main action (`.btn--fill`) last, named for what it does ("Delete Chat", not "OK").
+  - Dialog focus: it opens on the field, or on the main action when there's no field. Save stays disabled until the
+    name changes. On close, focus returns to the More button that opened it; after a delete it moves to the next chat,
+    or New Chat when none are left. Clicking the backdrop is Cancel.
+  - Every change (renamed, pinned, deleted, restored) is announced in a polite live region. Reduced motion: no fade.
 - Phone frame: every phone screen on the site sits in `src/components/v2/PhoneFrame.astro`, never a
   hand-made frame. Screens are 390 x 844 (shipped at 780 x 1688). The frame is a thin --deep bezel with no notch;
   bezel 2.4% and corners 11% (screen corners 8.6%) of the phone's own width, from the `device` tokens, so a phone
