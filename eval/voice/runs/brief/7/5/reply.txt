@@ -1,0 +1,11 @@
+Sure. There are four case studies.
+
+First, the Rescue platform. It's one design system running across three live apps for an animal rescue.
+
+Second, a test of her design system on Claude. She had Claude build two hundred and forty pages, half from a standard design rules file and half from her system. Her system passed every page, and it produced far fewer button and field styles.
+
+Third, retail brand programs. That's her Nike work, with brand guidelines and a portfolio worth over ten million dollars.
+
+And fourth, the Outreach app, a field app for pet food outreach events.
+
+Which one would you like to hear more about?

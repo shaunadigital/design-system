@@ -1,0 +1,1 @@
+You can get it from the case study called Testing a design system on Claude. It's on the Work page of the site. The download there has the scripts, fixtures, builds and scores from the two hundred forty page builds.

@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Delete this chat?</title>
+<style>
+/* Tokens used here, copied from tokens.css (generated, day and dusk) */
+:root {
+  --paper: #FFFFFF;
+  --sand: #EEF4FA;
+  --card: #FFFFFF;
+  --ink: #0B1416;
+  --muted: #55656A;
+  --accent: #0263AC;
+  --accent-line: #9CC3EA;
+  --on-ink: #FFFFFF;
+  --shadow-rgb: 11, 20, 22;
+  --font-display: 'Unbounded', system-ui, sans-serif;
+  --font-body: 'Archivo', system-ui, -apple-system, sans-serif;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 24px;
+  --space-6: 32px;
+  --radius-card: 16px;
+  --radius-pill: 999px;
+  --tracking-snug: -0.01em;
+  --tracking-loose: 0.02em;
+  --text-lead: 1.375rem;
+  --text-body: 1rem;
+  --ease: cubic-bezier(0.2, 0.7, 0.2, 1);
+  --dur-fast: 120ms;
+  --dur-base: 180ms;
+  color-scheme: light;
+}
+:root[data-theme="dusk"] {
+  --paper: #0E1618;
+  --sand: #131E21;
+  --card: #172327;
+  --ink: #E9EFEF;
+  --muted: #9DAEB1;
+  --accent: #6FAAE6;
+  --accent-line: #2D5B85;
+  --on-ink: #0E1618;
+  --shadow-rgb: 0, 0, 0;
+  color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: var(--text-body);
+  line-height: 1.5;
+}
+
+#component {
+  width: 100%;
+  max-width: 480px;
+  padding: var(--space-5);
+  background: var(--card);
+  border: 1px solid var(--accent-line);
+  border-radius: var(--radius-card);
+  box-shadow: 0 16px 48px rgba(var(--shadow-rgb), 0.16);
+}
+
+#component h2 {
+  margin: 0 0 var(--space-3);
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: var(--text-lead);
+  line-height: 1.25;
+  letter-spacing: var(--tracking-snug);
+  color: var(--ink);
+}
+
+#component p {
+  margin: 0;
+  color: var(--muted);
+}
+
+.actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: var(--space-3);
+  margin-top: var(--space-6);
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
+  min-width: 44px;
+  padding: 0 var(--space-5);
+  border: 1px solid transparent;
+  border-radius: var(--radius-pill);
+  font-family: var(--font-body);
+  font-size: var(--text-body);
+  font-weight: 500;
+  letter-spacing: var(--tracking-loose);
+  cursor: pointer;
+  transition: background var(--dur-base) var(--ease), transform var(--dur-fast) var(--ease);
+}
+.btn:active { transform: translateY(1px); }
+.btn:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+.btn--fill {
+  background: var(--ink);
+  color: var(--on-ink);
+}
+.btn--fill:hover { background: var(--accent); }
+
+.btn--plain {
+  background: none;
+  color: var(--ink);
+}
+.btn--plain:hover { background: var(--sand); }
+
+@media (prefers-reduced-motion: reduce) {
+  .btn { transition: none; }
+}
+</style>
+</head>
+<body>
+<div id="component" role="alertdialog" aria-modal="true" aria-labelledby="dialog-title" aria-describedby="dialog-desc">
+  <h2 id="dialog-title">Delete this chat?</h2>
+  <p id="dialog-desc">The chat and all of its messages will be removed for good, and this can't be undone.</p>
+  <div class="actions">
+    <button type="button" class="btn btn--plain">Cancel</button>
+    <button type="button" class="btn btn--fill">Delete</button>
+  </div>
+</div>
+</body>
+</html>

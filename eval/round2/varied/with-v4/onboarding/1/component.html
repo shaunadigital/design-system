@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=1280">
+<title>Harbor: Connect your tools</title>
+<style>
+  :root {
+    --paper: #FFFFFF;
+    --card: #FFFFFF;
+    --ink: #0B1416;
+    --ink-rgb: 11, 20, 22;
+    --muted: #55656A;
+    --accent-text: #0263AC;
+    --accent: #0263AC;
+    --accent-tint: #E6EFF7;
+    --on-ink: #FFFFFF;
+    --shadow-rgb: 11, 20, 22;
+    --font-display: 'Unbounded', system-ui, sans-serif;
+    --font-body: 'Archivo', system-ui, -apple-system, sans-serif;
+    --font-label: 'Archivo', system-ui, sans-serif;
+    --space-2: 8px;
+    --space-3: 12px;
+    --space-4: 16px;
+    --space-5: 24px;
+    --space-6: 32px;
+    --space-7: 48px;
+    --space-8: 64px;
+    --radius-md: 12px;
+    --radius-card: 16px;
+    --radius-pill: 999px;
+    --tracking-tight: -0.02em;
+    --tracking-label: 0.14em;
+    --text-heading: clamp(1.75rem, 3.2vw, 2.875rem);
+    --text-body-l: 1.125rem;
+    --text-body: 1rem;
+    --text-small: 0.875rem;
+    --text-label: 0.75rem;
+    --ease: cubic-bezier(0.2, 0.7, 0.2, 1);
+    --dur-fast: 120ms;
+    --dur-base: 180ms;
+    color-scheme: light;
+  }
+  :root[data-theme="dusk"] {
+    --paper: #0E1618;
+    --card: #172327;
+    --ink: #E9EFEF;
+    --ink-rgb: 233, 239, 239;
+    --muted: #9DAEB1;
+    --accent-text: #9CC3EA;
+    --accent: #6FAAE6;
+    --accent-tint: #13283A;
+    --on-ink: #0E1618;
+    --shadow-rgb: 0, 0, 0;
+    color-scheme: dark;
+  }
+
+  * { box-sizing: border-box; }
+  html, body { margin: 0; background: var(--paper); }
+  body { font-family: var(--font-body); color: var(--ink); -webkit-font-smoothing: antialiased; }
+
+  #component {
+    width: 1280px;
+    min-height: 800px;
+    margin: 0 auto;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: var(--font-body);
+    font-size: var(--text-body);
+    line-height: 1.5;
+  }
+
+  .page {
+    max-width: 1120px;
+    margin: 0 auto;
+    padding: var(--space-7) var(--space-6) var(--space-8);
+  }
+
+  .progress {
+    display: flex;
+    align-items: center;
+    gap: var(--space-4);
+  }
+  .progress__label {
+    margin: 0;
+    font-family: var(--font-label);
+    font-weight: 500;
+    font-size: var(--text-label);
+    letter-spacing: var(--tracking-label);
+    text-transform: uppercase;
+    color: var(--accent-text);
+  }
+  .progress__bar {
+    display: flex;
+    gap: var(--space-2);
+  }
+  .progress__bar span {
+    width: 40px;
+    height: 4px;
+    border-radius: var(--radius-pill);
+    background: rgba(var(--ink-rgb), 0.1);
+  }
+  .progress__bar span.is-done { background: var(--accent); }
+
+  h1 {
+    margin: var(--space-6) 0 0;
+    font-family: var(--font-display);
+    font-weight: 300;
+    font-size: var(--text-heading);
+    line-height: 1.1;
+    letter-spacing: var(--tracking-tight);
+    text-transform: uppercase;
+  }
+  .lede {
+    margin: var(--space-4) 0 0;
+    font-size: var(--text-body-l);
+    color: var(--muted);
+  }
+
+  .tools {
+    list-style: none;
+    margin: var(--space-7) 0 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+  }
+  .tool {
+    display: flex;
+    align-items: center;
+    gap: var(--space-5);
+    padding: var(--space-5);
+    background: var(--card);
+    border: 1px solid rgba(var(--ink-rgb), 0.1);
+    border-radius: var(--radius-card);
+  }
+  .tool__icon {
+    flex: none;
+    display: grid;
+    place-items: center;
+    width: 48px;
+    height: 48px;
+    border-radius: var(--radius-md);
+    background: var(--accent-tint);
+    color: var(--accent-text);
+  }
+  .tool__icon svg {
+    width: 24px;
+    height: 24px;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 1.8;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+  .tool__text { flex: 1; min-width: 0; }
+  .tool__name {
+    margin: 0;
+    font-weight: 600;
+    font-size: var(--text-body-l);
+    line-height: 1.3;
+  }
+  .tool__desc {
+    margin: 4px 0 0;
+    font-size: var(--text-body);
+    color: var(--muted);
+  }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    height: 44px;
+    padding: 0 20px;
+    border: 0;
+    border-radius: var(--radius-pill);
+    background: none;
+    color: var(--ink);
+    font-family: var(--font-body);
+    font-weight: 600;
+    font-size: var(--text-small);
+    line-height: 1;
+    white-space: nowrap;
+    cursor: pointer;
+    transition: background var(--dur-base) var(--ease), opacity var(--dur-base) var(--ease);
+  }
+  .btn:active { transition-duration: var(--dur-fast); }
+  .btn:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+  .btn--primary { background: var(--ink); color: var(--on-ink); }
+  .btn--primary:hover { opacity: 0.88; }
+  .btn--secondary { box-shadow: inset 0 0 0 1.5px var(--ink); }
+  .btn--secondary:hover,
+  .btn--quiet:hover { background: rgba(var(--ink-rgb), 0.06); }
+
+  .actions {
+    margin-top: var(--space-7);
+    display: flex;
+    justify-content: flex-end;
+    gap: var(--space-3);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .btn { transition: none; }
+  }
+</style>
+</head>
+<body>
+<div id="component">
+  <main class="page">
+    <header>
+      <div class="progress">
+        <p class="progress__label">Step 2 of 4</p>
+        <div class="progress__bar" aria-hidden="true">
+          <span class="is-done"></span><span class="is-done"></span><span></span><span></span>
+        </div>
+      </div>
+      <h1>Connect your tools</h1>
+      <p class="lede">Harbor works best with the tools your team already uses.</p>
+    </header>
+
+    <ul class="tools">
+      <li class="tool">
+        <span class="tool__icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24"><path d="M4 9h16M4 15h16M10 3 8 21M16 3l-2 18"/></svg>
+        </span>
+        <div class="tool__text">
+          <h2 class="tool__name">Slack</h2>
+          <p class="tool__desc">Get request updates in your channels</p>
+        </div>
+        <button type="button" class="btn btn--secondary" aria-label="Connect Slack">Connect</button>
+      </li>
+      <li class="tool">
+        <span class="tool__icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
+        </span>
+        <div class="tool__text">
+          <h2 class="tool__name">Google Calendar</h2>
+          <p class="tool__desc">See due dates on your calendar</p>
+        </div>
+        <button type="button" class="btn btn--secondary" aria-label="Connect Google Calendar">Connect</button>
+      </li>
+      <li class="tool">
+        <span class="tool__icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
+        </span>
+        <div class="tool__text">
+          <h2 class="tool__name">Jira</h2>
+          <p class="tool__desc">Link requests to engineering tickets</p>
+        </div>
+        <button type="button" class="btn btn--secondary" aria-label="Connect Jira">Connect</button>
+      </li>
+    </ul>
+
+    <div class="actions">
+      <button type="button" class="btn btn--quiet">Skip for Now</button>
+      <button type="button" class="btn btn--primary">Continue</button>
+    </div>
+  </main>
+</div>
+</body>
+</html>

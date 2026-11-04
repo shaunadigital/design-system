@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Harbor – Requests</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+  * { box-sizing: border-box; }
+  body { margin: 0; background: #fff; }
+  #component {
+    width: 1280px;
+    margin: 0 auto;
+    padding: 48px 64px;
+    background: #fff;
+    color: #0B1416;
+    font-family: Archivo, "Helvetica Neue", Arial, sans-serif;
+    font-size: 16px;
+    line-height: 1.5;
+  }
+  #component h1 {
+    margin: 0;
+    font-family: Unbounded, "Helvetica Neue", Arial, sans-serif;
+    font-weight: 300;
+    font-size: 32px;
+    line-height: 1.2;
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+  }
+  .header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 32px; }
+  .toolbar { display: flex; align-items: center; gap: 24px; margin-bottom: 24px; }
+  .search { flex: 0 0 360px; }
+  .search label { display: block; font-size: 14px; font-weight: 600; margin-bottom: 4px; }
+  .search input {
+    width: 100%; height: 44px; padding: 0 14px;
+    font: inherit; color: #0B1416;
+    background: #fff; border: 1px solid #0B1416; border-radius: 6px;
+  }
+  .search input:focus-visible, button:focus-visible { outline: 3px solid #0263AC; outline-offset: 2px; }
+  .filters { display: flex; gap: 8px; align-self: flex-end; }
+  button {
+    height: 44px; padding: 0 20px; font: inherit; font-weight: 600;
+    border-radius: 6px; cursor: pointer; border: 1px solid #0B1416;
+    background: #fff; color: #0B1416;
+  }
+  .filters button[aria-pressed="true"] { background: #0B1416; color: #fff; }
+  .primary { background: #0263AC; border-color: #0263AC; color: #fff; }
+  table { width: 100%; border-collapse: collapse; }
+  caption { position: absolute; left: -9999px; }
+  th, td { text-align: left; padding: 16px 16px; border-bottom: 1px solid #d5dadc; }
+  thead th {
+    font-size: 14px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.06em;
+    border-bottom: 2px solid #0B1416; padding-top: 12px; padding-bottom: 12px;
+  }
+  tbody th { font-weight: 600; }
+  tbody tr:hover { background: #f3f6f7; }
+  .status { display: inline-block; padding: 2px 10px; border: 1px solid #0B1416; border-radius: 999px; font-size: 14px; font-weight: 500; }
+  .status.open { background: #0263AC; border-color: #0263AC; color: #fff; }
+  .status.closed { background: #0B1416; color: #fff; }
+  th:nth-child(1) { width: 36%; }
+</style>
+</head>
+<body>
+<div id="component">
+  <div class="header">
+    <h1>Requests</h1>
+    <button type="button" class="primary">New Request</button>
+  </div>
+
+  <div class="toolbar">
+    <div class="search">
+      <label for="search">Search requests</label>
+      <input id="search" type="search" name="search">
+    </div>
+    <div class="filters" role="group" aria-label="Filter requests">
+      <button type="button" aria-pressed="true">All</button>
+      <button type="button" aria-pressed="false">Open</button>
+      <button type="button" aria-pressed="false">Closed</button>
+    </div>
+  </div>
+
+  <table>
+    <caption>Requests</caption>
+    <thead>
+      <tr>
+        <th scope="col">Request</th>
+        <th scope="col">Requester</th>
+        <th scope="col">Status</th>
+        <th scope="col">Priority</th>
+        <th scope="col">Updated</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><th scope="row">Laptop refresh for design</th><td>Maya Chen</td><td><span class="status open">Open</span></td><td>High</td><td>2h ago</td></tr>
+      <tr><th scope="row">Q4 travel budget</th><td>Leo Park</td><td><span class="status">Approved</span></td><td>Medium</td><td>5h ago</td></tr>
+      <tr><th scope="row">VPN access for contractors</th><td>Ana Ruiz</td><td><span class="status closed">Closed</span></td><td>High</td><td>1d ago</td></tr>
+      <tr><th scope="row">New hire onboarding</th><td>Sam Ito</td><td><span class="status open">Open</span></td><td>Medium</td><td>1d ago</td></tr>
+      <tr><th scope="row">Office move</th><td>Kai Lee</td><td><span class="status">In review</span></td><td>Low</td><td>2d ago</td></tr>
+      <tr><th scope="row">Security training</th><td>Ava Brooks</td><td><span class="status open">Open</span></td><td>Low</td><td>3d ago</td></tr>
+    </tbody>
+  </table>
+</div>
+</body>
+</html>

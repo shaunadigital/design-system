@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=1280">
+<title>New request</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; }
+
+  html, body {
+    margin: 0;
+    padding: 0;
+    background: #EEF4FA;
+  }
+
+  body {
+    font-family: "Archivo", "Helvetica Neue", Arial, sans-serif;
+    font-size: 16px;
+    line-height: 1.5;
+    color: #0B1416;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  #component {
+    width: 1280px;
+    min-height: 960px;
+    margin: 0 auto;
+    padding: 96px 64px;
+    background: #EEF4FA;
+  }
+
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    column-gap: 32px;
+  }
+
+  .column {
+    grid-column: 3 / 11;
+  }
+
+  h1 {
+    margin: 0 0 48px;
+    font-family: "Unbounded", "Archivo", "Helvetica Neue", Arial, sans-serif;
+    font-weight: 300;
+    font-size: 56px;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    text-transform: uppercase;
+    color: #0B1416;
+  }
+
+  .card {
+    background: #FFFFFF;
+    border: 1px solid #9CC3EA;
+    border-radius: 16px;
+    padding: 48px;
+  }
+
+  form {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+  }
+
+  .field {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    min-width: 0;
+  }
+
+  .row {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    column-gap: 24px;
+  }
+
+  label {
+    font-family: "Archivo", "Helvetica Neue", Arial, sans-serif;
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 16px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: #0263AC;
+  }
+
+  input,
+  select,
+  textarea {
+    width: 100%;
+    margin: 0;
+    padding: 12px 16px;
+    font-family: "Archivo", "Helvetica Neue", Arial, sans-serif;
+    font-size: 16px;
+    line-height: 24px;
+    color: #0B1416;
+    background-color: #FFFFFF;
+    border: 1px solid #9CC3EA;
+    border-radius: 12px;
+    outline: none;
+    transition: border-color 120ms cubic-bezier(0.2, 0.7, 0.2, 1),
+                box-shadow 120ms cubic-bezier(0.2, 0.7, 0.2, 1),
+                background-color 120ms cubic-bezier(0.2, 0.7, 0.2, 1);
+  }
+
+  input,
+  select {
+    height: 52px;
+  }
+
+  textarea {
+    height: 160px;
+    resize: none;
+  }
+
+  select {
+    appearance: none;
+    -webkit-appearance: none;
+    padding-right: 48px;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%230B1416' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 16px center;
+    background-size: 24px 24px;
+    cursor: pointer;
+  }
+
+  input:hover,
+  select:hover,
+  textarea:hover {
+    background-color: #E6EFF7;
+  }
+
+  input:focus,
+  select:focus,
+  textarea:focus {
+    background-color: #FFFFFF;
+    border-color: #0263AC;
+    box-shadow: 0 0 0 4px #E6EFF7;
+  }
+
+  .actions {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 16px;
+    margin-top: 16px;
+  }
+
+  button {
+    min-height: 48px;
+    padding: 0 32px;
+    font-family: "Archivo", "Helvetica Neue", Arial, sans-serif;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 24px;
+    border-radius: 999px;
+    border: 1px solid transparent;
+    cursor: pointer;
+    transition: background-color 180ms cubic-bezier(0.2, 0.7, 0.2, 1),
+                color 180ms cubic-bezier(0.2, 0.7, 0.2, 1),
+                box-shadow 180ms cubic-bezier(0.2, 0.7, 0.2, 1);
+  }
+
+  .quiet {
+    background: transparent;
+    color: #0B1416;
+  }
+
+  .quiet:hover {
+    background: #E6EFF7;
+  }
+
+  .primary {
+    background: #0B1416;
+    color: #FFFFFF;
+  }
+
+  .primary:hover {
+    background: #0263AC;
+  }
+
+  button:focus-visible {
+    outline: none;
+    box-shadow: 0 0 0 4px #9CC3EA;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    * { transition: none !important; }
+  }
+</style>
+</head>
+<body>
+  <div id="component">
+    <div class="grid">
+      <main class="column">
+        <h1>New request</h1>
+
+        <div class="card">
+          <form action="#">
+            <div class="field">
+              <label for="title">Title</label>
+              <input id="title" name="title" type="text">
+            </div>
+
+            <div class="field">
+              <label for="description">Description</label>
+              <textarea id="description" name="description"></textarea>
+            </div>
+
+            <div class="row">
+              <div class="field">
+                <label for="priority">Priority</label>
+                <select id="priority" name="priority">
+                  <option>Low</option>
+                  <option selected>Medium</option>
+                  <option>High</option>
+                </select>
+              </div>
+
+              <div class="field">
+                <label for="assignee">Assignee</label>
+                <select id="assignee" name="assignee">
+                  <option>Maya Chen</option>
+                  <option>Leo Park</option>
+                  <option>Ana Ruiz</option>
+                </select>
+              </div>
+
+              <div class="field">
+                <label for="due">Due date</label>
+                <input id="due" name="due" type="date">
+              </div>
+            </div>
+
+            <div class="actions">
+              <button type="button" class="quiet">Cancel</button>
+              <button type="submit" class="primary">Create Request</button>
+            </div>
+          </form>
+        </div>
+      </main>
+    </div>
+  </div>
+</body>
+</html>

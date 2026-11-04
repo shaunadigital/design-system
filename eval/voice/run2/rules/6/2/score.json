@@ -1,0 +1,13 @@
+{
+ "pass": true,
+ "words": 40,
+ "longestSentence": 11,
+ "issues": {
+  "length": [],
+  "sentences": [],
+  "markdown": [],
+  "links": [],
+  "shorthand": [],
+  "emoji": []
+ }
+}

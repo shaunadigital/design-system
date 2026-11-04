@@ -1,0 +1,1 @@
+Shauna designs in Figma and builds with Claude Code. The sites themselves run on Astro, React and TypeScript. For data she uses Supabase, and she deploys with Vercel and Netlify.

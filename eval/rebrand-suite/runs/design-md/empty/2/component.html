@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Requests</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: #F4EFE6;
+    color: #1E2B24;
+    font-family: "Instrument Sans", Arial, sans-serif;
+    font-size: 16px;
+    line-height: 1.5;
+  }
+  #component {
+    width: 1280px;
+    min-height: 800px;
+    padding: 48px 64px 64px;
+    background: #F4EFE6;
+  }
+  h1 {
+    font-family: "Fraunces", Georgia, serif;
+    font-weight: 400;
+    font-size: 56px;
+    line-height: 1.2;
+    letter-spacing: -0.02em;
+    color: #1E2B24;
+    padding-bottom: 24px;
+    border-bottom: 1px solid #E8A989;
+  }
+  .empty {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    margin: 96px auto 0;
+    max-width: 480px;
+    padding: 48px 32px;
+    background: #FBF8F2;
+    border: 1px solid #E8A989;
+    border-radius: 6px;
+  }
+  h2 {
+    font-family: "Fraunces", Georgia, serif;
+    font-weight: 400;
+    font-size: 28px;
+    line-height: 1.2;
+    letter-spacing: -0.01em;
+    color: #1E2B24;
+  }
+  .empty p {
+    margin-top: 12px;
+    font-size: 16px;
+    color: #5E6B63;
+  }
+  .actions {
+    margin-top: 32px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+  }
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 44px;
+    padding: 8px 24px;
+    border: 0;
+    border-radius: 4px;
+    background: #1E2B24;
+    color: #FBF8F2;
+    font-family: "Instrument Sans", Arial, sans-serif;
+    font-size: 16px;
+    font-weight: 500;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background-color 180ms cubic-bezier(0.2, 0.7, 0.2, 1);
+  }
+  .btn:hover { background: #C2410C; }
+  .link {
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
+    padding: 0 12px;
+    color: #C2410C;
+    font-size: 16px;
+    text-decoration: underline;
+    text-underline-offset: 4px;
+    border-radius: 4px;
+    transition: background-color 120ms cubic-bezier(0.2, 0.7, 0.2, 1);
+  }
+  .link:hover { background: #F6DFD0; color: #1E2B24; }
+  .btn:focus-visible, .link:focus-visible { outline: 2px solid #C2410C; outline-offset: 2px; }
+</style>
+</head>
+<body>
+<div id="component">
+  <h1>Requests</h1>
+  <section class="empty">
+    <h2>No requests yet</h2>
+    <p>When your team asks for something, it shows up here.</p>
+    <div class="actions">
+      <a class="btn" href="#">Create a Request</a>
+      <a class="link" href="#">Import from a spreadsheet</a>
+    </div>
+  </section>
+</div>
+</body>
+</html>

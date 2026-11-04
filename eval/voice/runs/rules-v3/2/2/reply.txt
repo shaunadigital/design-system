@@ -1,0 +1,1 @@
+Seven checks run on every build. The three that matter most are text contrast, tokens only for colour, type and spacing, and alt text for images. Want the other four?

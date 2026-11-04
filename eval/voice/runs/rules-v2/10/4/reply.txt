@@ -1,0 +1,1 @@
+In her test, both versions of Claude built pages that nearly always passed. But a standard design file produced 30 button styles, while her system produced just 7. Her system keeps everything consistent. Want the details?

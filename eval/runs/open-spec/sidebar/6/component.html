@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sidebar</title>
+<style>
+  * { box-sizing: border-box; }
+
+  html, body { height: 100%; margin: 0; }
+
+  body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #FFFFFF;
+    color: #0B1416;
+    font-family: "Archivo", system-ui, sans-serif;
+    font-size: 16px;
+  }
+
+  #component {
+    width: 320px;
+    padding: 24px 16px;
+    background: #FFFFFF;
+    border: 1px solid #9CC3EA;
+    border-radius: 16px;
+  }
+
+  .new-chat {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    width: 100%;
+    min-height: 48px;
+    padding: 12px 24px;
+    border: 0;
+    border-radius: 999px;
+    background: #0B1416;
+    color: #FFFFFF;
+    font: 500 16px/24px "Archivo", system-ui, sans-serif;
+    letter-spacing: 0;
+    cursor: pointer;
+    transition: background-color 180ms cubic-bezier(0.2, 0.7, 0.2, 1);
+  }
+
+  .new-chat:hover { background: #0263AC; }
+
+  .new-chat svg {
+    width: 24px;
+    height: 24px;
+    flex: none;
+  }
+
+  .label {
+    margin: 32px 0 8px;
+    padding: 0 12px;
+    color: #55656A;
+    font: 500 12px/16px "Archivo", system-ui, sans-serif;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+  }
+
+  .chats {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .chats a {
+    display: flex;
+    align-items: center;
+    min-height: 44px;
+    padding: 8px 12px;
+    border: 1px solid transparent;
+    border-radius: 12px;
+    color: #0B1416;
+    font-size: 16px;
+    line-height: 24px;
+    text-decoration: none;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    transition: background-color 120ms cubic-bezier(0.2, 0.7, 0.2, 1);
+  }
+
+  .chats a:hover { background: #EEF4FA; }
+
+  .chats a[aria-current="page"] {
+    background: #E6EFF7;
+    border-color: #9CC3EA;
+    color: #0263AC;
+    font-weight: 500;
+  }
+
+  .new-chat:focus-visible,
+  .chats a:focus-visible {
+    outline: 2px solid #0263AC;
+    outline-offset: 2px;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .new-chat, .chats a { transition: none; }
+  }
+</style>
+</head>
+<body>
+  <aside id="component" aria-label="Chat sidebar">
+    <button class="new-chat" type="button">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>
+      New Chat
+    </button>
+
+    <nav aria-labelledby="recent-label">
+      <h2 class="label" id="recent-label">Recent</h2>
+      <ul class="chats">
+        <li><a href="#">Trip planning for Maui</a></li>
+        <li><a href="#" aria-current="page">Q3 budget review</a></li>
+        <li><a href="#">Menu ideas for Saturday</a></li>
+        <li><a href="#">Reading list</a></li>
+        <li><a href="#">Garden plan</a></li>
+      </ul>
+    </nav>
+  </aside>
+</body>
+</html>

@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>People</title>
+<style>
+  * { box-sizing: border-box; }
+  body { margin: 0; background: #fff; }
+  #component {
+    width: 1280px;
+    min-height: 800px;
+    margin: 0 auto;
+    padding: 72px 120px 96px;
+    background: #fff;
+    color: #0B1416;
+    font-family: "Archivo", "Helvetica Neue", Arial, sans-serif;
+    font-size: 16px;
+    line-height: 1.5;
+  }
+  #component .header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-bottom: 32px;
+    border-bottom: 2px solid #0263AC;
+  }
+  #component h1 {
+    margin: 0;
+    font-family: "Unbounded", "Arial Rounded MT Bold", "Helvetica Neue", Arial, sans-serif;
+    font-weight: 300;
+    font-size: 44px;
+    line-height: 1.1;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+  #component .add {
+    appearance: none;
+    border: 2px solid #0263AC;
+    background: #0263AC;
+    color: #fff;
+    font: inherit;
+    font-weight: 600;
+    padding: 14px 28px;
+    border-radius: 999px;
+    cursor: pointer;
+  }
+  #component .add:hover { background: #0B1416; border-color: #0B1416; }
+  #component .add:focus-visible,
+  #component input:focus-visible { outline: 3px solid #0B1416; outline-offset: 3px; }
+  #component .search { margin: 40px 0 32px; max-width: 480px; }
+  #component label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+  }
+  #component input {
+    width: 100%;
+    font: inherit;
+    color: #0B1416;
+    padding: 14px 20px;
+    border: 2px solid #0B1416;
+    border-radius: 999px;
+    background: #fff;
+  }
+  #component ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 16px; }
+  #component li {
+    display: grid;
+    grid-template-columns: 1.2fr 1.2fr 1fr 1.3fr;
+    align-items: center;
+    gap: 24px;
+    padding: 24px 32px;
+    border: 1px solid #0B1416;
+    border-left: 8px solid #0263AC;
+    border-radius: 16px;
+    background: #fff;
+  }
+  #component .name { margin: 0; font-size: 20px; font-weight: 700; }
+  #component .title { margin: 0; }
+  #component .dept {
+    justify-self: start;
+    margin: 0;
+    padding: 4px 16px;
+    border: 1.5px solid #0263AC;
+    border-radius: 999px;
+    color: #0263AC;
+    font-weight: 600;
+    font-size: 14px;
+  }
+  #component .email { color: #0263AC; text-decoration: underline; text-underline-offset: 3px; }
+  #component .email:focus-visible { outline: 3px solid #0B1416; outline-offset: 3px; }
+</style>
+</head>
+<body>
+<div id="component">
+  <div class="header">
+    <h1>People</h1>
+    <button class="add" type="button">Add Person</button>
+  </div>
+
+  <div class="search">
+    <label for="search">Search people</label>
+    <input id="search" type="search" name="search">
+  </div>
+
+  <ul>
+    <li>
+      <p class="name">Maya Chen</p>
+      <p class="title">Product Designer</p>
+      <p class="dept">Design</p>
+      <a class="email" href="mailto:maya@harbor.app">maya@harbor.app</a>
+    </li>
+    <li>
+      <p class="name">Leo Park</p>
+      <p class="title">Account Executive</p>
+      <p class="dept">Sales</p>
+      <a class="email" href="mailto:leo@harbor.app">leo@harbor.app</a>
+    </li>
+    <li>
+      <p class="name">Ana Ruiz</p>
+      <p class="title">Finance Lead</p>
+      <p class="dept">Finance</p>
+      <a class="email" href="mailto:ana@harbor.app">ana@harbor.app</a>
+    </li>
+    <li>
+      <p class="name">Sam Ito</p>
+      <p class="title">Support Engineer</p>
+      <p class="dept">Support</p>
+      <a class="email" href="mailto:sam@harbor.app">sam@harbor.app</a>
+    </li>
+    <li>
+      <p class="name">Kai Lee</p>
+      <p class="title">People Partner</p>
+      <p class="dept">People</p>
+      <a class="email" href="mailto:kai@harbor.app">kai@harbor.app</a>
+    </li>
+  </ul>
+</div>
+</body>
+</html>

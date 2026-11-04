@@ -1,0 +1,1 @@
+In her test of 240 page builds, both passed almost every check. But her system produced far more consistent results. It made 7 button styles, where a standard design rules file made 30. Want the details?

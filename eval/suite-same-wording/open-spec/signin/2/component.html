@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sign in to Harbor</title>
+<style>
+  * { box-sizing: border-box; margin: 0; }
+
+  body {
+    background: #FFFFFF;
+    color: #0B1416;
+    font-family: "Archivo", "Helvetica Neue", Arial, sans-serif;
+    font-size: 16px;
+    line-height: 1.5;
+  }
+
+  #component {
+    width: 1280px;
+    min-height: 800px;
+    padding: 96px 64px;
+    background: #EEF4FA;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .card {
+    width: 480px;
+    padding: 48px;
+    background: #FFFFFF;
+    border: 1px solid #9CC3EA;
+    border-radius: 16px;
+  }
+
+  h1 {
+    font-family: "Unbounded", "Helvetica Neue", Arial, sans-serif;
+    font-weight: 300;
+    font-size: 28px;
+    line-height: 1.25;
+    letter-spacing: -0.01em;
+    text-transform: uppercase;
+    margin-bottom: 32px;
+  }
+
+  form { display: flex; flex-direction: column; gap: 24px; }
+
+  .field { display: flex; flex-direction: column; gap: 8px; }
+
+  label.name {
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 1.5;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: #0263AC;
+  }
+
+  input[type="email"],
+  input[type="password"] {
+    width: 100%;
+    min-height: 48px;
+    padding: 12px 16px;
+    font: inherit;
+    font-size: 16px;
+    color: #0B1416;
+    background: #FFFFFF;
+    border: 1px solid #55656A;
+    border-radius: 12px;
+    transition: border-color 120ms cubic-bezier(0.2, 0.7, 0.2, 1), background-color 120ms cubic-bezier(0.2, 0.7, 0.2, 1);
+  }
+
+  input[type="email"]:hover,
+  input[type="password"]:hover { background: #E6EFF7; }
+
+  input[type="email"]:focus-visible,
+  input[type="password"]:focus-visible {
+    outline: 2px solid #0263AC;
+    outline-offset: 2px;
+    border-color: #0263AC;
+  }
+
+  .keep {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    min-height: 44px;
+    cursor: pointer;
+    color: #0B1416;
+  }
+
+  .keep input {
+    width: 24px;
+    height: 24px;
+    flex: none;
+    accent-color: #0263AC;
+    cursor: pointer;
+  }
+
+  .keep input:focus-visible { outline: 2px solid #0263AC; outline-offset: 2px; }
+
+  .btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    min-height: 48px;
+    padding: 12px 24px;
+    font: inherit;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 1.5;
+    border-radius: 999px;
+    cursor: pointer;
+    transition: background-color 180ms cubic-bezier(0.2, 0.7, 0.2, 1), color 180ms cubic-bezier(0.2, 0.7, 0.2, 1), border-color 180ms cubic-bezier(0.2, 0.7, 0.2, 1);
+  }
+
+  .btn:focus-visible { outline: 2px solid #0263AC; outline-offset: 2px; }
+
+  .primary { background: #0B1416; color: #FFFFFF; border: 1px solid #0B1416; }
+  .primary:hover { background: #0263AC; border-color: #0263AC; }
+
+  .secondary { background: transparent; color: #0B1416; border: 1px solid #9CC3EA; }
+  .secondary:hover { background: #E6EFF7; }
+
+  .actions { display: flex; flex-direction: column; gap: 12px; }
+
+  .forgot {
+    align-self: center;
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
+    color: #0263AC;
+    font-size: 16px;
+    text-decoration: underline;
+    text-underline-offset: 4px;
+    transition: background-color 120ms cubic-bezier(0.2, 0.7, 0.2, 1);
+  }
+
+  .forgot:hover { background: #E6EFF7; }
+  .forgot:focus-visible { outline: 2px solid #0263AC; outline-offset: 2px; border-radius: 8px; }
+
+  @media (prefers-reduced-motion: reduce) {
+    * { transition: none !important; }
+  }
+</style>
+</head>
+<body>
+<div id="component">
+  <main class="card">
+    <h1>Sign in to Harbor</h1>
+    <form action="#">
+      <div class="field">
+        <label class="name" for="email">Work email</label>
+        <input type="email" id="email" name="email" autocomplete="username">
+      </div>
+      <div class="field">
+        <label class="name" for="password">Password</label>
+        <input type="password" id="password" name="password" autocomplete="current-password">
+      </div>
+      <label class="keep">
+        <input type="checkbox" name="keep">
+        <span>Keep me signed in</span>
+      </label>
+      <div class="actions">
+        <button type="submit" class="btn primary">Sign In</button>
+        <button type="button" class="btn secondary">Continue with SSO</button>
+      </div>
+      <a class="forgot" href="#">Forgot Password?</a>
+    </form>
+  </main>
+</div>
+</body>
+</html>

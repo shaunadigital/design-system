@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Message Composer</title>
+<style>
+/* Tokens from tokens.css (only the ones used here) */
+:root {
+  --paper: #FFFFFF;
+  --card: #FFFFFF;
+  --ink: #0B1416;
+  --muted: #55656A;
+  --accent: #0263AC;
+  --accent-tint: #E6EFF7;
+  --accent-line: #9CC3EA;
+  --plate-hover: #E3ECF5;
+  --on-ink: #FFFFFF;
+  --shadow-rgb: 11, 20, 22;
+  --font-body: 'Archivo', system-ui, -apple-system, sans-serif;
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 24px;
+  --space-6: 32px;
+  --radius-card: 16px;
+  --radius-pill: 999px;
+  --text-body-l: 1.125rem;
+  --text-body: 1rem;
+  --ease: cubic-bezier(0.2, 0.7, 0.2, 1);
+  --dur-fast: 120ms;
+  --dur-base: 180ms;
+  color-scheme: light;
+}
+:root[data-theme="dusk"] {
+  color-scheme: dark;
+  --paper: #0E1618;
+  --card: #172327;
+  --ink: #E9EFEF;
+  --muted: #9DAEB1;
+  --accent: #6FAAE6;
+  --accent-tint: #13283A;
+  --accent-line: #2D5B85;
+  --plate-hover: #1A2A36;
+  --on-ink: #0E1618;
+  --shadow-rgb: 0, 0, 0;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  padding: var(--space-6);
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: var(--text-body);
+}
+
+#component {
+  width: 100%;
+  max-width: 720px;
+  display: flex;
+  align-items: flex-end;
+  gap: var(--space-2);
+  padding: var(--space-3);
+  background: var(--card);
+  border: 1px solid var(--accent-line);
+  border-radius: var(--radius-card);
+  box-shadow: 0 8px 24px rgba(var(--shadow-rgb), 0.08);
+  transition: border-color var(--dur-base) var(--ease), box-shadow var(--dur-base) var(--ease);
+}
+
+#component:focus-within {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px var(--accent-tint), 0 8px 24px rgba(var(--shadow-rgb), 0.08);
+}
+
+#component textarea {
+  flex: 1;
+  min-width: 0;
+  min-height: 44px;
+  max-height: 200px;
+  margin: 0;
+  padding: var(--space-3) var(--space-2);
+  border: 0;
+  outline: 0;
+  resize: none;
+  background: transparent;
+  color: var(--ink);
+  font: inherit;
+  font-size: var(--text-body-l);
+  line-height: 1.5;
+}
+
+#component textarea::placeholder {
+  color: var(--muted);
+  opacity: 1;
+}
+
+#component .btn {
+  flex: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  border: 0;
+  border-radius: var(--radius-pill);
+  font: inherit;
+  cursor: pointer;
+  transition: background var(--dur-fast) var(--ease), transform var(--dur-fast) var(--ease);
+}
+
+#component .btn:active { transform: scale(0.95); }
+
+#component .btn:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+#component .btn--plain {
+  background: transparent;
+  color: var(--ink);
+}
+#component .btn--plain:hover { background: var(--plate-hover); }
+
+#component .btn--fill {
+  background: var(--ink);
+  color: var(--on-ink);
+}
+#component .btn--fill:hover { background: var(--accent); }
+
+#component .btn svg {
+  width: 24px;
+  height: 24px;
+  display: block;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  #component, #component .btn { transition: none; }
+  #component .btn:active { transform: none; }
+}
+</style>
+</head>
+<body>
+<div id="component">
+  <button class="btn btn--plain" type="button" aria-label="Attach a file">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <path d="M20 11.5l-8.2 8.2a5 5 0 0 1-7.1-7.1l8.5-8.5a3.3 3.3 0 0 1 4.7 4.7l-8.5 8.5a1.7 1.7 0 0 1-2.3-2.4l7.8-7.8"/>
+    </svg>
+  </button>
+  <textarea rows="1" placeholder="Message Claude" aria-label="Message Claude"></textarea>
+  <button class="btn btn--fill" type="submit" aria-label="Send message">
+    <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+      <path d="M12 3.5l7 7-1.9 1.9-3.8-3.8V20h-2.6V8.6L6.9 12.4 5 10.5z"/>
+    </svg>
+  </button>
+</div>
+</body>
+</html>

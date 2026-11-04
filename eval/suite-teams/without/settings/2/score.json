@@ -1,0 +1,73 @@
+{
+ "pass": false,
+ "hasRoot": true,
+ "box": {
+  "x": 80,
+  "y": 0,
+  "w": 1280,
+  "h": 1099.890625
+ },
+ "checks": {
+  "type": {
+   "pass": false,
+   "issues": [
+    "h2#general font-size 15px",
+    "h2#notifications font-size 15px",
+    "h2#danger font-size 15px"
+   ]
+  },
+  "color": {
+   "pass": false,
+   "issues": [
+    "section border rgb(221, 227, 229)",
+    "input#ws-name border rgb(169, 180, 183)",
+    "input#ws-url border rgb(169, 180, 183)",
+    "div.row border rgb(221, 227, 229)",
+    "span.track background rgb(140, 153, 157)",
+    "p text rgb(74, 86, 89)"
+   ]
+  },
+  "radius": {
+   "pass": false,
+   "issues": [
+    "section radius 14px",
+    "section.danger radius 14px"
+   ]
+  },
+  "tracking": {
+   "pass": true,
+   "issues": []
+  },
+  "fonts": {
+   "pass": true,
+   "issues": []
+  },
+  "contrast": {
+   "pass": true,
+   "issues": []
+  },
+  "hover": {
+   "pass": true,
+   "issues": []
+  },
+  "motion": {
+   "pass": false,
+   "issues": [
+    "transition uses an off-system duration: #component .track",
+    "transition uses an off-system duration: #component .track::after"
+   ]
+  },
+  "copy": {
+   "pass": true,
+   "issues": []
+  },
+  "labels": {
+   "pass": true,
+   "issues": []
+  },
+  "targets": {
+   "pass": true,
+   "issues": []
+  }
+ }
+}

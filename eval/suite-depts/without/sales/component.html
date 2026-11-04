@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Pipeline</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: #fff; }
+
+  #component {
+    width: 1280px;
+    min-height: 800px;
+    background: #fff;
+    color: #0B1416;
+    font-family: "Archivo", "Helvetica Neue", Arial, sans-serif;
+    font-size: 16px;
+    line-height: 1.4;
+  }
+
+  #component .bar {
+    height: 12px;
+    background: #0263AC;
+  }
+
+  #component .page {
+    padding: 56px 72px 72px;
+  }
+
+  #component .head {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    padding-bottom: 32px;
+    border-bottom: 4px solid #0B1416;
+  }
+
+  #component h1 {
+    font-family: "Unbounded", "Archivo", "Helvetica Neue", Arial, sans-serif;
+    font-weight: 300;
+    text-transform: uppercase;
+    font-size: 88px;
+    line-height: 1;
+    letter-spacing: -0.02em;
+    color: #0B1416;
+  }
+
+  #component .btn {
+    appearance: none;
+    border: 3px solid #0263AC;
+    background: #0263AC;
+    color: #fff;
+    font-family: inherit;
+    font-size: 20px;
+    font-weight: 800;
+    letter-spacing: 0.02em;
+    padding: 18px 36px;
+    border-radius: 0;
+    cursor: pointer;
+  }
+  #component .btn:focus-visible,
+  #component input:focus-visible {
+    outline: 4px solid #0B1416;
+    outline-offset: 3px;
+  }
+
+  #component .tools {
+    margin-top: 40px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+  }
+
+  #component label {
+    font-size: 14px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+  }
+
+  #component input[type="search"] {
+    width: 420px;
+    font-family: inherit;
+    font-size: 18px;
+    color: #0B1416;
+    background: #fff;
+    border: 3px solid #0B1416;
+    border-radius: 0;
+    padding: 14px 18px;
+  }
+
+  #component table {
+    width: 100%;
+    margin-top: 32px;
+    border-collapse: collapse;
+  }
+
+  #component th {
+    background: #0B1416;
+    color: #fff;
+    text-align: left;
+    font-size: 14px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    padding: 20px 24px;
+  }
+
+  #component td {
+    padding: 28px 24px;
+    font-size: 20px;
+    border-bottom: 2px solid #0B1416;
+  }
+
+  #component .num { text-align: right; }
+
+  #component td.company {
+    font-weight: 800;
+    font-size: 22px;
+  }
+
+  #component td.value {
+    font-weight: 800;
+    font-size: 24px;
+    font-variant-numeric: tabular-nums;
+    color: #0263AC;
+  }
+
+  #component .stage {
+    display: inline-block;
+    min-width: 132px;
+    text-align: center;
+    padding: 6px 14px;
+    font-size: 14px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    border: 2px solid #0B1416;
+    color: #0B1416;
+    background: #fff;
+  }
+  #component .stage.won {
+    background: #0263AC;
+    border-color: #0263AC;
+    color: #fff;
+  }
+
+  #component tr.won-row td { background: #F1F6FA; }
+</style>
+</head>
+<body>
+<div id="component">
+  <div class="bar"></div>
+  <main class="page">
+    <div class="head">
+      <h1>Pipeline</h1>
+      <button class="btn" type="button">New Deal</button>
+    </div>
+
+    <div class="tools">
+      <label for="deal-search">Search deals</label>
+      <input id="deal-search" type="search" placeholder="Company, owner or stage">
+    </div>
+
+    <table>
+      <thead>
+        <tr>
+          <th scope="col">Company</th>
+          <th scope="col" class="num">Value</th>
+          <th scope="col">Stage</th>
+          <th scope="col">Owner</th>
+          <th scope="col">Close Date</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="company">Kona Coffee Co.</td>
+          <td class="value num">$48,000</td>
+          <td><span class="stage">Proposal</span></td>
+          <td>Maya Chen</td>
+          <td>Nov 14</td>
+        </tr>
+        <tr>
+          <td class="company">Lanai Labs</td>
+          <td class="value num">$32,500</td>
+          <td><span class="stage">Negotiation</span></td>
+          <td>Leo Park</td>
+          <td>Nov 2</td>
+        </tr>
+        <tr>
+          <td class="company">Pali Health</td>
+          <td class="value num">$120,000</td>
+          <td><span class="stage">Discovery</span></td>
+          <td>Ana Ruiz</td>
+          <td>Dec 5</td>
+        </tr>
+        <tr class="won-row">
+          <td class="company">Mauka Freight</td>
+          <td class="value num">$18,200</td>
+          <td><span class="stage won">Won</span></td>
+          <td>Sam Ito</td>
+          <td>Oct 18</td>
+        </tr>
+        <tr>
+          <td class="company">Hale Studio</td>
+          <td class="value num">$9,600</td>
+          <td><span class="stage">Proposal</span></td>
+          <td>Kai Lee</td>
+          <td>Nov 21</td>
+        </tr>
+      </tbody>
+    </table>
+  </main>
+</div>
+</body>
+</html>

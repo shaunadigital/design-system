@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Chat Menu</title>
+<style>
+:root {
+  --paper: #FFFFFF;
+  --sand: #EEF4FA;
+  --card: #FFFFFF;
+  --ink: #0B1416;
+  --ink-rgb: 11, 20, 22;
+  --muted: #55656A;
+  --accent-text: #0263AC;
+  --accent: #0263AC;
+  --accent-tint: #E6EFF7;
+  --accent-line: #9CC3EA;
+  --plate-hover: #E3ECF5;
+  --on-ink: #FFFFFF;
+  --shadow-rgb: 11, 20, 22;
+  --font-body: 'Archivo', system-ui, -apple-system, sans-serif;
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 24px;
+  --space-6: 32px;
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-card: 16px;
+  --radius-pill: 999px;
+  --text-body: 1rem;
+  --text-small: 0.875rem;
+  --ease: cubic-bezier(0.2, 0.7, 0.2, 1);
+  --dur-fast: 120ms;
+  --dur-base: 180ms;
+  --dur-slow: 320ms;
+}
+:root { color-scheme: light; }
+:root[data-theme="dusk"] {
+  color-scheme: dark;
+  --paper: #0E1618;
+  --card: #172327;
+  --ink: #E9EFEF;
+  --ink-rgb: 233, 239, 239;
+  --muted: #9DAEB1;
+  --accent-text: #9CC3EA;
+  --accent: #6FAAE6;
+  --accent-line: #2D5B85;
+  --plate-hover: #1A2A36;
+  --on-ink: #0E1618;
+  --shadow-rgb: 0, 0, 0;
+}
+
+* { box-sizing: border-box; margin: 0; }
+body {
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: var(--text-body);
+}
+#component {
+  position: relative;
+  width: 240px;
+  height: 320px;
+}
+.trigger {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  min-height: 44px;
+  padding: 0 var(--space-4) 0 var(--space-5);
+  border: 1.5px solid var(--ink);
+  border-radius: var(--radius-pill);
+  background: var(--paper);
+  color: var(--ink);
+  font: 500 var(--text-small)/1 var(--font-body);
+  cursor: pointer;
+  transition: background var(--dur-base) var(--ease);
+}
+.trigger:hover { background: var(--plate-hover); }
+.trigger:focus-visible,
+.item:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.trigger svg { width: 20px; height: 20px; transition: transform var(--dur-base) var(--ease); }
+.menu {
+  position: absolute;
+  top: 52px;
+  left: 0;
+  width: 240px;
+  padding: var(--space-2);
+  list-style: none;
+  background: var(--card);
+  border: 1px solid var(--accent-line);
+  border-radius: var(--radius-card);
+  box-shadow: 0 12px 32px rgba(var(--shadow-rgb), 0.14), 0 2px 6px rgba(var(--shadow-rgb), 0.08);
+}
+.menu li { list-style: none; }
+.item {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  width: 100%;
+  min-height: 44px;
+  padding: 0 var(--space-3);
+  border: 0;
+  border-radius: var(--radius-md);
+  background: transparent;
+  color: var(--ink);
+  font: 400 var(--text-body)/1.2 var(--font-body);
+  text-align: left;
+  cursor: pointer;
+  transition: background var(--dur-fast) var(--ease);
+}
+.item:hover { background: var(--plate-hover); }
+.item svg { width: 24px; height: 24px; flex: none; color: var(--accent-text); }
+.item.danger svg { color: var(--ink); }
+.sep { height: 1px; margin: var(--space-2) var(--space-3); background: var(--accent-line); }
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+</style>
+</head>
+<body>
+<div id="component">
+  <button class="trigger" type="button" aria-haspopup="menu" aria-expanded="true" aria-controls="chat-menu">
+    Chat Options
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+  </button>
+  <ul class="menu" id="chat-menu" role="menu" aria-label="Chat options">
+    <li role="none">
+      <button class="item" role="menuitem" type="button">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20h4L19 9a2.8 2.8 0 0 0-4-4L4 16z"/><path d="M13.5 6.5l4 4"/></svg>
+        Rename
+      </button>
+    </li>
+    <li role="none">
+      <button class="item" role="menuitem" type="button">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="6" cy="12" r="2.5"/><circle cx="18" cy="6" r="2.5"/><circle cx="18" cy="18" r="2.5"/><path d="M8.2 10.8l7.6-3.6M8.2 13.2l7.6 3.6"/></svg>
+        Share
+      </button>
+    </li>
+    <li role="none">
+      <button class="item" role="menuitem" type="button">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="4" rx="1"/><path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8M10 12.5h4"/></svg>
+        Archive
+      </button>
+    </li>
+    <li role="separator" class="sep"></li>
+    <li role="none">
+      <button class="item danger" role="menuitem" type="button">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 7h16M9 7V4h6v3M6 7l1 13h10l1-13M10 11v6M14 11v6"/></svg>
+        Delete
+      </button>
+    </li>
+  </ul>
+</div>
+</body>
+</html>

@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Working Session</title>
+<style>
+  :root {
+    --ink: #0B1416;
+    --accent: #0263AC;
+    --bg: #FFFFFF;
+    --muted: #4A5659;
+    --line: #D9E0E2;
+  }
+
+  * { box-sizing: border-box; }
+
+  html, body { margin: 0; }
+
+  body {
+    min-height: 100vh;
+    display: grid;
+    place-items: center;
+    padding: 48px 24px;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: "Archivo", "Helvetica Neue", Arial, sans-serif;
+    line-height: 1.5;
+  }
+
+  #component {
+    width: 100%;
+    max-width: 400px;
+    padding: 40px;
+    background: var(--bg);
+    border: 1px solid var(--line);
+    border-top: 4px solid var(--accent);
+    border-radius: 4px;
+  }
+
+  .label {
+    margin: 0 0 12px;
+    font-size: 0.8125rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--accent);
+  }
+
+  .title {
+    margin: 0 0 20px;
+    font-family: "Unbounded", "Archivo", "Helvetica Neue", Arial, sans-serif;
+    font-weight: 300;
+    font-size: 1.75rem;
+    line-height: 1.2;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+  }
+
+  .price {
+    margin: 0 0 20px;
+    display: flex;
+    align-items: baseline;
+    gap: 8px;
+  }
+
+  .price-amount {
+    font-family: "Unbounded", "Archivo", "Helvetica Neue", Arial, sans-serif;
+    font-weight: 300;
+    font-size: 2.5rem;
+    line-height: 1;
+    color: var(--ink);
+  }
+
+  .price-unit {
+    font-size: 1rem;
+    color: var(--muted);
+  }
+
+  .description {
+    margin: 0 0 24px;
+    font-size: 1rem;
+    color: var(--ink);
+  }
+
+  .included {
+    list-style: none;
+    margin: 0 0 32px;
+    padding: 24px 0 0;
+    border-top: 1px solid var(--line);
+  }
+
+  .included li {
+    position: relative;
+    padding-left: 28px;
+    margin-bottom: 12px;
+    font-size: 1rem;
+  }
+
+  .included li:last-child { margin-bottom: 0; }
+
+  .included li::before {
+    content: "";
+    position: absolute;
+    left: 4px;
+    top: 0.35em;
+    width: 6px;
+    height: 11px;
+    border: solid var(--accent);
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg);
+  }
+
+  .button {
+    display: block;
+    width: 100%;
+    padding: 16px 24px;
+    background: var(--accent);
+    color: #FFFFFF;
+    border: 2px solid var(--accent);
+    border-radius: 4px;
+    font-family: inherit;
+    font-size: 1rem;
+    font-weight: 600;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+  }
+
+  .button:hover { background: var(--ink); border-color: var(--ink); }
+
+  .button:focus-visible {
+    outline: 3px solid var(--ink);
+    outline-offset: 3px;
+  }
+</style>
+</head>
+<body>
+  <article id="component" aria-labelledby="ws-title">
+    <p class="label">One-on-One</p>
+    <h2 class="title" id="ws-title">Working Session</h2>
+    <p class="price">
+      <span class="price-amount">$150</span>
+      <span class="price-unit">per hour</span>
+    </p>
+    <p class="description">One focused hour on your project. Bring a problem or a rough idea and we move it forward together.</p>
+    <ul class="included">
+      <li>60 minutes on a video call</li>
+      <li>Live design and build feedback</li>
+      <li>Written notes and next steps</li>
+    </ul>
+    <a class="button" href="#book">Book a Session</a>
+  </article>
+</body>
+</html>

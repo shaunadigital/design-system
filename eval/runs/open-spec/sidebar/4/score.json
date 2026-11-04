@@ -1,0 +1,62 @@
+{
+ "pass": false,
+ "hasRoot": true,
+ "box": {
+  "x": 560,
+  "y": 180,
+  "w": 320,
+  "h": 640
+ },
+ "checks": {
+  "type": {
+   "pass": true,
+   "issues": []
+  },
+  "color": {
+   "pass": true,
+   "issues": []
+  },
+  "radius": {
+   "pass": true,
+   "issues": []
+  },
+  "tracking": {
+   "pass": true,
+   "issues": []
+  },
+  "fonts": {
+   "pass": true,
+   "issues": []
+  },
+  "contrast": {
+   "pass": true,
+   "issues": []
+  },
+  "hover": {
+   "pass": true,
+   "issues": []
+  },
+  "motion": {
+   "pass": true,
+   "issues": []
+  },
+  "copy": {
+   "pass": false,
+   "issues": [
+    "button \"Trip planning for Maui\" is not Title Case",
+    "button \"Q3 budget review\" is not Title Case",
+    "button \"Menu ideas for Saturday\" is not Title Case",
+    "button \"Reading list\" is not Title Case",
+    "button \"Garden plan\" is not Title Case"
+   ]
+  },
+  "labels": {
+   "pass": true,
+   "issues": []
+  },
+  "targets": {
+   "pass": true,
+   "issues": []
+  }
+ }
+}

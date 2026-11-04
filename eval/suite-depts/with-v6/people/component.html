@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>People</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+  /* Tokens used here, copied from tokens.css so the file stands alone */
+  :root {
+    --paper: #FFFFFF;
+    --ink: #0B1416;
+    --ink-rgb: 11, 20, 22;
+    --muted: #55656A;
+    --accent: #0263AC;
+    --accent-text: #0263AC;
+    --on-ink: #FFFFFF;
+    --font-display: 'Unbounded', system-ui, sans-serif;
+    --font-body: 'Archivo', system-ui, -apple-system, sans-serif;
+    --space-1: 4px;
+    --space-2: 8px;
+    --space-3: 12px;
+    --space-4: 16px;
+    --space-5: 24px;
+    --space-6: 32px;
+    --space-7: 48px;
+    --radius-sm: 8px;
+    --radius-pill: 999px;
+    --tracking-label: 0.14em;
+    --text-page: 4rem;
+    --text-body-l: 1.125rem;
+    --text-body: 1rem;
+    --text-small: 0.875rem;
+    --text-label: 0.75rem;
+    --ease: cubic-bezier(0.2, 0.7, 0.2, 1);
+    --dur-base: 180ms;
+    color-scheme: light;
+  }
+
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--paper); }
+
+  #component {
+    width: 1280px;
+    min-height: 720px;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: var(--font-body);
+    font-size: var(--text-body);
+  }
+
+  .bar { height: 6px; background: var(--accent); }
+
+  .page {
+    max-width: 1120px;
+    margin: 0 auto;
+    padding: var(--space-7) var(--space-6);
+    box-sizing: content-box;
+  }
+
+  .top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-bottom: var(--space-5);
+    border-bottom: 2px solid var(--ink);
+  }
+
+  h1 {
+    margin: 0;
+    font-family: var(--font-display);
+    font-weight: 300;
+    font-size: var(--text-page);
+    line-height: 1;
+    text-transform: uppercase;
+  }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    height: 44px;
+    padding: 0 20px;
+    border: 1.5px solid transparent;
+    border-radius: var(--radius-pill);
+    font: 600 var(--text-small) var(--font-body);
+    cursor: pointer;
+    transition: opacity var(--dur-base) var(--ease);
+  }
+  .btn--primary { background: var(--ink); color: var(--on-ink); }
+  .btn:hover { opacity: 0.88; }
+  .btn:focus-visible, .search input:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+  }
+
+  .search {
+    display: flex;
+    align-items: center;
+    gap: var(--space-4);
+    margin-top: var(--space-6);
+  }
+  .search label {
+    font: 500 var(--text-label) var(--font-label, var(--font-body));
+    letter-spacing: var(--tracking-label);
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+  .search input {
+    width: 320px;
+    height: 44px;
+    padding: 0 12px;
+    border: 1.5px solid var(--ink);
+    border-radius: var(--radius-sm);
+    background: var(--paper);
+    color: var(--ink);
+    font: inherit;
+    font-size: var(--text-body);
+  }
+  .search input::placeholder { color: var(--muted); }
+
+  table {
+    width: 100%;
+    margin-top: var(--space-5);
+    border-collapse: collapse;
+    text-align: left;
+  }
+  thead tr { background: var(--ink); color: var(--on-ink); height: 44px; }
+  th {
+    padding: 0 var(--space-4);
+    font: 500 var(--text-label) var(--font-body);
+    letter-spacing: var(--tracking-label);
+    text-transform: uppercase;
+  }
+  tbody tr {
+    height: 64px;
+    border-bottom: 1px solid rgba(var(--ink-rgb), 0.15);
+  }
+  td { padding: 0 var(--space-4); font-size: var(--text-body); }
+  td.name { font-size: var(--text-body-l); font-weight: 600; }
+  td a { color: var(--accent-text); text-decoration: none; }
+  td a:hover { text-decoration: underline; }
+  td a:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+</style>
+</head>
+<body>
+<div id="component">
+  <div class="bar"></div>
+  <main class="page">
+    <div class="top">
+      <h1>People</h1>
+      <button class="btn btn--primary" type="button">Add Person</button>
+    </div>
+
+    <div class="search">
+      <label for="search-people">Search people</label>
+      <input id="search-people" type="search" name="search">
+    </div>
+
+    <table>
+      <thead>
+        <tr>
+          <th scope="col">Name</th>
+          <th scope="col">Job Title</th>
+          <th scope="col">Department</th>
+          <th scope="col">Email</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="name">Maya Chen</td>
+          <td>Product Designer</td>
+          <td>Design</td>
+          <td><a href="mailto:maya@harbor.app">maya@harbor.app</a></td>
+        </tr>
+        <tr>
+          <td class="name">Leo Park</td>
+          <td>Account Executive</td>
+          <td>Sales</td>
+          <td><a href="mailto:leo@harbor.app">leo@harbor.app</a></td>
+        </tr>
+        <tr>
+          <td class="name">Ana Ruiz</td>
+          <td>Finance Lead</td>
+          <td>Finance</td>
+          <td><a href="mailto:ana@harbor.app">ana@harbor.app</a></td>
+        </tr>
+        <tr>
+          <td class="name">Sam Ito</td>
+          <td>Support Engineer</td>
+          <td>Support</td>
+          <td><a href="mailto:sam@harbor.app">sam@harbor.app</a></td>
+        </tr>
+        <tr>
+          <td class="name">Kai Lee</td>
+          <td>People Partner</td>
+          <td>People</td>
+          <td><a href="mailto:kai@harbor.app">kai@harbor.app</a></td>
+        </tr>
+      </tbody>
+    </table>
+  </main>
+</div>
+</body>
+</html>

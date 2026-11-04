@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sign in to Harbor</title>
+<style>
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: #fff;
+    color: #0B1416;
+    font-family: "Archivo", "Helvetica Neue", Arial, sans-serif;
+    font-size: 16px;
+    line-height: 1.5;
+  }
+  #component {
+    width: 1280px;
+    min-height: 800px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #fff;
+  }
+  .card {
+    width: 420px;
+    padding: 48px 40px;
+    border: 1px solid #0B1416;
+    border-top: 4px solid #0263AC;
+    background: #fff;
+  }
+  h1 {
+    margin: 0 0 32px;
+    font-family: "Unbounded", "Archivo", "Helvetica Neue", Arial, sans-serif;
+    font-weight: 300;
+    font-size: 24px;
+    line-height: 1.3;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+    color: #0B1416;
+  }
+  .field { margin-bottom: 20px; }
+  label { display: block; margin-bottom: 6px; font-weight: 600; font-size: 15px; }
+  input[type="email"], input[type="password"] {
+    width: 100%;
+    height: 48px;
+    padding: 0 14px;
+    font: inherit;
+    color: #0B1416;
+    background: #fff;
+    border: 1px solid #0B1416;
+    border-radius: 4px;
+  }
+  .keep {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 4px 0 28px;
+  }
+  .keep input {
+    width: 20px;
+    height: 20px;
+    margin: 0;
+    accent-color: #0263AC;
+  }
+  .keep label { margin: 0; font-weight: 400; }
+  button {
+    display: block;
+    width: 100%;
+    height: 48px;
+    font: inherit;
+    font-weight: 600;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  .primary { background: #0263AC; color: #fff; border: 2px solid #0263AC; }
+  .primary:hover { background: #0B1416; border-color: #0B1416; }
+  .secondary { margin-top: 12px; background: #fff; color: #0263AC; border: 2px solid #0263AC; }
+  .secondary:hover { background: #0263AC; color: #fff; }
+  .forgot { margin: 24px 0 0; text-align: center; }
+  a { color: #0263AC; text-decoration: underline; text-underline-offset: 3px; }
+  a:hover { color: #0B1416; }
+  input:focus-visible, button:focus-visible, a:focus-visible {
+    outline: 3px solid #0B1416;
+    outline-offset: 2px;
+  }
+</style>
+</head>
+<body>
+<div id="component">
+  <main class="card">
+    <h1>Sign in to Harbor</h1>
+    <form action="#" method="post">
+      <div class="field">
+        <label for="email">Work email</label>
+        <input type="email" id="email" name="email" autocomplete="email">
+      </div>
+      <div class="field">
+        <label for="password">Password</label>
+        <input type="password" id="password" name="password" autocomplete="current-password">
+      </div>
+      <div class="keep">
+        <input type="checkbox" id="keep" name="keep">
+        <label for="keep">Keep me signed in</label>
+      </div>
+      <button type="submit" class="primary">Sign In</button>
+      <button type="button" class="secondary">Continue with SSO</button>
+      <p class="forgot"><a href="#">Forgot Password?</a></p>
+    </form>
+  </main>
+</div>
+</body>
+</html>

@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Requests | Harbor</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+  *, *::before, *::after { box-sizing: border-box; }
+  body { margin: 0; background: #FFFFFF; }
+
+  #component {
+    width: 1280px;
+    min-height: 800px;
+    margin: 0 auto;
+    padding: 64px 64px 96px;
+    background: #FFFFFF;
+    color: #0B1416;
+    font-family: "Archivo", system-ui, sans-serif;
+    font-size: 16px;
+    line-height: 1.5;
+  }
+
+  #component .head {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 32px;
+    margin-bottom: 48px;
+  }
+  #component .eyebrow {
+    margin: 0 0 12px;
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 16px;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    color: #0263AC;
+  }
+  #component h1 {
+    margin: 0;
+    font-family: "Unbounded", "Archivo", system-ui, sans-serif;
+    font-weight: 300;
+    font-size: 56px;
+    line-height: 1.1;
+    text-transform: uppercase;
+    letter-spacing: -0.02em;
+  }
+
+  #component .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 44px;
+    padding: 0 24px;
+    border-radius: 999px;
+    border: 1px solid transparent;
+    font: 500 16px/1 "Archivo", system-ui, sans-serif;
+    cursor: pointer;
+    transition: background-color 180ms cubic-bezier(0.2, 0.7, 0.2, 1), border-color 180ms cubic-bezier(0.2, 0.7, 0.2, 1), color 180ms cubic-bezier(0.2, 0.7, 0.2, 1);
+  }
+  #component .btn:focus-visible,
+  #component input:focus-visible { outline: 2px solid #0263AC; outline-offset: 2px; }
+  #component .btn-primary { background: #0B1416; color: #FFFFFF; }
+  #component .btn-primary:hover { background: #0263AC; }
+
+  #component .toolbar {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 24px;
+    margin-bottom: 24px;
+  }
+  #component .field { display: flex; flex-direction: column; gap: 8px; width: 420px; }
+  #component .field label {
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 16px;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    color: #55656A;
+  }
+  #component .field input {
+    height: 44px;
+    padding: 0 16px;
+    border: 1px solid #9CC3EA;
+    border-radius: 12px;
+    background: #FFFFFF;
+    color: #0B1416;
+    font: 400 16px/1.5 "Archivo", system-ui, sans-serif;
+  }
+  #component .field input::placeholder { color: #55656A; }
+
+  #component .filters { display: flex; gap: 8px; }
+  #component .filters .btn {
+    background: transparent;
+    color: #0B1416;
+    border-color: transparent;
+  }
+  #component .filters .btn:hover { background: #E6EFF7; }
+  #component .filters .btn[aria-pressed="true"] {
+    background: #E6EFF7;
+    border-color: #9CC3EA;
+    color: #0263AC;
+  }
+
+  #component .card {
+    background: #FFFFFF;
+    border: 1px solid #9CC3EA;
+    border-radius: 16px;
+    overflow: hidden;
+  }
+  #component table { width: 100%; border-collapse: collapse; text-align: left; }
+  #component th {
+    padding: 16px 24px;
+    background: #EEF4FA;
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 16px;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    color: #55656A;
+    border-bottom: 1px solid #9CC3EA;
+  }
+  #component td {
+    padding: 16px 24px;
+    height: 64px;
+    border-bottom: 1px solid #E6EFF7;
+    font-size: 16px;
+  }
+  #component tbody tr:last-child td { border-bottom: 0; }
+  #component tbody tr:hover td { background: #EEF4FA; }
+  #component td.name { font-weight: 500; }
+  #component td.muted { color: #55656A; font-size: 14px; }
+
+  #component .status {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 14px;
+    line-height: 24px;
+    padding: 0 12px;
+    border-radius: 999px;
+    border: 1px solid #9CC3EA;
+    background: #FFFFFF;
+    color: #0B1416;
+  }
+  #component .status::before {
+    content: "";
+    width: 8px;
+    height: 8px;
+    border-radius: 999px;
+    border: 2px solid #0263AC;
+    background: transparent;
+  }
+  #component .status.open { background: #E6EFF7; }
+  #component .status.open::before { background: #0263AC; }
+  #component .status.closed { border-color: #55656A; color: #55656A; }
+  #component .status.closed::before { border-color: #55656A; background: #55656A; }
+
+  #component .foot { margin: 16px 0 0; font-size: 14px; color: #55656A; }
+</style>
+</head>
+<body>
+<div id="component">
+  <header class="head">
+    <div>
+      <h1>Requests</h1>
+    </div>
+    <button class="btn btn-primary" type="button">New Request</button>
+  </header>
+
+  <div class="toolbar">
+    <div class="field">
+      <label for="search">Search requests</label>
+      <input id="search" type="search" name="search" placeholder="Search requests">
+    </div>
+    <div class="filters" role="group" aria-label="Filter by status">
+      <button class="btn" type="button" aria-pressed="true">All</button>
+      <button class="btn" type="button" aria-pressed="false">Open</button>
+      <button class="btn" type="button" aria-pressed="false">Closed</button>
+    </div>
+  </div>
+
+  <div class="card">
+    <table>
+      <thead>
+        <tr>
+          <th scope="col">Request</th>
+          <th scope="col">Requester</th>
+          <th scope="col">Status</th>
+          <th scope="col">Priority</th>
+          <th scope="col">Updated</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="name">Laptop refresh for design</td>
+          <td>Maya Chen</td>
+          <td><span class="status open">Open</span></td>
+          <td>High</td>
+          <td class="muted">2h ago</td>
+        </tr>
+        <tr>
+          <td class="name">Q4 travel budget</td>
+          <td>Leo Park</td>
+          <td><span class="status">Approved</span></td>
+          <td>Medium</td>
+          <td class="muted">5h ago</td>
+        </tr>
+        <tr>
+          <td class="name">VPN access for contractors</td>
+          <td>Ana Ruiz</td>
+          <td><span class="status closed">Closed</span></td>
+          <td>High</td>
+          <td class="muted">1d ago</td>
+        </tr>
+        <tr>
+          <td class="name">New hire onboarding</td>
+          <td>Sam Ito</td>
+          <td><span class="status open">Open</span></td>
+          <td>Medium</td>
+          <td class="muted">1d ago</td>
+        </tr>
+        <tr>
+          <td class="name">Office move</td>
+          <td>Kai Lee</td>
+          <td><span class="status">In review</span></td>
+          <td>Low</td>
+          <td class="muted">2d ago</td>
+        </tr>
+        <tr>
+          <td class="name">Security training</td>
+          <td>Ava Brooks</td>
+          <td><span class="status open">Open</span></td>
+          <td>Low</td>
+          <td class="muted">3d ago</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+</body>
+</html>

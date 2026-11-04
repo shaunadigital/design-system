@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>New request</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+  *, *::before, *::after { box-sizing: border-box; }
+  body { margin: 0; background: #FFFFFF; color: #0B1416; font-family: "Archivo", system-ui, sans-serif; font-size: 16px; }
+
+  #component { width: 1280px; min-height: 800px; margin: 0 auto; padding: 64px; background: #FFFFFF; }
+  #component .page { display: grid; grid-template-columns: repeat(12, 1fr); column-gap: 32px; }
+  #component .intro { grid-column: 1 / span 8; margin-bottom: 48px; }
+  #component h1 {
+    margin: 0;
+    font-family: "Unbounded", system-ui, sans-serif;
+    font-weight: 300;
+    font-size: 56px;
+    line-height: 1.2;
+    letter-spacing: -0.02em;
+    text-transform: uppercase;
+    color: #0B1416;
+  }
+
+  #component form {
+    grid-column: 1 / span 8;
+    background: #FFFFFF;
+    border: 1px solid #9CC3EA;
+    border-radius: 16px;
+    padding: 32px;
+    display: grid;
+    gap: 24px;
+  }
+  #component .row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+  #component .field { display: flex; flex-direction: column; gap: 8px; min-width: 0; }
+
+  #component label {
+    font-family: "Archivo", system-ui, sans-serif;
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 16px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: #0263AC;
+  }
+
+  #component input,
+  #component textarea,
+  #component select {
+    width: 100%;
+    min-height: 48px;
+    padding: 12px 16px;
+    font-family: "Archivo", system-ui, sans-serif;
+    font-size: 16px;
+    line-height: 24px;
+    color: #0B1416;
+    background: #FFFFFF;
+    border: 1px solid #55656A;
+    border-radius: 12px;
+    transition: border-color 120ms cubic-bezier(0.2, 0.7, 0.2, 1), background-color 120ms cubic-bezier(0.2, 0.7, 0.2, 1);
+  }
+  #component textarea { min-height: 144px; resize: vertical; }
+  #component select {
+    appearance: none;
+    padding-right: 48px;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%230B1416' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 12px center;
+  }
+  #component input:hover,
+  #component textarea:hover,
+  #component select:hover { background-color: #E6EFF7; }
+  #component input:focus-visible,
+  #component textarea:focus-visible,
+  #component select:focus-visible,
+  #component .btn:focus-visible {
+    outline: 2px solid #0263AC;
+    outline-offset: 2px;
+    border-color: #0263AC;
+  }
+
+  #component .actions { display: flex; justify-content: flex-end; gap: 16px; padding-top: 8px; }
+  #component .btn {
+    min-height: 48px;
+    padding: 12px 32px;
+    border-radius: 999px;
+    border: 1px solid transparent;
+    font-family: "Archivo", system-ui, sans-serif;
+    font-size: 16px;
+    line-height: 24px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 180ms cubic-bezier(0.2, 0.7, 0.2, 1), color 180ms cubic-bezier(0.2, 0.7, 0.2, 1);
+  }
+  #component .btn-quiet { background: transparent; color: #0B1416; }
+  #component .btn-quiet:hover { background: #E6EFF7; }
+  #component .btn-primary { background: #0B1416; color: #FFFFFF; }
+  #component .btn-primary:hover { background: #0263AC; }
+
+  @media (prefers-reduced-motion: reduce) {
+    #component * { transition: none; }
+  }
+</style>
+</head>
+<body>
+<div id="component">
+  <div class="page">
+    <div class="intro">
+      <h1>New request</h1>
+    </div>
+    <form action="#" method="post">
+      <div class="field">
+        <label for="title">Title</label>
+        <input type="text" id="title" name="title">
+      </div>
+      <div class="field">
+        <label for="description">Description</label>
+        <textarea id="description" name="description"></textarea>
+      </div>
+      <div class="row">
+        <div class="field">
+          <label for="priority">Priority</label>
+          <select id="priority" name="priority">
+            <option>Low</option>
+            <option>Medium</option>
+            <option>High</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="assignee">Assignee</label>
+          <select id="assignee" name="assignee">
+            <option>Maya Chen</option>
+            <option>Leo Park</option>
+            <option>Ana Ruiz</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="due">Due date</label>
+          <input type="date" id="due" name="due">
+        </div>
+      </div>
+      <div class="actions">
+        <button type="button" class="btn btn-quiet">Cancel</button>
+        <button type="submit" class="btn btn-primary">Create Request</button>
+      </div>
+    </form>
+  </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,1 @@
+Her design system starts from one tokens file. That file builds the styles for her site, her Figma library, and the rules Claude reads. Seven automatic checks run on every build to keep everything consistent. Want the details?

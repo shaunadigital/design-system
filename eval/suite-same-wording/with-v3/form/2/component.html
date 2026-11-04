@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>New request · Harbor</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+/* Tokens from tokens.css (day theme), only those used here */
+:root {
+  --paper: #FFFFFF;
+  --card: #FFFFFF;
+  --ink: #0B1416;
+  --ink-rgb: 11, 20, 22;
+  --muted: #55656A;
+  --accent-text: #0263AC;
+  --accent-tint: #E6EFF7;
+  --accent-line: #9CC3EA;
+  --on-ink: #FFFFFF;
+  --font-display: 'Unbounded', system-ui, sans-serif;
+  --font-body: 'Archivo', system-ui, -apple-system, sans-serif;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 24px;
+  --space-6: 32px;
+  --space-7: 48px;
+  --space-8: 64px;
+  --radius-md: 12px;
+  --radius-card: 16px;
+  --radius-pill: 999px;
+  --tracking-label: 0.14em;
+  --text-display-xl: clamp(2rem, 4vw, 3.5rem);
+  --text-body: 1rem;
+  --text-label: 0.75rem;
+  --ease: cubic-bezier(0.2, 0.7, 0.2, 1);
+  --dur-fast: 120ms;
+  --dur-base: 180ms;
+  color-scheme: light;
+}
+
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--paper); }
+
+#component {
+  width: 1280px;
+  min-height: 800px;
+  padding: var(--space-8);
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: var(--text-body);
+}
+
+.page { max-width: 640px; }
+
+h1 {
+  margin: 0 0 var(--space-7);
+  font-family: var(--font-display);
+  font-weight: 300;
+  font-size: var(--text-display-xl);
+  line-height: 1.1;
+  text-transform: uppercase;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+  padding: var(--space-6);
+  background: var(--card);
+  border: 1px solid rgba(var(--ink-rgb), 0.1);
+  border-radius: var(--radius-card);
+}
+
+.field { display: flex; flex-direction: column; gap: var(--space-2); }
+.row { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-5); }
+
+label {
+  font-family: var(--font-body);
+  font-weight: 500;
+  font-size: var(--text-label);
+  letter-spacing: var(--tracking-label);
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+input, select, textarea {
+  width: 100%;
+  min-height: 48px;
+  padding: var(--space-3) var(--space-4);
+  font-family: var(--font-body);
+  font-size: var(--text-body);
+  color: var(--ink);
+  background: var(--card);
+  border: 1px solid rgba(var(--ink-rgb), 0.1);
+  border-radius: var(--radius-md);
+  transition: border-color var(--dur-base) var(--ease);
+}
+input, select { height: 48px; }
+textarea { min-height: 128px; resize: vertical; line-height: 1.5; }
+select {
+  appearance: none;
+  padding-right: var(--space-7);
+  background-image:
+    linear-gradient(45deg, transparent 50%, var(--ink) 50%),
+    linear-gradient(135deg, var(--ink) 50%, transparent 50%);
+  background-position: calc(100% - 22px) 50%, calc(100% - 16px) 50%;
+  background-size: 6px 6px, 6px 6px;
+  background-repeat: no-repeat;
+}
+input:hover, select:hover, textarea:hover { border-color: var(--accent-line); }
+input:focus, select:focus, textarea:focus { border-color: var(--accent-text); }
+input:focus-visible, select:focus-visible, textarea:focus-visible,
+.btn:focus-visible {
+  outline: 2px solid var(--accent-text);
+  outline-offset: 2px;
+}
+
+.actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: var(--space-3);
+  margin-top: var(--space-2);
+}
+
+.btn {
+  min-height: 44px;
+  padding: 0 var(--space-5);
+  font-family: var(--font-body);
+  font-weight: 500;
+  font-size: var(--text-body);
+  border-radius: var(--radius-pill);
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition: background var(--dur-fast) var(--ease), opacity var(--dur-fast) var(--ease);
+}
+.btn--plain { background: none; color: var(--ink); }
+.btn--plain:hover { background: var(--accent-tint); }
+.btn--ink { background: var(--ink); color: var(--on-ink); }
+.btn--ink:hover { opacity: 0.88; }
+</style>
+</head>
+<body>
+<div id="component">
+  <main class="page">
+    <h1>New request</h1>
+    <form action="#">
+      <div class="field">
+        <label for="title">Title</label>
+        <input id="title" name="title" type="text">
+      </div>
+      <div class="field">
+        <label for="description">Description</label>
+        <textarea id="description" name="description" rows="5"></textarea>
+      </div>
+      <div class="row">
+        <div class="field">
+          <label for="priority">Priority</label>
+          <select id="priority" name="priority">
+            <option>Low</option>
+            <option>Medium</option>
+            <option>High</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="assignee">Assignee</label>
+          <select id="assignee" name="assignee">
+            <option>Maya Chen</option>
+            <option>Leo Park</option>
+            <option>Ana Ruiz</option>
+          </select>
+        </div>
+      </div>
+      <div class="field">
+        <label for="due">Due date</label>
+        <input id="due" name="due" type="date">
+      </div>
+      <div class="actions">
+        <button type="button" class="btn btn--plain">Cancel</button>
+        <button type="submit" class="btn btn--ink">Create Request</button>
+      </div>
+    </form>
+  </main>
+</div>
+</body>
+</html>

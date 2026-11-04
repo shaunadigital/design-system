@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Requests</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; }
+
+  html, body {
+    margin: 0;
+    background: #FFFFFF;
+    color: #0B1416;
+    font-family: "Archivo", "Helvetica Neue", Arial, sans-serif;
+    font-size: 16px;
+    line-height: 1.5;
+  }
+
+  #component {
+    width: 1280px;
+    min-height: 800px;
+    padding: 64px;
+    background: #FFFFFF;
+    color: #0B1416;
+  }
+
+  #component h1 {
+    margin: 0 0 48px;
+    font-family: "Unbounded", "Archivo", "Helvetica Neue", Arial, sans-serif;
+    font-weight: 300;
+    font-size: 56px;
+    line-height: 1.1;
+    letter-spacing: -0.01em;
+    text-transform: uppercase;
+  }
+
+  .toolbar {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-end;
+    gap: 24px 32px;
+    margin-bottom: 32px;
+  }
+
+  .field { display: flex; flex-direction: column; gap: 8px; }
+
+  .field label {
+    font-family: "Archivo", "Helvetica Neue", Arial, sans-serif;
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 16px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: #55656A;
+  }
+
+  .search { position: relative; width: 384px; }
+
+  .search svg {
+    position: absolute;
+    left: 12px;
+    top: 10px;
+    width: 24px;
+    height: 24px;
+    color: #55656A;
+    pointer-events: none;
+  }
+
+  .search input {
+    width: 100%;
+    height: 44px;
+    padding: 0 16px 0 48px;
+    border: 1px solid #55656A;
+    border-radius: 12px;
+    background: #FFFFFF;
+    color: #0B1416;
+    font-family: inherit;
+    font-size: 16px;
+    transition: border-color 120ms cubic-bezier(0.2, 0.7, 0.2, 1), background-color 120ms cubic-bezier(0.2, 0.7, 0.2, 1);
+  }
+
+  .search input:hover { border-color: #0263AC; }
+
+  .search input:focus-visible {
+    outline: 2px solid #0263AC;
+    outline-offset: 2px;
+    border-color: #0263AC;
+  }
+
+  .filters { display: flex; gap: 8px; }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 44px;
+    padding: 0 24px;
+    border: 1px solid transparent;
+    border-radius: 999px;
+    background: transparent;
+    color: #0B1416;
+    font-family: inherit;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 1;
+    cursor: pointer;
+    transition: background-color 180ms cubic-bezier(0.2, 0.7, 0.2, 1), color 180ms cubic-bezier(0.2, 0.7, 0.2, 1), border-color 180ms cubic-bezier(0.2, 0.7, 0.2, 1);
+  }
+
+  .btn:focus-visible { outline: 2px solid #0263AC; outline-offset: 2px; }
+
+  .btn-quiet:hover { background: #E6EFF7; }
+
+  .btn-quiet[aria-pressed="true"] {
+    background: #E6EFF7;
+    border-color: #9CC3EA;
+    color: #0263AC;
+  }
+
+  .btn-primary {
+    margin-left: auto;
+    background: #0B1416;
+    color: #FFFFFF;
+  }
+
+  .btn-primary:hover { background: #0263AC; }
+
+  .card {
+    background: #FFFFFF;
+    border: 1px solid #9CC3EA;
+    border-radius: 16px;
+    overflow: hidden;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    table-layout: fixed;
+    text-align: left;
+  }
+
+  thead th {
+    padding: 16px 24px;
+    background: #EEF4FA;
+    color: #55656A;
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 16px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    text-align: left;
+  }
+
+  tbody td, tbody th {
+    padding: 24px;
+    border-top: 1px solid #EEF4FA;
+    font-size: 16px;
+    line-height: 24px;
+    font-weight: 400;
+    text-align: left;
+    vertical-align: middle;
+  }
+
+  tbody th { font-weight: 500; }
+
+  tbody tr { transition: background-color 120ms cubic-bezier(0.2, 0.7, 0.2, 1); }
+  tbody tr:hover { background: #E6EFF7; }
+
+  td.muted { color: #55656A; }
+
+  col.c-request { width: 36%; }
+  col.c-requester { width: 20%; }
+  col.c-status { width: 16%; }
+  col.c-priority { width: 14%; }
+  col.c-updated { width: 14%; }
+
+  .status {
+    display: inline-block;
+    padding: 4px 12px;
+    border: 1px solid #9CC3EA;
+    border-radius: 999px;
+    background: #EEF4FA;
+    color: #0B1416;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 20px;
+  }
+
+  .status.open { background: #E6EFF7; color: #0263AC; }
+
+  @media (prefers-reduced-motion: reduce) {
+    * { transition: none !important; }
+  }
+</style>
+</head>
+<body>
+<div id="component">
+  <h1>Requests</h1>
+
+  <div class="toolbar">
+    <div class="field search">
+      <label for="search-requests">Search requests</label>
+      <div style="position: relative;">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="6"/><path d="M20 20l-4.5-4.5"/></svg>
+        <input id="search-requests" type="search" name="q" autocomplete="off">
+      </div>
+    </div>
+
+    <div class="filters" role="group" aria-label="Filter requests">
+      <button type="button" class="btn btn-quiet" aria-pressed="true">All</button>
+      <button type="button" class="btn btn-quiet" aria-pressed="false">Open</button>
+      <button type="button" class="btn btn-quiet" aria-pressed="false">Closed</button>
+    </div>
+
+    <button type="button" class="btn btn-primary">New Request</button>
+  </div>
+
+  <div class="card">
+    <table>
+      <colgroup>
+        <col class="c-request">
+        <col class="c-requester">
+        <col class="c-status">
+        <col class="c-priority">
+        <col class="c-updated">
+      </colgroup>
+      <thead>
+        <tr>
+          <th scope="col">Request</th>
+          <th scope="col">Requester</th>
+          <th scope="col">Status</th>
+          <th scope="col">Priority</th>
+          <th scope="col">Updated</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th scope="row">Laptop refresh for design</th>
+          <td>Maya Chen</td>
+          <td><span class="status open">Open</span></td>
+          <td>High</td>
+          <td class="muted">2h ago</td>
+        </tr>
+        <tr>
+          <th scope="row">Q4 travel budget</th>
+          <td>Leo Park</td>
+          <td><span class="status">Approved</span></td>
+          <td>Medium</td>
+          <td class="muted">5h ago</td>
+        </tr>
+        <tr>
+          <th scope="row">VPN access for contractors</th>
+          <td>Ana Ruiz</td>
+          <td><span class="status">Closed</span></td>
+          <td>High</td>
+          <td class="muted">1d ago</td>
+        </tr>
+        <tr>
+          <th scope="row">New hire onboarding</th>
+          <td>Sam Ito</td>
+          <td><span class="status open">Open</span></td>
+          <td>Medium</td>
+          <td class="muted">1d ago</td>
+        </tr>
+        <tr>
+          <th scope="row">Office move</th>
+          <td>Kai Lee</td>
+          <td><span class="status">In review</span></td>
+          <td>Low</td>
+          <td class="muted">2d ago</td>
+        </tr>
+        <tr>
+          <th scope="row">Security training</th>
+          <td>Ava Brooks</td>
+          <td><span class="status open">Open</span></td>
+          <td>Low</td>
+          <td class="muted">3d ago</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+</body>
+</html>

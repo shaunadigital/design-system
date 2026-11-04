@@ -1,0 +1,122 @@
+{
+ "size": {
+  "w": 1280,
+  "h": 720
+ },
+ "elements": 3,
+ "oldElements": 3,
+ "offElements": 0,
+ "pieces": [
+  {
+   "tag": "button",
+   "text": "Approve",
+   "box": {
+    "x": 1024,
+    "y": 159.46875,
+    "w": 96,
+    "h": 36
+   },
+   "hits": [
+    {
+     "k": "old",
+     "what": "text",
+     "v": "255,255,255"
+    }
+   ]
+  },
+  {
+   "tag": "button",
+   "text": "Approve",
+   "box": {
+    "x": 1024,
+    "y": 215.46875,
+    "w": 96,
+    "h": 36
+   },
+   "hits": [
+    {
+     "k": "old",
+     "what": "text",
+     "v": "255,255,255"
+    }
+   ]
+  },
+  {
+   "tag": "button",
+   "text": "Approve",
+   "box": {
+    "x": 1024,
+    "y": 271.46875,
+    "w": 96,
+    "h": 36
+   },
+   "hits": [
+    {
+     "k": "old",
+     "what": "text",
+     "v": "255,255,255"
+    }
+   ]
+  }
+ ],
+ "oldPieces": 3,
+ "values": {
+  "old": [
+   "text:255,255,255"
+  ],
+  "off": []
+ },
+ "all": [
+  {
+   "tag": "button",
+   "text": "Approve",
+   "box": {
+    "x": 1024,
+    "y": 159.46875,
+    "w": 96,
+    "h": 36
+   },
+   "hits": [
+    {
+     "k": "old",
+     "what": "text",
+     "v": "255,255,255"
+    }
+   ]
+  },
+  {
+   "tag": "button",
+   "text": "Approve",
+   "box": {
+    "x": 1024,
+    "y": 215.46875,
+    "w": 96,
+    "h": 36
+   },
+   "hits": [
+    {
+     "k": "old",
+     "what": "text",
+     "v": "255,255,255"
+    }
+   ]
+  },
+  {
+   "tag": "button",
+   "text": "Approve",
+   "box": {
+    "x": 1024,
+    "y": 271.46875,
+    "w": 96,
+    "h": 36
+   },
+   "hits": [
+    {
+     "k": "old",
+     "what": "text",
+     "v": "255,255,255"
+    }
+   ]
+  }
+ ]
+}

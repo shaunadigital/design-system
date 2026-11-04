@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=1280">
+<title>Harbor Billing</title>
+<style>
+/* tokens.css, inlined (generated from tokens/tokens.json) */
+:root {
+  --paper: #FFFFFF;
+  --paper-rgb: 255, 255, 255;
+  --sand: #EEF4FA;
+  --sand-rgb: 238, 244, 250;
+  --card: #FFFFFF;
+  --card-rgb: 255, 255, 255;
+  --ink: #0B1416;
+  --ink-rgb: 11, 20, 22;
+  --muted: #55656A;
+  --muted-rgb: 85, 101, 106;
+  --accent-text: #0263AC;
+  --accent-text-rgb: 2, 99, 172;
+  --accent: #0263AC;
+  --accent-rgb: 2, 99, 172;
+  --koa: #A65F35;
+  --koa-rgb: 166, 95, 53;
+  --white: #FFFFFF;
+  --white-rgb: 255, 255, 255;
+  --accent-tint: #E6EFF7;
+  --accent-tint-rgb: 230, 239, 247;
+  --accent-line: #9CC3EA;
+  --accent-line-rgb: 156, 195, 234;
+  --koa-tint: #F5E8DF;
+  --koa-tint-rgb: 245, 232, 223;
+  --plate-hover: #E3ECF5;
+  --plate-hover-rgb: 227, 236, 245;
+  --chrome-bar: #F6F8F8;
+  --chrome-bar-rgb: 246, 248, 248;
+  --chrome-dot: #D3D9DB;
+  --chrome-dot-rgb: 211, 217, 219;
+  --term-text: #E6EEF0;
+  --term-text-rgb: 230, 238, 240;
+  --term-dim: #8FA3A8;
+  --term-dim-rgb: 143, 163, 168;
+  --term-ok: #7FD3DC;
+  --term-ok-rgb: 127, 211, 220;
+  --on-ink: #FFFFFF;
+  --on-ink-rgb: 255, 255, 255;
+  --deep: #0B1416;
+  --deep-rgb: 11, 20, 22;
+  --shadow: #0B1416;
+  --shadow-rgb: 11, 20, 22;
+  --live: #E26D7E;
+  --live-rgb: 226, 109, 126;
+  --sky: #83BDDF;
+  --sky-rgb: 131, 189, 223;
+  --lagoon: #24C0CB;
+  --lagoon-rgb: 36, 192, 203;
+  --art-sand: #EDE6DD;
+  --art-sand-rgb: 237, 230, 221;
+  --palm: #5E6B3A;
+  --palm-rgb: 94, 107, 58;
+  --haze: #EBF6FA;
+  --haze-rgb: 235, 246, 250;
+  --dusk-high: #FFFFFF;
+  --dusk-high-rgb: 255, 255, 255;
+  --dusk-low: #FFFFFF;
+  --dusk-low-rgb: 255, 255, 255;
+  --trade-wind: #5193CF;
+  --trade-wind-rgb: 81, 147, 207;
+  --frond: #25461D;
+  --frond-rgb: 37, 70, 29;
+  --pink-palace: #F3B2B5;
+  --pink-palace-rgb: 243, 178, 181;
+  --rescue: #7A2FB0;
+  --rescue-rgb: 122, 47, 176;
+  --rescue-text: #6E2A9E;
+  --rescue-text-rgb: 110, 42, 158;
+  --rescue-tint: #F1E8FA;
+  --rescue-tint-rgb: 241, 232, 250;
+  --rescue-ink: #1E1530;
+  --rescue-ink-rgb: 30, 21, 48;
+  --font-display: 'Unbounded', system-ui, sans-serif;
+  --font-body: 'Archivo', system-ui, -apple-system, sans-serif;
+  --font-label: 'Archivo', system-ui, sans-serif;
+  --font-hero: 'Unbounded', system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, monospace;
+  --font-script: 'Vujahday Script', cursive;
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 24px;
+  --space-6: 32px;
+  --space-7: 48px;
+  --space-8: 64px;
+  --space-9: 96px;
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-card: 16px;
+  --radius-pill: 999px;
+  --tracking-tighter: -0.03em;
+  --tracking-tight: -0.02em;
+  --tracking-snug: -0.01em;
+  --tracking-loose: 0.02em;
+  --tracking-wordmark: 0.04em;
+  --tracking-wide: 0.06em;
+  --tracking-wider: 0.08em;
+  --tracking-caps: 0.1em;
+  --tracking-caps-wide: 0.12em;
+  --tracking-label: 0.14em;
+  --wordmark-weight: 800;
+  --wordmark-stretch: 112%;
+  --wordmark-wdth: 112;
+  --text-script: clamp(3.75rem, 6.1vw, 5.5rem);
+  --text-hero: clamp(1.5rem, 3.34vw, 3rem);
+  --text-display-xl: clamp(2rem, 4vw, 3.5rem);
+  --text-heading: clamp(1.75rem, 3.2vw, 2.875rem);
+  --text-statement: clamp(1.25rem, 2.22vw, 2rem);
+  --text-step: clamp(1.375rem, 1.9vw, 1.75rem);
+  --text-title: 1.75rem;
+  --text-lead: 1.375rem;
+  --text-body-l: 1.125rem;
+  --text-body: 1rem;
+  --text-small: 0.875rem;
+  --text-label: 0.75rem;
+  --ease: cubic-bezier(0.2, 0.7, 0.2, 1);
+  --dur-fast: 120ms;
+  --dur-base: 180ms;
+  --dur-slow: 320ms;
+}
+
+:root { color-scheme: light; }
+:root[data-theme="dusk"] {
+  color-scheme: dark;
+  --paper: #0E1618;
+  --paper-rgb: 14, 22, 24;
+  --sand: #131E21;
+  --sand-rgb: 19, 30, 33;
+  --card: #172327;
+  --card-rgb: 23, 35, 39;
+  --ink: #E9EFEF;
+  --ink-rgb: 233, 239, 239;
+  --muted: #9DAEB1;
+  --muted-rgb: 157, 174, 177;
+  --accent-text: #9CC3EA;
+  --accent-text-rgb: 156, 195, 234;
+  --accent: #6FAAE6;
+  --accent-rgb: 111, 170, 230;
+  --koa: #E3A47E;
+  --koa-rgb: 227, 164, 126;
+  --accent-tint: #13283A;
+  --accent-tint-rgb: 19, 40, 58;
+  --accent-line: #2D5B85;
+  --accent-line-rgb: 45, 91, 133;
+  --koa-tint: #3B2A21;
+  --koa-tint-rgb: 59, 42, 33;
+  --plate-hover: #1A2A36;
+  --plate-hover-rgb: 26, 42, 54;
+  --chrome-bar: #1D2A2E;
+  --chrome-bar-rgb: 29, 42, 46;
+  --chrome-dot: #3B4B50;
+  --chrome-dot-rgb: 59, 75, 80;
+  --on-ink: #0E1618;
+  --on-ink-rgb: 14, 22, 24;
+  --deep: #060C0E;
+  --deep-rgb: 6, 12, 14;
+  --shadow: #000000;
+  --shadow-rgb: 0, 0, 0;
+  --live: #EE8D9A;
+  --live-rgb: 238, 141, 154;
+  --haze: #0E1820;
+  --haze-rgb: 14, 24, 32;
+  --dusk-high: #2C3A6E;
+  --dusk-high-rgb: 44, 58, 110;
+  --dusk-low: #8C6A86;
+  --dusk-low-rgb: 140, 106, 134;
+  --rescue: #B98AE0;
+  --rescue-rgb: 185, 138, 224;
+  --rescue-text: #CDB0EC;
+  --rescue-text-rgb: 205, 176, 236;
+  --rescue-tint: #2A1C38;
+  --rescue-tint-rgb: 42, 28, 56;
+}
+
+/* Billing screen */
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--paper);
+}
+
+#component {
+  width: 1280px;
+  min-height: 800px;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: var(--text-body);
+  line-height: 1.5;
+}
+
+#component .page {
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: var(--space-7) var(--space-6);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6);
+}
+
+#component .top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+#component h1,
+#component h2 {
+  margin: 0;
+  font-family: var(--font-display);
+  font-weight: 300;
+  text-transform: uppercase;
+  line-height: 1.1;
+  color: var(--ink);
+}
+#component h1 { font-size: var(--text-heading); }
+#component h2 { font-size: var(--text-step); }
+
+#component .card {
+  background: var(--card);
+  border: 1px solid rgba(var(--ink-rgb), 0.1);
+  border-radius: var(--radius-card);
+  padding: var(--space-5);
+}
+
+/* Current plan */
+#component .plan {
+  display: flex;
+  align-items: center;
+  gap: var(--space-6);
+}
+#component .plan-main { flex: 1 1 auto; }
+#component .price {
+  margin: var(--space-3) 0 0;
+  display: flex;
+  align-items: baseline;
+  gap: var(--space-2);
+}
+#component .price-amount {
+  font-family: var(--font-hero);
+  font-weight: 300;
+  font-size: var(--text-hero);
+  line-height: 1.1;
+  letter-spacing: var(--tracking-tight);
+}
+#component .price-unit {
+  font-size: var(--text-small);
+  color: var(--muted);
+}
+#component .seats {
+  flex: 0 0 280px;
+}
+#component .seats-text {
+  margin: 0 0 var(--space-2);
+  font-size: var(--text-body);
+  font-weight: 500;
+}
+#component .meter {
+  height: 8px;
+  border-radius: var(--radius-pill);
+  background: rgba(var(--ink-rgb), 0.1);
+  overflow: hidden;
+}
+#component .meter-fill {
+  height: 100%;
+  width: 72%;
+  border-radius: var(--radius-pill);
+  background: var(--accent);
+}
+
+/* Buttons: 44px pills */
+#component .btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 44px;
+  padding: 0 20px;
+  border-radius: var(--radius-pill);
+  font-family: var(--font-body);
+  font-size: var(--text-small);
+  font-weight: 600;
+  line-height: 1;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: opacity var(--dur-fast) var(--ease);
+}
+#component .btn--primary {
+  background: var(--ink);
+  color: var(--on-ink);
+  border: 0;
+}
+#component .btn:hover { opacity: 0.88; }
+#component .btn:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+/* Invoices */
+#component .invoices {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+#component table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: var(--text-small);
+}
+#component th {
+  height: 44px;
+  padding: 0 var(--space-3);
+  text-align: left;
+  font-family: var(--font-label);
+  font-size: var(--text-label);
+  font-weight: 500;
+  letter-spacing: var(--tracking-label);
+  text-transform: uppercase;
+  color: var(--muted);
+  border-bottom: 1px solid rgba(var(--ink-rgb), 0.1);
+}
+#component td {
+  height: 52px;
+  padding: 0 var(--space-3);
+  border-bottom: 1px solid rgba(var(--ink-rgb), 0.1);
+}
+#component tbody tr:last-child td { border-bottom: 0; }
+#component th:first-child,
+#component td:first-child { padding-left: 0; }
+#component th:last-child,
+#component td:last-child { padding-right: 0; }
+#component .col-date { width: 40%; }
+#component .col-amount { width: 30%; }
+#component .num {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+#component th.num { text-align: right; }
+#component td.amount {
+  padding-right: var(--space-8);
+  font-weight: 500;
+}
+#component th.amount { padding-right: var(--space-8); }
+#component .pill {
+  display: inline-block;
+  padding: 2px 10px;
+  border-radius: var(--radius-pill);
+  background: var(--accent-tint);
+  color: var(--accent-text);
+  font-size: var(--text-label);
+  font-weight: 600;
+  line-height: 1.5;
+}
+</style>
+</head>
+<body>
+<div id="component">
+  <main class="page">
+    <div class="top">
+      <h1>Billing</h1>
+    </div>
+
+    <section class="card plan" aria-label="Current plan">
+      <div class="plan-main">
+        <h2>Team plan</h2>
+        <p class="price">
+          <span class="price-amount">$24</span>
+          <span class="price-unit">per seat per month</span>
+        </p>
+      </div>
+      <div class="seats">
+        <p class="seats-text">18 of 25 seats used</p>
+        <div class="meter" role="progressbar" aria-label="Seats used" aria-valuemin="0" aria-valuemax="25" aria-valuenow="18">
+          <div class="meter-fill"></div>
+        </div>
+      </div>
+      <button type="button" class="btn btn--primary">Change Plan</button>
+    </section>
+
+    <section class="invoices" aria-labelledby="invoices-title">
+      <h2 id="invoices-title">Invoices</h2>
+      <div class="card">
+        <table>
+          <colgroup>
+            <col class="col-date">
+            <col class="col-amount">
+            <col>
+          </colgroup>
+          <thead>
+            <tr>
+              <th scope="col">Date</th>
+              <th scope="col" class="num amount">Amount</th>
+              <th scope="col">Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Oct 1, 2026</td>
+              <td class="num amount">$432.00</td>
+              <td><span class="pill">Paid</span></td>
+            </tr>
+            <tr>
+              <td>Sep 1, 2026</td>
+              <td class="num amount">$432.00</td>
+              <td><span class="pill">Paid</span></td>
+            </tr>
+            <tr>
+              <td>Aug 1, 2026</td>
+              <td class="num amount">$408.00</td>
+              <td><span class="pill">Paid</span></td>
+            </tr>
+            <tr>
+              <td>Jul 1, 2026</td>
+              <td class="num amount">$408.00</td>
+              <td><span class="pill">Paid</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+</div>
+</body>
+</html>

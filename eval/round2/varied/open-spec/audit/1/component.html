@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Audit log | Harbor</title>
+<style>
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: #FFFFFF;
+    color: #0B1416;
+    font-family: "Archivo", "Helvetica Neue", Arial, sans-serif;
+    font-size: 16px;
+    line-height: 1.5;
+  }
+  #component {
+    width: 1280px;
+    min-height: 100vh;
+    padding: 64px 64px 96px;
+    background: #FFFFFF;
+  }
+  .toolbar {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 24px 32px;
+    margin-bottom: 48px;
+  }
+  h1 {
+    margin: 0;
+    font-family: "Unbounded", "Archivo", "Helvetica Neue", Arial, sans-serif;
+    font-weight: 300;
+    font-size: 56px;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    text-transform: uppercase;
+  }
+  .filter { display: flex; flex-direction: column; gap: 8px; }
+  .label {
+    font-family: "Archivo", "Helvetica Neue", Arial, sans-serif;
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 1.5;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: #0263AC;
+  }
+  select {
+    min-width: 240px;
+    height: 44px;
+    padding: 0 16px;
+    font: inherit;
+    font-size: 16px;
+    color: #0B1416;
+    background: #FFFFFF;
+    border: 1px solid #9CC3EA;
+    border-radius: 12px;
+    transition: border-color 120ms cubic-bezier(0.2, 0.7, 0.2, 1);
+  }
+  select:hover { border-color: #0263AC; }
+  select:focus-visible { outline: 2px solid #0263AC; outline-offset: 2px; }
+
+  .card {
+    background: #FFFFFF;
+    border: 1px solid #9CC3EA;
+    border-radius: 16px;
+    padding: 16px 32px;
+  }
+  table { width: 100%; border-collapse: collapse; text-align: left; }
+  th, td { padding: 16px 0; vertical-align: baseline; }
+  th { padding-top: 16px; padding-bottom: 12px; }
+  th:nth-child(1), td:nth-child(1) { width: 200px; padding-right: 32px; }
+  th:nth-child(2), td:nth-child(2) { width: 240px; padding-right: 32px; }
+  tbody tr { border-top: 1px solid #9CC3EA; }
+  .time { font-size: 14px; color: #55656A; white-space: nowrap; }
+  .person { font-weight: 500; }
+  @media (prefers-reduced-motion: reduce) {
+    select { transition: none; }
+  }
+</style>
+</head>
+<body>
+<div id="component">
+  <div class="toolbar">
+    <h1>Audit log</h1>
+    <div class="filter">
+      <label class="label" for="date-range">Date range</label>
+      <select id="date-range" name="date-range">
+        <option selected>Last 7 days</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="card">
+    <table>
+      <thead>
+        <tr>
+          <th scope="col" class="label" style="color:#55656A">Time</th>
+          <th scope="col" class="label" style="color:#55656A">Person</th>
+          <th scope="col" class="label" style="color:#55656A">Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td class="time">Today 9:14</td><td class="person">Maya Chen</td><td>Changed Leo Park's role to Editor</td></tr>
+        <tr><td class="time">Today 8:02</td><td class="person">Leo Park</td><td>Approved Q4 travel budget</td></tr>
+        <tr><td class="time">Yesterday 17:40</td><td class="person">Ana Ruiz</td><td>Closed VPN access for contractors</td></tr>
+        <tr><td class="time">Yesterday 11:05</td><td class="person">Sam Ito</td><td>Invited kai@harbor.app</td></tr>
+        <tr><td class="time">Oct 16 15:22</td><td class="person">Maya Chen</td><td>Exported requests</td></tr>
+        <tr><td class="time">Oct 16 10:10</td><td class="person">Kai Lee</td><td>Signed in from a new device</td></tr>
+        <tr><td class="time">Oct 15 14:48</td><td class="person">Leo Park</td><td>Updated billing details</td></tr>
+        <tr><td class="time">Oct 15 09:30</td><td class="person">Maya Chen</td><td>Created workspace Harbor Ops</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+</body>
+</html>

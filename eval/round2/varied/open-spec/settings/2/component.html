@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Workspace settings</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; }
+
+  html, body {
+    margin: 0;
+    padding: 0;
+    background: #FFFFFF;
+  }
+
+  #component {
+    width: 1280px;
+    min-height: 100vh;
+    margin: 0 auto;
+    padding: 64px 64px 96px;
+    background: #FFFFFF;
+    color: #0B1416;
+    font-family: "Archivo", "Helvetica Neue", Arial, sans-serif;
+    font-size: 16px;
+    line-height: 1.5;
+    letter-spacing: 0;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  #component h1,
+  #component h2 {
+    margin: 0;
+    font-family: "Unbounded", "Archivo", "Helvetica Neue", Arial, sans-serif;
+    color: #0B1416;
+  }
+
+  #component h1 {
+    font-size: 56px;
+    font-weight: 300;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    text-transform: uppercase;
+    margin-bottom: 64px;
+  }
+
+  #component h2 {
+    font-size: 28px;
+    font-weight: 500;
+    line-height: 1.2;
+    letter-spacing: -0.01em;
+  }
+
+  .stack {
+    display: flex;
+    flex-direction: column;
+    gap: 64px;
+  }
+
+  .section {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    column-gap: 32px;
+    align-items: start;
+  }
+
+  .section > h2 {
+    grid-column: 1 / span 4;
+    padding-top: 32px;
+  }
+
+  .card {
+    grid-column: 5 / span 8;
+    background: #FFFFFF;
+    border: 1px solid #9CC3EA;
+    border-radius: 16px;
+    padding: 32px;
+  }
+
+  /* General */
+  .fields {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+  }
+
+  .field {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .field label {
+    font-size: 12px;
+    font-weight: 500;
+    line-height: 1.5;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: #0263AC;
+  }
+
+  .field input {
+    width: 100%;
+    height: 48px;
+    padding: 0 16px;
+    font-family: inherit;
+    font-size: 16px;
+    letter-spacing: 0;
+    color: #0B1416;
+    background: #FFFFFF;
+    border: 1px solid #55656A;
+    border-radius: 12px;
+    transition: border-color 120ms cubic-bezier(0.2, 0.7, 0.2, 1),
+                background-color 120ms cubic-bezier(0.2, 0.7, 0.2, 1);
+  }
+
+  .field input:hover {
+    background: #EEF4FA;
+  }
+
+  .field input:focus-visible {
+    outline: 2px solid #0263AC;
+    outline-offset: 2px;
+    border-color: #0263AC;
+    background: #FFFFFF;
+  }
+
+  .card-actions {
+    margin-top: 32px;
+    padding-top: 24px;
+    border-top: 1px solid #EEF4FA;
+    display: flex;
+    justify-content: flex-start;
+  }
+
+  /* Buttons */
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 44px;
+    padding: 0 32px;
+    border-radius: 999px;
+    border: 1px solid transparent;
+    font-family: inherit;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 1;
+    letter-spacing: 0.02em;
+    cursor: pointer;
+    transition: background-color 180ms cubic-bezier(0.2, 0.7, 0.2, 1),
+                color 180ms cubic-bezier(0.2, 0.7, 0.2, 1),
+                border-color 180ms cubic-bezier(0.2, 0.7, 0.2, 1);
+  }
+
+  .btn:focus-visible {
+    outline: 2px solid #0263AC;
+    outline-offset: 2px;
+  }
+
+  .btn-primary {
+    background: #0B1416;
+    color: #FFFFFF;
+  }
+
+  .btn-primary:hover {
+    background: #0263AC;
+  }
+
+  .btn-quiet {
+    background: transparent;
+    color: #0B1416;
+    border-color: #0B1416;
+  }
+
+  .btn-quiet:hover {
+    background: #E6EFF7;
+    border-color: #0263AC;
+    color: #0263AC;
+  }
+
+  /* Notifications */
+  .switch-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .switch-list li + li {
+    border-top: 1px solid #EEF4FA;
+  }
+
+  .switch-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+    min-height: 64px;
+    cursor: pointer;
+  }
+
+  .switch-list li:first-child .switch-row { padding-top: 0; }
+  .switch-list li:last-child .switch-row { padding-bottom: 0; }
+
+  .switch-text {
+    font-size: 16px;
+    line-height: 1.5;
+    color: #0B1416;
+  }
+
+  .switch {
+    appearance: none;
+    -webkit-appearance: none;
+    flex: none;
+    position: relative;
+    width: 48px;
+    height: 24px;
+    margin: 0;
+    border-radius: 999px;
+    background: #FFFFFF;
+    border: 1px solid #55656A;
+    cursor: pointer;
+    transition: background-color 180ms cubic-bezier(0.2, 0.7, 0.2, 1),
+                border-color 180ms cubic-bezier(0.2, 0.7, 0.2, 1);
+  }
+
+  .switch::before {
+    content: "";
+    position: absolute;
+    top: 3px;
+    left: 3px;
+    width: 16px;
+    height: 16px;
+    border-radius: 999px;
+    background: #55656A;
+    transition: transform 180ms cubic-bezier(0.2, 0.7, 0.2, 1),
+                background-color 180ms cubic-bezier(0.2, 0.7, 0.2, 1);
+  }
+
+  .switch:checked {
+    background: #0263AC;
+    border-color: #0263AC;
+  }
+
+  .switch:checked::before {
+    background: #FFFFFF;
+    transform: translateX(24px);
+  }
+
+  .switch:focus-visible {
+    outline: 2px solid #0263AC;
+    outline-offset: 2px;
+  }
+
+  /* Danger zone */
+  .danger {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 32px;
+    background: #EEF4FA;
+  }
+
+  .danger p {
+    margin: 0;
+    max-width: 400px;
+    font-size: 16px;
+    line-height: 1.5;
+    color: #0B1416;
+  }
+
+  .danger .btn { flex: none; background: #FFFFFF; }
+  .danger .btn:hover { background: #E6EFF7; }
+
+  @media (prefers-reduced-motion: reduce) {
+    #component * , #component *::before {
+      transition: none !important;
+    }
+  }
+</style>
+</head>
+<body>
+  <div id="component">
+    <main>
+      <h1>Workspace settings</h1>
+
+      <div class="stack">
+        <section class="section" aria-labelledby="general-title">
+          <h2 id="general-title">General</h2>
+          <form class="card" action="#">
+            <div class="fields">
+              <div class="field">
+                <label for="workspace-name">Workspace name</label>
+                <input id="workspace-name" name="workspace-name" type="text" value="Harbor Ops">
+              </div>
+              <div class="field">
+                <label for="workspace-url">Workspace URL</label>
+                <input id="workspace-url" name="workspace-url" type="text" value="harbor.app/ops">
+              </div>
+            </div>
+            <div class="card-actions">
+              <button class="btn btn-primary" type="submit">Save Changes</button>
+            </div>
+          </form>
+        </section>
+
+        <section class="section" aria-labelledby="notifications-title">
+          <h2 id="notifications-title">Notifications</h2>
+          <div class="card">
+            <ul class="switch-list">
+              <li>
+                <label class="switch-row">
+                  <span class="switch-text">Email me when a request is assigned to me</span>
+                  <input class="switch" type="checkbox" role="switch" checked>
+                </label>
+              </li>
+              <li>
+                <label class="switch-row">
+                  <span class="switch-text">Weekly summary</span>
+                  <input class="switch" type="checkbox" role="switch" checked>
+                </label>
+              </li>
+              <li>
+                <label class="switch-row">
+                  <span class="switch-text">Product updates</span>
+                  <input class="switch" type="checkbox" role="switch">
+                </label>
+              </li>
+            </ul>
+          </div>
+        </section>
+
+        <section class="section" aria-labelledby="danger-title">
+          <h2 id="danger-title">Danger zone</h2>
+          <div class="card danger">
+            <p>Deleting a workspace removes all of its requests for everyone.</p>
+            <button class="btn btn-quiet" type="button">Delete Workspace</button>
+          </div>
+        </section>
+      </div>
+    </main>
+  </div>
+</body>
+</html>

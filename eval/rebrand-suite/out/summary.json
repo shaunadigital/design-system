@@ -1,0 +1,438 @@
+{
+ "system": {
+  "screens": {
+   "approvals-1": {
+    "pieces": 0,
+    "oldPieces": 0,
+    "elements": 0
+   },
+   "approvals-2": {
+    "pieces": 0,
+    "oldPieces": 0,
+    "elements": 0
+   },
+   "audit-1": {
+    "pieces": 0,
+    "oldPieces": 0,
+    "elements": 0
+   },
+   "audit-2": {
+    "pieces": 0,
+    "oldPieces": 0,
+    "elements": 0
+   },
+   "billing-1": {
+    "pieces": 0,
+    "oldPieces": 0,
+    "elements": 0
+   },
+   "billing-2": {
+    "pieces": 0,
+    "oldPieces": 0,
+    "elements": 0
+   },
+   "dashboard-1": {
+    "pieces": 0,
+    "oldPieces": 0,
+    "elements": 0
+   },
+   "dashboard-2": {
+    "pieces": 0,
+    "oldPieces": 0,
+    "elements": 0
+   },
+   "empty-1": {
+    "pieces": 0,
+    "oldPieces": 0,
+    "elements": 0
+   },
+   "empty-2": {
+    "pieces": 0,
+    "oldPieces": 0,
+    "elements": 0
+   },
+   "form-1": {
+    "pieces": 0,
+    "oldPieces": 0,
+    "elements": 0
+   },
+   "form-2": {
+    "pieces": 0,
+    "oldPieces": 0,
+    "elements": 0
+   },
+   "notifications-1": {
+    "pieces": 0,
+    "oldPieces": 0,
+    "elements": 0
+   },
+   "notifications-2": {
+    "pieces": 0,
+    "oldPieces": 0,
+    "elements": 0
+   },
+   "onboarding-1": {
+    "pieces": 0,
+    "oldPieces": 0,
+    "elements": 0
+   },
+   "onboarding-2": {
+    "pieces": 0,
+    "oldPieces": 0,
+    "elements": 0
+   },
+   "settings-1": {
+    "pieces": 0,
+    "oldPieces": 0,
+    "elements": 0
+   },
+   "settings-2": {
+    "pieces": 0,
+    "oldPieces": 0,
+    "elements": 0
+   },
+   "signin-1": {
+    "pieces": 0,
+    "oldPieces": 0,
+    "elements": 0
+   },
+   "signin-2": {
+    "pieces": 0,
+    "oldPieces": 0,
+    "elements": 0
+   },
+   "table-1": {
+    "pieces": 1,
+    "oldPieces": 1,
+    "elements": 1
+   },
+   "table-2": {
+    "pieces": 0,
+    "oldPieces": 0,
+    "elements": 0
+   },
+   "team-1": {
+    "pieces": 0,
+    "oldPieces": 0,
+    "elements": 0
+   },
+   "team-2": {
+    "pieces": 0,
+    "oldPieces": 0,
+    "elements": 0
+   }
+  },
+  "total": {
+   "pieces": 1,
+   "elements": 1,
+   "oldPieces": 1,
+   "screensClean": 23,
+   "of": 24
+  },
+  "values": {
+   "old": [
+    "fill:255,255,255"
+   ],
+   "off": []
+  }
+ },
+ "design-md": {
+  "screens": {
+   "approvals-1": {
+    "pieces": 0,
+    "oldPieces": 0,
+    "elements": 0
+   },
+   "approvals-2": {
+    "pieces": 0,
+    "oldPieces": 0,
+    "elements": 0
+   },
+   "audit-1": {
+    "pieces": 0,
+    "oldPieces": 0,
+    "elements": 0
+   },
+   "audit-2": {
+    "pieces": 0,
+    "oldPieces": 0,
+    "elements": 0
+   },
+   "billing-1": {
+    "pieces": 0,
+    "oldPieces": 0,
+    "elements": 0
+   },
+   "billing-2": {
+    "pieces": 0,
+    "oldPieces": 0,
+    "elements": 0
+   },
+   "dashboard-1": {
+    "pieces": 0,
+    "oldPieces": 0,
+    "elements": 0
+   },
+   "dashboard-2": {
+    "pieces": 0,
+    "oldPieces": 0,
+    "elements": 0
+   },
+   "empty-1": {
+    "pieces": 0,
+    "oldPieces": 0,
+    "elements": 0
+   },
+   "empty-2": {
+    "pieces": 0,
+    "oldPieces": 0,
+    "elements": 0
+   },
+   "form-1": {
+    "pieces": 0,
+    "oldPieces": 0,
+    "elements": 0
+   },
+   "form-2": {
+    "pieces": 0,
+    "oldPieces": 0,
+    "elements": 0
+   },
+   "notifications-1": {
+    "pieces": 0,
+    "oldPieces": 0,
+    "elements": 0
+   },
+   "notifications-2": {
+    "pieces": 0,
+    "oldPieces": 0,
+    "elements": 0
+   },
+   "onboarding-1": {
+    "pieces": 0,
+    "oldPieces": 0,
+    "elements": 0
+   },
+   "onboarding-2": {
+    "pieces": 0,
+    "oldPieces": 0,
+    "elements": 0
+   },
+   "settings-1": {
+    "pieces": 0,
+    "oldPieces": 0,
+    "elements": 0
+   },
+   "settings-2": {
+    "pieces": 0,
+    "oldPieces": 0,
+    "elements": 0
+   },
+   "signin-1": {
+    "pieces": 0,
+    "oldPieces": 0,
+    "elements": 0
+   },
+   "signin-2": {
+    "pieces": 0,
+    "oldPieces": 0,
+    "elements": 0
+   },
+   "table-1": {
+    "pieces": 0,
+    "oldPieces": 0,
+    "elements": 0
+   },
+   "table-2": {
+    "pieces": 0,
+    "oldPieces": 0,
+    "elements": 0
+   },
+   "team-1": {
+    "pieces": 0,
+    "oldPieces": 0,
+    "elements": 0
+   },
+   "team-2": {
+    "pieces": 0,
+    "oldPieces": 0,
+    "elements": 0
+   }
+  },
+  "total": {
+   "pieces": 0,
+   "elements": 0,
+   "oldPieces": 0,
+   "screensClean": 24,
+   "of": 24
+  },
+  "values": {
+   "old": [],
+   "off": []
+  }
+ },
+ "brand-notes": {
+  "screens": {
+   "approvals-1": {
+    "pieces": 0,
+    "oldPieces": 0,
+    "elements": 0
+   },
+   "approvals-2": {
+    "pieces": 3,
+    "oldPieces": 3,
+    "elements": 3
+   },
+   "audit-1": {
+    "pieces": 0,
+    "oldPieces": 0,
+    "elements": 0
+   },
+   "audit-2": {
+    "pieces": 0,
+    "oldPieces": 0,
+    "elements": 0
+   },
+   "billing-1": {
+    "pieces": 1,
+    "oldPieces": 1,
+    "elements": 1
+   },
+   "billing-2": {
+    "pieces": 0,
+    "oldPieces": 0,
+    "elements": 0
+   },
+   "dashboard-1": {
+    "pieces": 0,
+    "oldPieces": 0,
+    "elements": 0
+   },
+   "dashboard-2": {
+    "pieces": 0,
+    "oldPieces": 0,
+    "elements": 0
+   },
+   "empty-1": {
+    "pieces": 0,
+    "oldPieces": 0,
+    "elements": 0
+   },
+   "empty-2": {
+    "pieces": 1,
+    "oldPieces": 1,
+    "elements": 1
+   },
+   "form-1": {
+    "pieces": 0,
+    "oldPieces": 0,
+    "elements": 0
+   },
+   "form-2": {
+    "pieces": 0,
+    "oldPieces": 0,
+    "elements": 0
+   },
+   "notifications-1": {
+    "pieces": 6,
+    "oldPieces": 0,
+    "elements": 12
+   },
+   "notifications-2": {
+    "pieces": 6,
+    "oldPieces": 0,
+    "elements": 12
+   },
+   "onboarding-1": {
+    "pieces": 0,
+    "oldPieces": 0,
+    "elements": 0
+   },
+   "onboarding-2": {
+    "pieces": 7,
+    "oldPieces": 0,
+    "elements": 11
+   },
+   "settings-1": {
+    "pieces": 4,
+    "oldPieces": 1,
+    "elements": 4
+   },
+   "settings-2": {
+    "pieces": 3,
+    "oldPieces": 0,
+    "elements": 9
+   },
+   "signin-1": {
+    "pieces": 0,
+    "oldPieces": 0,
+    "elements": 0
+   },
+   "signin-2": {
+    "pieces": 1,
+    "oldPieces": 0,
+    "elements": 4
+   },
+   "table-1": {
+    "pieces": 0,
+    "oldPieces": 0,
+    "elements": 0
+   },
+   "table-2": {
+    "pieces": 6,
+    "oldPieces": 1,
+    "elements": 51
+   },
+   "team-1": {
+    "pieces": 6,
+    "oldPieces": 1,
+    "elements": 16
+   },
+   "team-2": {
+    "pieces": 6,
+    "oldPieces": 1,
+    "elements": 6
+   }
+  },
+  "total": {
+   "pieces": 50,
+   "elements": 130,
+   "oldPieces": 9,
+   "screensClean": 12,
+   "of": 24
+  },
+  "values": {
+   "old": [
+    "text:255,255,255",
+    "fill:255,255,255"
+   ],
+   "off": [
+    "border:217,210,195",
+    "text:58,74,65",
+    "text:74,89,80",
+    "border:217,209,194",
+    "text:75,90,81",
+    "fill:217,209,193",
+    "text:74,87,79",
+    "border:217,209,193",
+    "border:216,208,192",
+    "border:218,210,194",
+    "border:122,131,121",
+    "fill:122,131,121",
+    "text:70,83,75",
+    "border:221,213,197",
+    "border:111,122,112",
+    "icon:79,94,85",
+    "border:168,159,141",
+    "text:79,94,85",
+    "fill:251,235,221",
+    "border:235,195,165",
+    "fill:216,208,191",
+    "border:217,208,191",
+    "text:74,90,80",
+    "border:119,133,124",
+    "border:227,218,203"
+   ]
+  }
+ }
+}

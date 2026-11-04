@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Chat Options</title>
+<style>
+:root {
+  --paper: #FFFFFF;
+  --card: #FFFFFF;
+  --ink: #0B1416;
+  --muted: #55656A;
+  --accent: #0263AC;
+  --accent-tint: #E6EFF7;
+  --accent-line: #9CC3EA;
+  --on-ink: #FFFFFF;
+  --plate-hover: #E3ECF5;
+  --shadow-rgb: 11, 20, 22;
+  --font-body: 'Archivo', system-ui, -apple-system, sans-serif;
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 24px;
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-pill: 999px;
+  --tracking-snug: -0.01em;
+  --text-body: 1rem;
+  --ease: cubic-bezier(0.2, 0.7, 0.2, 1);
+  --dur-fast: 120ms;
+  --dur-base: 180ms;
+  color-scheme: light;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --paper: #0E1618;
+    --card: #172327;
+    --ink: #E9EFEF;
+    --muted: #9DAEB1;
+    --accent: #6FAAE6;
+    --accent-tint: #13283A;
+    --accent-line: #2D5B85;
+    --on-ink: #0E1618;
+    --plate-hover: #1A2A36;
+    --shadow-rgb: 0, 0, 0;
+    color-scheme: dark;
+  }
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: var(--text-body);
+}
+
+#component {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  width: 224px;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  min-height: 44px;
+  padding: 0 var(--space-5);
+  border: 0;
+  border-radius: var(--radius-pill);
+  font: 500 var(--text-body)/1 var(--font-body);
+  letter-spacing: var(--tracking-snug);
+  cursor: pointer;
+  transition: transform var(--dur-fast) var(--ease), box-shadow var(--dur-base) var(--ease);
+}
+.btn--fill {
+  background: var(--ink);
+  color: var(--on-ink);
+}
+.btn--fill:hover { box-shadow: 0 0 0 3px var(--accent-line); }
+.btn--fill:active { transform: scale(0.98); }
+.btn:focus-visible,
+.menu__item:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+.btn svg {
+  width: 20px;
+  height: 20px;
+  flex: none;
+  transform: rotate(180deg);
+}
+
+.menu {
+  margin: var(--space-2) 0 0;
+  padding: var(--space-2);
+  list-style: none;
+  background: var(--card);
+  border: 1px solid var(--accent-line);
+  border-radius: var(--radius-md);
+  box-shadow: 0 12px 32px rgba(var(--shadow-rgb), 0.14);
+}
+.menu__item {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  min-height: 44px;
+  padding: 0 var(--space-3);
+  border: 0;
+  border-radius: var(--radius-sm);
+  background: transparent;
+  color: var(--ink);
+  font: 400 var(--text-body)/1.2 var(--font-body);
+  text-align: left;
+  cursor: pointer;
+  transition: background var(--dur-fast) var(--ease);
+}
+.menu__item:hover { background: var(--plate-hover); }
+.menu__item:active { background: var(--accent-tint); }
+.menu__sep {
+  height: 1px;
+  margin: var(--space-1) var(--space-2);
+  background: var(--accent-line);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .btn, .menu__item { transition: none; }
+}
+</style>
+</head>
+<body>
+<div id="component">
+  <button class="btn btn--fill" type="button" aria-haspopup="menu" aria-expanded="true" aria-controls="chat-menu">
+    Chat Options
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+  </button>
+  <ul class="menu" id="chat-menu" role="menu" aria-label="Chat Options">
+    <li role="none"><button class="menu__item" type="button" role="menuitem">Rename</button></li>
+    <li role="none"><button class="menu__item" type="button" role="menuitem">Share</button></li>
+    <li role="none"><button class="menu__item" type="button" role="menuitem">Archive</button></li>
+    <li role="separator" class="menu__sep"></li>
+    <li role="none"><button class="menu__item" type="button" role="menuitem">Delete</button></li>
+  </ul>
+</div>
+</body>
+</html>

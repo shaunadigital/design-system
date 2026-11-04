@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Requests | Harbor</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    background: #FFFFFF;
+    color: #0B1416;
+    font-family: "Archivo", system-ui, -apple-system, "Segoe UI", Helvetica, Arial, sans-serif;
+    font-size: 16px;
+    line-height: 1.5;
+    letter-spacing: 0;
+  }
+
+  #component {
+    width: 1280px;
+    min-height: 720px;
+    margin: 0 auto;
+    padding: 64px 64px 96px;
+    background: #FFFFFF;
+    color: #0B1416;
+  }
+
+  h1 {
+    margin: 0 0 48px;
+    font-family: "Unbounded", "Archivo", system-ui, sans-serif;
+    font-weight: 300;
+    font-size: 56px;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    text-transform: uppercase;
+  }
+
+  .toolbar {
+    display: flex;
+    align-items: flex-end;
+    gap: 32px;
+    margin-bottom: 32px;
+  }
+
+  .search {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    width: 400px;
+  }
+
+  .label {
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 16px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: #55656A;
+  }
+
+  .search input {
+    width: 100%;
+    height: 48px;
+    padding: 0 16px;
+    border: 1px solid #55656A;
+    border-radius: 12px;
+    background: #FFFFFF;
+    color: #0B1416;
+    font-family: inherit;
+    font-size: 16px;
+    letter-spacing: 0;
+    transition: border-color 120ms cubic-bezier(0.2, 0.7, 0.2, 1), background-color 120ms cubic-bezier(0.2, 0.7, 0.2, 1);
+  }
+  .search input:hover { background: #E6EFF7; }
+  .search input:focus-visible {
+    outline: 2px solid #0263AC;
+    outline-offset: 2px;
+    border-color: #0263AC;
+  }
+
+  .filters {
+    display: flex;
+    gap: 8px;
+  }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 44px;
+    padding: 0 24px;
+    border: 1px solid transparent;
+    border-radius: 999px;
+    background: transparent;
+    color: #0B1416;
+    font-family: inherit;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 1;
+    letter-spacing: 0;
+    cursor: pointer;
+    transition: background-color 180ms cubic-bezier(0.2, 0.7, 0.2, 1), border-color 180ms cubic-bezier(0.2, 0.7, 0.2, 1), color 180ms cubic-bezier(0.2, 0.7, 0.2, 1);
+  }
+  .btn:focus-visible {
+    outline: 2px solid #0263AC;
+    outline-offset: 2px;
+  }
+
+  .btn-quiet:hover { background: #E6EFF7; }
+  .btn-quiet[aria-pressed="true"] {
+    background: #E6EFF7;
+    border-color: #9CC3EA;
+    color: #0263AC;
+  }
+
+  .btn-primary {
+    margin-left: auto;
+    background: #0B1416;
+    color: #FFFFFF;
+  }
+  .btn-primary:hover { background: #55656A; }
+
+  .card {
+    border: 1px solid #9CC3EA;
+    border-radius: 16px;
+    background: #FFFFFF;
+    overflow: hidden;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    table-layout: fixed;
+  }
+
+  col.c-request { width: 36%; }
+  col.c-requester { width: 22%; }
+  col.c-status { width: 16%; }
+  col.c-priority { width: 14%; }
+  col.c-updated { width: 12%; }
+
+  thead th {
+    padding: 16px 24px;
+    background: #EEF4FA;
+    border-bottom: 1px solid #9CC3EA;
+    text-align: left;
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 16px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: #55656A;
+  }
+
+  tbody td {
+    padding: 16px 24px;
+    border-bottom: 1px solid #9CC3EA;
+    font-size: 16px;
+    line-height: 24px;
+    color: #0B1416;
+    vertical-align: middle;
+  }
+  tbody tr:last-child td { border-bottom: 0; }
+  tbody tr { transition: background-color 120ms cubic-bezier(0.2, 0.7, 0.2, 1); }
+  tbody tr:hover { background: #E6EFF7; }
+
+  tbody td:first-child { font-weight: 500; }
+  tbody td:last-child { color: #55656A; }
+
+  td a {
+    color: inherit;
+    text-decoration: none;
+  }
+  td a:hover { text-decoration: underline; text-underline-offset: 4px; }
+  td a:focus-visible {
+    outline: 2px solid #0263AC;
+    outline-offset: 4px;
+    border-radius: 4px;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { transition: none !important; }
+  }
+</style>
+</head>
+<body>
+<div id="component">
+  <main>
+    <h1>Requests</h1>
+
+    <div class="toolbar">
+      <div class="search">
+        <label class="label" for="search-requests">Search requests</label>
+        <input id="search-requests" type="search" name="search" autocomplete="off">
+      </div>
+
+      <div class="filters" role="group" aria-label="Filter requests">
+        <button class="btn btn-quiet" type="button" aria-pressed="true">All</button>
+        <button class="btn btn-quiet" type="button" aria-pressed="false">Open</button>
+        <button class="btn btn-quiet" type="button" aria-pressed="false">Closed</button>
+      </div>
+
+      <button class="btn btn-primary" type="button">New Request</button>
+    </div>
+
+    <div class="card">
+      <table>
+        <colgroup>
+          <col class="c-request">
+          <col class="c-requester">
+          <col class="c-status">
+          <col class="c-priority">
+          <col class="c-updated">
+        </colgroup>
+        <thead>
+          <tr>
+            <th scope="col">Request</th>
+            <th scope="col">Requester</th>
+            <th scope="col">Status</th>
+            <th scope="col">Priority</th>
+            <th scope="col">Updated</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><a href="#">Laptop refresh for design</a></td>
+            <td>Maya Chen</td>
+            <td>Open</td>
+            <td>High</td>
+            <td>2h ago</td>
+          </tr>
+          <tr>
+            <td><a href="#">Q4 travel budget</a></td>
+            <td>Leo Park</td>
+            <td>Approved</td>
+            <td>Medium</td>
+            <td>5h ago</td>
+          </tr>
+          <tr>
+            <td><a href="#">VPN access for contractors</a></td>
+            <td>Ana Ruiz</td>
+            <td>Closed</td>
+            <td>High</td>
+            <td>1d ago</td>
+          </tr>
+          <tr>
+            <td><a href="#">New hire onboarding</a></td>
+            <td>Sam Ito</td>
+            <td>Open</td>
+            <td>Medium</td>
+            <td>1d ago</td>
+          </tr>
+          <tr>
+            <td><a href="#">Office move</a></td>
+            <td>Kai Lee</td>
+            <td>In review</td>
+            <td>Low</td>
+            <td>2d ago</td>
+          </tr>
+          <tr>
+            <td><a href="#">Security training</a></td>
+            <td>Ava Brooks</td>
+            <td>Open</td>
+            <td>Low</td>
+            <td>3d ago</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </main>
+</div>
+</body>
+</html>

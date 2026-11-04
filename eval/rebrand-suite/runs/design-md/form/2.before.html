@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>New request</title>
+<style>
+  * { box-sizing: border-box; margin: 0; }
+  body { background: #FFFFFF; color: #0B1416; font-family: "Archivo", sans-serif; font-size: 16px; }
+  #component { width: 1280px; min-height: 800px; padding: 48px 64px 64px; background: #FFFFFF; }
+  h1 { font-family: "Unbounded", sans-serif; font-weight: 300; font-size: 56px; line-height: 1.1; letter-spacing: -0.02em; text-transform: uppercase; margin-bottom: 32px; }
+  .card { background: #FFFFFF; border: 1px solid #9CC3EA; border-radius: 16px; padding: 32px; }
+  .grid { display: grid; grid-template-columns: repeat(12, 1fr); column-gap: 32px; row-gap: 24px; }
+  .field { display: flex; flex-direction: column; gap: 8px; }
+  .span-12 { grid-column: span 12; }
+  .span-4 { grid-column: span 4; }
+  label { font-weight: 500; font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: #0263AC; }
+  input, select, textarea {
+    width: 100%; min-height: 44px; padding: 8px 12px;
+    font-family: "Archivo", sans-serif; font-size: 16px; color: #0B1416;
+    background: #FFFFFF; border: 1px solid #55656A; border-radius: 12px;
+    transition: border-color 120ms cubic-bezier(0.2, 0.7, 0.2, 1), background-color 120ms cubic-bezier(0.2, 0.7, 0.2, 1);
+  }
+  textarea { min-height: 120px; resize: vertical; line-height: 1.5; }
+  input:hover, select:hover, textarea:hover { background: #E6EFF7; }
+  input:focus, select:focus, textarea:focus { outline: 2px solid #0263AC; outline-offset: 2px; border-color: #0263AC; }
+  .actions { display: flex; justify-content: flex-end; gap: 12px; margin-top: 32px; padding-top: 24px; border-top: 1px solid #9CC3EA; }
+  button {
+    min-height: 44px; padding: 0 32px; border-radius: 999px; border: 1px solid transparent;
+    font-family: "Archivo", sans-serif; font-size: 16px; font-weight: 500; cursor: pointer;
+    transition: background-color 180ms cubic-bezier(0.2, 0.7, 0.2, 1), color 180ms cubic-bezier(0.2, 0.7, 0.2, 1);
+  }
+  .quiet { background: transparent; color: #0B1416; }
+  .quiet:hover { background: #E6EFF7; }
+  .primary { background: #0B1416; color: #FFFFFF; }
+  .primary:hover { background: #0263AC; }
+  button:focus-visible { outline: 2px solid #0263AC; outline-offset: 2px; }
+</style>
+</head>
+<body>
+<div id="component">
+  <h1>New request</h1>
+  <form class="card">
+    <div class="grid">
+      <div class="field span-12">
+        <label for="title">Title</label>
+        <input id="title" type="text">
+      </div>
+      <div class="field span-12">
+        <label for="description">Description</label>
+        <textarea id="description" rows="5"></textarea>
+      </div>
+      <div class="field span-4">
+        <label for="priority">Priority</label>
+        <select id="priority">
+          <option>Low</option>
+          <option>Medium</option>
+          <option>High</option>
+        </select>
+      </div>
+      <div class="field span-4">
+        <label for="assignee">Assignee</label>
+        <select id="assignee">
+          <option>Maya Chen</option>
+          <option>Leo Park</option>
+          <option>Ana Ruiz</option>
+        </select>
+      </div>
+      <div class="field span-4">
+        <label for="due">Due date</label>
+        <input id="due" type="date">
+      </div>
+    </div>
+    <div class="actions">
+      <button type="button" class="quiet">Cancel</button>
+      <button type="button" class="primary">Create Request</button>
+    </div>
+  </form>
+</div>
+</body>
+</html>

@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Requests | Harbor</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; }
+
+  html, body {
+    margin: 0;
+    background: #FFFFFF;
+  }
+
+  #component {
+    --paper: #FFFFFF;
+    --sand: #EEF4FA;
+    --ink: #0B1416;
+    --muted: #55656A;
+    --accent: #0263AC;
+    --tint: #E6EFF7;
+    --line: #9CC3EA;
+    --ease: cubic-bezier(0.2, 0.7, 0.2, 1);
+
+    width: 1280px;
+    min-height: 800px;
+    margin: 0 auto;
+    padding: 64px 64px 96px;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: "Archivo", "Helvetica Neue", Arial, sans-serif;
+    font-size: 16px;
+    line-height: 1.5;
+    letter-spacing: 0;
+  }
+
+  #component h1 {
+    margin: 0;
+    font-family: "Unbounded", "Archivo", "Helvetica Neue", Arial, sans-serif;
+    font-weight: 300;
+    font-size: 56px;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    text-transform: uppercase;
+  }
+
+  .page-head {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 32px;
+    margin-bottom: 48px;
+  }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 44px;
+    padding: 0 24px;
+    border: 1px solid transparent;
+    border-radius: 999px;
+    font-family: inherit;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 1;
+    letter-spacing: 0;
+    cursor: pointer;
+    transition: background-color 180ms var(--ease), color 180ms var(--ease), border-color 180ms var(--ease);
+  }
+
+  .btn:focus-visible,
+  .field input:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+  }
+
+  .btn-primary {
+    background: var(--ink);
+    color: #FFFFFF;
+  }
+  .btn-primary:hover { background: var(--accent); }
+
+  .btn-quiet {
+    background: transparent;
+    color: var(--ink);
+  }
+  .btn-quiet:hover { background: var(--tint); }
+
+  .btn-quiet[aria-pressed="true"] {
+    background: var(--tint);
+    border-color: var(--line);
+    color: var(--accent);
+  }
+
+  .toolbar {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    column-gap: 32px;
+    align-items: end;
+    margin-bottom: 24px;
+  }
+
+  .field {
+    grid-column: span 5;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .label {
+    font-size: 12px;
+    font-weight: 500;
+    line-height: 1.5;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  .field input {
+    width: 100%;
+    height: 48px;
+    padding: 0 16px;
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: inherit;
+    font-size: 16px;
+    letter-spacing: 0;
+    transition: border-color 120ms var(--ease), background-color 120ms var(--ease);
+  }
+  .field input:hover { background: var(--tint); }
+  .field input::placeholder { color: var(--muted); opacity: 1; }
+
+  .filters {
+    grid-column: 7 / span 6;
+    display: flex;
+    justify-content: flex-end;
+    gap: 8px;
+  }
+
+  .card {
+    background: var(--paper);
+    border: 1px solid var(--line);
+    border-radius: 16px;
+    overflow: hidden;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    table-layout: fixed;
+    text-align: left;
+  }
+
+  thead th {
+    padding: 16px 24px;
+    background: var(--sand);
+    border-bottom: 1px solid var(--line);
+    font-size: 12px;
+    font-weight: 500;
+    line-height: 1.5;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  tbody th,
+  tbody td {
+    padding: 16px 24px;
+    border-bottom: 1px solid var(--sand);
+    font-size: 16px;
+    line-height: 1.5;
+    vertical-align: middle;
+  }
+
+  tbody tr:last-child th,
+  tbody tr:last-child td { border-bottom: 0; }
+
+  tbody th {
+    font-weight: 500;
+    color: var(--ink);
+  }
+
+  tbody tr { transition: background-color 120ms var(--ease); }
+  tbody tr:hover { background: var(--tint); }
+
+  col.c-request { width: 34%; }
+  col.c-requester { width: 20%; }
+  col.c-status { width: 16%; }
+  col.c-priority { width: 14%; }
+  col.c-updated { width: 16%; }
+
+  .updated { color: var(--muted); }
+
+  .pill {
+    display: inline-flex;
+    align-items: center;
+    min-height: 28px;
+    padding: 0 12px;
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    background: var(--paper);
+    color: var(--ink);
+    font-size: 14px;
+    line-height: 1;
+  }
+  .pill-open {
+    background: var(--tint);
+    color: var(--accent);
+  }
+  .pill-closed {
+    border-color: var(--sand);
+    background: var(--sand);
+    color: var(--muted);
+  }
+
+  .priority-high { font-weight: 500; }
+
+  .visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    padding: 0;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    white-space: nowrap;
+    border: 0;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    #component * { transition: none !important; }
+  }
+</style>
+</head>
+<body>
+<div id="component">
+  <main>
+    <div class="page-head">
+      <h1>Requests</h1>
+      <button class="btn btn-primary" type="button">New Request</button>
+    </div>
+
+    <div class="toolbar">
+      <div class="field">
+        <label class="label" for="search">Search requests</label>
+        <input id="search" type="search" name="search" autocomplete="off">
+      </div>
+      <div class="filters" role="group" aria-label="Filter requests">
+        <button class="btn btn-quiet" type="button" aria-pressed="true">All</button>
+        <button class="btn btn-quiet" type="button" aria-pressed="false">Open</button>
+        <button class="btn btn-quiet" type="button" aria-pressed="false">Closed</button>
+      </div>
+    </div>
+
+    <div class="card">
+      <table>
+        <caption class="visually-hidden">Requests</caption>
+        <colgroup>
+          <col class="c-request">
+          <col class="c-requester">
+          <col class="c-status">
+          <col class="c-priority">
+          <col class="c-updated">
+        </colgroup>
+        <thead>
+          <tr>
+            <th scope="col">Request</th>
+            <th scope="col">Requester</th>
+            <th scope="col">Status</th>
+            <th scope="col">Priority</th>
+            <th scope="col">Updated</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row">Laptop refresh for design</th>
+            <td>Maya Chen</td>
+            <td><span class="pill pill-open">Open</span></td>
+            <td class="priority-high">High</td>
+            <td class="updated">2h ago</td>
+          </tr>
+          <tr>
+            <th scope="row">Q4 travel budget</th>
+            <td>Leo Park</td>
+            <td><span class="pill">Approved</span></td>
+            <td>Medium</td>
+            <td class="updated">5h ago</td>
+          </tr>
+          <tr>
+            <th scope="row">VPN access for contractors</th>
+            <td>Ana Ruiz</td>
+            <td><span class="pill pill-closed">Closed</span></td>
+            <td class="priority-high">High</td>
+            <td class="updated">1d ago</td>
+          </tr>
+          <tr>
+            <th scope="row">New hire onboarding</th>
+            <td>Sam Ito</td>
+            <td><span class="pill pill-open">Open</span></td>
+            <td>Medium</td>
+            <td class="updated">1d ago</td>
+          </tr>
+          <tr>
+            <th scope="row">Office move</th>
+            <td>Kai Lee</td>
+            <td><span class="pill">In review</span></td>
+            <td>Low</td>
+            <td class="updated">2d ago</td>
+          </tr>
+          <tr>
+            <th scope="row">Security training</th>
+            <td>Ava Brooks</td>
+            <td><span class="pill pill-open">Open</span></td>
+            <td>Low</td>
+            <td class="updated">3d ago</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </main>
+</div>
+</body>
+</html>

@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Notifications · Harbor</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+/* Tokens inlined from tokens.css (light theme, only the roles used here) */
+:root {
+  --paper: #FFFFFF;
+  --card: #FFFFFF;
+  --ink: #0B1416;
+  --ink-rgb: 11, 20, 22;
+  --muted: #55656A;
+  --accent-text: #0263AC;
+  --accent: #0263AC;
+  --accent-tint: #E6EFF7;
+  --on-ink: #FFFFFF;
+  --shadow-rgb: 11, 20, 22;
+  --font-display: 'Unbounded', system-ui, sans-serif;
+  --font-body: 'Archivo', system-ui, -apple-system, sans-serif;
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 24px;
+  --space-6: 32px;
+  --space-7: 48px;
+  --space-8: 64px;
+  --space-9: 96px;
+  --radius-md: 12px;
+  --radius-pill: 999px;
+  --tracking-tight: -0.02em;
+  --text-display-xl: clamp(2rem, 4vw, 3.5rem);
+  --text-body: 1rem;
+  --text-small: 0.875rem;
+  --ease: cubic-bezier(0.2, 0.7, 0.2, 1);
+  --dur-base: 180ms;
+  color-scheme: light;
+}
+
+* { box-sizing: border-box; margin: 0; }
+body { background: var(--paper); color: var(--ink); font-family: var(--font-body); }
+
+#component {
+  width: 1280px;
+  min-height: 800px;
+  padding: var(--space-9) var(--space-8);
+  background: var(--paper);
+}
+
+.page { max-width: 800px; margin: 0 auto; }
+
+.head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-6);
+  padding-bottom: var(--space-7);
+}
+.head h1 {
+  font-family: var(--font-display);
+  font-weight: 300;
+  font-size: var(--text-display-xl);
+  line-height: 1.1;
+  letter-spacing: var(--tracking-tight);
+  text-transform: uppercase;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
+  padding: 0 var(--space-5);
+  border: 0;
+  border-radius: var(--radius-pill);
+  background: var(--ink);
+  color: var(--on-ink);
+  font-family: var(--font-body);
+  font-size: var(--text-small);
+  font-weight: 500;
+  cursor: pointer;
+  transition: opacity var(--dur-base) var(--ease);
+}
+.btn:hover { opacity: 0.86; }
+.btn:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+
+.list { list-style: none; padding: 0; }
+.item {
+  display: grid;
+  grid-template-columns: 8px 1fr auto;
+  align-items: center;
+  column-gap: var(--space-5);
+  min-height: 80px;
+  padding: var(--space-5) var(--space-5);
+  border-bottom: 1px solid rgba(var(--ink-rgb), 0.1);
+  color: var(--muted);
+}
+.item:last-child { border-bottom: 0; }
+.item.unread {
+  background: var(--accent-tint);
+  color: var(--ink);
+  border-radius: var(--radius-md);
+  border-bottom-color: transparent;
+}
+.dot { width: 8px; height: 8px; border-radius: var(--radius-pill); }
+.unread .dot { background: var(--accent); }
+.msg { font-size: var(--text-body); line-height: 1.5; font-weight: 400; }
+.unread .msg { font-weight: 600; }
+.time {
+  font-size: var(--text-small);
+  color: var(--muted);
+  white-space: nowrap;
+}
+.unread .time { color: var(--accent-text); font-weight: 500; }
+</style>
+</head>
+<body>
+<div id="component">
+  <main class="page">
+    <header class="head">
+      <h1>Notifications</h1>
+      <button class="btn" type="button">Mark All as Read</button>
+    </header>
+
+    <ul class="list">
+      <li class="item unread">
+        <span class="dot" aria-hidden="true"></span>
+        <span class="msg">Leo Park approved Q4 travel budget</span>
+        <span class="time">2h ago</span>
+      </li>
+      <li class="item unread">
+        <span class="dot" aria-hidden="true"></span>
+        <span class="msg">Maya Chen assigned you Laptop refresh for design</span>
+        <span class="time">3h ago</span>
+      </li>
+      <li class="item unread">
+        <span class="dot" aria-hidden="true"></span>
+        <span class="msg">Your weekly summary is ready</span>
+        <span class="time">1d ago</span>
+      </li>
+      <li class="item">
+        <span class="dot" aria-hidden="true"></span>
+        <span class="msg">Ana Ruiz commented on VPN access for contractors</span>
+        <span class="time">1d ago</span>
+      </li>
+      <li class="item">
+        <span class="dot" aria-hidden="true"></span>
+        <span class="msg">Sam Ito joined Harbor Ops</span>
+        <span class="time">2d ago</span>
+      </li>
+      <li class="item">
+        <span class="dot" aria-hidden="true"></span>
+        <span class="msg">Billing details were updated</span>
+        <span class="time">3d ago</span>
+      </li>
+    </ul>
+  </main>
+</div>
+</body>
+</html>

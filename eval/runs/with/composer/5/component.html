@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Message Composer</title>
+<style>
+/* Tokens from tokens.css (day theme), only the roles this component uses */
+:root {
+  color-scheme: light;
+  --paper: #FFFFFF;
+  --sand: #EEF4FA;
+  --card: #FFFFFF;
+  --ink: #0B1416;
+  --muted: #55656A;
+  --accent: #0263AC;
+  --accent-line: #9CC3EA;
+  --accent-tint: #E6EFF7;
+  --plate-hover: #E3ECF5;
+  --on-ink: #FFFFFF;
+  --shadow-rgb: 11, 20, 22;
+  --font-body: 'Archivo', system-ui, -apple-system, sans-serif;
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 24px;
+  --space-8: 64px;
+  --radius-card: 16px;
+  --radius-pill: 999px;
+  --text-body-l: 1.125rem;
+  --text-body: 1rem;
+  --ease: cubic-bezier(0.2, 0.7, 0.2, 1);
+  --dur-fast: 120ms;
+  --dur-base: 180ms;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  padding: var(--space-5) var(--space-8);
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-body);
+}
+
+#component {
+  width: 100%;
+  max-width: 720px;
+  display: flex;
+  align-items: flex-end;
+  gap: var(--space-2);
+  padding: var(--space-3);
+  background: var(--card);
+  border: 1px solid var(--accent-line);
+  border-radius: var(--radius-card);
+  box-shadow: 0 8px 24px rgba(var(--shadow-rgb), 0.08);
+  transition: border-color var(--dur-base) var(--ease), box-shadow var(--dur-base) var(--ease);
+}
+
+#component:focus-within {
+  border-color: var(--accent);
+}
+
+.composer-input {
+  flex: 1;
+  min-width: 0;
+  min-height: 44px;
+  max-height: 200px;
+  margin: 0;
+  padding: var(--space-3) var(--space-2);
+  border: 0;
+  background: transparent;
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: var(--text-body-l);
+  line-height: 1.5;
+  resize: none;
+  outline: none;
+  field-sizing: content;
+}
+
+.composer-input::placeholder {
+  color: var(--muted);
+  opacity: 1;
+}
+
+.btn {
+  flex: none;
+  display: inline-grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  border: 0;
+  border-radius: var(--radius-pill);
+  font-family: var(--font-body);
+  font-size: var(--text-body);
+  cursor: pointer;
+  transition: background var(--dur-base) var(--ease), transform var(--dur-fast) var(--ease);
+}
+
+.btn:active { transform: scale(0.95); }
+
+.btn:focus-visible,
+.composer-input:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+.composer-input:focus-visible { outline: 0; }
+
+.btn--plain {
+  background: transparent;
+  color: var(--ink);
+}
+.btn--plain:hover { background: var(--plate-hover); }
+
+.btn--fill {
+  background: var(--ink);
+  color: var(--on-ink);
+}
+.btn--fill:hover { background: var(--accent); }
+
+.btn svg {
+  width: 24px;
+  height: 24px;
+  display: block;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * { transition: none !important; }
+}
+</style>
+</head>
+<body>
+<div id="component">
+  <button type="button" class="btn btn--plain" aria-label="Attach File">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 11.5l-8.2 8.2a5 5 0 0 1-7.1-7.1l8.5-8.5a3.3 3.3 0 0 1 4.7 4.7l-8.5 8.5a1.7 1.7 0 0 1-2.4-2.4l7.8-7.8"/></svg>
+  </button>
+  <textarea class="composer-input" rows="1" placeholder="Message Claude" aria-label="Message Claude"></textarea>
+  <button type="submit" class="btn btn--fill" aria-label="Send Message">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 19V5M5.5 11.5L12 5l6.5 6.5"/></svg>
+  </button>
+</div>
+</body>
+</html>

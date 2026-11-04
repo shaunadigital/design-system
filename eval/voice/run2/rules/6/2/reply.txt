@@ -1,0 +1,1 @@
+She works with Claude Code and Figma for design and building. The site runs on Astro, React and TypeScript. Supabase handles data, and she hosts on Vercel and Netlify. Want the details on how the design system ties them together?

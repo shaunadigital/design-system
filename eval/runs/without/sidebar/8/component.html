@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Chat sidebar</title>
+<style>
+  * { box-sizing: border-box; }
+
+  html, body {
+    margin: 0;
+    min-height: 100%;
+  }
+
+  body {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #fff;
+    color: #0B1416;
+    font-family: "Archivo", "Helvetica Neue", Arial, sans-serif;
+  }
+
+  #component {
+    width: 280px;
+    height: 560px;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    padding: 20px 16px;
+    background: #fff;
+    border: 1px solid #0B1416;
+    border-radius: 12px;
+  }
+
+  .new-chat {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    width: 100%;
+    min-height: 44px;
+    padding: 10px 16px;
+    border: 2px solid #0263AC;
+    border-radius: 8px;
+    background: #0263AC;
+    color: #fff;
+    font: 600 16px/1.2 "Archivo", "Helvetica Neue", Arial, sans-serif;
+    cursor: pointer;
+  }
+
+  .new-chat::before {
+    content: "+";
+    font-size: 20px;
+    line-height: 1;
+  }
+
+  .new-chat:hover {
+    background: #fff;
+    color: #0263AC;
+  }
+
+  .recent-label {
+    margin: 0 0 8px;
+    padding: 0 12px;
+    font-family: "Unbounded", "Archivo", "Helvetica Neue", Arial, sans-serif;
+    font-weight: 300;
+    font-size: 12px;
+    line-height: 1.4;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #0B1416;
+  }
+
+  .chat-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .chat-list a {
+    display: block;
+    min-height: 44px;
+    padding: 12px 12px 12px 10px;
+    border-left: 4px solid transparent;
+    border-radius: 4px 8px 8px 4px;
+    color: #0B1416;
+    font-size: 15px;
+    line-height: 20px;
+    text-decoration: none;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .chat-list a:hover {
+    background: #EEF4F9;
+  }
+
+  .chat-list a[aria-current="page"] {
+    background: #E3EFF8;
+    border-left-color: #0263AC;
+    font-weight: 600;
+  }
+
+  .new-chat:focus-visible,
+  .chat-list a:focus-visible {
+    outline: 3px solid #0B1416;
+    outline-offset: 2px;
+  }
+</style>
+</head>
+<body>
+  <div id="component">
+    <button class="new-chat" type="button">New Chat</button>
+    <nav aria-labelledby="recent-heading">
+      <h2 class="recent-label" id="recent-heading">Recent</h2>
+      <ul class="chat-list">
+        <li><a href="#trip-planning">Trip planning for Maui</a></li>
+        <li><a href="#q3-budget" aria-current="page">Q3 budget review</a></li>
+        <li><a href="#menu-ideas">Menu ideas for Saturday</a></li>
+        <li><a href="#reading-list">Reading list</a></li>
+        <li><a href="#garden-plan">Garden plan</a></li>
+      </ul>
+    </nav>
+  </div>
+</body>
+</html>

@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Chat Options menu</title>
+<style>
+  * { box-sizing: border-box; }
+
+  html, body {
+    margin: 0;
+    min-height: 100%;
+    background: #fff;
+    color: #0B1416;
+    font-family: "Archivo", "Helvetica Neue", Arial, sans-serif;
+  }
+
+  body {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  #component {
+    position: relative;
+    width: 240px;
+    /* room for the open menu so the whole group sits centered */
+    padding-bottom: 0;
+  }
+
+  .trigger {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    width: 100%;
+    padding: 12px 16px;
+    background: #fff;
+    color: #0B1416;
+    border: 1.5px solid #0B1416;
+    border-radius: 8px;
+    font: 500 16px/1.25 "Archivo", "Helvetica Neue", Arial, sans-serif;
+    cursor: pointer;
+  }
+
+  .trigger[aria-expanded="true"] {
+    border-color: #0263AC;
+    color: #0263AC;
+  }
+
+  .trigger svg {
+    width: 16px;
+    height: 16px;
+    flex: none;
+    transform: rotate(180deg);
+  }
+
+  .menu {
+    position: absolute;
+    top: calc(100% + 8px);
+    left: 0;
+    right: 0;
+    margin: 0;
+    padding: 6px;
+    list-style: none;
+    background: #fff;
+    border: 1px solid #0B1416;
+    border-radius: 8px;
+    box-shadow: 0 8px 24px rgba(11, 20, 22, 0.14);
+  }
+
+  .menu li { margin: 0; }
+
+  .item {
+    display: block;
+    width: 100%;
+    padding: 10px 12px;
+    background: transparent;
+    color: #0B1416;
+    border: 0;
+    border-radius: 4px;
+    font: 400 16px/1.25 "Archivo", "Helvetica Neue", Arial, sans-serif;
+    text-align: left;
+    cursor: pointer;
+  }
+
+  .item:hover {
+    background: #0263AC;
+    color: #fff;
+  }
+
+  .trigger:focus-visible,
+  .item:focus-visible {
+    outline: 3px solid #0263AC;
+    outline-offset: 2px;
+  }
+
+  .divider {
+    height: 1px;
+    margin: 6px 0;
+    background: #0B1416;
+    opacity: 0.2;
+  }
+</style>
+</head>
+<body>
+  <div id="component">
+    <button class="trigger" type="button" aria-haspopup="menu" aria-expanded="true" aria-controls="chat-menu">
+      Chat Options
+      <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 10l5-5 5 5"/></svg>
+    </button>
+    <ul class="menu" id="chat-menu" role="menu" aria-label="Chat Options">
+      <li role="none"><button class="item" type="button" role="menuitem">Rename</button></li>
+      <li role="none"><button class="item" type="button" role="menuitem">Share</button></li>
+      <li role="none"><button class="item" type="button" role="menuitem">Archive</button></li>
+      <li role="separator" class="divider"></li>
+      <li role="none"><button class="item" type="button" role="menuitem">Delete</button></li>
+    </ul>
+  </div>
+</body>
+</html>

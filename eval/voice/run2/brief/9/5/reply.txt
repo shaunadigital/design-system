@@ -1,0 +1,1 @@
+Every control in the chat composer is forty-four pixels, so it's easy to hit. You can use it entirely from the keyboard. Enter sends, Shift and Enter starts a new line, and Escape stops a reply. Screen readers get spoken announcements as things change. The composer has nine states, including listening and speaking, and you can try them all on the system page of this site.

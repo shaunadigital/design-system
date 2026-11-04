@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Working Session</title>
+<style>
+  :root {
+    --paper: #FFFFFF;
+    --card: #FFFFFF;
+    --ink: #0B1416;
+    --ink-rgb: 11, 20, 22;
+    --muted: #55656A;
+    --accent-text: #0263AC;
+    --on-ink: #FFFFFF;
+    --font-display: 'Unbounded', system-ui, sans-serif;
+    --font-body: 'Archivo', system-ui, -apple-system, sans-serif;
+    --font-label: 'Archivo', system-ui, sans-serif;
+    --font-hero: 'Unbounded', system-ui, sans-serif;
+    --space-1: 4px;
+    --space-2: 8px;
+    --space-3: 12px;
+    --space-4: 16px;
+    --space-5: 24px;
+    --space-6: 32px;
+    --radius-card: 16px;
+    --radius-pill: 999px;
+    --tracking-label: 0.14em;
+    --text-hero: clamp(1.5rem, 3.34vw, 3rem);
+    --text-step: clamp(1.375rem, 1.9vw, 1.75rem);
+    --text-body: 1rem;
+    --text-small: 0.875rem;
+    --text-label: 0.75rem;
+    --ease: cubic-bezier(0.2, 0.7, 0.2, 1);
+    --dur-base: 180ms;
+    color-scheme: light;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --paper: #0E1618;
+      --card: #172327;
+      --ink: #E9EFEF;
+      --ink-rgb: 233, 239, 239;
+      --muted: #9DAEB1;
+      --accent-text: #9CC3EA;
+      --on-ink: #0E1618;
+      color-scheme: dark;
+    }
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: var(--font-body);
+    font-size: var(--text-body);
+  }
+
+  #component {
+    width: 400px;
+    padding: var(--space-6);
+    background: var(--card);
+    border: 1px solid rgba(var(--ink-rgb), 0.1);
+    border-radius: var(--radius-card);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-5);
+  }
+
+  .head {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+  }
+
+  .label {
+    margin: 0;
+    font-family: var(--font-label);
+    font-weight: 500;
+    font-size: var(--text-label);
+    letter-spacing: var(--tracking-label);
+    text-transform: uppercase;
+    color: var(--accent-text);
+  }
+
+  .title {
+    margin: 0;
+    font-family: var(--font-display);
+    font-weight: 300;
+    font-size: var(--text-step);
+    text-transform: uppercase;
+    line-height: 1.2;
+  }
+
+  .price {
+    margin: 0;
+    display: flex;
+    align-items: baseline;
+    gap: var(--space-2);
+  }
+
+  .amount {
+    font-family: var(--font-hero);
+    font-weight: 300;
+    font-size: var(--text-hero);
+    line-height: 1;
+  }
+
+  .unit {
+    font-size: var(--text-small);
+    color: var(--muted);
+  }
+
+  .desc {
+    margin: 0;
+    font-size: var(--text-body);
+    line-height: 1.5;
+    color: var(--muted);
+  }
+
+  .items {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+    font-size: var(--text-body);
+  }
+
+  .items li {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+  }
+
+  .items svg {
+    flex: none;
+    width: 16px;
+    height: 16px;
+    color: var(--accent-text);
+  }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    min-height: 44px;
+    padding: 0 var(--space-5);
+    border: 0;
+    border-radius: var(--radius-pill);
+    background: var(--ink);
+    color: var(--on-ink);
+    font-family: var(--font-body);
+    font-weight: 600;
+    font-size: var(--text-body);
+    text-decoration: none;
+    cursor: pointer;
+    transition: opacity var(--dur-base) var(--ease);
+  }
+
+  .btn:hover { opacity: 0.88; }
+  .btn:focus-visible {
+    outline: 2px solid var(--accent-text);
+    outline-offset: 3px;
+  }
+</style>
+</head>
+<body>
+  <article id="component">
+    <div class="head">
+      <p class="label">One-on-One</p>
+      <h2 class="title">Working Session</h2>
+    </div>
+
+    <p class="price"><span class="amount">$150</span> <span class="unit">per hour</span></p>
+
+    <p class="desc">One focused hour on your project. Bring a problem or a rough idea and we move it forward together.</p>
+
+    <ul class="items">
+      <li>
+        <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 8.5l3.2 3.2L13 4.8"/></svg>
+        60 minutes on a video call
+      </li>
+      <li>
+        <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 8.5l3.2 3.2L13 4.8"/></svg>
+        Live design and build feedback
+      </li>
+      <li>
+        <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 8.5l3.2 3.2L13 4.8"/></svg>
+        Written notes and next steps
+      </li>
+    </ul>
+
+    <a class="btn" href="#book">Book a Session</a>
+  </article>
+</body>
+</html>

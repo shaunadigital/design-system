@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Requests</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+/* Tokens used below, copied from tokens.css (light theme) */
+:root {
+  --paper: #FFFFFF;
+  --card: #FFFFFF;
+  --ink: #0B1416;
+  --ink-rgb: 11, 20, 22;
+  --muted: #55656A;
+  --accent-text: #0263AC;
+  --accent: #0263AC;
+  --accent-tint: #E6EFF7;
+  --on-ink: #FFFFFF;
+  --font-display: 'Unbounded', system-ui, sans-serif;
+  --font-body: 'Archivo', system-ui, -apple-system, sans-serif;
+  --font-label: 'Archivo', system-ui, sans-serif;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 24px;
+  --space-6: 32px;
+  --space-7: 48px;
+  --radius-md: 12px;
+  --radius-card: 16px;
+  --radius-pill: 999px;
+  --tracking-label: 0.14em;
+  --text-heading: clamp(1.75rem, 3.2vw, 2.875rem);
+  --text-body: 1rem;
+  --text-small: 0.875rem;
+  --text-label: 0.75rem;
+  --ease: cubic-bezier(0.2, 0.7, 0.2, 1);
+  --dur-base: 180ms;
+}
+
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--paper); color: var(--ink); font-family: var(--font-body); }
+
+#component { width: 1280px; background: var(--paper); font-family: var(--font-body); color: var(--ink); }
+#component .page { max-width: 1120px; margin: 0 auto; padding: var(--space-7) var(--space-6) 0; display: flex; flex-direction: column; gap: var(--space-6); }
+
+#component .top { display: flex; align-items: center; justify-content: space-between; }
+#component h1 { margin: 0; font-family: var(--font-display); font-weight: 300; font-size: var(--text-heading); text-transform: uppercase; line-height: 1.1; }
+
+#component .btn { display: inline-flex; align-items: center; justify-content: center; height: 44px; padding: 0 20px; border-radius: var(--radius-pill); font: 600 var(--text-small) var(--font-body); cursor: pointer; transition: background var(--dur-base) var(--ease); }
+#component .btn--primary { background: var(--ink); color: var(--on-ink); border: 0; }
+#component .btn--secondary { background: transparent; color: var(--ink); border: 1.5px solid var(--ink); }
+#component .btn--secondary[aria-pressed="true"] { background: var(--accent-tint); }
+#component .btn:focus-visible, #component input:focus { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+#component .toolbar { display: flex; align-items: flex-end; justify-content: space-between; gap: var(--space-5); }
+#component .field { display: flex; flex-direction: column; gap: var(--space-2); width: 360px; }
+#component label { font: 500 var(--text-label) var(--font-label); letter-spacing: var(--tracking-label); text-transform: uppercase; color: var(--muted); }
+#component input { height: 44px; padding: 0 12px; font: inherit; font-size: var(--text-body); color: var(--ink); background: #fff; border: 1px solid rgba(var(--ink-rgb), 0.2); border-radius: var(--radius-md); }
+#component input::placeholder { color: var(--muted); }
+#component .filters { display: flex; gap: var(--space-2); }
+
+#component .card { background: var(--card); border: 1px solid rgba(var(--ink-rgb), 0.1); border-radius: var(--radius-card); padding: var(--space-5); }
+#component table { width: 100%; border-collapse: collapse; font-size: var(--text-small); text-align: left; }
+#component th { height: 52px; font: 500 var(--text-label) var(--font-label); letter-spacing: var(--tracking-label); text-transform: uppercase; color: var(--muted); border-bottom: 1px solid rgba(var(--ink-rgb), 0.1); padding: 0 var(--space-3) 0 0; }
+#component td { height: 52px; padding: 0 var(--space-3) 0 0; border-bottom: 1px solid rgba(var(--ink-rgb), 0.1); }
+#component tbody tr:last-child td { border-bottom: 0; }
+#component .pill { display: inline-block; padding: 2px 10px; border-radius: var(--radius-pill); background: var(--accent-tint); color: var(--accent-text); font-size: var(--text-label); font-weight: 600; }
+</style>
+</head>
+<body>
+<div id="component">
+  <main class="page">
+    <div class="top">
+      <h1>Requests</h1>
+      <button class="btn btn--primary" type="button">New Request</button>
+    </div>
+
+    <div class="toolbar">
+      <div class="field">
+        <label for="search">Search requests</label>
+        <input id="search" type="search" placeholder="Search requests">
+      </div>
+      <div class="filters" role="group" aria-label="Filter requests">
+        <button class="btn btn--secondary" type="button" aria-pressed="true">All</button>
+        <button class="btn btn--secondary" type="button" aria-pressed="false">Open</button>
+        <button class="btn btn--secondary" type="button" aria-pressed="false">Closed</button>
+      </div>
+    </div>
+
+    <div class="card">
+      <table>
+        <thead>
+          <tr>
+            <th scope="col">Request</th>
+            <th scope="col">Requester</th>
+            <th scope="col">Status</th>
+            <th scope="col">Priority</th>
+            <th scope="col">Updated</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td data-user-content>Laptop refresh for design</td><td>Maya Chen</td><td><span class="pill">Open</span></td><td>High</td><td>2h ago</td></tr>
+          <tr><td data-user-content>Q4 travel budget</td><td>Leo Park</td><td><span class="pill">Approved</span></td><td>Medium</td><td>5h ago</td></tr>
+          <tr><td data-user-content>VPN access for contractors</td><td>Ana Ruiz</td><td><span class="pill">Closed</span></td><td>High</td><td>1d ago</td></tr>
+          <tr><td data-user-content>New hire onboarding</td><td>Sam Ito</td><td><span class="pill">Open</span></td><td>Medium</td><td>1d ago</td></tr>
+          <tr><td data-user-content>Office move</td><td>Kai Lee</td><td><span class="pill">In review</span></td><td>Low</td><td>2d ago</td></tr>
+          <tr><td data-user-content>Security training</td><td>Ava Brooks</td><td><span class="pill">Open</span></td><td>Low</td><td>3d ago</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </main>
+</div>
+</body>
+</html>

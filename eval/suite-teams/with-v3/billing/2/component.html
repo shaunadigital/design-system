@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Billing</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+/* Tokens from tokens.css (generated from tokens/tokens.json), inlined so the file is self-contained. */
+:root {
+  --paper: #FFFFFF;
+  --paper-rgb: 255, 255, 255;
+  --sand: #EEF4FA;
+  --sand-rgb: 238, 244, 250;
+  --card: #FFFFFF;
+  --card-rgb: 255, 255, 255;
+  --ink: #0B1416;
+  --ink-rgb: 11, 20, 22;
+  --muted: #55656A;
+  --muted-rgb: 85, 101, 106;
+  --accent-text: #0263AC;
+  --accent-text-rgb: 2, 99, 172;
+  --accent: #0263AC;
+  --accent-rgb: 2, 99, 172;
+  --accent-tint: #E6EFF7;
+  --accent-tint-rgb: 230, 239, 247;
+  --accent-line: #9CC3EA;
+  --accent-line-rgb: 156, 195, 234;
+  --on-ink: #FFFFFF;
+  --on-ink-rgb: 255, 255, 255;
+  --shadow-rgb: 11, 20, 22;
+  --font-display: 'Unbounded', system-ui, sans-serif;
+  --font-body: 'Archivo', system-ui, -apple-system, sans-serif;
+  --font-label: 'Archivo', system-ui, sans-serif;
+  --font-hero: 'Unbounded', system-ui, sans-serif;
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 24px;
+  --space-6: 32px;
+  --space-7: 48px;
+  --space-8: 64px;
+  --space-9: 96px;
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-card: 16px;
+  --radius-pill: 999px;
+  --tracking-tight: -0.02em;
+  --tracking-label: 0.14em;
+  --text-display-xl: clamp(2rem, 4vw, 3.5rem);
+  --text-hero: clamp(1.5rem, 3.34vw, 3rem);
+  --text-step: clamp(1.375rem, 1.9vw, 1.75rem);
+  --text-body: 1rem;
+  --text-small: 0.875rem;
+  --text-label: 0.75rem;
+  --ease: cubic-bezier(0.2, 0.7, 0.2, 1);
+  --dur-fast: 120ms;
+  --dur-base: 180ms;
+}
+:root { color-scheme: light; }
+
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--paper); }
+
+#component {
+  width: 1280px;
+  min-height: 800px;
+  padding: var(--space-8) var(--space-8) var(--space-9);
+  background: var(--sand);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: var(--text-body);
+  line-height: 1.5;
+}
+
+#component h1 {
+  margin: 0 0 var(--space-7);
+  font-family: var(--font-display);
+  font-weight: 300;
+  font-size: var(--text-display-xl);
+  line-height: 1.1;
+  letter-spacing: var(--tracking-tight);
+  text-transform: uppercase;
+}
+
+#component h2 {
+  margin: 0;
+  font-family: var(--font-display);
+  font-weight: 300;
+  font-size: var(--text-step);
+  line-height: 1.2;
+  text-transform: uppercase;
+}
+
+.layout {
+  display: grid;
+  grid-template-columns: 400px 1fr;
+  gap: var(--space-6);
+  align-items: start;
+}
+
+.panel {
+  background: var(--card);
+  border: 1px solid rgba(var(--ink-rgb), 0.1);
+  border-radius: var(--radius-card);
+  box-shadow: 0 24px 48px -24px rgba(var(--shadow-rgb), 0.35);
+}
+
+.plan {
+  padding: var(--space-6);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+}
+
+.plan__price {
+  margin: 0;
+  color: var(--muted);
+  font-size: var(--text-small);
+}
+.plan__amount {
+  font-family: var(--font-hero);
+  font-weight: 300;
+  font-size: var(--text-hero);
+  line-height: 1.1;
+  color: var(--ink);
+}
+
+.seats__text {
+  margin: 0 0 var(--space-3);
+  font-size: var(--text-body);
+}
+.seats__bar {
+  height: 8px;
+  border-radius: var(--radius-pill);
+  background: var(--accent-tint);
+  overflow: hidden;
+}
+.seats__fill {
+  width: 72%;
+  height: 100%;
+  border-radius: var(--radius-pill);
+  background: var(--accent);
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
+  padding: 0 var(--space-6);
+  border: 0;
+  border-radius: var(--radius-pill);
+  font-family: var(--font-body);
+  font-size: var(--text-body);
+  font-weight: 600;
+  cursor: pointer;
+  transition: opacity var(--dur-fast) var(--ease), transform var(--dur-fast) var(--ease);
+}
+.btn--fill {
+  width: 100%;
+  background: var(--ink);
+  color: var(--on-ink);
+}
+.btn:hover { opacity: 0.88; }
+.btn:active { transform: translateY(1px); }
+.btn:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+
+.invoices { overflow: hidden; }
+.invoices__head { padding: var(--space-6) var(--space-6) var(--space-5); }
+
+table { width: 100%; border-collapse: collapse; }
+th, td { padding: 0 var(--space-6); height: 60px; text-align: left; }
+thead th {
+  height: 44px;
+  background: var(--sand);
+  border-top: 1px solid rgba(var(--ink-rgb), 0.1);
+  border-bottom: 1px solid rgba(var(--ink-rgb), 0.1);
+  font-family: var(--font-label);
+  font-size: var(--text-label);
+  font-weight: 500;
+  letter-spacing: var(--tracking-label);
+  text-transform: uppercase;
+  color: var(--muted);
+}
+tbody td { border-bottom: 1px solid rgba(var(--ink-rgb), 0.1); font-size: var(--text-body); }
+tbody tr:last-child td { border-bottom: 0; }
+th:nth-child(2), td:nth-child(2) { text-align: right; }
+td:nth-child(2) { font-variant-numeric: tabular-nums; font-weight: 600; }
+th:nth-child(3), td:nth-child(3) { width: 140px; }
+
+.status {
+  display: inline-flex;
+  align-items: center;
+  padding: var(--space-1) var(--space-3);
+  border-radius: var(--radius-pill);
+  background: var(--accent-tint);
+  color: var(--accent-text);
+  font-size: var(--text-small);
+  font-weight: 600;
+}
+</style>
+</head>
+<body>
+<div id="component">
+  <h1>Billing</h1>
+  <div class="layout">
+    <section class="panel plan" aria-labelledby="plan-title">
+      <h2 id="plan-title">Team plan</h2>
+      <p class="plan__price"><span class="plan__amount">$24</span> per seat per month</p>
+      <div class="seats">
+        <p class="seats__text">18 of 25 seats used</p>
+        <div class="seats__bar" aria-hidden="true"><div class="seats__fill"></div></div>
+      </div>
+      <button class="btn btn--fill" type="button">Change Plan</button>
+    </section>
+
+    <section class="panel invoices" aria-labelledby="invoices-title">
+      <div class="invoices__head"><h2 id="invoices-title">Invoices</h2></div>
+      <table>
+        <thead>
+          <tr><th scope="col">Date</th><th scope="col">Amount</th><th scope="col">Status</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Oct 1, 2026</td><td>$432.00</td><td><span class="status">Paid</span></td></tr>
+          <tr><td>Sep 1, 2026</td><td>$432.00</td><td><span class="status">Paid</span></td></tr>
+          <tr><td>Aug 1, 2026</td><td>$408.00</td><td><span class="status">Paid</span></td></tr>
+          <tr><td>Jul 1, 2026</td><td>$408.00</td><td><span class="status">Paid</span></td></tr>
+        </tbody>
+      </table>
+    </section>
+  </div>
+</div>
+</body>
+</html>

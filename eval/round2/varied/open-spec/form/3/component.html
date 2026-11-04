@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>New request</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; }
+
+  html, body { margin: 0; padding: 0; background: #EEF4FA; }
+
+  body {
+    font-family: "Archivo", system-ui, -apple-system, "Segoe UI", Helvetica, Arial, sans-serif;
+    font-size: 16px;
+    line-height: 24px;
+    color: #0B1416;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  #component {
+    width: 1280px;
+    min-height: 800px;
+    margin: 0 auto;
+    padding: 96px 64px;
+    background: #EEF4FA;
+  }
+
+  .layout {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    column-gap: 32px;
+    align-items: start;
+  }
+
+  .intro { grid-column: 1 / span 4; }
+
+  h1 {
+    margin: 0;
+    font-family: "Unbounded", "Archivo", system-ui, sans-serif;
+    font-weight: 300;
+    font-size: 56px;
+    line-height: 64px;
+    letter-spacing: -0.02em;
+    text-transform: uppercase;
+    color: #0B1416;
+    overflow-wrap: anywhere;
+  }
+
+  .card {
+    grid-column: 5 / span 8;
+    background: #FFFFFF;
+    border: 1px solid #9CC3EA;
+    border-radius: 16px;
+    padding: 48px;
+  }
+
+  form { margin: 0; }
+
+  .fields {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    column-gap: 24px;
+    row-gap: 24px;
+  }
+
+  .field { display: flex; flex-direction: column; gap: 8px; min-width: 0; }
+  .field.wide { grid-column: 1 / -1; }
+
+  label {
+    font-family: "Archivo", system-ui, sans-serif;
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 16px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: #0263AC;
+  }
+
+  input, select, textarea {
+    width: 100%;
+    font-family: "Archivo", system-ui, sans-serif;
+    font-size: 16px;
+    line-height: 24px;
+    color: #0B1416;
+    background-color: #FFFFFF;
+    border: 1px solid #55656A;
+    border-radius: 12px;
+    padding: 12px 16px;
+    min-height: 48px;
+    margin: 0;
+    transition: border-color 120ms cubic-bezier(0.2, 0.7, 0.2, 1),
+                background-color 120ms cubic-bezier(0.2, 0.7, 0.2, 1),
+                box-shadow 120ms cubic-bezier(0.2, 0.7, 0.2, 1);
+  }
+
+  textarea { min-height: 144px; resize: vertical; display: block; }
+
+  select {
+    appearance: none;
+    -webkit-appearance: none;
+    padding-right: 48px;
+    cursor: pointer;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%230B1416' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 12px center;
+    background-size: 24px 24px;
+  }
+
+  input[type="date"] { font-variant-numeric: tabular-nums; }
+
+  input:hover, select:hover, textarea:hover {
+    background-color: #E6EFF7;
+    border-color: #0B1416;
+  }
+
+  input:focus-visible, select:focus-visible, textarea:focus-visible,
+  input:focus, select:focus, textarea:focus {
+    outline: none;
+    background-color: #FFFFFF;
+    border-color: #0263AC;
+    box-shadow: 0 0 0 2px #0263AC;
+  }
+
+  .actions {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 12px;
+    margin-top: 48px;
+    padding-top: 32px;
+    border-top: 1px solid #9CC3EA;
+  }
+
+  .btn {
+    appearance: none;
+    -webkit-appearance: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 48px;
+    padding: 12px 32px;
+    border-radius: 999px;
+    border: 1px solid transparent;
+    font-family: "Archivo", system-ui, sans-serif;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 24px;
+    letter-spacing: 0.02em;
+    cursor: pointer;
+    transition: background-color 180ms cubic-bezier(0.2, 0.7, 0.2, 1),
+                color 180ms cubic-bezier(0.2, 0.7, 0.2, 1),
+                border-color 180ms cubic-bezier(0.2, 0.7, 0.2, 1);
+  }
+
+  .btn-primary { background: #0B1416; color: #FFFFFF; }
+  .btn-primary:hover { background: #0263AC; }
+
+  .btn-quiet { background: transparent; color: #0B1416; }
+  .btn-quiet:hover { background: #E6EFF7; }
+
+  .btn:focus-visible {
+    outline: 2px solid #0263AC;
+    outline-offset: 2px;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    * { transition: none !important; animation: none !important; }
+  }
+</style>
+</head>
+<body>
+<div id="component">
+  <main class="layout">
+    <header class="intro">
+      <h1>New request</h1>
+    </header>
+
+    <section class="card">
+      <form action="#" method="post">
+        <div class="fields">
+          <div class="field wide">
+            <label for="title">Title</label>
+            <input id="title" name="title" type="text" autocomplete="off">
+          </div>
+
+          <div class="field wide">
+            <label for="description">Description</label>
+            <textarea id="description" name="description" rows="5"></textarea>
+          </div>
+
+          <div class="field">
+            <label for="priority">Priority</label>
+            <select id="priority" name="priority">
+              <option>Low</option>
+              <option selected>Medium</option>
+              <option>High</option>
+            </select>
+          </div>
+
+          <div class="field">
+            <label for="assignee">Assignee</label>
+            <select id="assignee" name="assignee">
+              <option>Maya Chen</option>
+              <option>Leo Park</option>
+              <option>Ana Ruiz</option>
+            </select>
+          </div>
+
+          <div class="field">
+            <label for="due">Due date</label>
+            <input id="due" name="due" type="date">
+          </div>
+        </div>
+
+        <div class="actions">
+          <button type="button" class="btn btn-quiet">Cancel</button>
+          <button type="submit" class="btn btn-primary">Create Request</button>
+        </div>
+      </form>
+    </section>
+  </main>
+</div>
+</body>
+</html>

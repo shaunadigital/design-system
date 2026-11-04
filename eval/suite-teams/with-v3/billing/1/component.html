@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Billing</title>
+<meta name="viewport" content="width=1280">
+<style>
+/* Tokens copied from tokens.css (light theme), only the ones used here */
+:root {
+  --paper: #FFFFFF;
+  --card: #FFFFFF;
+  --ink: #0B1416;
+  --ink-rgb: 11, 20, 22;
+  --muted: #55656A;
+  --accent-text: #0263AC;
+  --on-ink: #FFFFFF;
+  --font-display: 'Unbounded', system-ui, sans-serif;
+  --font-hero: 'Unbounded', system-ui, sans-serif;
+  --font-body: 'Archivo', system-ui, -apple-system, sans-serif;
+  --font-label: 'Archivo', system-ui, sans-serif;
+  --space-3: 12px;
+  --space-2: 8px;
+  --space-4: 16px;
+  --space-5: 24px;
+  --space-6: 32px;
+  --space-7: 48px;
+  --space-8: 64px;
+  --radius-card: 16px;
+  --radius-pill: 999px;
+  --tracking-tight: -0.02em;
+  --tracking-label: 0.14em;
+  --text-display-xl: clamp(2rem, 4vw, 3.5rem);
+  --text-hero: clamp(1.5rem, 3.34vw, 3rem);
+  --text-step: clamp(1.375rem, 1.9vw, 1.75rem);
+  --text-body: 1rem;
+  --text-small: 0.875rem;
+  --text-label: 0.75rem;
+  --ease: cubic-bezier(0.2, 0.7, 0.2, 1);
+  --dur-base: 180ms;
+}
+
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--paper); }
+
+#component {
+  width: 1280px;
+  min-height: 720px;
+  padding: var(--space-8);
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: var(--text-body);
+}
+
+#component h1,
+#component h2 {
+  margin: 0;
+  font-family: var(--font-display);
+  font-weight: 300;
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-tight);
+}
+#component h1 { font-size: var(--text-display-xl); }
+#component h2 { font-size: var(--text-step); }
+
+.plan {
+  width: 400px;
+  margin-top: var(--space-7);
+  padding: var(--space-6);
+  background: var(--card);
+  border: 1px solid rgba(var(--ink-rgb), 0.1);
+  border-radius: var(--radius-card);
+}
+.plan-price { margin: var(--space-5) 0 0; }
+.plan-amount {
+  font-family: var(--font-hero);
+  font-weight: 300;
+  font-size: var(--text-hero);
+}
+.plan-unit { font-size: var(--text-small); color: var(--muted); }
+.plan-seats { margin: var(--space-5) 0 0; font-size: var(--text-body); }
+
+.btn {
+  display: block;
+  width: 100%;
+  min-height: 44px;
+  margin-top: var(--space-5);
+  padding: 0 var(--space-5);
+  border: 0;
+  border-radius: var(--radius-pill);
+  background: var(--ink);
+  color: var(--on-ink);
+  font-family: var(--font-body);
+  font-size: var(--text-body);
+  font-weight: 500;
+  cursor: pointer;
+  transition: opacity var(--dur-base) var(--ease);
+}
+.btn:hover { opacity: 0.85; }
+
+.invoices { margin-top: var(--space-7); }
+.invoices table {
+  width: 100%;
+  margin-top: var(--space-5);
+  border-collapse: collapse;
+}
+.invoices th,
+.invoices td {
+  height: 48px;
+  padding: 0 var(--space-4);
+  text-align: left;
+  border-bottom: 1px solid rgba(var(--ink-rgb), 0.1);
+}
+.invoices th {
+  font-family: var(--font-label);
+  font-size: var(--text-label);
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-label);
+  color: var(--muted);
+}
+</style>
+</head>
+<body>
+<div id="component">
+  <h1>Billing</h1>
+
+  <section class="plan" aria-labelledby="plan-title">
+    <h2 id="plan-title">Team plan</h2>
+    <p class="plan-price"><span class="plan-amount">$24</span> <span class="plan-unit">per seat per month</span></p>
+    <p class="plan-seats">18 of 25 seats used</p>
+    <button class="btn" type="button">Change Plan</button>
+  </section>
+
+  <section class="invoices">
+    <h2>Invoices</h2>
+    <table>
+      <thead>
+        <tr><th scope="col">Date</th><th scope="col">Amount</th><th scope="col">Status</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Oct 1, 2026</td><td>$432.00</td><td>Paid</td></tr>
+        <tr><td>Sep 1, 2026</td><td>$432.00</td><td>Paid</td></tr>
+        <tr><td>Aug 1, 2026</td><td>$408.00</td><td>Paid</td></tr>
+        <tr><td>Jul 1, 2026</td><td>$408.00</td><td>Paid</td></tr>
+      </tbody>
+    </table>
+  </section>
+</div>
+</body>
+</html>

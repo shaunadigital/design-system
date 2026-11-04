@@ -1,0 +1,1 @@
+Both pass almost every check, but her system keeps the output far more consistent. In a test of two hundred forty page builds, a standard design file produced thirty button styles. Her system produced seven. Want the details?

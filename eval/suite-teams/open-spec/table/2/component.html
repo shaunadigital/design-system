@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Requests</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; }
+  body { margin: 0; background: #FFFFFF; }
+
+  #component {
+    width: 1280px;
+    min-height: 800px;
+    padding: 64px;
+    background: #FFFFFF;
+    color: #0B1416;
+    font-family: "Archivo", "Helvetica Neue", Arial, sans-serif;
+    font-size: 16px;
+    line-height: 1.5;
+  }
+
+  #component .head {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 32px;
+    margin-bottom: 48px;
+  }
+  #component .eyebrow {
+    margin: 0 0 12px;
+    font-size: 12px;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    color: #0263AC;
+  }
+  #component h1 {
+    margin: 0;
+    font-family: "Unbounded", "Archivo", "Helvetica Neue", Arial, sans-serif;
+    font-weight: 300;
+    font-size: 56px;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    text-transform: uppercase;
+  }
+
+  #component .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    min-height: 44px;
+    padding: 0 24px;
+    border-radius: 999px;
+    border: 1px solid transparent;
+    font-family: inherit;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 1;
+    cursor: pointer;
+    transition: background-color 180ms cubic-bezier(0.2, 0.7, 0.2, 1), border-color 180ms cubic-bezier(0.2, 0.7, 0.2, 1), color 180ms cubic-bezier(0.2, 0.7, 0.2, 1);
+  }
+  #component .btn svg { width: 24px; height: 24px; margin-left: -8px; }
+  #component .btn-primary { background: #0B1416; color: #FFFFFF; }
+  #component .btn-primary:hover { background: #0263AC; }
+  #component .btn:focus-visible,
+  #component .search input:focus-visible { outline: 2px solid #0263AC; outline-offset: 2px; }
+
+  #component .toolbar {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 24px;
+    margin-bottom: 24px;
+  }
+  #component .search { display: flex; flex-direction: column; gap: 8px; width: 400px; }
+  #component .search label {
+    font-size: 12px;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    color: #55656A;
+  }
+  #component .field { position: relative; }
+  #component .field svg {
+    position: absolute;
+    left: 16px;
+    top: 10px;
+    width: 24px;
+    height: 24px;
+    color: #55656A;
+    pointer-events: none;
+  }
+  #component .search input {
+    width: 100%;
+    height: 44px;
+    padding: 0 16px 0 48px;
+    border: 1px solid #9CC3EA;
+    border-radius: 12px;
+    background: #FFFFFF;
+    color: #0B1416;
+    font-family: inherit;
+    font-size: 16px;
+    transition: border-color 120ms cubic-bezier(0.2, 0.7, 0.2, 1), background-color 120ms cubic-bezier(0.2, 0.7, 0.2, 1);
+  }
+  #component .search input::placeholder { color: #55656A; opacity: 1; }
+  #component .search input:hover { background: #EEF4FA; }
+
+  #component .filters { display: flex; gap: 8px; }
+  #component .btn-filter { background: transparent; color: #0B1416; }
+  #component .btn-filter:hover { background: #E6EFF7; }
+  #component .btn-filter[aria-pressed="true"] {
+    background: #E6EFF7;
+    border-color: #9CC3EA;
+    color: #0263AC;
+  }
+
+  #component .card {
+    background: #FFFFFF;
+    border: 1px solid #9CC3EA;
+    border-radius: 16px;
+    overflow: hidden;
+  }
+  #component table { width: 100%; border-collapse: collapse; text-align: left; }
+  #component thead th {
+    padding: 16px 24px;
+    background: #EEF4FA;
+    border-bottom: 1px solid #9CC3EA;
+    font-size: 12px;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    color: #55656A;
+  }
+  #component tbody td {
+    padding: 16px 24px;
+    height: 64px;
+    border-bottom: 1px solid #EEF4FA;
+    vertical-align: middle;
+  }
+  #component tbody tr:last-child td { border-bottom: 0; }
+  #component tbody tr { transition: background-color 120ms cubic-bezier(0.2, 0.7, 0.2, 1); }
+  #component tbody tr:hover { background: #EEF4FA; }
+  #component td.title { font-weight: 500; }
+  #component td.muted { color: #55656A; }
+
+  #component .requester { display: flex; align-items: center; gap: 12px; }
+  #component .avatar {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    border-radius: 999px;
+    background: #E6EFF7;
+    color: #0263AC;
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+  }
+
+  #component .badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 4px 12px;
+    border-radius: 999px;
+    border: 1px solid #9CC3EA;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 1.5;
+  }
+  #component .badge::before {
+    content: "";
+    width: 8px;
+    height: 8px;
+    border-radius: 999px;
+    background: currentColor;
+  }
+  #component .badge.open { background: #E6EFF7; color: #0263AC; }
+  #component .badge.approved { background: #FFFFFF; color: #0B1416; }
+  #component .badge.review { background: #EEF4FA; color: #0B1416; }
+  #component .badge.closed { background: #FFFFFF; color: #55656A; border-color: #EEF4FA; }
+
+  #component .prio { display: inline-flex; align-items: center; gap: 8px; }
+  #component .bars { display: inline-flex; align-items: flex-end; gap: 4px; height: 12px; }
+  #component .bars i { display: block; width: 4px; border-radius: 4px; background: #9CC3EA; }
+  #component .bars i:nth-child(1) { height: 4px; }
+  #component .bars i:nth-child(2) { height: 8px; }
+  #component .bars i:nth-child(3) { height: 12px; }
+  #component .bars.l1 i:nth-child(1),
+  #component .bars.l2 i:nth-child(-n+2),
+  #component .bars.l3 i { background: #0263AC; }
+
+  #component .foot {
+    margin: 16px 0 0;
+    font-size: 14px;
+    color: #55656A;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    #component * { transition: none; }
+  }
+</style>
+</head>
+<body>
+<div id="component">
+  <header class="head">
+    <div>
+      <p class="eyebrow">Harbor Admin</p>
+      <h1>Requests</h1>
+    </div>
+    <button class="btn btn-primary" type="button">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>
+      New Request
+    </button>
+  </header>
+
+  <section class="toolbar" aria-label="Request controls">
+    <div class="search">
+      <label for="search">Search requests</label>
+      <div class="field">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="6"/><path d="M20 20l-4.5-4.5"/></svg>
+        <input id="search" type="search" placeholder="Search by title or requester">
+      </div>
+    </div>
+    <div class="filters" role="group" aria-label="Filter requests">
+      <button class="btn btn-filter" type="button" aria-pressed="true">All</button>
+      <button class="btn btn-filter" type="button" aria-pressed="false">Open</button>
+      <button class="btn btn-filter" type="button" aria-pressed="false">Closed</button>
+    </div>
+  </section>
+
+  <div class="card">
+    <table>
+      <thead>
+        <tr>
+          <th scope="col">Request</th>
+          <th scope="col">Requester</th>
+          <th scope="col">Status</th>
+          <th scope="col">Priority</th>
+          <th scope="col">Updated</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="title">Laptop refresh for design</td>
+          <td><span class="requester"><span class="avatar" aria-hidden="true">MC</span>Maya Chen</span></td>
+          <td><span class="badge open">Open</span></td>
+          <td><span class="prio"><span class="bars l3" aria-hidden="true"><i></i><i></i><i></i></span>High</span></td>
+          <td class="muted">2h ago</td>
+        </tr>
+        <tr>
+          <td class="title">Q4 travel budget</td>
+          <td><span class="requester"><span class="avatar" aria-hidden="true">LP</span>Leo Park</span></td>
+          <td><span class="badge approved">Approved</span></td>
+          <td><span class="prio"><span class="bars l2" aria-hidden="true"><i></i><i></i><i></i></span>Medium</span></td>
+          <td class="muted">5h ago</td>
+        </tr>
+        <tr>
+          <td class="title">VPN access for contractors</td>
+          <td><span class="requester"><span class="avatar" aria-hidden="true">AR</span>Ana Ruiz</span></td>
+          <td><span class="badge closed">Closed</span></td>
+          <td><span class="prio"><span class="bars l3" aria-hidden="true"><i></i><i></i><i></i></span>High</span></td>
+          <td class="muted">1d ago</td>
+        </tr>
+        <tr>
+          <td class="title">New hire onboarding</td>
+          <td><span class="requester"><span class="avatar" aria-hidden="true">SI</span>Sam Ito</span></td>
+          <td><span class="badge open">Open</span></td>
+          <td><span class="prio"><span class="bars l2" aria-hidden="true"><i></i><i></i><i></i></span>Medium</span></td>
+          <td class="muted">1d ago</td>
+        </tr>
+        <tr>
+          <td class="title">Office move</td>
+          <td><span class="requester"><span class="avatar" aria-hidden="true">KL</span>Kai Lee</span></td>
+          <td><span class="badge review">In review</span></td>
+          <td><span class="prio"><span class="bars l1" aria-hidden="true"><i></i><i></i><i></i></span>Low</span></td>
+          <td class="muted">2d ago</td>
+        </tr>
+        <tr>
+          <td class="title">Security training</td>
+          <td><span class="requester"><span class="avatar" aria-hidden="true">AB</span>Ava Brooks</span></td>
+          <td><span class="badge open">Open</span></td>
+          <td><span class="prio"><span class="bars l1" aria-hidden="true"><i></i><i></i><i></i></span>Low</span></td>
+          <td class="muted">3d ago</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Working Session</title>
+<style>
+/* Tokens copied from tokens.css (generated). Only the ones this card uses. */
+:root {
+  --paper: #FFFFFF;
+  --card: #FFFFFF;
+  --ink: #0B1416;
+  --muted: #55656A;
+  --accent-text: #0263AC;
+  --accent: #0263AC;
+  --accent-tint: #E6EFF7;
+  --on-ink: #FFFFFF;
+  --shadow-rgb: 11, 20, 22;
+  --live: #E26D7E;
+  --font-display: 'Unbounded', system-ui, sans-serif;
+  --font-body: 'Archivo', system-ui, -apple-system, sans-serif;
+  --font-label: 'Archivo', system-ui, sans-serif;
+  --font-hero: 'Unbounded', system-ui, sans-serif;
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 24px;
+  --space-6: 32px;
+  --space-7: 48px;
+  --radius-card: 16px;
+  --radius-pill: 999px;
+  --tracking-tight: -0.02em;
+  --tracking-label: 0.14em;
+  --text-hero: clamp(1.5rem, 3.34vw, 3rem);
+  --text-title: 1.75rem;
+  --text-body: 1rem;
+  --text-small: 0.875rem;
+  --text-label: 0.75rem;
+  --ease: cubic-bezier(0.2, 0.7, 0.2, 1);
+  --dur-fast: 120ms;
+  --dur-base: 180ms;
+  color-scheme: light;
+}
+:root[data-theme="dusk"] {
+  color-scheme: dark;
+  --paper: #0E1618;
+  --card: #172327;
+  --ink: #E9EFEF;
+  --muted: #9DAEB1;
+  --accent-text: #9CC3EA;
+  --accent: #6FAAE6;
+  --accent-tint: #13283A;
+  --on-ink: #0E1618;
+  --shadow-rgb: 0, 0, 0;
+  --live: #EE8D9A;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-body);
+}
+
+#component {
+  width: 100%;
+  max-width: 400px;
+  padding: var(--space-6);
+  background: var(--card);
+  color: var(--ink);
+  border: 1px solid var(--ink);
+  border-radius: var(--radius-card);
+  box-shadow:
+    4px 4px 0 rgba(var(--shadow-rgb), 1),
+    8px 8px 0 var(--live);
+}
+
+.label {
+  margin: 0 0 var(--space-3);
+  font-family: var(--font-label);
+  font-weight: 500;
+  font-size: var(--text-label);
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-label);
+  color: var(--accent-text);
+}
+
+.title {
+  margin: 0 0 var(--space-4);
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: var(--text-title);
+  line-height: 1.2;
+  letter-spacing: var(--tracking-tight);
+}
+
+.price {
+  display: flex;
+  align-items: baseline;
+  gap: var(--space-2);
+  margin: 0 0 var(--space-4);
+}
+
+.price-amount {
+  font-family: var(--font-hero);
+  font-weight: 300;
+  font-size: var(--text-hero);
+  line-height: 1;
+  letter-spacing: var(--tracking-tight);
+}
+
+.price-unit {
+  font-size: var(--text-small);
+  color: var(--muted);
+}
+
+.description {
+  margin: 0 0 var(--space-5);
+  font-size: var(--text-body);
+  line-height: 1.6;
+  color: var(--muted);
+}
+
+.included {
+  list-style: none;
+  margin: 0 0 var(--space-6);
+  padding: var(--space-5) 0 0;
+  border-top: 1px solid var(--accent-tint);
+  display: grid;
+  gap: var(--space-3);
+}
+
+.included li {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  font-size: var(--text-body);
+  line-height: 1.4;
+}
+
+.included svg {
+  flex: none;
+  width: 24px;
+  height: 24px;
+  color: var(--accent);
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  min-height: 48px;
+  padding: var(--space-3) var(--space-5);
+  border: 0;
+  border-radius: var(--radius-pill);
+  background: var(--ink);
+  color: var(--on-ink);
+  font-family: var(--font-body);
+  font-weight: 500;
+  font-size: var(--text-body);
+  text-decoration: none;
+  cursor: pointer;
+  transition: transform var(--dur-fast) var(--ease), box-shadow var(--dur-base) var(--ease);
+}
+
+.btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 0 var(--accent);
+}
+
+.btn:active {
+  transform: translateY(0);
+  box-shadow: none;
+}
+
+.btn:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .btn { transition: none; }
+}
+</style>
+</head>
+<body>
+<div id="component">
+  <p class="label">One-on-One</p>
+  <h2 class="title">Working Session</h2>
+  <p class="price"><span class="price-amount">$150</span><span class="price-unit">per hour</span></p>
+  <p class="description">One focused hour on your project. Bring a problem or a rough idea and we move it forward together.</p>
+  <ul class="included">
+    <li>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>
+      60 minutes on a video call
+    </li>
+    <li>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>
+      Live design and build feedback
+    </li>
+    <li>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>
+      Written notes and next steps
+    </li>
+  </ul>
+  <button class="btn" type="button">Book a Session</button>
+</div>
+</body>
+</html>

@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Book A Working Session</title>
+<style>
+/* Tokens used by this card, copied from tokens.css */
+:root {
+  --paper: #FFFFFF;
+  --card: #FFFFFF;
+  --ink: #0B1416;
+  --muted: #55656A;
+  --accent-text: #0263AC;
+  --accent: #0263AC;
+  --accent-tint: #E6EFF7;
+  --accent-line: #9CC3EA;
+  --on-ink: #FFFFFF;
+  --shadow-rgb: 11, 20, 22;
+  --font-display: 'Unbounded', system-ui, sans-serif;
+  --font-body: 'Archivo', system-ui, -apple-system, sans-serif;
+  --font-label: 'Archivo', system-ui, sans-serif;
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 24px;
+  --space-6: 32px;
+  --space-7: 48px;
+  --radius-card: 16px;
+  --radius-pill: 999px;
+  --tracking-tight: -0.02em;
+  --tracking-label: 0.14em;
+  --tracking-wide: 0.06em;
+  --text-hero: clamp(1.5rem, 3.34vw, 3rem);
+  --text-step: clamp(1.375rem, 1.9vw, 1.75rem);
+  --text-body-l: 1.125rem;
+  --text-body: 1rem;
+  --text-small: 0.875rem;
+  --text-label: 0.75rem;
+  --ease: cubic-bezier(0.2, 0.7, 0.2, 1);
+  --dur-fast: 120ms;
+  --dur-base: 180ms;
+  color-scheme: light;
+}
+:root[data-theme="dusk"] {
+  --paper: #0E1618;
+  --card: #172327;
+  --ink: #E9EFEF;
+  --muted: #9DAEB1;
+  --accent-text: #9CC3EA;
+  --accent: #6FAAE6;
+  --accent-tint: #13283A;
+  --accent-line: #2D5B85;
+  --on-ink: #0E1618;
+  --shadow-rgb: 0, 0, 0;
+  color-scheme: dark;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: var(--text-body);
+  line-height: 1.5;
+}
+
+#component {
+  width: 100%;
+  max-width: 400px;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+  padding: var(--space-6);
+  background: var(--card);
+  border: 1px solid var(--accent-line);
+  border-radius: var(--radius-card);
+  box-shadow: 0 12px 32px rgba(var(--shadow-rgb), 0.08);
+}
+
+#component .eyebrow {
+  margin: 0;
+  font-family: var(--font-label);
+  font-weight: 500;
+  font-size: var(--text-label);
+  letter-spacing: var(--tracking-label);
+  text-transform: uppercase;
+  color: var(--accent-text);
+}
+
+#component h2 {
+  margin: var(--space-2) 0 0;
+  font-family: var(--font-display);
+  font-weight: 300;
+  font-size: var(--text-step);
+  line-height: 1.2;
+  letter-spacing: var(--tracking-tight);
+  text-transform: uppercase;
+  color: var(--ink);
+}
+
+#component .price {
+  display: flex;
+  align-items: baseline;
+  gap: var(--space-2);
+  margin: 0;
+}
+
+#component .price-amount {
+  font-family: var(--font-display);
+  font-weight: 300;
+  font-size: var(--text-hero);
+  line-height: 1;
+  letter-spacing: var(--tracking-tight);
+  color: var(--ink);
+}
+
+#component .price-unit {
+  font-size: var(--text-body);
+  color: var(--muted);
+}
+
+#component .description {
+  margin: 0;
+  font-size: var(--text-body-l);
+  color: var(--muted);
+}
+
+#component .included {
+  margin: 0;
+  padding: var(--space-5) 0 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  border-top: 1px solid var(--accent-line);
+}
+
+#component .included li {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-3);
+  font-size: var(--text-body);
+  color: var(--ink);
+}
+
+#component .included svg {
+  flex: none;
+  width: 24px;
+  height: 24px;
+  color: var(--accent);
+}
+
+#component .btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 48px;
+  padding: var(--space-3) var(--space-6);
+  border: 0;
+  border-radius: var(--radius-pill);
+  font-family: var(--font-label);
+  font-weight: 500;
+  font-size: var(--text-body);
+  letter-spacing: var(--tracking-wide);
+  cursor: pointer;
+  transition: background var(--dur-base) var(--ease), box-shadow var(--dur-base) var(--ease), transform var(--dur-fast) var(--ease);
+}
+
+#component .btn--fill {
+  background: var(--ink);
+  color: var(--on-ink);
+  box-shadow: 0 0 0 0 var(--accent);
+}
+
+#component .btn--fill:hover {
+  box-shadow: 0 0 0 4px var(--accent-line);
+}
+
+#component .btn--fill:active {
+  transform: scale(0.98);
+}
+
+#component .btn--fill:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  #component .btn { transition: none; }
+}
+</style>
+</head>
+<body>
+  <section id="component" aria-labelledby="session-title">
+    <header>
+      <p class="eyebrow">One Hour</p>
+      <h2 id="session-title">Working Session</h2>
+    </header>
+
+    <p class="price">
+      <span class="price-amount">$150</span>
+      <span class="price-unit">per hour</span>
+    </p>
+
+    <p class="description">Sit down with me for a focused hour on your project. Bring a problem, a rough idea or a half-built thing, and we will work on it together.</p>
+
+    <ul class="included">
+      <li>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>
+        <span>60 minutes of live screen sharing</span>
+      </li>
+      <li>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>
+        <span>Written notes after the call</span>
+      </li>
+      <li>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>
+        <span>One follow-up question by email</span>
+      </li>
+    </ul>
+
+    <button class="btn btn--fill" type="button">Book This Session</button>
+  </section>
+</body>
+</html>

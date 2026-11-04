@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=1280">
+<title>Harbor Overview</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; background: #FFFFFF; }
+
+  #component {
+    width: 1280px;
+    min-height: 800px;
+    margin: 0 auto;
+    background: #FFFFFF;
+    color: #0B1416;
+    font-family: "Archivo", "Helvetica Neue", Arial, sans-serif;
+    font-size: 16px;
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+  }
+  #component h1, #component h2, #component p, #component ul { margin: 0; padding: 0; }
+  #component ul { list-style: none; }
+
+  .topbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 80px;
+    padding: 0 64px;
+    background: #FFFFFF;
+    border-bottom: 1px solid #9CC3EA;
+  }
+  .brand {
+    font-family: "Unbounded", "Archivo", "Helvetica Neue", Arial, sans-serif;
+    font-weight: 500;
+    font-size: 18px;
+    letter-spacing: -0.01em;
+    color: #0B1416;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .brand svg { width: 24px; height: 24px; color: #0263AC; }
+  .nav { display: flex; gap: 8px; }
+  .nav a {
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
+    padding: 0 16px;
+    border-radius: 999px;
+    font-size: 16px;
+    font-weight: 500;
+    color: #55656A;
+    text-decoration: none;
+    transition: background-color 120ms cubic-bezier(0.2, 0.7, 0.2, 1), color 120ms cubic-bezier(0.2, 0.7, 0.2, 1);
+  }
+  .nav a:hover { background: #EEF4FA; color: #0B1416; }
+  .nav a[aria-current="page"] { background: #E6EFF7; color: #0263AC; }
+  .nav a:focus-visible { outline: 2px solid #0263AC; outline-offset: 2px; }
+
+  .main {
+    background: #EEF4FA;
+    min-height: 720px;
+    padding: 64px 64px 96px;
+  }
+  .page-title {
+    font-family: "Unbounded", "Archivo", "Helvetica Neue", Arial, sans-serif;
+    font-weight: 300;
+    font-size: 56px;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    text-transform: uppercase;
+    color: #0B1416;
+    margin-bottom: 48px;
+  }
+
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    column-gap: 32px;
+    row-gap: 32px;
+  }
+  .card {
+    background: #FFFFFF;
+    border: 1px solid #9CC3EA;
+    border-radius: 16px;
+  }
+
+  .stat { grid-column: span 3; padding: 24px; }
+  .stat-label {
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: #55656A;
+    line-height: 1.5;
+  }
+  .stat-value {
+    margin-top: 16px;
+    font-family: "Unbounded", "Archivo", "Helvetica Neue", Arial, sans-serif;
+    font-weight: 300;
+    font-size: 32px;
+    line-height: 1.25;
+    letter-spacing: -0.02em;
+    color: #0B1416;
+    white-space: nowrap;
+  }
+  .stat-unit {
+    font-family: "Archivo", "Helvetica Neue", Arial, sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+    letter-spacing: 0;
+    color: #55656A;
+  }
+
+  .activity { grid-column: span 12; padding: 32px 32px 16px; }
+  .activity-title {
+    font-family: "Unbounded", "Archivo", "Helvetica Neue", Arial, sans-serif;
+    font-weight: 500;
+    font-size: 28px;
+    line-height: 1.25;
+    letter-spacing: -0.02em;
+    color: #0B1416;
+    margin-bottom: 16px;
+  }
+  .activity li {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 16px 0;
+    border-top: 1px solid #EEF4FA;
+  }
+  .avatar {
+    flex: none;
+    width: 40px;
+    height: 40px;
+    border-radius: 999px;
+    background: #E6EFF7;
+    color: #0263AC;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+  }
+  .activity-text { font-size: 16px; line-height: 1.5; color: #55656A; }
+  .activity-text strong { font-weight: 600; color: #0B1416; }
+  .activity-text em { font-style: normal; font-weight: 500; color: #0B1416; }
+</style>
+</head>
+<body>
+<div id="component">
+  <header class="topbar">
+    <div class="brand">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <circle cx="12" cy="5" r="2"></circle>
+        <path d="M12 7v14"></path>
+        <path d="M8 11h8"></path>
+        <path d="M4 14c0 4 3.5 7 8 7s8-3 8-7"></path>
+      </svg>
+      Harbor
+    </div>
+    <nav class="nav" aria-label="Main">
+      <a href="#" aria-current="page">Overview</a>
+      <a href="#">Requests</a>
+      <a href="#">Team</a>
+      <a href="#">Settings</a>
+    </nav>
+  </header>
+
+  <main class="main">
+    <h1 class="page-title">Overview</h1>
+
+    <div class="grid">
+      <section class="card stat" aria-label="Active users">
+        <p class="stat-label">Active users</p>
+        <p class="stat-value">1,284</p>
+      </section>
+      <section class="card stat" aria-label="Open requests">
+        <p class="stat-label">Open requests</p>
+        <p class="stat-value">37</p>
+      </section>
+      <section class="card stat" aria-label="Average response">
+        <p class="stat-label">Average response</p>
+        <p class="stat-value">2.4 <span class="stat-unit">hours</span></p>
+      </section>
+      <section class="card stat" aria-label="Uptime">
+        <p class="stat-label">Uptime</p>
+        <p class="stat-value">99.9%</p>
+      </section>
+
+      <section class="card activity" aria-labelledby="activity-title">
+        <h2 class="activity-title" id="activity-title">Recent activity</h2>
+        <ul>
+          <li>
+            <span class="avatar" aria-hidden="true">MC</span>
+            <p class="activity-text"><strong>Maya Chen</strong> opened <em>Laptop refresh for design</em></p>
+          </li>
+          <li>
+            <span class="avatar" aria-hidden="true">LP</span>
+            <p class="activity-text"><strong>Leo Park</strong> approved <em>Q4 travel budget</em></p>
+          </li>
+          <li>
+            <span class="avatar" aria-hidden="true">AR</span>
+            <p class="activity-text"><strong>Ana Ruiz</strong> closed <em>VPN access for contractors</em></p>
+          </li>
+          <li>
+            <span class="avatar" aria-hidden="true">SI</span>
+            <p class="activity-text"><strong>Sam Ito</strong> commented on <em>New hire onboarding</em></p>
+          </li>
+          <li>
+            <span class="avatar" aria-hidden="true">KL</span>
+            <p class="activity-text"><strong>Kai Lee</strong> assigned <em>Office move</em> to <em>Facilities</em></p>
+          </li>
+        </ul>
+      </section>
+    </div>
+  </main>
+</div>
+</body>
+</html>

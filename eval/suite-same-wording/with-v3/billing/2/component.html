@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Billing</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+/* Tokens from tokens.css (only those used here) */
+:root {
+  --paper: #FFFFFF;
+  --card: #FFFFFF;
+  --ink: #0B1416;
+  --ink-rgb: 11, 20, 22;
+  --muted: #55656A;
+  --accent-text: #0263AC;
+  --on-ink: #FFFFFF;
+  --font-display: 'Unbounded', system-ui, sans-serif;
+  --font-body: 'Archivo', system-ui, -apple-system, sans-serif;
+  --font-label: 'Archivo', system-ui, sans-serif;
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 24px;
+  --space-6: 32px;
+  --space-7: 48px;
+  --space-8: 64px;
+  --radius-card: 16px;
+  --radius-pill: 999px;
+  --tracking-label: 0.14em;
+  --text-hero: clamp(1.5rem, 3.34vw, 3rem);
+  --text-display-xl: clamp(2rem, 4vw, 3.5rem);
+  --text-step: clamp(1.375rem, 1.9vw, 1.75rem);
+  --text-body: 1rem;
+  --text-small: 0.875rem;
+  --text-label: 0.75rem;
+  --ease: cubic-bezier(0.2, 0.7, 0.2, 1);
+  --dur-base: 180ms;
+}
+
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--paper); color: var(--ink); font-family: var(--font-body); font-size: var(--text-body); }
+
+#component {
+  width: 1280px;
+  min-height: 720px;
+  padding: var(--space-8);
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-body);
+}
+
+h1, h2 {
+  margin: 0;
+  font-family: var(--font-display);
+  font-weight: 300;
+  text-transform: uppercase;
+  line-height: 1.15;
+}
+h1 { font-size: var(--text-display-xl); }
+h2 { font-size: var(--text-step); }
+
+.layout {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-6);
+  margin-top: var(--space-7);
+}
+
+.plan {
+  flex: none;
+  width: 400px;
+  padding: var(--space-6);
+  background: var(--card);
+  border: 1px solid rgba(var(--ink-rgb), 0.1);
+  border-radius: var(--radius-card);
+}
+.plan__price { margin: var(--space-5) 0 0; color: var(--muted); font-size: var(--text-small); }
+.plan__amount { font-family: var(--font-display); font-weight: 300; font-size: var(--text-hero); line-height: 1.1; color: var(--ink); }
+.plan__seats { margin: var(--space-5) 0 0; font-size: var(--text-body); }
+
+.btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  min-height: 44px;
+  margin-top: var(--space-5);
+  padding: 0 var(--space-5);
+  border: 0;
+  border-radius: var(--radius-pill);
+  background: var(--ink);
+  color: var(--on-ink);
+  font-family: var(--font-body);
+  font-size: var(--text-body);
+  font-weight: 500;
+  cursor: pointer;
+  transition: opacity var(--dur-base) var(--ease);
+}
+.btn:hover { opacity: 0.88; }
+.btn:focus-visible { outline: 2px solid var(--accent-text); outline-offset: 2px; }
+
+.invoices {
+  flex: 1;
+  min-width: 0;
+  padding: var(--space-6);
+  background: var(--card);
+  border: 1px solid rgba(var(--ink-rgb), 0.1);
+  border-radius: var(--radius-card);
+}
+table { width: 100%; margin-top: var(--space-5); border-collapse: collapse; }
+th, td { height: 48px; padding: 0 var(--space-3); text-align: left; font-size: var(--text-body); }
+th {
+  font-family: var(--font-label);
+  font-size: var(--text-label);
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-label);
+  color: var(--muted);
+  border-bottom: 1px solid rgba(var(--ink-rgb), 0.1);
+}
+td { border-bottom: 1px solid rgba(var(--ink-rgb), 0.1); font-variant-numeric: tabular-nums; }
+tbody tr:last-child td { border-bottom: 0; }
+th:first-child, td:first-child { padding-left: 0; }
+.num { text-align: right; }
+</style>
+</head>
+<body>
+<div id="component">
+  <h1>Billing</h1>
+  <div class="layout">
+    <section class="plan" aria-labelledby="plan-title">
+      <h2 id="plan-title">Team plan</h2>
+      <p class="plan__price"><span class="plan__amount">$24</span> per seat per month</p>
+      <p class="plan__seats">18 of 25 seats used</p>
+      <button class="btn" type="button">Change Plan</button>
+    </section>
+    <section class="invoices" aria-labelledby="invoices-title">
+      <h2 id="invoices-title">Invoices</h2>
+      <table>
+        <thead>
+          <tr><th scope="col">Date</th><th scope="col">Amount</th><th scope="col">Status</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Oct 1, 2026</td><td>$432.00</td><td>Paid</td></tr>
+          <tr><td>Sep 1, 2026</td><td>$432.00</td><td>Paid</td></tr>
+          <tr><td>Aug 1, 2026</td><td>$408.00</td><td>Paid</td></tr>
+          <tr><td>Jul 1, 2026</td><td>$408.00</td><td>Paid</td></tr>
+        </tbody>
+      </table>
+    </section>
+  </div>
+</div>
+</body>
+</html>

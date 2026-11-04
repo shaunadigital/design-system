@@ -1,0 +1,328 @@
+{
+ "size": {
+  "w": 1280,
+  "h": 952
+ },
+ "elements": 12,
+ "oldElements": 0,
+ "offElements": 12,
+ "pieces": [
+  {
+   "tag": "li",
+   "text": "Leo Park approved Q4 travel budget\n     ",
+   "box": {
+    "x": 260,
+    "y": 216,
+    "w": 760,
+    "h": 96
+   },
+   "hits": [
+    {
+     "k": "off",
+     "what": "border",
+     "v": "217,210,195"
+    }
+   ]
+  },
+  {
+   "tag": "li",
+   "text": "Maya Chen assigned you Laptop refresh fo",
+   "box": {
+    "x": 260,
+    "y": 312,
+    "w": 760,
+    "h": 96
+   },
+   "hits": [
+    {
+     "k": "off",
+     "what": "border",
+     "v": "217,210,195"
+    }
+   ]
+  },
+  {
+   "tag": "li",
+   "text": "Your weekly summary is ready\n        1d ",
+   "box": {
+    "x": 260,
+    "y": 408,
+    "w": 760,
+    "h": 96
+   },
+   "hits": [
+    {
+     "k": "off",
+     "what": "border",
+     "v": "217,210,195"
+    }
+   ]
+  },
+  {
+   "tag": "li",
+   "text": "Ana Ruiz commented on VPN access for con",
+   "box": {
+    "x": 260,
+    "y": 504,
+    "w": 760,
+    "h": 96
+   },
+   "hits": [
+    {
+     "k": "off",
+     "what": "border",
+     "v": "217,210,195"
+    }
+   ]
+  },
+  {
+   "tag": "li",
+   "text": "Sam Ito joined Harbor Ops\n        2d ago",
+   "box": {
+    "x": 260,
+    "y": 600,
+    "w": 760,
+    "h": 96
+   },
+   "hits": [
+    {
+     "k": "off",
+     "what": "border",
+     "v": "217,210,195"
+    }
+   ]
+  },
+  {
+   "tag": "li",
+   "text": "Billing details were updated\n        3d ",
+   "box": {
+    "x": 260,
+    "y": 696,
+    "w": 760,
+    "h": 96
+   },
+   "hits": [
+    {
+     "k": "off",
+     "what": "border",
+     "v": "217,210,195"
+    }
+   ]
+  }
+ ],
+ "oldPieces": 0,
+ "values": {
+  "old": [],
+  "off": [
+   "border:217,210,195",
+   "text:58,74,65",
+   "text:74,89,80"
+  ]
+ },
+ "all": [
+  {
+   "tag": "li",
+   "text": "Leo Park approved Q4 travel budget\n     ",
+   "box": {
+    "x": 260,
+    "y": 216,
+    "w": 760,
+    "h": 96
+   },
+   "hits": [
+    {
+     "k": "off",
+     "what": "border",
+     "v": "217,210,195"
+    }
+   ]
+  },
+  {
+   "tag": "li",
+   "text": "Maya Chen assigned you Laptop refresh fo",
+   "box": {
+    "x": 260,
+    "y": 312,
+    "w": 760,
+    "h": 96
+   },
+   "hits": [
+    {
+     "k": "off",
+     "what": "border",
+     "v": "217,210,195"
+    }
+   ]
+  },
+  {
+   "tag": "li",
+   "text": "Your weekly summary is ready\n        1d ",
+   "box": {
+    "x": 260,
+    "y": 408,
+    "w": 760,
+    "h": 96
+   },
+   "hits": [
+    {
+     "k": "off",
+     "what": "border",
+     "v": "217,210,195"
+    }
+   ]
+  },
+  {
+   "tag": "li",
+   "text": "Ana Ruiz commented on VPN access for con",
+   "box": {
+    "x": 260,
+    "y": 504,
+    "w": 760,
+    "h": 96
+   },
+   "hits": [
+    {
+     "k": "off",
+     "what": "border",
+     "v": "217,210,195"
+    }
+   ]
+  },
+  {
+   "tag": "p",
+   "text": "Ana Ruiz commented on VPN access for con",
+   "box": {
+    "x": 304,
+    "y": 538,
+    "w": 653.4375,
+    "h": 27
+   },
+   "hits": [
+    {
+     "k": "off",
+     "what": "text",
+     "v": "58,74,65"
+    }
+   ]
+  },
+  {
+   "tag": "time",
+   "text": "1d ago",
+   "box": {
+    "x": 977.4375,
+    "y": 543,
+    "w": 42.5625,
+    "h": 18
+   },
+   "hits": [
+    {
+     "k": "off",
+     "what": "text",
+     "v": "74,89,80"
+    }
+   ]
+  },
+  {
+   "tag": "li",
+   "text": "Sam Ito joined Harbor Ops\n        2d ago",
+   "box": {
+    "x": 260,
+    "y": 600,
+    "w": 760,
+    "h": 96
+   },
+   "hits": [
+    {
+     "k": "off",
+     "what": "border",
+     "v": "217,210,195"
+    }
+   ]
+  },
+  {
+   "tag": "p",
+   "text": "Sam Ito joined Harbor Ops",
+   "box": {
+    "x": 304,
+    "y": 634,
+    "w": 651.28125,
+    "h": 27
+   },
+   "hits": [
+    {
+     "k": "off",
+     "what": "text",
+     "v": "58,74,65"
+    }
+   ]
+  },
+  {
+   "tag": "time",
+   "text": "2d ago",
+   "box": {
+    "x": 975.28125,
+    "y": 639,
+    "w": 44.71875,
+    "h": 18
+   },
+   "hits": [
+    {
+     "k": "off",
+     "what": "text",
+     "v": "74,89,80"
+    }
+   ]
+  },
+  {
+   "tag": "li",
+   "text": "Billing details were updated\n        3d ",
+   "box": {
+    "x": 260,
+    "y": 696,
+    "w": 760,
+    "h": 96
+   },
+   "hits": [
+    {
+     "k": "off",
+     "what": "border",
+     "v": "217,210,195"
+    }
+   ]
+  },
+  {
+   "tag": "p",
+   "text": "Billing details were updated",
+   "box": {
+    "x": 304,
+    "y": 730,
+    "w": 650.875,
+    "h": 27
+   },
+   "hits": [
+    {
+     "k": "off",
+     "what": "text",
+     "v": "58,74,65"
+    }
+   ]
+  },
+  {
+   "tag": "time",
+   "text": "3d ago",
+   "box": {
+    "x": 974.875,
+    "y": 735,
+    "w": 45.125,
+    "h": 18
+   },
+   "hits": [
+    {
+     "k": "off",
+     "what": "text",
+     "v": "74,89,80"
+    }
+   ]
+  }
+ ]
+}

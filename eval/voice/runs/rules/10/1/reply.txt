@@ -1,0 +1,1 @@
+Both passed almost every check, but her system produced far more consistent pages. In the test, a standard DESIGN.md gave thirty button styles. Her system gave seven. Fields dropped from sixteen styles to four. Want the details?

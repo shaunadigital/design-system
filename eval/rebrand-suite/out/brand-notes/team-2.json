@@ -1,0 +1,226 @@
+{
+ "size": {
+  "w": 1280,
+  "h": 399.390625
+ },
+ "elements": 6,
+ "oldElements": 1,
+ "offElements": 5,
+ "pieces": [
+  {
+   "tag": "button",
+   "text": "Invite Member",
+   "box": {
+    "x": 1105.078125,
+    "y": 32,
+    "w": 134.921875,
+    "h": 39.59375
+   },
+   "hits": [
+    {
+     "k": "old",
+     "what": "text",
+     "v": "255,255,255"
+    }
+   ]
+  },
+  {
+   "tag": "li",
+   "text": "Maya Chen\n      maya@harbor.app\n      Ad",
+   "box": {
+    "x": 40,
+    "y": 127.390625,
+    "w": 1200,
+    "h": 48
+   },
+   "hits": [
+    {
+     "k": "off",
+     "what": "border",
+     "v": "227,218,203"
+    }
+   ]
+  },
+  {
+   "tag": "li",
+   "text": "Leo Park\n      leo@harbor.app\n      Admi",
+   "box": {
+    "x": 40,
+    "y": 175.390625,
+    "w": 1200,
+    "h": 48
+   },
+   "hits": [
+    {
+     "k": "off",
+     "what": "border",
+     "v": "227,218,203"
+    }
+   ]
+  },
+  {
+   "tag": "li",
+   "text": "Ana Ruiz\n      ana@harbor.app\n      Admi",
+   "box": {
+    "x": 40,
+    "y": 223.390625,
+    "w": 1200,
+    "h": 48
+   },
+   "hits": [
+    {
+     "k": "off",
+     "what": "border",
+     "v": "227,218,203"
+    }
+   ]
+  },
+  {
+   "tag": "li",
+   "text": "Sam Ito\n      sam@harbor.app\n      Admin",
+   "box": {
+    "x": 40,
+    "y": 271.390625,
+    "w": 1200,
+    "h": 48
+   },
+   "hits": [
+    {
+     "k": "off",
+     "what": "border",
+     "v": "227,218,203"
+    }
+   ]
+  },
+  {
+   "tag": "li",
+   "text": "Kai Lee\n      kai@harbor.app\n      Admin",
+   "box": {
+    "x": 40,
+    "y": 319.390625,
+    "w": 1200,
+    "h": 48
+   },
+   "hits": [
+    {
+     "k": "off",
+     "what": "border",
+     "v": "227,218,203"
+    }
+   ]
+  }
+ ],
+ "oldPieces": 1,
+ "values": {
+  "old": [
+   "text:255,255,255"
+  ],
+  "off": [
+   "border:227,218,203"
+  ]
+ },
+ "all": [
+  {
+   "tag": "button",
+   "text": "Invite Member",
+   "box": {
+    "x": 1105.078125,
+    "y": 32,
+    "w": 134.921875,
+    "h": 39.59375
+   },
+   "hits": [
+    {
+     "k": "old",
+     "what": "text",
+     "v": "255,255,255"
+    }
+   ]
+  },
+  {
+   "tag": "li",
+   "text": "Maya Chen\n      maya@harbor.app\n      Ad",
+   "box": {
+    "x": 40,
+    "y": 127.390625,
+    "w": 1200,
+    "h": 48
+   },
+   "hits": [
+    {
+     "k": "off",
+     "what": "border",
+     "v": "227,218,203"
+    }
+   ]
+  },
+  {
+   "tag": "li",
+   "text": "Leo Park\n      leo@harbor.app\n      Admi",
+   "box": {
+    "x": 40,
+    "y": 175.390625,
+    "w": 1200,
+    "h": 48
+   },
+   "hits": [
+    {
+     "k": "off",
+     "what": "border",
+     "v": "227,218,203"
+    }
+   ]
+  },
+  {
+   "tag": "li",
+   "text": "Ana Ruiz\n      ana@harbor.app\n      Admi",
+   "box": {
+    "x": 40,
+    "y": 223.390625,
+    "w": 1200,
+    "h": 48
+   },
+   "hits": [
+    {
+     "k": "off",
+     "what": "border",
+     "v": "227,218,203"
+    }
+   ]
+  },
+  {
+   "tag": "li",
+   "text": "Sam Ito\n      sam@harbor.app\n      Admin",
+   "box": {
+    "x": 40,
+    "y": 271.390625,
+    "w": 1200,
+    "h": 48
+   },
+   "hits": [
+    {
+     "k": "off",
+     "what": "border",
+     "v": "227,218,203"
+    }
+   ]
+  },
+  {
+   "tag": "li",
+   "text": "Kai Lee\n      kai@harbor.app\n      Admin",
+   "box": {
+    "x": 40,
+    "y": 319.390625,
+    "w": 1200,
+    "h": 48
+   },
+   "hits": [
+    {
+     "k": "off",
+     "what": "border",
+     "v": "227,218,203"
+    }
+   ]
+  }
+ ]
+}

@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Billing</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+/* Tokens from tokens.css (day theme), inlined so the file is self-contained */
+:root {
+  --paper: #FFFFFF;
+  --card: #FFFFFF;
+  --ink: #0B1416;
+  --ink-rgb: 11, 20, 22;
+  --muted: #55656A;
+  --accent-text: #0263AC;
+  --accent: #0263AC;
+  --accent-tint: #E6EFF7;
+  --on-ink: #FFFFFF;
+  --shadow-rgb: 11, 20, 22;
+  --font-display: 'Unbounded', system-ui, sans-serif;
+  --font-body: 'Archivo', system-ui, -apple-system, sans-serif;
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 24px;
+  --space-6: 32px;
+  --space-7: 48px;
+  --space-8: 64px;
+  --radius-sm: 8px;
+  --radius-card: 16px;
+  --radius-pill: 999px;
+  --tracking-caps: 0.1em;
+  --tracking-label: 0.14em;
+  --text-hero: 3rem;
+  --text-display-xl: 3.5rem;
+  --text-step: 1.75rem;
+  --text-body: 1rem;
+  --text-small: 0.875rem;
+  --text-label: 0.75rem;
+  --ease: cubic-bezier(0.2, 0.7, 0.2, 1);
+  --dur-base: 180ms;
+  --dur-fast: 120ms;
+}
+
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--paper); color: var(--ink); font-family: var(--font-body); font-size: var(--text-body); }
+
+#component {
+  width: 1280px;
+  min-height: 800px;
+  padding: var(--space-8) var(--space-8) var(--space-9);
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-body);
+}
+
+h1, h2 {
+  margin: 0;
+  font-family: var(--font-display);
+  font-weight: 300;
+  text-transform: uppercase;
+}
+h1 { font-size: var(--text-display-xl); line-height: 1.1; }
+h2 { font-size: var(--text-step); line-height: 1.2; }
+
+.layout {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-6);
+  margin-top: var(--space-7);
+}
+
+.plan {
+  width: 400px;
+  flex: none;
+  padding: var(--space-6);
+  border: 1px solid rgba(var(--ink-rgb), 0.1);
+  border-radius: var(--radius-card);
+  background: var(--card);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+}
+.price { display: flex; flex-direction: column; gap: var(--space-1); }
+.price strong { font-family: var(--font-display); font-weight: 300; font-size: var(--text-hero); line-height: 1.1; }
+.price span, .seats p { font-size: var(--text-small); color: var(--muted); }
+.seats p { margin: 0 0 var(--space-2); }
+.meter { height: 8px; border-radius: var(--radius-pill); background: var(--accent-tint); overflow: hidden; }
+.meter i { display: block; width: 72%; height: 100%; border-radius: var(--radius-pill); background: var(--accent); }
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
+  padding: 0 var(--space-5);
+  border: 0;
+  border-radius: var(--radius-pill);
+  font-family: var(--font-body);
+  font-size: var(--text-body);
+  font-weight: 500;
+  cursor: pointer;
+  transition: opacity var(--dur-base) var(--ease);
+}
+.btn--fill { background: var(--ink); color: var(--on-ink); width: 100%; }
+.btn--fill:hover { opacity: 0.88; }
+.btn:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+.invoices { flex: 1; min-width: 0; }
+table { width: 100%; margin-top: var(--space-5); border-collapse: collapse; }
+th, td { height: 56px; padding: 0 var(--space-4); text-align: left; border-bottom: 1px solid rgba(var(--ink-rgb), 0.1); }
+th {
+  height: 44px;
+  font-size: var(--text-label);
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-label);
+  color: var(--muted);
+}
+td { font-size: var(--text-body); }
+td.amount { font-variant-numeric: tabular-nums; }
+.status {
+  display: inline-block;
+  padding: var(--space-1) var(--space-3);
+  border-radius: var(--radius-pill);
+  background: var(--accent-tint);
+  color: var(--accent-text);
+  font-size: var(--text-small);
+  font-weight: 500;
+}
+</style>
+</head>
+<body>
+<div id="component">
+  <h1>Billing</h1>
+  <div class="layout">
+    <section class="plan" aria-label="Current plan">
+      <h2>Team plan</h2>
+      <div class="price">
+        <strong>$24</strong>
+        <span>per seat per month</span>
+      </div>
+      <div class="seats">
+        <p>18 of 25 seats used</p>
+        <div class="meter" role="img" aria-label="18 of 25 seats used"><i></i></div>
+      </div>
+      <button class="btn btn--fill" type="button">Change Plan</button>
+    </section>
+    <section class="invoices">
+      <h2>Invoices</h2>
+      <table>
+        <thead>
+          <tr><th scope="col">Date</th><th scope="col">Amount</th><th scope="col">Status</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Oct 1, 2026</td><td class="amount">$432.00</td><td><span class="status">Paid</span></td></tr>
+          <tr><td>Sep 1, 2026</td><td class="amount">$432.00</td><td><span class="status">Paid</span></td></tr>
+          <tr><td>Aug 1, 2026</td><td class="amount">$408.00</td><td><span class="status">Paid</span></td></tr>
+          <tr><td>Jul 1, 2026</td><td class="amount">$408.00</td><td><span class="status">Paid</span></td></tr>
+        </tbody>
+      </table>
+    </section>
+  </div>
+</div>
+</body>
+</html>

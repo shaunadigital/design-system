@@ -1,0 +1,5 @@
+A standard DESIGN.md is a page of rules that Claude reads. Shauna's system goes further. It starts from one token file, and that file builds the style sheet, the Figma library, and the rules Claude reads, so everything stays in sync. A check runs on every build too.
+
+She tested the two against each other in 240 page builds. Almost everything passed with the standard file, 118 of 120 pages. But those pages ended up with 30 different button styles and 16 field styles. With her system, all 120 passed, with just 7 button styles and 4 field styles.
+
+So the difference is consistency. You can read the full write-up in the case study on testing a design system on Claude.

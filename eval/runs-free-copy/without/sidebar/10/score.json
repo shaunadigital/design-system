@@ -1,0 +1,64 @@
+{
+ "pass": false,
+ "hasRoot": true,
+ "box": {
+  "x": 580,
+  "y": 328.046875,
+  "w": 280,
+  "h": 343.890625
+ },
+ "checks": {
+  "type": {
+   "pass": false,
+   "issues": [
+    "button.new-chat font-size 15px",
+    "a.chat font-size 15px"
+   ]
+  },
+  "color": {
+   "pass": true,
+   "issues": []
+  },
+  "radius": {
+   "pass": true,
+   "issues": []
+  },
+  "tracking": {
+   "pass": true,
+   "issues": []
+  },
+  "fonts": {
+   "pass": true,
+   "issues": []
+  },
+  "contrast": {
+   "pass": true,
+   "issues": []
+  },
+  "hover": {
+   "pass": true,
+   "issues": []
+  },
+  "motion": {
+   "pass": true,
+   "issues": []
+  },
+  "copy": {
+   "pass": false,
+   "issues": [
+    "button \"New chat\" is not Title Case",
+    "button \"Color palette feedback\" is not Title Case"
+   ]
+  },
+  "labels": {
+   "pass": true,
+   "issues": []
+  },
+  "targets": {
+   "pass": false,
+   "issues": [
+    "a.chat 246x40"
+   ]
+  }
+ }
+}

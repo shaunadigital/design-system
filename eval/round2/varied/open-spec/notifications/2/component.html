@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=1280">
+<title>Notifications | Harbor</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; background: #FFFFFF; }
+
+  #component {
+    width: 1280px;
+    min-height: 900px;
+    margin: 0 auto;
+    padding: 96px 64px;
+    background: #FFFFFF;
+    color: #0B1416;
+    font-family: "Archivo", "Helvetica Neue", Arial, sans-serif;
+    font-size: 16px;
+    line-height: 24px;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  #component .grid {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    column-gap: 32px;
+  }
+
+  #component .content {
+    grid-column: 3 / span 8;
+  }
+
+  #component .header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 32px;
+    margin-bottom: 48px;
+  }
+
+  #component h1 {
+    margin: 0;
+    font-family: "Unbounded", "Archivo", "Helvetica Neue", Arial, sans-serif;
+    font-weight: 300;
+    font-size: 56px;
+    line-height: 64px;
+    letter-spacing: -0.02em;
+    text-transform: uppercase;
+    color: #0B1416;
+  }
+
+  #component .btn {
+    appearance: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 44px;
+    padding: 10px 24px;
+    border: 0;
+    border-radius: 999px;
+    background: #0B1416;
+    color: #FFFFFF;
+    font-family: "Archivo", "Helvetica Neue", Arial, sans-serif;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 24px;
+    letter-spacing: 0;
+    white-space: nowrap;
+    cursor: pointer;
+    transition: background-color 180ms cubic-bezier(0.2, 0.7, 0.2, 1);
+  }
+  #component .btn:hover { background: #0263AC; }
+  #component .btn:focus-visible {
+    outline: 2px solid #0263AC;
+    outline-offset: 4px;
+  }
+
+  #component .list {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    background: #FFFFFF;
+    border: 1px solid #9CC3EA;
+    border-radius: 16px;
+    overflow: hidden;
+  }
+
+  #component .item {
+    display: grid;
+    grid-template-columns: 24px 1fr auto;
+    align-items: center;
+    column-gap: 24px;
+    padding: 32px;
+    background: #FFFFFF;
+  }
+  #component .item + .item { border-top: 1px solid #EEF4FA; }
+  #component .item.unread { background: #E6EFF7; }
+  #component .item.unread + .item.unread { border-top-color: #FFFFFF; }
+
+  #component .marker {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+    height: 24px;
+  }
+  #component .unread .marker::before {
+    content: "";
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: #0263AC;
+  }
+
+  #component .text {
+    margin: 0;
+    font-size: 18px;
+    line-height: 28px;
+    letter-spacing: 0;
+    font-weight: 400;
+    color: #55656A;
+  }
+  #component .unread .text { color: #0B1416; font-weight: 500; }
+  #component .text .who { color: #0B1416; font-weight: 500; }
+  #component .item:not(.unread) .who { font-weight: 500; }
+
+  #component .time {
+    font-size: 14px;
+    line-height: 20px;
+    letter-spacing: 0.02em;
+    color: #55656A;
+    white-space: nowrap;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    #component .btn { transition: none; }
+  }
+</style>
+</head>
+<body>
+<div id="component">
+  <div class="grid">
+    <main class="content">
+      <header class="header">
+        <h1>Notifications</h1>
+        <button class="btn" type="button">Mark All as Read</button>
+      </header>
+
+      <ul class="list" aria-label="Notifications">
+        <li class="item unread">
+          <span class="marker" role="img" aria-label="Unread"></span>
+          <p class="text">Leo Park approved Q4 travel budget</p>
+          <span class="time">2h ago</span>
+        </li>
+        <li class="item unread">
+          <span class="marker" role="img" aria-label="Unread"></span>
+          <p class="text">Maya Chen assigned you Laptop refresh for design</p>
+          <span class="time">3h ago</span>
+        </li>
+        <li class="item unread">
+          <span class="marker" role="img" aria-label="Unread"></span>
+          <p class="text">Your weekly summary is ready</p>
+          <span class="time">1d ago</span>
+        </li>
+        <li class="item">
+          <span class="marker" aria-hidden="true"></span>
+          <p class="text">Ana Ruiz commented on VPN access for contractors</p>
+          <span class="time">1d ago</span>
+        </li>
+        <li class="item">
+          <span class="marker" aria-hidden="true"></span>
+          <p class="text">Sam Ito joined Harbor Ops</p>
+          <span class="time">2d ago</span>
+        </li>
+        <li class="item">
+          <span class="marker" aria-hidden="true"></span>
+          <p class="text">Billing details were updated</p>
+          <span class="time">3d ago</span>
+        </li>
+      </ul>
+    </main>
+  </div>
+</div>
+</body>
+</html>

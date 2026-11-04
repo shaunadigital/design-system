@@ -1,0 +1,1 @@
+You can download it from the case study called Testing a design system on Claude. It's linked there. The download includes the scripts, fixtures, builds and scores. Want more details about the eval?

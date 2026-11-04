@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Notifications · Harbor</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: #fff; }
+
+  #component {
+    width: 1280px;
+    min-height: 900px;
+    margin: 0 auto;
+    padding: 120px 0 160px;
+    background: #fff;
+    color: #0B1416;
+    font-family: "Archivo", "Helvetica Neue", Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  #component .wrap {
+    width: 760px;
+    margin: 0 auto;
+  }
+
+  #component header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-bottom: 48px;
+    border-bottom: 1px solid #0B1416;
+  }
+
+  #component h1 {
+    font-family: "Unbounded", "Archivo", "Helvetica Neue", Arial, sans-serif;
+    font-weight: 300;
+    font-size: 32px;
+    line-height: 1.2;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+
+  #component .mark-all {
+    font-family: inherit;
+    font-size: 15px;
+    font-weight: 500;
+    letter-spacing: 0.01em;
+    color: #0263AC;
+    background: #fff;
+    border: 1.5px solid #0263AC;
+    border-radius: 999px;
+    padding: 13px 26px;
+    cursor: pointer;
+  }
+  #component .mark-all:hover { background: #0263AC; color: #fff; }
+  #component .mark-all:focus-visible { outline: 3px solid #0B1416; outline-offset: 3px; }
+
+  #component ul { list-style: none; }
+
+  #component li {
+    display: grid;
+    grid-template-columns: 24px 1fr auto;
+    align-items: baseline;
+    column-gap: 20px;
+    padding: 34px 0;
+    border-bottom: 1px solid #E3E8EA;
+  }
+
+  #component .dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    align-self: center;
+    justify-self: start;
+  }
+  #component .unread .dot { background: #0263AC; }
+
+  #component .text {
+    font-size: 18px;
+    line-height: 1.5;
+    font-weight: 400;
+    color: #3F4E52;
+  }
+  #component .unread .text {
+    font-weight: 600;
+    color: #0B1416;
+  }
+
+  #component time {
+    font-size: 14px;
+    letter-spacing: 0.02em;
+    color: #4A5A5E;
+    white-space: nowrap;
+  }
+  #component .unread time { color: #0263AC; font-weight: 500; }
+</style>
+</head>
+<body>
+<div id="component">
+  <main class="wrap">
+    <header>
+      <h1>Notifications</h1>
+      <button type="button" class="mark-all">Mark All as Read</button>
+    </header>
+
+    <ul>
+      <li class="unread">
+        <span class="dot" aria-hidden="true"></span>
+        <p class="text">Leo Park approved Q4 travel budget</p>
+        <time>2h ago</time>
+      </li>
+      <li class="unread">
+        <span class="dot" aria-hidden="true"></span>
+        <p class="text">Maya Chen assigned you Laptop refresh for design</p>
+        <time>3h ago</time>
+      </li>
+      <li class="unread">
+        <span class="dot" aria-hidden="true"></span>
+        <p class="text">Your weekly summary is ready</p>
+        <time>1d ago</time>
+      </li>
+      <li>
+        <span class="dot" aria-hidden="true"></span>
+        <p class="text">Ana Ruiz commented on VPN access for contractors</p>
+        <time>1d ago</time>
+      </li>
+      <li>
+        <span class="dot" aria-hidden="true"></span>
+        <p class="text">Sam Ito joined Harbor Ops</p>
+        <time>2d ago</time>
+      </li>
+      <li>
+        <span class="dot" aria-hidden="true"></span>
+        <p class="text">Billing details were updated</p>
+        <time>3d ago</time>
+      </li>
+    </ul>
+  </main>
+</div>
+</body>
+</html>

@@ -1,0 +1,1 @@
+In a test of 240 page builds, both passed almost every check. But her system produced far more consistent results: seven button styles instead of thirty, and four field styles instead of sixteen. Want the details?

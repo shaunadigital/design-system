@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Chat Options</title>
+<style>
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #FFFFFF;
+    color: #0B1416;
+    font-family: "Archivo", system-ui, sans-serif;
+    font-size: 16px;
+  }
+
+  #component {
+    width: 240px;
+  }
+
+  .trigger {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    min-height: 44px;
+    padding: 0 24px;
+    border: 0;
+    border-radius: 999px;
+    background: #0B1416;
+    color: #FFFFFF;
+    font-family: "Archivo", system-ui, sans-serif;
+    font-size: 16px;
+    font-weight: 500;
+    letter-spacing: 0;
+    cursor: pointer;
+    transition: background-color 180ms cubic-bezier(0.2, 0.7, 0.2, 1);
+  }
+
+  .trigger svg {
+    width: 24px;
+    height: 24px;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+
+  .trigger:focus-visible,
+  .item:focus-visible {
+    outline: 2px solid #0263AC;
+    outline-offset: 2px;
+  }
+
+  .menu {
+    margin: 8px 0 0;
+    padding: 8px;
+    list-style: none;
+    width: 100%;
+    background: #FFFFFF;
+    border: 1px solid #9CC3EA;
+    border-radius: 16px;
+    box-shadow: 0 8px 24px rgba(11, 20, 22, 0.12);
+  }
+
+  .item {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    min-height: 44px;
+    padding: 0 16px;
+    border: 0;
+    border-radius: 8px;
+    background: transparent;
+    color: #0B1416;
+    font-family: "Archivo", system-ui, sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+    letter-spacing: 0;
+    text-align: left;
+    cursor: pointer;
+    transition: background-color 120ms cubic-bezier(0.2, 0.7, 0.2, 1);
+  }
+
+  .item:hover {
+    background: #E6EFF7;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .trigger, .item { transition: none; }
+  }
+</style>
+</head>
+<body>
+  <div id="component">
+    <button class="trigger" type="button" aria-haspopup="menu" aria-expanded="true" aria-controls="chat-menu">
+      Chat Options
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 15l6-6 6 6"/></svg>
+    </button>
+    <ul class="menu" id="chat-menu" role="menu" aria-label="Chat Options">
+      <li role="none"><button class="item" type="button" role="menuitem">Rename</button></li>
+      <li role="none"><button class="item" type="button" role="menuitem">Share</button></li>
+      <li role="none"><button class="item" type="button" role="menuitem">Archive</button></li>
+      <li role="none"><button class="item" type="button" role="menuitem">Delete</button></li>
+    </ul>
+  </div>
+</body>
+</html>

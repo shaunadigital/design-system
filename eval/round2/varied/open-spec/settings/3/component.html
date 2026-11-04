@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Workspace settings</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; }
+
+  html, body {
+    margin: 0;
+    padding: 0;
+    background: #FFFFFF;
+  }
+
+  #component {
+    --paper: #FFFFFF;
+    --sand: #EEF4FA;
+    --ink: #0B1416;
+    --muted: #55656A;
+    --accent: #0263AC;
+    --accent-tint: #E6EFF7;
+    --accent-line: #9CC3EA;
+    --ease: cubic-bezier(0.2, 0.7, 0.2, 1);
+
+    width: 1280px;
+    margin: 0 auto;
+    padding: 96px 64px;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: "Archivo", "Helvetica Neue", Arial, sans-serif;
+    font-size: 16px;
+    line-height: 1.5;
+    letter-spacing: 0;
+  }
+
+  #component h1,
+  #component h2 {
+    margin: 0;
+    font-family: "Unbounded", "Archivo", "Helvetica Neue", Arial, sans-serif;
+    color: var(--ink);
+  }
+
+  #component h1 {
+    font-size: 56px;
+    font-weight: 300;
+    line-height: 1.1;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+    margin-bottom: 64px;
+  }
+
+  #component h2 {
+    font-size: 28px;
+    font-weight: 500;
+    line-height: 1.2;
+    letter-spacing: -0.01em;
+  }
+
+  .stack {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+  }
+
+  .card {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    column-gap: 32px;
+    align-items: start;
+    padding: 48px;
+    background: var(--paper);
+    border: 1px solid var(--accent-line);
+    border-radius: 16px;
+  }
+
+  .card > header { grid-column: 1 / span 4; }
+  .card > .body  { grid-column: 5 / span 8; }
+
+  .card--danger { border-color: var(--muted); }
+
+  /* Fields */
+  .fields {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px 32px;
+  }
+
+  .field { display: flex; flex-direction: column; gap: 8px; }
+
+  .field label {
+    font-size: 12px;
+    font-weight: 500;
+    line-height: 1.5;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  .field input {
+    width: 100%;
+    height: 48px;
+    padding: 0 16px;
+    font-family: inherit;
+    font-size: 16px;
+    letter-spacing: 0;
+    color: var(--ink);
+    background: var(--paper);
+    border: 1px solid var(--muted);
+    border-radius: 12px;
+    transition: background-color 120ms var(--ease), border-color 120ms var(--ease);
+  }
+
+  .field input:hover { background: var(--accent-tint); }
+
+  .field input:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+    border-color: var(--accent);
+  }
+
+  /* Buttons */
+  .actions { margin-top: 32px; display: flex; }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 48px;
+    padding: 0 32px;
+    font-family: inherit;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 1;
+    letter-spacing: 0;
+    border-radius: 999px;
+    cursor: pointer;
+    transition: background-color 180ms var(--ease), color 180ms var(--ease), border-color 180ms var(--ease);
+  }
+
+  .btn:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+  }
+
+  .btn--primary {
+    background: var(--ink);
+    color: #FFFFFF;
+    border: 1px solid var(--ink);
+  }
+  .btn--primary:hover { background: var(--accent); border-color: var(--accent); }
+
+  .btn--quiet {
+    background: transparent;
+    color: var(--ink);
+    border: 1px solid var(--ink);
+  }
+  .btn--quiet:hover { background: var(--accent-tint); }
+
+  /* Switches */
+  fieldset {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    min-width: 0;
+  }
+
+  .visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    white-space: nowrap;
+  }
+
+  .switch-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 32px;
+    min-height: 64px;
+    padding: 16px 0;
+    cursor: pointer;
+    border-top: 1px solid var(--sand);
+  }
+  .switch-row:first-of-type { border-top: 0; padding-top: 0; }
+  .switch-row:last-of-type  { padding-bottom: 0; }
+
+  .switch {
+    appearance: none;
+    -webkit-appearance: none;
+    flex: none;
+    position: relative;
+    width: 56px;
+    height: 32px;
+    margin: 0;
+    background: var(--sand);
+    border: 1px solid var(--muted);
+    border-radius: 999px;
+    cursor: pointer;
+    transition: background-color 180ms var(--ease), border-color 180ms var(--ease);
+  }
+
+  .switch::after {
+    content: "";
+    position: absolute;
+    top: 3px;
+    left: 3px;
+    width: 24px;
+    height: 24px;
+    background: var(--muted);
+    border-radius: 999px;
+    transition: transform 180ms var(--ease), background-color 180ms var(--ease);
+  }
+
+  .switch:checked {
+    background: var(--accent);
+    border-color: var(--accent);
+  }
+
+  .switch:checked::after {
+    background: #FFFFFF;
+    transform: translateX(24px);
+  }
+
+  .switch:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+  }
+
+  /* Danger zone */
+  .danger-text {
+    margin: 0;
+    font-size: 16px;
+    line-height: 1.5;
+    color: var(--ink);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    #component *, #component *::before, #component *::after { transition: none; }
+  }
+</style>
+</head>
+<body>
+<div id="component">
+  <main>
+    <h1>Workspace settings</h1>
+
+    <div class="stack">
+      <section class="card" aria-labelledby="general-title">
+        <header>
+          <h2 id="general-title">General</h2>
+        </header>
+        <form class="body" action="#">
+          <div class="fields">
+            <div class="field">
+              <label for="workspace-name">Workspace name</label>
+              <input id="workspace-name" name="workspace-name" type="text" value="Harbor Ops">
+            </div>
+            <div class="field">
+              <label for="workspace-url">Workspace URL</label>
+              <input id="workspace-url" name="workspace-url" type="text" value="harbor.app/ops">
+            </div>
+          </div>
+          <div class="actions">
+            <button class="btn btn--primary" type="submit">Save Changes</button>
+          </div>
+        </form>
+      </section>
+
+      <section class="card" aria-labelledby="notifications-title">
+        <header>
+          <h2 id="notifications-title">Notifications</h2>
+        </header>
+        <fieldset class="body">
+          <legend class="visually-hidden">Notifications</legend>
+          <label class="switch-row">
+            <span>Email me when a request is assigned to me</span>
+            <input class="switch" type="checkbox" role="switch" checked>
+          </label>
+          <label class="switch-row">
+            <span>Weekly summary</span>
+            <input class="switch" type="checkbox" role="switch" checked>
+          </label>
+          <label class="switch-row">
+            <span>Product updates</span>
+            <input class="switch" type="checkbox" role="switch">
+          </label>
+        </fieldset>
+      </section>
+
+      <section class="card card--danger" aria-labelledby="danger-title">
+        <header>
+          <h2 id="danger-title">Danger zone</h2>
+        </header>
+        <div class="body">
+          <p class="danger-text">Deleting a workspace removes all of its requests for everyone.</p>
+          <div class="actions">
+            <button class="btn btn--quiet" type="button">Delete Workspace</button>
+          </div>
+        </div>
+      </section>
+    </div>
+  </main>
+</div>
+</body>
+</html>

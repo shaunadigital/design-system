@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Harbor Notifications</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+/* Tokens inlined from tokens.css (light theme, plus the dusk overrides for the roles used here) */
+:root {
+  --paper: #FFFFFF;
+  --card: #FFFFFF;
+  --ink: #0B1416;
+  --ink-rgb: 11, 20, 22;
+  --muted: #55656A;
+  --accent-text: #0263AC;
+  --accent: #0263AC;
+  --accent-tint: #E6EFF7;
+  --on-ink: #FFFFFF;
+  --font-display: 'Unbounded', system-ui, sans-serif;
+  --font-body: 'Archivo', system-ui, -apple-system, sans-serif;
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 24px;
+  --space-6: 32px;
+  --space-7: 48px;
+  --space-8: 64px;
+  --radius-sm: 8px;
+  --radius-card: 16px;
+  --radius-pill: 999px;
+  --tracking-tight: -0.02em;
+  --text-display-xl: clamp(2rem, 4vw, 3.5rem);
+  --text-body: 1rem;
+  --text-small: 0.875rem;
+  --ease: cubic-bezier(0.2, 0.7, 0.2, 1);
+  --dur-base: 180ms;
+  color-scheme: light;
+}
+:root[data-theme="dusk"] {
+  color-scheme: dark;
+  --paper: #0E1618;
+  --card: #172327;
+  --ink: #E9EFEF;
+  --ink-rgb: 233, 239, 239;
+  --muted: #9DAEB1;
+  --accent-text: #9CC3EA;
+  --accent: #6FAAE6;
+  --accent-tint: #13283A;
+  --on-ink: #0E1618;
+}
+
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--paper); color: var(--ink); font-family: var(--font-body); font-size: var(--text-body); }
+
+#component {
+  width: 1280px;
+  min-height: 720px;
+  padding: var(--space-7) var(--space-8) var(--space-8);
+  background: var(--paper);
+  color: var(--ink);
+}
+
+.head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  max-width: 800px;
+  margin-bottom: var(--space-5);
+}
+.head h1 {
+  margin: 0;
+  font-family: var(--font-display);
+  font-weight: 300;
+  font-size: var(--text-display-xl);
+  line-height: 1.1;
+  letter-spacing: var(--tracking-tight);
+  text-transform: uppercase;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
+  padding: 0 var(--space-5);
+  border: 0;
+  border-radius: var(--radius-pill);
+  background: var(--ink);
+  color: var(--on-ink);
+  font-family: var(--font-body);
+  font-size: var(--text-small);
+  font-weight: 600;
+  cursor: pointer;
+  transition: opacity var(--dur-base) var(--ease);
+}
+.btn:hover { opacity: 0.88; }
+
+.list {
+  max-width: 800px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  background: var(--card);
+  border: 1px solid rgba(var(--ink-rgb), 0.1);
+  border-radius: var(--radius-card);
+  overflow: hidden;
+}
+.item {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  min-height: 48px;
+  padding: var(--space-2) var(--space-5) var(--space-2) var(--space-4);
+  font-size: var(--text-body);
+}
+.item + .item { border-top: 1px solid rgba(var(--ink-rgb), 0.1); }
+.item.unread { background: var(--accent-tint); font-weight: 600; }
+
+.dot {
+  flex: none;
+  width: 8px;
+  height: 8px;
+  border-radius: var(--radius-pill);
+  background: transparent;
+}
+.unread .dot { background: var(--accent); }
+
+.text { flex: 1; min-width: 0; }
+.time {
+  flex: none;
+  font-size: var(--text-small);
+  font-weight: 400;
+  color: var(--muted);
+  font-variant-numeric: tabular-nums;
+}
+.sr {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+</style>
+</head>
+<body>
+<div id="component">
+  <header class="head">
+    <h1>Notifications</h1>
+    <button class="btn" type="button">Mark All as Read</button>
+  </header>
+
+  <ul class="list">
+    <li class="item unread"><span class="dot" aria-hidden="true"></span><span class="text"><span class="sr">Unread: </span><span data-user-content>Leo Park approved Q4 travel budget</span></span><span class="time">2h ago</span></li>
+    <li class="item unread"><span class="dot" aria-hidden="true"></span><span class="text"><span class="sr">Unread: </span><span data-user-content>Maya Chen assigned you Laptop refresh for design</span></span><span class="time">3h ago</span></li>
+    <li class="item unread"><span class="dot" aria-hidden="true"></span><span class="text"><span class="sr">Unread: </span><span data-user-content>Your weekly summary is ready</span></span><span class="time">1d ago</span></li>
+    <li class="item"><span class="dot" aria-hidden="true"></span><span class="text"><span data-user-content>Ana Ruiz commented on VPN access for contractors</span></span><span class="time">1d ago</span></li>
+    <li class="item"><span class="dot" aria-hidden="true"></span><span class="text"><span data-user-content>Sam Ito joined Harbor Ops</span></span><span class="time">2d ago</span></li>
+    <li class="item"><span class="dot" aria-hidden="true"></span><span class="text"><span data-user-content>Billing details were updated</span></span><span class="time">3d ago</span></li>
+  </ul>
+</div>
+</body>
+</html>

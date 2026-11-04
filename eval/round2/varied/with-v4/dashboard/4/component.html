@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=1280">
+<title>Harbor Overview</title>
+<style>
+:root {
+  --paper: #FFFFFF;
+  --card: #FFFFFF;
+  --ink: #0B1416;
+  --ink-rgb: 11, 20, 22;
+  --muted: #55656A;
+  --accent-text: #0263AC;
+  --accent: #0263AC;
+  --font-display: 'Unbounded', system-ui, sans-serif;
+  --font-body: 'Archivo', system-ui, -apple-system, sans-serif;
+  --font-label: 'Archivo', system-ui, sans-serif;
+  --font-hero: 'Unbounded', system-ui, sans-serif;
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 24px;
+  --space-6: 32px;
+  --space-7: 48px;
+  --radius-card: 16px;
+  --tracking-tight: -0.02em;
+  --tracking-label: 0.14em;
+  --text-hero: clamp(1.5rem, 3.34vw, 3rem);
+  --text-heading: clamp(1.75rem, 3.2vw, 2.875rem);
+  --text-step: clamp(1.375rem, 1.9vw, 1.75rem);
+  --text-small: 0.875rem;
+  --text-label: 0.75rem;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: 1rem;
+}
+
+#component {
+  width: 1280px;
+  min-height: 100vh;
+  background: var(--paper);
+}
+
+.topnav {
+  height: 64px;
+  background: var(--paper);
+  border-bottom: 1px solid rgba(var(--ink-rgb), 0.1);
+}
+
+.topnav ul {
+  max-width: 1120px;
+  height: 100%;
+  margin: 0 auto;
+  padding: 0 var(--space-6);
+  list-style: none;
+  display: flex;
+  align-items: center;
+  gap: var(--space-5);
+}
+
+.topnav a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  font-size: var(--text-small);
+  font-weight: 500;
+  color: var(--ink);
+  text-decoration: none;
+}
+
+.topnav a[aria-current="page"] { color: var(--accent-text); }
+.topnav a:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-radius: var(--space-1); }
+
+main {
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: var(--space-7) var(--space-6);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6);
+}
+
+h1, h2 {
+  margin: 0;
+  font-family: var(--font-display);
+  font-weight: 300;
+  text-transform: uppercase;
+  line-height: 1.1;
+}
+
+h1 { font-size: var(--text-heading); }
+h2 { font-size: var(--text-step); }
+
+.stats {
+  margin: 0;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--space-5);
+}
+
+.stat {
+  background: var(--card);
+  border: 1px solid rgba(var(--ink-rgb), 0.1);
+  border-radius: var(--radius-card);
+  padding: var(--space-5);
+}
+
+.stat dt {
+  font-family: var(--font-label);
+  font-size: var(--text-label);
+  font-weight: 500;
+  letter-spacing: var(--tracking-label);
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.stat dd {
+  margin: var(--space-2) 0 0;
+  font-family: var(--font-hero);
+  font-size: var(--text-hero);
+  font-weight: 300;
+  letter-spacing: var(--tracking-tight);
+  line-height: 1.2;
+  white-space: nowrap;
+}
+
+.stat .unit {
+  margin-left: var(--space-1);
+  font-family: var(--font-body);
+  font-size: var(--text-small);
+  font-weight: 400;
+  letter-spacing: 0;
+  color: var(--muted);
+}
+
+.activity {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+}
+
+.activity ul {
+  margin: 0;
+  padding: 0 var(--space-5);
+  list-style: none;
+  background: var(--card);
+  border: 1px solid rgba(var(--ink-rgb), 0.1);
+  border-radius: var(--radius-card);
+}
+
+.activity li {
+  display: flex;
+  align-items: center;
+  min-height: 52px;
+  font-size: var(--text-small);
+  line-height: 1.4;
+}
+
+.activity li + li { border-top: 1px solid rgba(var(--ink-rgb), 0.1); }
+.activity li strong { font-weight: 600; margin-right: var(--space-1); }
+</style>
+</head>
+<body>
+<div id="component">
+  <nav class="topnav" aria-label="Main">
+    <ul>
+      <li><a href="#" aria-current="page">Overview</a></li>
+      <li><a href="#">Requests</a></li>
+      <li><a href="#">Team</a></li>
+      <li><a href="#">Settings</a></li>
+    </ul>
+  </nav>
+
+  <main>
+    <h1>Overview</h1>
+
+    <dl class="stats">
+      <div class="stat">
+        <dt>Active users</dt>
+        <dd>1,284</dd>
+      </div>
+      <div class="stat">
+        <dt>Open requests</dt>
+        <dd>37</dd>
+      </div>
+      <div class="stat">
+        <dt>Average response</dt>
+        <dd>2.4<span class="unit">hours</span></dd>
+      </div>
+      <div class="stat">
+        <dt>Uptime</dt>
+        <dd>99.9%</dd>
+      </div>
+    </dl>
+
+    <section class="activity" aria-labelledby="activity-title">
+      <h2 id="activity-title">Recent activity</h2>
+      <ul>
+        <li><span><strong>Maya Chen</strong> opened Laptop refresh for design</span></li>
+        <li><span><strong>Leo Park</strong> approved Q4 travel budget</span></li>
+        <li><span><strong>Ana Ruiz</strong> closed VPN access for contractors</span></li>
+        <li><span><strong>Sam Ito</strong> commented on New hire onboarding</span></li>
+        <li><span><strong>Kai Lee</strong> assigned Office move to Facilities</span></li>
+      </ul>
+    </section>
+  </main>
+</div>
+</body>
+</html>

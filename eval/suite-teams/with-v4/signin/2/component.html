@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sign in to Harbor</title>
+<style>
+  /* Tokens from tokens.css (day theme), inlined so the file is self-contained */
+  :root {
+    --paper: #FFFFFF;
+    --card: #FFFFFF;
+    --ink: #0B1416;
+    --ink-rgb: 11, 20, 22;
+    --muted: #55656A;
+    --accent-text: #0263AC;
+    --accent: #0263AC;
+    --accent-tint: #E6EFF7;
+    --on-ink: #FFFFFF;
+    --shadow-rgb: 11, 20, 22;
+    --font-display: 'Unbounded', system-ui, sans-serif;
+    --font-body: 'Archivo', system-ui, -apple-system, sans-serif;
+    --space-2: 8px;
+    --space-3: 12px;
+    --space-4: 16px;
+    --space-5: 24px;
+    --space-6: 32px;
+    --space-7: 48px;
+    --space-8: 64px;
+    --radius-md: 12px;
+    --radius-card: 16px;
+    --radius-pill: 999px;
+    --tracking-tight: -0.02em;
+    --tracking-label: 0.14em;
+    --text-step: clamp(1.375rem, 1.9vw, 1.75rem);
+    --text-body: 1rem;
+    --text-small: 0.875rem;
+    --text-label: 0.75rem;
+    --ease: cubic-bezier(0.2, 0.7, 0.2, 1);
+    --dur-fast: 120ms;
+    --dur-base: 180ms;
+  }
+
+  * { box-sizing: border-box; }
+  html, body { margin: 0; }
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: var(--font-body);
+    font-size: var(--text-body);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  #component {
+    width: 1280px;
+    min-height: 800px;
+    margin: 0 auto;
+    padding: var(--space-8) var(--space-6);
+    background: var(--paper);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .card {
+    width: 400px;
+    padding: var(--space-6);
+    background: var(--card);
+    border: 1px solid rgba(var(--ink-rgb), 0.1);
+    border-radius: var(--radius-card);
+    box-shadow: 0 24px 48px -24px rgba(var(--shadow-rgb), 0.35);
+  }
+
+  h1 {
+    margin: 0 0 var(--space-6);
+    font-family: var(--font-display);
+    font-weight: 300;
+    font-size: var(--text-step);
+    line-height: 1.2;
+    letter-spacing: var(--tracking-tight);
+    text-transform: uppercase;
+    color: var(--ink);
+  }
+
+  form { display: flex; flex-direction: column; }
+
+  .field { display: flex; flex-direction: column; margin-bottom: var(--space-5); }
+  .field label {
+    margin-bottom: var(--space-2);
+    font-family: var(--font-body);
+    font-weight: 500;
+    font-size: var(--text-label);
+    letter-spacing: var(--tracking-label);
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+  .field input {
+    height: 44px;
+    padding: 0 var(--space-3);
+    font: inherit;
+    font-size: var(--text-body);
+    color: var(--ink);
+    background: var(--paper);
+    border: 1px solid rgba(var(--ink-rgb), 0.2);
+    border-radius: var(--radius-md);
+    outline: none;
+    transition: border-color var(--dur-fast) var(--ease), box-shadow var(--dur-fast) var(--ease);
+  }
+  .field input::placeholder { color: var(--muted); }
+  .field input:focus {
+    border-color: var(--accent);
+    box-shadow: 0 0 0 2px var(--accent);
+  }
+
+  .row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: var(--space-5);
+  }
+  .check {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-3);
+    min-height: 44px;
+    font-size: var(--text-small);
+    color: var(--ink);
+    cursor: pointer;
+  }
+  .check input {
+    width: 18px;
+    height: 18px;
+    margin: 0;
+    accent-color: var(--ink);
+    cursor: pointer;
+  }
+  .check input:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+  .link {
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
+    font-size: var(--text-small);
+    font-weight: 500;
+    color: var(--accent-text);
+    text-decoration: none;
+    transition: color var(--dur-fast) var(--ease);
+  }
+  .link:hover { text-decoration: underline; text-underline-offset: 3px; }
+  .link:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-radius: var(--space-2); }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 44px;
+    padding: 0 20px;
+    font-family: var(--font-body);
+    font-weight: 600;
+    font-size: var(--text-small);
+    border-radius: var(--radius-pill);
+    cursor: pointer;
+    transition: opacity var(--dur-fast) var(--ease), background var(--dur-base) var(--ease);
+  }
+  .btn:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+  .btn--primary {
+    color: var(--on-ink);
+    background: var(--ink);
+    border: 0;
+  }
+  .btn--primary:hover { opacity: 0.88; }
+  .btn--secondary {
+    margin-top: var(--space-3);
+    color: var(--ink);
+    background: transparent;
+    border: 1.5px solid var(--ink);
+  }
+  .btn--secondary:hover { background: var(--accent-tint); }
+</style>
+</head>
+<body>
+<div id="component">
+  <main class="card">
+    <h1>Sign in to Harbor</h1>
+    <form action="#">
+      <div class="field">
+        <label for="email">Work email</label>
+        <input id="email" name="email" type="email" autocomplete="username">
+      </div>
+      <div class="field">
+        <label for="password">Password</label>
+        <input id="password" name="password" type="password" autocomplete="current-password">
+      </div>
+      <div class="row">
+        <label class="check"><input type="checkbox" name="keep"> Keep me signed in</label>
+        <a class="link" href="#">Forgot Password?</a>
+      </div>
+      <button class="btn btn--primary" type="submit">Sign In</button>
+      <button class="btn btn--secondary" type="button">Continue with SSO</button>
+    </form>
+  </main>
+</div>
+</body>
+</html>

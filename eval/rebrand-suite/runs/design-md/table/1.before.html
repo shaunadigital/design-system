@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Requests | Harbor</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+  * { box-sizing: border-box; }
+  body { margin: 0; background: #FFFFFF; }
+  #component {
+    width: 1280px;
+    min-height: 800px;
+    margin: 0 auto;
+    padding: 64px 64px 96px;
+    background: #FFFFFF;
+    color: #0B1416;
+    font-family: "Archivo", "Helvetica Neue", Arial, sans-serif;
+    font-size: 16px;
+    line-height: 1.5;
+  }
+  #component h1 {
+    margin: 0 0 48px;
+    font-family: "Unbounded", "Archivo", "Helvetica Neue", Arial, sans-serif;
+    font-weight: 300;
+    font-size: 56px;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    text-transform: uppercase;
+  }
+  #component .toolbar {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-end;
+    gap: 24px;
+    margin-bottom: 32px;
+  }
+  #component .field { display: flex; flex-direction: column; gap: 4px; width: 384px; }
+  #component .field label {
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: #55656A;
+  }
+  #component input[type="search"] {
+    height: 44px;
+    padding: 0 16px;
+    border: 1px solid #9CC3EA;
+    border-radius: 12px;
+    background: #FFFFFF;
+    color: #0B1416;
+    font-family: inherit;
+    font-size: 16px;
+    transition: background 120ms cubic-bezier(0.2, 0.7, 0.2, 1);
+  }
+  #component input[type="search"]:focus { outline: 2px solid #0263AC; outline-offset: 2px; }
+  #component .filters { display: flex; gap: 8px; }
+  #component .spacer { flex: 1; }
+  #component button {
+    min-height: 44px;
+    padding: 0 24px;
+    border: 1px solid transparent;
+    border-radius: 999px;
+    background: none;
+    color: #0B1416;
+    font-family: inherit;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background 180ms cubic-bezier(0.2, 0.7, 0.2, 1);
+  }
+  #component button:hover { background: #E6EFF7; }
+  #component button:focus-visible { outline: 2px solid #0263AC; outline-offset: 2px; }
+  #component button[aria-pressed="true"] {
+    background: #E6EFF7;
+    border-color: #9CC3EA;
+    color: #0263AC;
+  }
+  #component button.primary { background: #0B1416; color: #FFFFFF; }
+  #component button.primary:hover { background: #0263AC; }
+  #component table {
+    width: 100%;
+    border-collapse: collapse;
+    border: 1px solid #9CC3EA;
+    border-radius: 16px;
+    border-spacing: 0;
+  }
+  #component th {
+    padding: 16px 24px;
+    background: #EEF4FA;
+    border-bottom: 1px solid #9CC3EA;
+    text-align: left;
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: #55656A;
+  }
+  #component td {
+    padding: 16px 24px;
+    border-bottom: 1px solid #E6EFF7;
+    font-size: 16px;
+  }
+  #component tbody tr:last-child td { border-bottom: 0; }
+  #component tbody tr:hover td { background: #EEF4FA; }
+  #component td.muted { color: #55656A; }
+  #component td.title { font-weight: 500; }
+</style>
+</head>
+<body>
+<div id="component">
+  <h1>Requests</h1>
+
+  <div class="toolbar">
+    <div class="field">
+      <label for="search">Search requests</label>
+      <input type="search" id="search" name="search" placeholder="Search requests">
+    </div>
+    <div class="filters" role="group" aria-label="Filter requests">
+      <button type="button" aria-pressed="true">All</button>
+      <button type="button" aria-pressed="false">Open</button>
+      <button type="button" aria-pressed="false">Closed</button>
+    </div>
+    <div class="spacer"></div>
+    <button type="button" class="primary">New Request</button>
+  </div>
+
+  <table>
+    <thead>
+      <tr>
+        <th scope="col">Request</th>
+        <th scope="col">Requester</th>
+        <th scope="col">Status</th>
+        <th scope="col">Priority</th>
+        <th scope="col">Updated</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td class="title">Laptop refresh for design</td><td>Maya Chen</td><td>Open</td><td>High</td><td class="muted">2h ago</td></tr>
+      <tr><td class="title">Q4 travel budget</td><td>Leo Park</td><td>Approved</td><td>Medium</td><td class="muted">5h ago</td></tr>
+      <tr><td class="title">VPN access for contractors</td><td>Ana Ruiz</td><td>Closed</td><td>High</td><td class="muted">1d ago</td></tr>
+      <tr><td class="title">New hire onboarding</td><td>Sam Ito</td><td>Open</td><td>Medium</td><td class="muted">1d ago</td></tr>
+      <tr><td class="title">Office move</td><td>Kai Lee</td><td>In review</td><td>Low</td><td class="muted">2d ago</td></tr>
+      <tr><td class="title">Security training</td><td>Ava Brooks</td><td>Open</td><td>Low</td><td class="muted">3d ago</td></tr>
+    </tbody>
+  </table>
+</div>
+</body>
+</html>

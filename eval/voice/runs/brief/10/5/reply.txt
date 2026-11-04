@@ -1,0 +1,7 @@
+A standard design file is mostly a written guide that Claude reads. Her system adds one token file behind that guide, and the same tokens build the code, the Figma library, and the rules Claude follows.
+
+She tested both in a round of two hundred forty page builds on Claude. Both did well on passing checks. The standard file passed one hundred eighteen of one hundred twenty pages, and her system passed all one hundred twenty.
+
+The big gap was consistency. The standard file produced thirty button styles and sixteen field styles. Her system produced seven button styles and four field styles.
+
+The case study on AI design systems has the full details.

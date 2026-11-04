@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Harbor Overview</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: #FFFFFF;
+    color: #0B1416;
+    font-family: "Archivo", "Helvetica Neue", Arial, sans-serif;
+    font-size: 16px;
+    line-height: 1.5;
+  }
+
+  #component {
+    width: 1280px;
+    min-height: 720px;
+    background: #FFFFFF;
+    color: #0B1416;
+  }
+
+  .topbar {
+    display: flex;
+    align-items: center;
+    padding: 16px 64px;
+    background: #EEF4FA;
+    border-bottom: 1px solid #9CC3EA;
+  }
+
+  .topbar ul {
+    display: flex;
+    gap: 8px;
+    list-style: none;
+  }
+
+  .topbar a {
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
+    padding: 0 24px;
+    border-radius: 999px;
+    color: #0B1416;
+    font-size: 16px;
+    font-weight: 500;
+    text-decoration: none;
+    transition: background-color 180ms cubic-bezier(0.2, 0.7, 0.2, 1);
+  }
+
+  .topbar a:hover { background: #E6EFF7; }
+
+  .topbar a[aria-current="page"] {
+    background: #FFFFFF;
+    color: #0263AC;
+    border: 1px solid #9CC3EA;
+  }
+
+  .topbar a:focus-visible,
+  .stat:focus-visible {
+    outline: 2px solid #0263AC;
+    outline-offset: 2px;
+  }
+
+  main { padding: 64px 64px 96px; }
+
+  h1 {
+    font-family: "Unbounded", "Archivo", "Helvetica Neue", Arial, sans-serif;
+    font-weight: 300;
+    font-size: 56px;
+    line-height: 1.1;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+    margin-bottom: 48px;
+  }
+
+  .stats {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 32px;
+    margin-bottom: 64px;
+  }
+
+  .stat {
+    background: #FFFFFF;
+    border: 1px solid #9CC3EA;
+    border-radius: 16px;
+    padding: 24px;
+  }
+
+  .stat dt {
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: #0263AC;
+    margin-bottom: 16px;
+  }
+
+  .stat dd {
+    font-family: "Unbounded", "Archivo", "Helvetica Neue", Arial, sans-serif;
+    font-weight: 300;
+    font-size: 32px;
+    line-height: 1.2;
+    letter-spacing: -0.02em;
+  }
+
+  .stat dd .unit {
+    font-family: "Archivo", "Helvetica Neue", Arial, sans-serif;
+    font-size: 16px;
+    letter-spacing: 0;
+    color: #55656A;
+    margin-left: 4px;
+  }
+
+  h2 {
+    font-family: "Unbounded", "Archivo", "Helvetica Neue", Arial, sans-serif;
+    font-weight: 500;
+    font-size: 28px;
+    line-height: 1.2;
+    letter-spacing: -0.01em;
+    margin-bottom: 24px;
+  }
+
+  .activity {
+    list-style: none;
+    background: #FFFFFF;
+    border: 1px solid #9CC3EA;
+    border-radius: 16px;
+    overflow: hidden;
+  }
+
+  .activity li {
+    padding: 16px 24px;
+    font-size: 16px;
+    line-height: 1.5;
+    border-top: 1px solid #9CC3EA;
+  }
+
+  .activity li:first-child { border-top: 0; }
+
+  .activity .who { font-weight: 600; }
+</style>
+</head>
+<body>
+<div id="component">
+  <header class="topbar">
+    <nav aria-label="Main">
+      <ul>
+        <li><a href="#overview" aria-current="page">Overview</a></li>
+        <li><a href="#requests">Requests</a></li>
+        <li><a href="#team">Team</a></li>
+        <li><a href="#settings">Settings</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main id="overview">
+    <h1>Overview</h1>
+
+    <dl class="stats">
+      <div class="stat">
+        <dt>Active users</dt>
+        <dd>1,284</dd>
+      </div>
+      <div class="stat">
+        <dt>Open requests</dt>
+        <dd>37</dd>
+      </div>
+      <div class="stat">
+        <dt>Average response</dt>
+        <dd>2.4<span class="unit">hours</span></dd>
+      </div>
+      <div class="stat">
+        <dt>Uptime</dt>
+        <dd>99.9%</dd>
+      </div>
+    </dl>
+
+    <section aria-labelledby="activity-title">
+      <h2 id="activity-title">Recent activity</h2>
+      <ul class="activity">
+        <li><span class="who">Maya Chen</span> opened Laptop refresh for design</li>
+        <li><span class="who">Leo Park</span> approved Q4 travel budget</li>
+        <li><span class="who">Ana Ruiz</span> closed VPN access for contractors</li>
+        <li><span class="who">Sam Ito</span> commented on New hire onboarding</li>
+        <li><span class="who">Kai Lee</span> assigned Office move to Facilities</li>
+      </ul>
+    </section>
+  </main>
+</div>
+</body>
+</html>

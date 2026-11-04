@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Book a working session</title>
+<style>
+  :root {
+    --ink: #0B1416;
+    --accent: #0263AC;
+    --bg: #FFFFFF;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: "Archivo", system-ui, -apple-system, "Segoe UI", Arial, sans-serif;
+    line-height: 1.5;
+  }
+  #component {
+    width: 100%;
+    max-width: 400px;
+    padding: 32px;
+    background: var(--bg);
+    border: 1px solid var(--ink);
+    border-top: 4px solid var(--accent);
+    border-radius: 4px;
+  }
+  #component h2 {
+    margin: 0 0 16px;
+    font-family: "Unbounded", "Archivo", system-ui, sans-serif;
+    font-weight: 300;
+    font-size: 22px;
+    line-height: 1.25;
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+  }
+  #component .price {
+    margin: 0 0 16px;
+    display: flex;
+    align-items: baseline;
+    gap: 8px;
+  }
+  #component .amount {
+    font-family: "Unbounded", "Archivo", system-ui, sans-serif;
+    font-weight: 300;
+    font-size: 40px;
+    line-height: 1;
+    color: var(--accent);
+  }
+  #component .unit { font-size: 16px; }
+  #component .desc { margin: 0 0 24px; font-size: 16px; }
+  #component ul {
+    margin: 0 0 32px;
+    padding: 24px 0 0;
+    list-style: none;
+    border-top: 1px solid var(--ink);
+  }
+  #component li {
+    position: relative;
+    padding-left: 28px;
+    margin-bottom: 12px;
+    font-size: 16px;
+  }
+  #component li:last-child { margin-bottom: 0; }
+  #component li::before {
+    content: "";
+    position: absolute;
+    left: 4px;
+    top: 5px;
+    width: 6px;
+    height: 12px;
+    border: solid var(--accent);
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg);
+  }
+  #component .book {
+    display: block;
+    padding: 14px 24px;
+    background: var(--accent);
+    color: #FFFFFF;
+    border: 2px solid var(--accent);
+    border-radius: 4px;
+    font-family: inherit;
+    font-size: 16px;
+    font-weight: 600;
+    text-align: center;
+    text-decoration: none;
+  }
+  #component .book:hover { background: var(--ink); border-color: var(--ink); }
+  #component .book:focus-visible { outline: 3px solid var(--ink); outline-offset: 3px; }
+</style>
+</head>
+<body>
+  <div id="component">
+    <h2>Working session</h2>
+    <p class="price"><span class="amount">$150</span><span class="unit">per hour</span></p>
+    <p class="desc">A focused one-hour session, one-on-one, to work through your design challenge together.</p>
+    <ul>
+      <li>60 minutes of live, hands-on work</li>
+      <li>Honest feedback on your project</li>
+      <li>Written notes and next steps afterward</li>
+    </ul>
+    <a class="book" href="#book">Book this session</a>
+  </div>
+</body>
+</html>

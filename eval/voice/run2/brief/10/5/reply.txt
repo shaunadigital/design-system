@@ -1,0 +1,9 @@
+Shauna tested this with two hundred forty page builds on Claude. Half used a standard DESIGN.md, half used her system.
+
+Both did well on passing her checks. The standard file passed one hundred eighteen of one hundred twenty pages. Her system passed all one hundred twenty.
+
+The real gap was consistency. The standard file produced thirty different button styles and sixteen field styles. Her system produced seven button styles and four field styles.
+
+The difference is that her DESIGN.md sits on top of one token file. That file builds the CSS, the Figma library, and the rules Claude reads, so everything comes from the same source.
+
+The full write-up is in the case study on testing a design system on Claude.

@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=1280">
+<title>Requests | Harbor</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; background: #FFFFFF; }
+  body {
+    font-family: "Archivo", "Helvetica Neue", Arial, sans-serif;
+    font-size: 16px;
+    line-height: 1.5;
+    color: #0B1416;
+  }
+
+  #component {
+    width: 1280px;
+    min-height: 800px;
+    padding: 64px 64px 96px;
+    background: #FFFFFF;
+    color: #0B1416;
+  }
+
+  .page-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 32px;
+    margin-bottom: 48px;
+  }
+  h1 {
+    margin: 0;
+    font-family: "Unbounded", "Helvetica Neue", Arial, sans-serif;
+    font-weight: 300;
+    font-size: 56px;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    text-transform: uppercase;
+  }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 44px;
+    padding: 0 24px;
+    border: 1px solid transparent;
+    border-radius: 999px;
+    font-family: inherit;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 1;
+    letter-spacing: 0;
+    cursor: pointer;
+    transition: background-color 180ms cubic-bezier(0.2, 0.7, 0.2, 1),
+                color 180ms cubic-bezier(0.2, 0.7, 0.2, 1),
+                border-color 180ms cubic-bezier(0.2, 0.7, 0.2, 1);
+  }
+  .btn:focus-visible, .field input:focus-visible {
+    outline: 2px solid #0263AC;
+    outline-offset: 2px;
+  }
+  .btn-primary { background: #0B1416; color: #FFFFFF; }
+  .btn-primary:hover { background: #0263AC; }
+  .btn-quiet { background: transparent; color: #0B1416; }
+  .btn-quiet:hover { background: #E6EFF7; }
+  .btn-quiet[aria-pressed="true"] {
+    background: #E6EFF7;
+    color: #0263AC;
+    border-color: #9CC3EA;
+  }
+
+  .toolbar {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 32px;
+    flex-wrap: wrap;
+    margin-bottom: 24px;
+  }
+
+  .field { display: flex; flex-direction: column; gap: 8px; width: 360px; }
+  .field label {
+    font-size: 12px;
+    font-weight: 500;
+    line-height: 1;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: #55656A;
+  }
+  .field .control { position: relative; }
+  .field svg {
+    position: absolute;
+    left: 12px;
+    top: 10px;
+    width: 24px;
+    height: 24px;
+    color: #55656A;
+    pointer-events: none;
+  }
+  .field input {
+    width: 100%;
+    min-height: 44px;
+    padding: 0 16px 0 48px;
+    border: 1px solid #55656A;
+    border-radius: 12px;
+    background: #FFFFFF;
+    font-family: inherit;
+    font-size: 16px;
+    color: #0B1416;
+    transition: border-color 120ms cubic-bezier(0.2, 0.7, 0.2, 1);
+  }
+  .field input::placeholder { color: #55656A; opacity: 1; }
+  .field input:hover { border-color: #0263AC; }
+
+  .filters { display: flex; align-items: center; gap: 8px; }
+
+  .card {
+    background: #FFFFFF;
+    border: 1px solid #9CC3EA;
+    border-radius: 16px;
+    overflow: hidden;
+  }
+  table { width: 100%; border-collapse: collapse; table-layout: fixed; }
+  thead th {
+    padding: 16px 24px;
+    background: #EEF4FA;
+    border-bottom: 1px solid #9CC3EA;
+    text-align: left;
+    font-size: 12px;
+    font-weight: 500;
+    line-height: 1.5;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: #55656A;
+  }
+  tbody td, tbody th {
+    padding: 16px 24px;
+    border-bottom: 1px solid #EEF4FA;
+    text-align: left;
+    vertical-align: middle;
+    font-size: 16px;
+    line-height: 1.5;
+  }
+  tbody tr:last-child td, tbody tr:last-child th { border-bottom: 0; }
+  tbody th { font-weight: 500; color: #0B1416; }
+  tbody td { font-weight: 400; }
+  td.muted { color: #55656A; }
+  tbody tr { transition: background-color 120ms cubic-bezier(0.2, 0.7, 0.2, 1); }
+  tbody tr:hover { background: #EEF4FA; }
+
+  col.c-request { width: 36%; }
+  col.c-requester { width: 20%; }
+  col.c-status { width: 16%; }
+  col.c-priority { width: 14%; }
+  col.c-updated { width: 14%; }
+
+  .chip {
+    display: inline-block;
+    padding: 4px 12px;
+    border: 1px solid transparent;
+    border-radius: 999px;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 1.5;
+  }
+  .chip-open { background: #E6EFF7; color: #0263AC; border-color: #9CC3EA; }
+  .chip-neutral { background: #EEF4FA; color: #0B1416; }
+  .chip-closed { background: #FFFFFF; color: #55656A; border-color: #9CC3EA; }
+
+  .prio-high { font-weight: 500; color: #0B1416; }
+
+  @media (prefers-reduced-motion: reduce) {
+    * { transition: none !important; }
+  }
+</style>
+</head>
+<body>
+<div id="component">
+  <header class="page-head">
+    <h1>Requests</h1>
+    <button type="button" class="btn btn-primary">New Request</button>
+  </header>
+
+  <div class="toolbar">
+    <div class="field">
+      <label for="search">Search requests</label>
+      <div class="control">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <circle cx="11" cy="11" r="6"/>
+          <path d="M20 20l-4.5-4.5"/>
+        </svg>
+        <input id="search" type="search" name="search" placeholder="Search requests" autocomplete="off">
+      </div>
+    </div>
+
+    <div class="filters" role="group" aria-label="Filter requests">
+      <button type="button" class="btn btn-quiet" aria-pressed="true">All</button>
+      <button type="button" class="btn btn-quiet" aria-pressed="false">Open</button>
+      <button type="button" class="btn btn-quiet" aria-pressed="false">Closed</button>
+    </div>
+  </div>
+
+  <div class="card">
+    <table aria-label="Requests">
+      <colgroup>
+        <col class="c-request">
+        <col class="c-requester">
+        <col class="c-status">
+        <col class="c-priority">
+        <col class="c-updated">
+      </colgroup>
+      <thead>
+        <tr>
+          <th scope="col">Request</th>
+          <th scope="col">Requester</th>
+          <th scope="col">Status</th>
+          <th scope="col">Priority</th>
+          <th scope="col">Updated</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th scope="row">Laptop refresh for design</th>
+          <td>Maya Chen</td>
+          <td><span class="chip chip-open">Open</span></td>
+          <td class="prio-high">High</td>
+          <td class="muted">2h ago</td>
+        </tr>
+        <tr>
+          <th scope="row">Q4 travel budget</th>
+          <td>Leo Park</td>
+          <td><span class="chip chip-neutral">Approved</span></td>
+          <td>Medium</td>
+          <td class="muted">5h ago</td>
+        </tr>
+        <tr>
+          <th scope="row">VPN access for contractors</th>
+          <td>Ana Ruiz</td>
+          <td><span class="chip chip-closed">Closed</span></td>
+          <td class="prio-high">High</td>
+          <td class="muted">1d ago</td>
+        </tr>
+        <tr>
+          <th scope="row">New hire onboarding</th>
+          <td>Sam Ito</td>
+          <td><span class="chip chip-open">Open</span></td>
+          <td>Medium</td>
+          <td class="muted">1d ago</td>
+        </tr>
+        <tr>
+          <th scope="row">Office move</th>
+          <td>Kai Lee</td>
+          <td><span class="chip chip-neutral">In review</span></td>
+          <td>Low</td>
+          <td class="muted">2d ago</td>
+        </tr>
+        <tr>
+          <th scope="row">Security training</th>
+          <td>Ava Brooks</td>
+          <td><span class="chip chip-open">Open</span></td>
+          <td>Low</td>
+          <td class="muted">3d ago</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+</body>
+</html>

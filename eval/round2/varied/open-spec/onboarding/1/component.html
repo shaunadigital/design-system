@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=1280">
+<title>Harbor: Connect your tools</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; }
+
+  html, body {
+    margin: 0;
+    padding: 0;
+    background: #FFFFFF;
+  }
+
+  #component {
+    --paper: #FFFFFF;
+    --sand: #EEF4FA;
+    --ink: #0B1416;
+    --muted: #55656A;
+    --accent: #0263AC;
+    --accent-tint: #E6EFF7;
+    --accent-line: #9CC3EA;
+    --ease: cubic-bezier(0.2, 0.7, 0.2, 1);
+
+    width: 1280px;
+    min-height: 960px;
+    margin: 0 auto;
+    padding: 96px 64px;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: "Archivo", "Helvetica Neue", Arial, sans-serif;
+    font-size: 16px;
+    line-height: 1.5;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  #component .content {
+    width: 100%;
+    max-width: 768px;
+  }
+
+  /* Progress */
+  #component .progress {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    margin: 0 0 48px;
+  }
+
+  #component .progress-label {
+    margin: 0;
+    font-family: "Archivo", "Helvetica Neue", Arial, sans-serif;
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 16px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--accent);
+  }
+
+  #component .progress-track {
+    display: flex;
+    gap: 8px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  #component .progress-track li {
+    width: 48px;
+    height: 4px;
+    border-radius: 999px;
+    background: var(--sand);
+  }
+
+  #component .progress-track li.done {
+    background: var(--accent);
+  }
+
+  /* Heading */
+  #component h1 {
+    margin: 0 0 24px;
+    font-family: "Unbounded", "Archivo", "Helvetica Neue", Arial, sans-serif;
+    font-weight: 300;
+    font-size: 56px;
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+    text-transform: uppercase;
+    color: var(--ink);
+  }
+
+  #component .lead {
+    margin: 0 0 64px;
+    max-width: 560px;
+    font-size: 22px;
+    line-height: 1.5;
+    letter-spacing: 0;
+    color: var(--muted);
+  }
+
+  /* Options */
+  #component .options {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  #component .option {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    padding: 24px 32px;
+    background: var(--paper);
+    border: 1px solid var(--accent-line);
+    border-radius: 16px;
+    transition: background-color 120ms var(--ease);
+  }
+
+  #component .option:hover {
+    background: var(--accent-tint);
+  }
+
+  #component .option-icon {
+    flex: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 48px;
+    height: 48px;
+    border-radius: 12px;
+    background: var(--sand);
+    color: var(--accent);
+  }
+
+  #component .option-icon svg {
+    display: block;
+    width: 24px;
+    height: 24px;
+  }
+
+  #component .option-text {
+    flex: 1;
+    min-width: 0;
+  }
+
+  #component .option-name {
+    margin: 0 0 4px;
+    font-family: "Unbounded", "Archivo", "Helvetica Neue", Arial, sans-serif;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 1.3;
+    letter-spacing: -0.01em;
+    color: var(--ink);
+  }
+
+  #component .option-desc {
+    margin: 0;
+    font-size: 16px;
+    line-height: 1.5;
+    color: var(--muted);
+  }
+
+  /* Buttons */
+  #component .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 48px;
+    padding: 0 32px;
+    border: 1px solid transparent;
+    border-radius: 999px;
+    background: transparent;
+    color: var(--ink);
+    font-family: "Archivo", "Helvetica Neue", Arial, sans-serif;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 1;
+    letter-spacing: 0;
+    cursor: pointer;
+    transition:
+      background-color 180ms var(--ease),
+      color 180ms var(--ease),
+      border-color 180ms var(--ease);
+  }
+
+  #component .btn:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 4px;
+  }
+
+  #component .btn-connect {
+    flex: none;
+    min-width: 128px;
+    padding: 0 24px;
+    border-color: var(--accent-line);
+  }
+
+  #component .btn-connect:hover {
+    background: var(--accent-tint);
+    border-color: var(--accent);
+  }
+
+  #component .option:hover .btn-connect:not(:hover) {
+    background: var(--paper);
+  }
+
+  #component .btn-quiet:hover {
+    background: var(--accent-tint);
+  }
+
+  #component .btn-primary {
+    background: var(--ink);
+    color: #FFFFFF;
+    padding: 0 48px;
+  }
+
+  #component .btn-primary:hover {
+    background: var(--accent);
+  }
+
+  /* Footer actions */
+  #component .actions {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 64px;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    #component .option,
+    #component .btn {
+      transition: none;
+    }
+  }
+</style>
+</head>
+<body>
+<div id="component">
+  <main class="content">
+    <div class="progress">
+      <p class="progress-label">Step 2 of 4</p>
+      <ol class="progress-track" aria-hidden="true">
+        <li class="done"></li>
+        <li class="done"></li>
+        <li></li>
+        <li></li>
+      </ol>
+    </div>
+
+    <h1>Connect your tools</h1>
+    <p class="lead">Harbor works best with the tools your team already uses.</p>
+
+    <ul class="options">
+      <li class="option">
+        <span class="option-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M9.5 4 8 20"/>
+            <path d="M16 4l-1.5 16"/>
+            <path d="M4.5 9h15"/>
+            <path d="M4 15h15"/>
+          </svg>
+        </span>
+        <div class="option-text">
+          <h2 class="option-name">Slack</h2>
+          <p class="option-desc">Get request updates in your channels</p>
+        </div>
+        <button class="btn btn-connect" type="button" aria-label="Connect Slack">Connect</button>
+      </li>
+
+      <li class="option">
+        <span class="option-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="4" y="5" width="16" height="15" rx="3"/>
+            <path d="M4 10h16"/>
+            <path d="M8.5 3v4"/>
+            <path d="M15.5 3v4"/>
+            <path d="M8.5 14h2"/>
+          </svg>
+        </span>
+        <div class="option-text">
+          <h2 class="option-name">Google Calendar</h2>
+          <p class="option-desc">See due dates on your calendar</p>
+        </div>
+        <button class="btn btn-connect" type="button" aria-label="Connect Google Calendar">Connect</button>
+      </li>
+
+      <li class="option">
+        <span class="option-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 3l8 8-8 10-8-10z"/>
+            <path d="M12 8v6"/>
+          </svg>
+        </span>
+        <div class="option-text">
+          <h2 class="option-name">Jira</h2>
+          <p class="option-desc">Link requests to engineering tickets</p>
+        </div>
+        <button class="btn btn-connect" type="button" aria-label="Connect Jira">Connect</button>
+      </li>
+    </ul>
+
+    <div class="actions">
+      <button class="btn btn-quiet" type="button">Skip for Now</button>
+      <button class="btn btn-primary" type="button">Continue</button>
+    </div>
+  </main>
+</div>
+</body>
+</html>

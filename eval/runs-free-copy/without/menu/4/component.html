@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Chat menu</title>
+<style>
+  :root {
+    --ink: #0B1416;
+    --accent: #0263AC;
+    --bg: #FFFFFF;
+    --line: rgba(11, 20, 22, 0.14);
+    --hover: rgba(2, 99, 172, 0.08);
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; height: 100%; }
+  body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: "Archivo", system-ui, -apple-system, "Segoe UI", Arial, sans-serif;
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  #component {
+    position: relative;
+    width: 240px;
+    height: 280px;
+    padding-top: 0;
+  }
+  .trigger {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    width: 100%;
+    height: 44px;
+    padding: 0 14px 0 16px;
+    background: var(--bg);
+    color: var(--ink);
+    border: 1px solid var(--ink);
+    border-radius: 8px;
+    font: inherit;
+    font-weight: 500;
+    cursor: pointer;
+  }
+  .trigger[aria-expanded="true"] { border-color: var(--accent); box-shadow: 0 0 0 1px var(--accent); }
+  .trigger:focus-visible, .item:focus-visible {
+    outline: 3px solid var(--accent);
+    outline-offset: 2px;
+  }
+  .chev { width: 16px; height: 16px; flex: none; transform: rotate(180deg); }
+  .menu {
+    position: absolute;
+    top: 52px;
+    left: 0;
+    right: 0;
+    margin: 0;
+    padding: 6px;
+    list-style: none;
+    background: var(--bg);
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    box-shadow: 0 8px 24px rgba(11, 20, 22, 0.14);
+  }
+  .item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    width: 100%;
+    height: 44px;
+    padding: 0 12px;
+    background: none;
+    border: 0;
+    border-radius: 6px;
+    color: var(--ink);
+    font: inherit;
+    text-align: left;
+    cursor: pointer;
+  }
+  .item:hover, .item.is-active { background: var(--hover); color: var(--accent); }
+  .item svg { width: 18px; height: 18px; flex: none; }
+  .sep { height: 1px; margin: 6px 4px; background: var(--line); }
+  .item.danger { font-weight: 600; }
+</style>
+</head>
+<body>
+  <div id="component">
+    <button class="trigger" type="button" aria-haspopup="menu" aria-expanded="true" aria-controls="chat-menu">
+      <span>Chat options</span>
+      <svg class="chev" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3.5 6l4.5 4.5L12.5 6"/></svg>
+    </button>
+    <ul class="menu" id="chat-menu" role="menu" aria-label="Chat options">
+      <li role="none">
+        <button class="item is-active" role="menuitem" type="button">
+          <svg viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12.5 2.5l3 3L6 15H3v-3z"/></svg>
+          Rename
+        </button>
+      </li>
+      <li role="none">
+        <button class="item" role="menuitem" type="button">
+          <svg viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 11.5V2.5M5.5 5.5L9 2l3.5 3.5M3.5 9v6h11V9"/></svg>
+          Share
+        </button>
+      </li>
+      <li role="none">
+        <button class="item" role="menuitem" type="button">
+          <svg viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="3" width="14" height="4" rx="1"/><path d="M3.5 7v7.5h11V7M7 10.5h4"/></svg>
+          Archive
+        </button>
+      </li>
+      <li class="sep" role="separator"></li>
+      <li role="none">
+        <button class="item danger" role="menuitem" type="button">
+          <svg viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 5h12M7 5V3h4v2M4.5 5l.7 10h7.6l.7-10M7.5 8v4M10.5 8v4"/></svg>
+          Delete
+        </button>
+      </li>
+    </ul>
+  </div>
+</body>
+</html>

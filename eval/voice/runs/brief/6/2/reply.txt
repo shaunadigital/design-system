@@ -1,0 +1,1 @@
+Mostly Claude Code and Figma. For building, she uses Astro, React, and TypeScript, with Supabase for data. Sites go out on Vercel and Netlify. Want to hear how the design system ties those together?

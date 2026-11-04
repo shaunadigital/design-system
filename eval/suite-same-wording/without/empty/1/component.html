@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Requests · Harbor</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+  * { box-sizing: border-box; }
+  body { margin: 0; background: #fff; }
+  #component {
+    width: 1280px;
+    min-height: 720px;
+    margin: 0 auto;
+    padding: 48px 64px;
+    background: #fff;
+    color: #0B1416;
+    font-family: "Archivo", Arial, Helvetica, sans-serif;
+    font-size: 16px;
+    line-height: 1.5;
+  }
+  #component h1,
+  #component h2 {
+    margin: 0;
+    font-family: "Unbounded", "Arial Black", Arial, sans-serif;
+    font-weight: 300;
+    text-transform: uppercase;
+    color: #0B1416;
+  }
+  #component h1 {
+    font-size: 32px;
+    line-height: 1.2;
+    letter-spacing: 0.02em;
+    padding-bottom: 24px;
+    border-bottom: 1px solid #0B1416;
+  }
+  #component .empty {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 144px 0 96px;
+  }
+  #component h2 {
+    font-size: 24px;
+    line-height: 1.3;
+    letter-spacing: 0.02em;
+  }
+  #component .empty p {
+    margin: 16px 0 0;
+    max-width: 420px;
+    font-size: 18px;
+  }
+  #component .button {
+    display: inline-block;
+    margin-top: 32px;
+    padding: 14px 28px;
+    background: #0263AC;
+    color: #fff;
+    border: 2px solid #0263AC;
+    border-radius: 4px;
+    font: inherit;
+    font-size: 16px;
+    font-weight: 600;
+    text-decoration: none;
+  }
+  #component .button:hover { background: #0B1416; border-color: #0B1416; }
+  #component .link {
+    margin-top: 20px;
+    color: #0263AC;
+    font-size: 16px;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+  #component .link:hover { color: #0B1416; }
+  #component a:focus-visible {
+    outline: 3px solid #0263AC;
+    outline-offset: 3px;
+  }
+  #component .button:focus-visible { outline-color: #0B1416; }
+</style>
+</head>
+<body>
+<div id="component">
+  <main>
+    <h1>Requests</h1>
+    <section class="empty">
+      <h2>No requests yet</h2>
+      <p>When your team asks for something, it shows up here.</p>
+      <a class="button" href="#">Create a Request</a>
+      <a class="link" href="#">Import from a spreadsheet</a>
+    </section>
+  </main>
+</div>
+</body>
+</html>

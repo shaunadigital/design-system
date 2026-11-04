@@ -1,0 +1,1 @@
+Both setups did well, but Shauna's system was more consistent. It passed all 120 pages, against 118 for the standard file. It also produced far fewer styles: 7 button styles instead of 30, and 4 field styles instead of 16. Want the details?

@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Billing | Harbor</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+  *, *::before, *::after { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; background: #FFFFFF; }
+
+  #component {
+    width: 1280px;
+    min-height: 800px;
+    margin: 0 auto;
+    padding: 64px;
+    background: #FFFFFF;
+    color: #0B1416;
+    font-family: "Archivo", "Helvetica Neue", Arial, sans-serif;
+    font-size: 16px;
+    line-height: 1.5;
+    letter-spacing: 0;
+  }
+
+  #component .grid {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    column-gap: 32px;
+    row-gap: 48px;
+  }
+
+  #component h1,
+  #component h2,
+  #component h3 {
+    margin: 0;
+    font-family: "Unbounded", "Archivo", "Helvetica Neue", Arial, sans-serif;
+  }
+
+  #component h1 {
+    grid-column: 1 / -1;
+    font-size: 56px;
+    font-weight: 300;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    text-transform: uppercase;
+  }
+
+  #component .plan {
+    grid-column: 1 / -1;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 32px;
+    padding: 32px;
+    background: #FFFFFF;
+    border: 1px solid #9CC3EA;
+    border-radius: 16px;
+  }
+
+  #component .plan h2 {
+    font-size: 28px;
+    font-weight: 500;
+    line-height: 1.2;
+    letter-spacing: -0.01em;
+  }
+
+  #component .plan .price {
+    margin: 8px 0 0;
+    font-size: 18px;
+  }
+
+  #component .plan .seats {
+    margin: 4px 0 0;
+    font-size: 16px;
+    color: #55656A;
+  }
+
+  #component .button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 44px;
+    padding: 8px 32px;
+    border: 1px solid #0B1416;
+    border-radius: 999px;
+    background: #0B1416;
+    color: #FFFFFF;
+    font-family: "Archivo", "Helvetica Neue", Arial, sans-serif;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 1.5;
+    letter-spacing: 0;
+    text-decoration: none;
+    cursor: pointer;
+    transition:
+      background-color 180ms cubic-bezier(0.2, 0.7, 0.2, 1),
+      border-color 180ms cubic-bezier(0.2, 0.7, 0.2, 1);
+  }
+
+  #component .button:hover {
+    background: #0263AC;
+    border-color: #0263AC;
+  }
+
+  #component .button:focus-visible {
+    outline: 2px solid #0263AC;
+    outline-offset: 4px;
+  }
+
+  #component .invoices {
+    grid-column: 1 / -1;
+  }
+
+  #component .invoices h2 {
+    margin-bottom: 24px;
+    font-size: 46px;
+    font-weight: 300;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    text-transform: uppercase;
+  }
+
+  #component .table-card {
+    background: #FFFFFF;
+    border: 1px solid #9CC3EA;
+    border-radius: 16px;
+    overflow: hidden;
+  }
+
+  #component table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 16px;
+  }
+
+  #component th,
+  #component td {
+    padding: 16px 32px;
+    text-align: left;
+    vertical-align: middle;
+  }
+
+  #component thead th {
+    background: #EEF4FA;
+    color: #55656A;
+    font-size: 12px;
+    font-weight: 500;
+    line-height: 1.5;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+  }
+
+  #component tbody th {
+    font-weight: 400;
+  }
+
+  #component tbody tr + tr th,
+  #component tbody tr + tr td {
+    border-top: 1px solid #9CC3EA;
+  }
+
+  #component thead th {
+    border-bottom: 1px solid #9CC3EA;
+  }
+
+  #component .amount {
+    font-variant-numeric: tabular-nums;
+  }
+
+  #component .status {
+    display: inline-block;
+    padding: 4px 12px;
+    border-radius: 999px;
+    background: #E6EFF7;
+    color: #0263AC;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 1.5;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    #component .button { transition: none; }
+  }
+</style>
+</head>
+<body>
+<div id="component">
+  <main class="grid">
+    <h1>Billing</h1>
+
+    <section class="plan" aria-labelledby="plan-title">
+      <div>
+        <h2 id="plan-title">Team plan</h2>
+        <p class="price">$24 per seat per month</p>
+        <p class="seats">18 of 25 seats used</p>
+      </div>
+      <button type="button" class="button">Change Plan</button>
+    </section>
+
+    <section class="invoices" aria-labelledby="invoices-title">
+      <h2 id="invoices-title">Invoices</h2>
+      <div class="table-card">
+        <table>
+          <thead>
+            <tr>
+              <th scope="col">Date</th>
+              <th scope="col">Amount</th>
+              <th scope="col">Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">Oct 1, 2026</th>
+              <td class="amount">$432.00</td>
+              <td><span class="status">Paid</span></td>
+            </tr>
+            <tr>
+              <th scope="row">Sep 1, 2026</th>
+              <td class="amount">$432.00</td>
+              <td><span class="status">Paid</span></td>
+            </tr>
+            <tr>
+              <th scope="row">Aug 1, 2026</th>
+              <td class="amount">$408.00</td>
+              <td><span class="status">Paid</span></td>
+            </tr>
+            <tr>
+              <th scope="row">Jul 1, 2026</th>
+              <td class="amount">$408.00</td>
+              <td><span class="status">Paid</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+</div>
+</body>
+</html>

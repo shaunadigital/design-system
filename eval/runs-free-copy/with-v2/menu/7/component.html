@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Chat Menu</title>
+<style>
+/* Tokens copied from tokens.css (generated from tokens/tokens.json) */
+:root {
+  --paper: #FFFFFF;
+  --sand: #EEF4FA;
+  --card: #FFFFFF;
+  --ink: #0B1416;
+  --muted: #55656A;
+  --accent-text: #0263AC;
+  --accent: #0263AC;
+  --accent-tint: #E6EFF7;
+  --accent-line: #9CC3EA;
+  --plate-hover: #E3ECF5;
+  --on-ink: #FFFFFF;
+  --shadow-rgb: 11, 20, 22;
+  --font-body: 'Archivo', system-ui, -apple-system, sans-serif;
+  --font-label: 'Archivo', system-ui, sans-serif;
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 24px;
+  --space-6: 32px;
+  --space-7: 48px;
+  --space-8: 64px;
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-card: 16px;
+  --radius-pill: 999px;
+  --tracking-snug: -0.01em;
+  --text-body: 1rem;
+  --text-small: 0.875rem;
+  --text-label: 0.75rem;
+  --ease: cubic-bezier(0.2, 0.7, 0.2, 1);
+  --dur-fast: 120ms;
+  --dur-base: 180ms;
+  color-scheme: light;
+}
+:root[data-theme="dusk"] {
+  color-scheme: dark;
+  --paper: #0E1618;
+  --sand: #131E21;
+  --card: #172327;
+  --ink: #E9EFEF;
+  --muted: #9DAEB1;
+  --accent-text: #9CC3EA;
+  --accent: #6FAAE6;
+  --accent-tint: #13283A;
+  --accent-line: #2D5B85;
+  --plate-hover: #1A2A36;
+  --on-ink: #0E1618;
+  --shadow-rgb: 0, 0, 0;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: var(--text-body);
+}
+
+#component {
+  /* room for the open menu under the button */
+  width: 280px;
+  min-height: 320px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.chat-menu__trigger {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  min-height: 44px;
+  max-width: 100%;
+  padding: 0 var(--space-4) 0 var(--space-5);
+  border: 1.5px solid var(--ink);
+  border-radius: var(--radius-pill);
+  background: var(--sand);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: var(--text-body);
+  font-weight: 500;
+  letter-spacing: 0;
+  cursor: pointer;
+  transition: background var(--dur-base) var(--ease), border-color var(--dur-base) var(--ease);
+}
+.chat-menu__trigger:hover { background: var(--plate-hover); }
+.chat-menu__trigger:focus-visible,
+.chat-menu__item:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+.chat-menu__title {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.chat-menu__chevron {
+  flex: none;
+  width: 24px;
+  height: 24px;
+  transform: rotate(180deg);
+}
+
+.chat-menu__list {
+  width: 220px;
+  margin: var(--space-2) 0 0;
+  padding: var(--space-2);
+  list-style: none;
+  background: var(--card);
+  border: 1px solid var(--accent-line);
+  border-radius: var(--radius-card);
+  box-shadow: 0 12px 32px rgba(var(--shadow-rgb), 0.14), 0 2px 6px rgba(var(--shadow-rgb), 0.08);
+}
+
+.chat-menu__item {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  width: 100%;
+  min-height: 44px;
+  padding: 0 var(--space-3);
+  border: 0;
+  border-radius: var(--radius-md);
+  background: transparent;
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: var(--text-body);
+  font-weight: 500;
+  letter-spacing: 0;
+  text-align: left;
+  cursor: pointer;
+  transition: background var(--dur-fast) var(--ease), color var(--dur-fast) var(--ease);
+}
+.chat-menu__item:hover { background: var(--accent-tint); color: var(--accent-text); }
+.chat-menu__item svg { flex: none; width: 24px; height: 24px; }
+
+.chat-menu__divider {
+  height: 1px;
+  margin: var(--space-2) var(--space-3);
+  background: var(--accent-line);
+}
+</style>
+</head>
+<body>
+<div id="component">
+  <button class="chat-menu__trigger" type="button" aria-haspopup="menu" aria-expanded="true" aria-controls="chat-menu-list">
+    <span class="chat-menu__title" data-user-content>Trip planning notes</span>
+    <svg class="chat-menu__chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 15l6-6 6 6"/></svg>
+  </button>
+
+  <ul class="chat-menu__list" id="chat-menu-list" role="menu" aria-label="Chat actions">
+    <li role="none">
+      <button class="chat-menu__item" type="button" role="menuitem">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20h4L19 9a2.8 2.8 0 0 0-4-4L4 16v4z"/><path d="M13.5 6.5l4 4"/></svg>
+        Rename
+      </button>
+    </li>
+    <li role="none">
+      <button class="chat-menu__item" type="button" role="menuitem">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 15V4"/><path d="M8 8l4-4 4 4"/><path d="M5 12v6a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-6"/></svg>
+        Share
+      </button>
+    </li>
+    <li role="none">
+      <button class="chat-menu__item" type="button" role="menuitem">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="4" rx="1"/><path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8"/><path d="M10 12h4"/></svg>
+        Archive
+      </button>
+    </li>
+    <li class="chat-menu__divider" role="separator"></li>
+    <li role="none">
+      <button class="chat-menu__item" type="button" role="menuitem">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 7h16"/><path d="M9 7V4h6v3"/><path d="M6 7l1 13h10l1-13"/><path d="M10 11v5M14 11v5"/></svg>
+        Delete
+      </button>
+    </li>
+  </ul>
+</div>
+</body>
+</html>

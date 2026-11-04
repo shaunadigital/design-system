@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Harbor – Overview</title>
+<style>
+  body { margin: 0; background: #fff; }
+  #component {
+    width: 1280px;
+    min-height: 800px;
+    margin: 0 auto;
+    background: #fff;
+    color: #0B1416;
+    font-family: "Archivo", Arial, Helvetica, sans-serif;
+    font-size: 16px;
+    line-height: 1.5;
+    box-sizing: border-box;
+  }
+  #component * { box-sizing: border-box; }
+  #component nav {
+    display: flex;
+    gap: 8px;
+    padding: 0 64px;
+    border-bottom: 1px solid #0B1416;
+  }
+  #component nav a {
+    display: block;
+    padding: 20px 16px 17px;
+    color: #0B1416;
+    text-decoration: none;
+    font-weight: 500;
+    border-bottom: 3px solid transparent;
+  }
+  #component nav a:hover { color: #0263AC; }
+  #component nav a:focus-visible { outline: 2px solid #0263AC; outline-offset: -4px; }
+  #component nav a[aria-current="page"] {
+    color: #0263AC;
+    border-bottom-color: #0263AC;
+    font-weight: 700;
+  }
+  #component main { padding: 56px 64px 80px; }
+  #component h1 {
+    margin: 0 0 40px;
+    font-family: "Unbounded", "Archivo", Arial, Helvetica, sans-serif;
+    font-weight: 300;
+    font-size: 40px;
+    line-height: 1.2;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+  }
+  #component h2 {
+    margin: 0 0 16px;
+    font-family: "Unbounded", "Archivo", Arial, Helvetica, sans-serif;
+    font-weight: 300;
+    font-size: 20px;
+    line-height: 1.3;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+  }
+  #component .stats {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 24px;
+    margin: 0 0 56px;
+    padding: 0;
+    list-style: none;
+  }
+  #component .stat {
+    padding: 24px;
+    border: 1px solid #0B1416;
+    border-top: 4px solid #0263AC;
+  }
+  #component .stat .label { font-size: 16px; margin: 0 0 8px; }
+  #component .stat .value {
+    margin: 0;
+    font-size: 36px;
+    font-weight: 700;
+    line-height: 1.2;
+  }
+  #component .activity { margin: 0; padding: 0; list-style: none; border-top: 1px solid #0B1416; }
+  #component .activity li {
+    padding: 16px 0;
+    border-bottom: 1px solid #0B1416;
+  }
+  #component .activity b { font-weight: 700; }
+</style>
+</head>
+<body>
+<div id="component">
+  <nav aria-label="Main">
+    <a href="#" aria-current="page">Overview</a>
+    <a href="#">Requests</a>
+    <a href="#">Team</a>
+    <a href="#">Settings</a>
+  </nav>
+  <main>
+    <h1>Overview</h1>
+    <ul class="stats">
+      <li class="stat"><p class="label">Active users</p><p class="value">1,284</p></li>
+      <li class="stat"><p class="label">Open requests</p><p class="value">37</p></li>
+      <li class="stat"><p class="label">Average response</p><p class="value">2.4 hours</p></li>
+      <li class="stat"><p class="label">Uptime</p><p class="value">99.9%</p></li>
+    </ul>
+    <section>
+      <h2>Recent activity</h2>
+      <ul class="activity">
+        <li><b>Maya Chen</b> opened Laptop refresh for design</li>
+        <li><b>Leo Park</b> approved Q4 travel budget</li>
+        <li><b>Ana Ruiz</b> closed VPN access for contractors</li>
+        <li><b>Sam Ito</b> commented on New hire onboarding</li>
+        <li><b>Kai Lee</b> assigned Office move to Facilities</li>
+      </ul>
+    </section>
+  </main>
+</div>
+</body>
+</html>

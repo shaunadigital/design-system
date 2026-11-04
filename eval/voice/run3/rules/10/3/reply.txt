@@ -1,0 +1,1 @@
+A standard DESIGN.md is just written rules. Her system also builds everything from one token file. In her test of 240 page builds, both passed almost every time, but her system produced far fewer button and field styles. Want the details?

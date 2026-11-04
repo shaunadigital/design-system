@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Harbor – New request</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:wght@600&family=Instrument+Sans:wght@400;600&display=swap">
+<style>
+  * { box-sizing: border-box; }
+  body { margin: 0; background: #F4EFE6; color: #1E2B24; font-family: "Instrument Sans", "Helvetica Neue", Arial, sans-serif; font-size: 14px; line-height: 1.4; }
+  #component { width: 1280px; min-height: 720px; margin: 0; background: #F4EFE6; }
+  .topbar { display: flex; align-items: center; height: 44px; padding: 0 32px; border-bottom: 1px solid #1E2B24; }
+  .brand { font-family: Fraunces, Georgia, serif; font-weight: 600; font-size: 18px; color: #C2410C; }
+  main { width: 720px; margin: 0 0 0 32px; padding: 24px 0 32px; }
+  h1 { margin: 0 0 20px; font-family: Fraunces, Georgia, serif; font-weight: 600; font-size: 24px; line-height: 1.2; color: #1E2B24; }
+  form { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 14px 16px; }
+  .field { display: flex; flex-direction: column; gap: 4px; }
+  .wide { grid-column: 1 / -1; }
+  label { font-size: 13px; font-weight: 600; }
+  input, select, textarea { width: 100%; height: 34px; padding: 6px 10px; font: inherit; color: #1E2B24; background: #FBF8F2; border: 1px solid #1E2B24; border-radius: 4px; }
+  textarea { height: 96px; resize: none; }
+  input:focus, select:focus, textarea:focus, button:focus { outline: 2px solid #C2410C; outline-offset: 1px; }
+  .actions { grid-column: 1 / -1; display: flex; gap: 10px; padding-top: 14px; margin-top: 2px; border-top: 1px solid #1E2B24; }
+  button { height: 36px; padding: 0 18px; font: inherit; font-weight: 600; border-radius: 4px; border: 1px solid #C2410C; cursor: pointer; }
+  .primary { background: #C2410C; color: #FBF8F2; }
+  .secondary { background: #FBF8F2; color: #C2410C; }
+</style>
+</head>
+<body>
+<div id="component">
+  <header class="topbar"><span class="brand">Harbor</span></header>
+  <main>
+    <h1>New request</h1>
+    <form action="#" onsubmit="return false">
+      <div class="field wide">
+        <label for="title">Title</label>
+        <input id="title" type="text">
+      </div>
+      <div class="field wide">
+        <label for="description">Description</label>
+        <textarea id="description"></textarea>
+      </div>
+      <div class="field">
+        <label for="priority">Priority</label>
+        <select id="priority">
+          <option>Low</option>
+          <option>Medium</option>
+          <option>High</option>
+        </select>
+      </div>
+      <div class="field">
+        <label for="assignee">Assignee</label>
+        <select id="assignee">
+          <option>Maya Chen</option>
+          <option>Leo Park</option>
+          <option>Ana Ruiz</option>
+        </select>
+      </div>
+      <div class="field">
+        <label for="due">Due date</label>
+        <input id="due" type="date">
+      </div>
+      <div class="actions">
+        <button type="button" class="secondary">Cancel</button>
+        <button type="submit" class="primary">Create Request</button>
+      </div>
+    </form>
+  </main>
+</div>
+</body>
+</html>

@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Chat Options</title>
+<style>
+  * { box-sizing: border-box; }
+  html, body { margin: 0; height: 100%; background: #fff; }
+  body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: "Archivo", Arial, Helvetica, sans-serif;
+    color: #0B1416;
+  }
+  #component {
+    position: relative;
+    width: 240px;
+    height: 260px;
+  }
+  .trigger {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    height: 48px;
+    padding: 0 16px;
+    font: 500 16px/1 "Archivo", Arial, Helvetica, sans-serif;
+    color: #fff;
+    background: #0263AC;
+    border: 2px solid #0263AC;
+    border-radius: 8px;
+    cursor: pointer;
+  }
+  .trigger:focus-visible, .item:focus-visible {
+    outline: 3px solid #0B1416;
+    outline-offset: 2px;
+  }
+  .caret {
+    width: 8px;
+    height: 8px;
+    border-right: 2px solid #fff;
+    border-bottom: 2px solid #fff;
+    transform: rotate(225deg) translate(-2px, -2px);
+  }
+  .menu {
+    position: absolute;
+    top: 56px;
+    left: 0;
+    width: 100%;
+    margin: 0;
+    padding: 6px;
+    list-style: none;
+    background: #fff;
+    border: 1px solid #0B1416;
+    border-radius: 8px;
+    box-shadow: 0 8px 24px rgba(11, 20, 22, 0.14);
+  }
+  .item {
+    display: block;
+    width: 100%;
+    padding: 12px 12px;
+    font: 400 16px/1.25 "Archivo", Arial, Helvetica, sans-serif;
+    color: #0B1416;
+    text-align: left;
+    background: none;
+    border: 0;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  .item:hover { background: #0263AC; color: #fff; }
+  .divider { height: 1px; margin: 6px 6px; background: #0B1416; opacity: 0.15; }
+</style>
+</head>
+<body>
+  <div id="component">
+    <button class="trigger" type="button" aria-haspopup="menu" aria-expanded="true" aria-controls="chat-menu">
+      Chat Options
+      <span class="caret" aria-hidden="true"></span>
+    </button>
+    <ul class="menu" id="chat-menu" role="menu" aria-label="Chat Options">
+      <li role="none"><button class="item" type="button" role="menuitem">Rename</button></li>
+      <li role="none"><button class="item" type="button" role="menuitem">Share</button></li>
+      <li role="none"><button class="item" type="button" role="menuitem">Archive</button></li>
+      <li role="separator" class="divider"></li>
+      <li role="none"><button class="item" type="button" role="menuitem">Delete</button></li>
+    </ul>
+  </div>
+</body>
+</html>

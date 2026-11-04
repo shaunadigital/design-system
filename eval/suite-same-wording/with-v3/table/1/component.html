@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Requests · Harbor</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+:root {
+  --paper: #FFFFFF;
+  --sand: #EEF4FA;
+  --card: #FFFFFF;
+  --ink: #0B1416;
+  --ink-rgb: 11, 20, 22;
+  --muted: #55656A;
+  --accent-text: #0263AC;
+  --accent-tint: #E6EFF7;
+  --accent-line: #9CC3EA;
+  --on-ink: #FFFFFF;
+  --shadow-rgb: 11, 20, 22;
+  --font-display: 'Unbounded', system-ui, sans-serif;
+  --font-body: 'Archivo', system-ui, -apple-system, sans-serif;
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 24px;
+  --space-6: 32px;
+  --space-7: 48px;
+  --space-8: 64px;
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-card: 16px;
+  --radius-pill: 999px;
+  --tracking-tight: -0.02em;
+  --tracking-label: 0.14em;
+  --text-display-xl: clamp(2rem, 4vw, 3.5rem);
+  --text-body: 1rem;
+  --text-small: 0.875rem;
+  --text-label: 0.75rem;
+  --ease: cubic-bezier(0.2, 0.7, 0.2, 1);
+  --dur-fast: 120ms;
+  --dur-base: 180ms;
+}
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--paper); color: var(--ink); font-family: var(--font-body); font-size: var(--text-body); }
+
+#component { width: 1280px; min-height: 800px; padding: var(--space-8); background: var(--paper); color: var(--ink); font-family: var(--font-body); }
+
+.page-head { display: flex; align-items: center; justify-content: space-between; gap: var(--space-5); }
+h1 { margin: 0; font-family: var(--font-display); font-weight: 300; font-size: var(--text-display-xl); line-height: 1.1; text-transform: uppercase; letter-spacing: var(--tracking-tight); }
+
+.btn { display: inline-flex; align-items: center; justify-content: center; min-height: 44px; padding: 0 var(--space-5); border: 1px solid transparent; border-radius: var(--radius-pill); font-family: var(--font-body); font-size: var(--text-body); font-weight: 500; cursor: pointer; transition: background var(--dur-base) var(--ease), color var(--dur-base) var(--ease), border-color var(--dur-base) var(--ease); }
+.btn--fill { background: var(--ink); color: var(--on-ink); }
+.btn--fill:hover { background: var(--accent-text); }
+.btn:focus-visible, .search input:focus-visible { outline: 2px solid var(--accent-text); outline-offset: 2px; }
+
+.toolbar { display: flex; align-items: flex-end; justify-content: space-between; gap: var(--space-5); margin-top: var(--space-6); }
+.search { display: flex; flex-direction: column; gap: var(--space-2); width: 400px; }
+.search label { font-size: var(--text-label); font-weight: 500; letter-spacing: var(--tracking-label); text-transform: uppercase; color: var(--muted); }
+.search input { height: 44px; padding: 0 var(--space-4); border: 1px solid rgba(var(--ink-rgb), 0.1); border-radius: var(--radius-pill); background: var(--card); color: var(--ink); font-family: var(--font-body); font-size: var(--text-body); }
+.search input::placeholder { color: var(--muted); }
+
+.filters { display: flex; gap: var(--space-2); }
+.filter { min-height: 44px; padding: 0 var(--space-5); border: 1px solid rgba(var(--ink-rgb), 0.1); border-radius: var(--radius-pill); background: transparent; color: var(--ink); font-family: var(--font-body); font-size: var(--text-small); font-weight: 500; cursor: pointer; transition: background var(--dur-fast) var(--ease); }
+.filter:hover { background: var(--sand); }
+.filter[aria-pressed="true"] { background: var(--accent-tint); border-color: var(--accent-line); color: var(--accent-text); font-weight: 600; }
+.filter:focus-visible { outline: 2px solid var(--accent-text); outline-offset: 2px; }
+
+.table-wrap { margin-top: var(--space-5); border: 1px solid rgba(var(--ink-rgb), 0.1); border-radius: var(--radius-card); background: var(--card); overflow: hidden; }
+table { width: 100%; border-collapse: collapse; text-align: left; }
+th { height: 48px; padding: 0 var(--space-5); background: var(--sand); font-size: var(--text-label); font-weight: 500; letter-spacing: var(--tracking-label); text-transform: uppercase; color: var(--muted); text-align: left; }
+td { height: 56px; padding: 0 var(--space-5); border-top: 1px solid rgba(var(--ink-rgb), 0.1); font-size: var(--text-body); }
+td:first-child { font-weight: 600; }
+th:nth-child(1), td:nth-child(1) { width: 36%; }
+td:nth-child(5), td:nth-child(2), td:nth-child(3), td:nth-child(4) { color: var(--ink); }
+td:nth-child(5) { color: var(--muted); font-size: var(--text-small); }
+tbody tr:hover td { background: var(--sand); }
+</style>
+</head>
+<body>
+<div id="component">
+  <div class="page-head">
+    <h1>Requests</h1>
+    <button class="btn btn--fill" type="button">New Request</button>
+  </div>
+
+  <div class="toolbar">
+    <div class="search">
+      <label for="search">Search requests</label>
+      <input id="search" type="search" placeholder="Search requests">
+    </div>
+    <div class="filters" role="group" aria-label="Filter requests">
+      <button class="filter" type="button" aria-pressed="true">All</button>
+      <button class="filter" type="button" aria-pressed="false">Open</button>
+      <button class="filter" type="button" aria-pressed="false">Closed</button>
+    </div>
+  </div>
+
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th scope="col">Request</th>
+          <th scope="col">Requester</th>
+          <th scope="col">Status</th>
+          <th scope="col">Priority</th>
+          <th scope="col">Updated</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>Laptop refresh for design</td><td>Maya Chen</td><td>Open</td><td>High</td><td>2h ago</td></tr>
+        <tr><td>Q4 travel budget</td><td>Leo Park</td><td>Approved</td><td>Medium</td><td>5h ago</td></tr>
+        <tr><td>VPN access for contractors</td><td>Ana Ruiz</td><td>Closed</td><td>High</td><td>1d ago</td></tr>
+        <tr><td>New hire onboarding</td><td>Sam Ito</td><td>Open</td><td>Medium</td><td>1d ago</td></tr>
+        <tr><td>Office move</td><td>Kai Lee</td><td>In review</td><td>Low</td><td>2d ago</td></tr>
+        <tr><td>Security training</td><td>Ava Brooks</td><td>Open</td><td>Low</td><td>3d ago</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Overview</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; background: #EEF4FA; }
+  body {
+    font-family: "Archivo", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Helvetica, Arial, sans-serif;
+    font-size: 16px;
+    line-height: 1.5;
+    color: #0B1416;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  #component {
+    width: 1280px;
+    min-height: 860px;
+    background: #EEF4FA;
+    color: #0B1416;
+  }
+
+  svg { display: block; width: 24px; height: 24px; fill: none; stroke: currentColor; stroke-width: 1.75; stroke-linecap: round; stroke-linejoin: round; }
+
+  /* Top navigation */
+  .topbar {
+    display: flex;
+    align-items: center;
+    gap: 48px;
+    padding: 16px 64px;
+    background: #FFFFFF;
+    border-bottom: 1px solid #9CC3EA;
+  }
+  .brand { display: block; width: 32px; height: 32px; flex: none; }
+  .brand svg { width: 32px; height: 32px; stroke-width: 2; }
+  .nav { display: flex; gap: 8px; margin: 0; padding: 0; list-style: none; }
+  .nav a {
+    display: inline-flex;
+    align-items: center;
+    height: 44px;
+    padding: 0 24px;
+    border-radius: 999px;
+    font-size: 16px;
+    font-weight: 500;
+    color: #55656A;
+    text-decoration: none;
+    transition: background-color 120ms cubic-bezier(0.2, 0.7, 0.2, 1), color 120ms cubic-bezier(0.2, 0.7, 0.2, 1);
+  }
+  .nav a:hover { background: #E6EFF7; color: #0B1416; }
+  .nav a:focus-visible { outline: 2px solid #0263AC; outline-offset: 2px; }
+  .nav a[aria-current="page"] { background: #E6EFF7; color: #0263AC; }
+
+  /* Page */
+  main { padding: 48px 64px 64px; }
+
+  h1 {
+    margin: 0 0 32px;
+    font-family: "Unbounded", "Archivo", ui-sans-serif, system-ui, sans-serif;
+    font-weight: 300;
+    font-size: 56px;
+    line-height: 1.1;
+    letter-spacing: -0.01em;
+    text-transform: uppercase;
+  }
+
+  /* Stat tiles */
+  .stats {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 32px;
+    margin: 0 0 32px;
+    padding: 0;
+    list-style: none;
+  }
+  .tile {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    padding: 24px;
+    background: #FFFFFF;
+    border: 1px solid #9CC3EA;
+    border-radius: 16px;
+  }
+  .tile-head { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+  .label {
+    margin: 0;
+    font-size: 12px;
+    font-weight: 500;
+    line-height: 1.5;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: #55656A;
+  }
+  .icon-chip {
+    display: grid;
+    place-items: center;
+    flex: none;
+    width: 44px;
+    height: 44px;
+    border-radius: 12px;
+    background: #E6EFF7;
+    color: #0263AC;
+  }
+  .value {
+    margin: 0;
+    font-family: "Unbounded", "Archivo", ui-sans-serif, system-ui, sans-serif;
+    font-weight: 300;
+    font-size: 32px;
+    line-height: 1.2;
+    letter-spacing: -0.02em;
+    white-space: nowrap;
+  }
+  .value .unit {
+    font-family: "Archivo", ui-sans-serif, system-ui, sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+    letter-spacing: 0;
+    color: #55656A;
+  }
+
+  /* Recent activity */
+  .panel {
+    background: #FFFFFF;
+    border: 1px solid #9CC3EA;
+    border-radius: 16px;
+    padding: 32px 32px 16px;
+  }
+  h2 {
+    margin: 0 0 16px;
+    font-family: "Unbounded", "Archivo", ui-sans-serif, system-ui, sans-serif;
+    font-weight: 500;
+    font-size: 28px;
+    line-height: 1.2;
+    letter-spacing: -0.02em;
+  }
+  .feed { margin: 0; padding: 0; list-style: none; }
+  .feed li {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin: 0 -16px;
+    padding: 16px;
+    border-radius: 12px;
+    transition: background-color 120ms cubic-bezier(0.2, 0.7, 0.2, 1);
+  }
+  .feed li + li { position: relative; }
+  .feed li + li::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 16px;
+    right: 16px;
+    height: 1px;
+    background: #EEF4FA;
+  }
+  .feed li:hover { background: #EEF4FA; }
+  .feed li:hover::before, .feed li:hover + li::before { opacity: 0; }
+  .feed .icon-chip { width: 44px; height: 44px; border-radius: 999px; }
+  .feed p { margin: 0; font-size: 16px; line-height: 1.5; color: #55656A; }
+  .feed strong { font-weight: 500; color: #0B1416; }
+
+  @media (prefers-reduced-motion: reduce) {
+    * { transition: none !important; animation: none !important; }
+  }
+</style>
+</head>
+<body>
+<div id="component">
+  <header class="topbar">
+    <span class="brand" aria-hidden="true">
+      <svg viewBox="0 0 32 32"><rect x="0" y="0" width="32" height="32" rx="8" fill="#0B1416" stroke="none"/><path d="M7 18c3-4 6-4 9 0s6 4 9 0" stroke="#FFFFFF"/><path d="M7 12c3-4 6-4 9 0s6 4 9 0" stroke="#9CC3EA"/></svg>
+    </span>
+    <nav aria-label="Main">
+      <ul class="nav">
+        <li><a href="#overview" aria-current="page">Overview</a></li>
+        <li><a href="#requests">Requests</a></li>
+        <li><a href="#team">Team</a></li>
+        <li><a href="#settings">Settings</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <h1>Overview</h1>
+
+    <ul class="stats">
+      <li class="tile">
+        <div class="tile-head">
+          <p class="label">Active users</p>
+          <span class="icon-chip" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></span>
+        </div>
+        <p class="value">1,284</p>
+      </li>
+      <li class="tile">
+        <div class="tile-head">
+          <p class="label">Open requests</p>
+          <span class="icon-chip" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M22 12h-6l-2 3h-4l-2-3H2"/><path d="M5.45 5.11 2 12v6a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-6l-3.45-6.89A2 2 0 0 0 16.76 4H7.24a2 2 0 0 0-1.79 1.11z"/></svg></span>
+        </div>
+        <p class="value">37</p>
+      </li>
+      <li class="tile">
+        <div class="tile-head">
+          <p class="label">Average response</p>
+          <span class="icon-chip" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg></span>
+        </div>
+        <p class="value">2.4 <span class="unit">hours</span></p>
+      </li>
+      <li class="tile">
+        <div class="tile-head">
+          <p class="label">Uptime</p>
+          <span class="icon-chip" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg></span>
+        </div>
+        <p class="value">99.9%</p>
+      </li>
+    </ul>
+
+    <section class="panel" aria-labelledby="activity-title">
+      <h2 id="activity-title">Recent activity</h2>
+      <ul class="feed">
+        <li>
+          <span class="icon-chip" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg></span>
+          <p><strong>Maya Chen</strong> opened <strong>Laptop refresh for design</strong></p>
+        </li>
+        <li>
+          <span class="icon-chip" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span>
+          <p><strong>Leo Park</strong> approved <strong>Q4 travel budget</strong></p>
+        </li>
+        <li>
+          <span class="icon-chip" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="m8 12 3 3 5-6"/></svg></span>
+          <p><strong>Ana Ruiz</strong> closed <strong>VPN access for contractors</strong></p>
+        </li>
+        <li>
+          <span class="icon-chip" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></span>
+          <p><strong>Sam Ito</strong> commented on <strong>New hire onboarding</strong></p>
+        </li>
+        <li>
+          <span class="icon-chip" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
+          <p><strong>Kai Lee</strong> assigned <strong>Office move</strong> to <strong>Facilities</strong></p>
+        </li>
+      </ul>
+    </section>
+  </main>
+</div>
+</body>
+</html>

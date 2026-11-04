@@ -1,0 +1,7 @@
+Shauna tested exactly that. She had Claude build two hundred forty pages, half with a standard design rules file and half with her system.
+
+Both did well on passing checks. The standard file passed one hundred eighteen of one hundred twenty pages. Her system passed all one hundred twenty.
+
+The real difference was consistency. With the standard file, Claude invented thirty different button styles and sixteen different field styles. With her system, there were only seven button styles and four field styles.
+
+The reason is that her system starts from one token file. That file builds the styles, the Figma library, and the rules Claude reads, so everything stays in sync. The full write-up is in the case study on testing a design system on Claude.

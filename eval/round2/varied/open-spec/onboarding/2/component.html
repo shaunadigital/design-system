@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=1280">
+<title>Harbor onboarding: Connect your tools</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; background: #FFFFFF; }
+
+  #component {
+    --paper: #FFFFFF;
+    --sand: #EEF4FA;
+    --ink: #0B1416;
+    --muted: #55656A;
+    --accent: #0263AC;
+    --accent-tint: #E6EFF7;
+    --accent-line: #9CC3EA;
+    --ease: cubic-bezier(0.2, 0.7, 0.2, 1);
+
+    width: 1280px;
+    min-height: 800px;
+    margin: 0 auto;
+    padding: 64px;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: "Archivo", "Helvetica Neue", Arial, sans-serif;
+    font-size: 16px;
+    line-height: 1.5;
+  }
+
+  #component .grid {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    column-gap: 32px;
+  }
+  #component .content { grid-column: 1 / span 8; }
+
+  #component .progress { margin: 0 0 32px; }
+  #component .label {
+    margin: 0 0 12px;
+    font-family: "Archivo", "Helvetica Neue", Arial, sans-serif;
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 16px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--accent);
+  }
+  #component .bar {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 8px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  #component .bar li {
+    height: 4px;
+    border-radius: 999px;
+    background: var(--sand);
+  }
+  #component .bar li.done { background: var(--accent); }
+
+  #component h1 {
+    margin: 0 0 12px;
+    font-family: "Unbounded", "Helvetica Neue", Arial, sans-serif;
+    font-weight: 300;
+    font-size: 56px;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    text-transform: uppercase;
+  }
+  #component .lead {
+    margin: 0 0 32px;
+    font-size: 18px;
+    line-height: 1.5;
+    color: var(--muted);
+  }
+
+  #component .options {
+    margin: 0 0 32px;
+    padding: 0;
+    list-style: none;
+    background: var(--paper);
+    border: 1px solid var(--accent-line);
+    border-radius: 16px;
+    overflow: hidden;
+  }
+  #component .option {
+    display: grid;
+    grid-template-columns: 48px 1fr auto;
+    align-items: center;
+    column-gap: 16px;
+    padding: 16px 24px;
+  }
+  #component .option + .option { border-top: 1px solid var(--sand); }
+
+  #component .icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 48px;
+    height: 48px;
+    border-radius: 12px;
+    background: var(--sand);
+    color: var(--ink);
+  }
+  #component .icon svg { width: 24px; height: 24px; display: block; }
+
+  #component .name {
+    margin: 0;
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 24px;
+  }
+  #component .desc {
+    margin: 0;
+    font-size: 16px;
+    line-height: 24px;
+    color: var(--muted);
+  }
+
+  #component .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 44px;
+    padding: 0 24px;
+    border: 1px solid transparent;
+    border-radius: 999px;
+    font-family: "Archivo", "Helvetica Neue", Arial, sans-serif;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 24px;
+    letter-spacing: 0;
+    cursor: pointer;
+    transition: background-color 180ms var(--ease), color 180ms var(--ease), border-color 180ms var(--ease);
+  }
+  #component .btn:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+  }
+  #component .btn-primary { background: var(--ink); color: #FFFFFF; }
+  #component .btn-primary:hover { background: var(--accent); }
+  #component .btn-quiet { background: transparent; color: var(--ink); }
+  #component .btn-quiet:hover { background: var(--accent-tint); }
+  #component .btn-connect { border-color: var(--accent-line); min-width: 112px; }
+
+  #component .actions {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    #component .btn { transition: none; }
+  }
+</style>
+</head>
+<body>
+<div id="component">
+  <div class="grid">
+    <main class="content">
+
+      <div class="progress">
+        <p class="label">Step 2 of 4</p>
+        <ol class="bar" aria-label="Onboarding progress, step 2 of 4">
+          <li class="done"></li>
+          <li class="done"></li>
+          <li></li>
+          <li></li>
+        </ol>
+      </div>
+
+      <h1>Connect your tools</h1>
+      <p class="lead">Harbor works best with the tools your team already uses.</p>
+
+      <ul class="options">
+        <li class="option">
+          <span class="icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9.5 3.5v17M14.5 3.5v17M4 9h16M4 15h16"/></svg>
+          </span>
+          <div>
+            <h2 class="name">Slack</h2>
+            <p class="desc">Get request updates in your channels</p>
+          </div>
+          <button type="button" class="btn btn-quiet btn-connect" aria-label="Connect Slack">Connect</button>
+        </li>
+
+        <li class="option">
+          <span class="icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3.5" y="5" width="17" height="15.5" rx="2"/><path d="M3.5 10h17M8 3v4M16 3v4"/></svg>
+          </span>
+          <div>
+            <h2 class="name">Google Calendar</h2>
+            <p class="desc">See due dates on your calendar</p>
+          </div>
+          <button type="button" class="btn btn-quiet btn-connect" aria-label="Connect Google Calendar">Connect</button>
+        </li>
+
+        <li class="option">
+          <span class="icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3.5 20.5 12 12 20.5 3.5 12Z"/><path d="M12 8.5 15.5 12 12 15.5 8.5 12Z"/></svg>
+          </span>
+          <div>
+            <h2 class="name">Jira</h2>
+            <p class="desc">Link requests to engineering tickets</p>
+          </div>
+          <button type="button" class="btn btn-quiet btn-connect" aria-label="Connect Jira">Connect</button>
+        </li>
+      </ul>
+
+      <div class="actions">
+        <button type="button" class="btn btn-quiet">Skip for Now</button>
+        <button type="button" class="btn btn-primary">Continue</button>
+      </div>
+
+    </main>
+  </div>
+</div>
+</body>
+</html>

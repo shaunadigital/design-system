@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Billing | Harbor</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    background: #FFFFFF;
+  }
+
+  #component {
+    width: 1280px;
+    margin: 0 auto;
+    padding: 64px 64px 96px;
+    background: #FFFFFF;
+    color: #0B1416;
+    font-family: "Archivo", system-ui, -apple-system, "Segoe UI", Helvetica, Arial, sans-serif;
+    font-size: 16px;
+    line-height: 1.5;
+  }
+
+  #component h1,
+  #component h2,
+  #component h3 {
+    margin: 0;
+    font-family: "Unbounded", "Archivo", system-ui, -apple-system, "Segoe UI", Helvetica, Arial, sans-serif;
+    color: #0B1416;
+  }
+
+  #component .page-title {
+    font-size: 56px;
+    font-weight: 300;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    text-transform: uppercase;
+  }
+
+  #component .layout {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    column-gap: 32px;
+    row-gap: 64px;
+    margin-top: 48px;
+  }
+
+  #component .plan,
+  #component .invoices {
+    grid-column: 1 / -1;
+  }
+
+  /* Current plan panel */
+  #component .plan-card {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 32px;
+    padding: 48px;
+    background: #FFFFFF;
+    border: 1px solid #9CC3EA;
+    border-radius: 16px;
+  }
+
+  #component .plan-name {
+    font-size: 28px;
+    font-weight: 500;
+    line-height: 1.2;
+    letter-spacing: -0.01em;
+  }
+
+  #component .plan-price {
+    margin: 8px 0 0;
+    font-size: 18px;
+    line-height: 1.5;
+    color: #0B1416;
+  }
+
+  #component .seats {
+    margin-top: 32px;
+    width: 400px;
+  }
+
+  #component .seats-text {
+    margin: 0;
+    font-size: 16px;
+    line-height: 1.5;
+    color: #55656A;
+  }
+
+  #component .seats-bar {
+    margin-top: 12px;
+    height: 8px;
+    border-radius: 999px;
+    background: #EEF4FA;
+    overflow: hidden;
+  }
+
+  #component .seats-fill {
+    width: 72%;
+    height: 100%;
+    border-radius: 999px;
+    background: #0263AC;
+  }
+
+  /* Button */
+  #component .button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 44px;
+    padding: 12px 32px;
+    border: 1px solid #0B1416;
+    border-radius: 999px;
+    background: #0B1416;
+    color: #FFFFFF;
+    font-family: "Archivo", system-ui, -apple-system, "Segoe UI", Helvetica, Arial, sans-serif;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 1.5;
+    letter-spacing: 0.02em;
+    cursor: pointer;
+    transition: background-color 180ms cubic-bezier(0.2, 0.7, 0.2, 1),
+                border-color 180ms cubic-bezier(0.2, 0.7, 0.2, 1);
+  }
+
+  #component .button:hover {
+    background: #0263AC;
+    border-color: #0263AC;
+  }
+
+  #component .button:focus-visible {
+    outline: 2px solid #0263AC;
+    outline-offset: 4px;
+  }
+
+  /* Invoices */
+  #component .section-title {
+    font-size: 46px;
+    font-weight: 300;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    text-transform: uppercase;
+  }
+
+  #component .table-card {
+    margin-top: 32px;
+    background: #FFFFFF;
+    border: 1px solid #9CC3EA;
+    border-radius: 16px;
+    overflow: hidden;
+  }
+
+  #component table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: left;
+  }
+
+  #component th {
+    padding: 16px 48px;
+    background: #EEF4FA;
+    color: #55656A;
+    font-size: 12px;
+    font-weight: 500;
+    line-height: 1.5;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    text-align: left;
+  }
+
+  #component td {
+    padding: 24px 48px;
+    border-top: 1px solid #9CC3EA;
+    font-size: 16px;
+    line-height: 1.5;
+    color: #0B1416;
+    vertical-align: middle;
+  }
+
+  #component thead th:nth-child(1),
+  #component tbody td:nth-child(1) { width: 40%; }
+  #component thead th:nth-child(2),
+  #component tbody td:nth-child(2) { width: 30%; }
+
+  #component td.amount {
+    font-variant-numeric: tabular-nums;
+  }
+
+  #component .status {
+    display: inline-block;
+    padding: 4px 12px;
+    border-radius: 999px;
+    background: #E6EFF7;
+    color: #0263AC;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 1.5;
+    letter-spacing: 0.02em;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    #component .button { transition: none; }
+  }
+</style>
+</head>
+<body>
+<div id="component">
+  <h1 class="page-title">Billing</h1>
+
+  <div class="layout">
+    <section class="plan">
+      <div class="plan-card">
+        <div>
+          <h2 class="plan-name">Team plan</h2>
+          <p class="plan-price">$24 per seat per month</p>
+          <div class="seats">
+            <p class="seats-text">18 of 25 seats used</p>
+            <div class="seats-bar" aria-hidden="true"><div class="seats-fill"></div></div>
+          </div>
+        </div>
+        <button class="button" type="button">Change Plan</button>
+      </div>
+    </section>
+
+    <section class="invoices" aria-labelledby="invoices-title">
+      <h2 class="section-title" id="invoices-title">Invoices</h2>
+      <div class="table-card">
+        <table>
+          <thead>
+            <tr>
+              <th scope="col">Date</th>
+              <th scope="col">Amount</th>
+              <th scope="col">Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Oct 1, 2026</td>
+              <td class="amount">$432.00</td>
+              <td><span class="status">Paid</span></td>
+            </tr>
+            <tr>
+              <td>Sep 1, 2026</td>
+              <td class="amount">$432.00</td>
+              <td><span class="status">Paid</span></td>
+            </tr>
+            <tr>
+              <td>Aug 1, 2026</td>
+              <td class="amount">$408.00</td>
+              <td><span class="status">Paid</span></td>
+            </tr>
+            <tr>
+              <td>Jul 1, 2026</td>
+              <td class="amount">$408.00</td>
+              <td><span class="status">Paid</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+  </div>
+</div>
+</body>
+</html>

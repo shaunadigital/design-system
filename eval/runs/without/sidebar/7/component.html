@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sidebar</title>
+<style>
+  @font-face { font-family: "Unbounded"; font-weight: 300; src: local("Unbounded Light"), local("Unbounded-Light"), local("Unbounded"); }
+  @font-face { font-family: "Archivo"; src: local("Archivo"); }
+
+  * { box-sizing: border-box; }
+
+  html, body { margin: 0; height: 100%; }
+
+  body {
+    background: #fff;
+    color: #0B1416;
+    font-family: "Archivo", "Helvetica Neue", Arial, sans-serif;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+  }
+
+  #component {
+    width: 280px;
+    height: 560px;
+    background: #fff;
+    border: 1px solid #D9DFE2;
+    border-radius: 12px;
+    padding: 20px 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
+
+  .new-chat {
+    appearance: none;
+    width: 100%;
+    min-height: 44px;
+    padding: 10px 16px;
+    background: #0263AC;
+    color: #fff;
+    border: 2px solid #0263AC;
+    border-radius: 8px;
+    font: 600 15px/1.2 "Archivo", "Helvetica Neue", Arial, sans-serif;
+    cursor: pointer;
+  }
+  .new-chat:hover { background: #014f89; border-color: #014f89; }
+  .new-chat:focus-visible, .chat:focus-visible {
+    outline: 3px solid #0B1416;
+    outline-offset: 2px;
+  }
+
+  .label {
+    margin: 0 0 8px;
+    padding: 0 12px;
+    font-family: "Unbounded", "Archivo", sans-serif;
+    font-weight: 300;
+    font-size: 12px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #0B1416;
+  }
+
+  .chats { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 2px; }
+
+  .chat {
+    display: block;
+    min-height: 44px;
+    padding: 12px 12px 12px 14px;
+    border-left: 4px solid transparent;
+    border-radius: 0 8px 8px 0;
+    color: #0B1416;
+    text-decoration: none;
+    font-size: 15px;
+    line-height: 1.3;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .chat:hover { background: #F0F3F5; }
+  .chat[aria-current="page"] {
+    background: #E6F0F8;
+    border-left-color: #0263AC;
+    font-weight: 600;
+  }
+</style>
+</head>
+<body>
+  <nav id="component" aria-label="Chats">
+    <button class="new-chat" type="button">New Chat</button>
+    <div>
+      <h2 class="label">Recent</h2>
+      <ul class="chats">
+        <li><a class="chat" href="#">Trip planning for Maui</a></li>
+        <li><a class="chat" href="#" aria-current="page">Q3 budget review</a></li>
+        <li><a class="chat" href="#">Menu ideas for Saturday</a></li>
+        <li><a class="chat" href="#">Reading list</a></li>
+        <li><a class="chat" href="#">Garden plan</a></li>
+      </ul>
+    </div>
+  </nav>
+</body>
+</html>

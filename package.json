@@ -1,0 +1,40 @@
+{
+  "name": "@shaunadigital/design-system",
+  "version": "1.0.0",
+  "description": "Shauna Arnold's design system: tokens, the rules Claude and people read, the build checks, a server Claude can query, and the evals that test it on Claude.",
+  "scripts": {
+    "build": "node scripts/tokens.mjs",
+    "prepare": "node scripts/tokens.mjs",
+    "mcp": "node mcp/server.mjs",
+    "test": "node eval/voice/score.mjs --test && node mcp/test.mjs",
+    "eval:voice": "bash eval/voice/run.sh"
+  },
+  "author": "Shauna Arnold",
+  "license": "SEE LICENSE",
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.32.2",
+    "zod": "^3.25.76"
+  },
+  "type": "module",
+  "homepage": "https://shauna.dev/system/",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/shaunadigital/design-system"
+  },
+  "bin": {
+    "design-system-mcp": "mcp/server.mjs"
+  },
+  "exports": {
+    "./tokens.json": "./tokens/tokens.json",
+    "./tokens.css": "./build/tokens.css",
+    "./DESIGN.md": "./DESIGN.md"
+  },
+  "files": [
+    "tokens",
+    "build",
+    "DESIGN.md",
+    "mcp",
+    "eval/voice/check.mjs",
+    "scripts"
+  ]
+}

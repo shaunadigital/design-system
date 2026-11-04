@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Sign in to Harbor</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+  *, *::before, *::after { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    background: #FFFFFF;
+    color: #0B1416;
+    font-family: "Archivo", "Helvetica Neue", Arial, sans-serif;
+    font-size: 16px;
+    line-height: 1.5;
+  }
+
+  #component {
+    width: 1280px;
+    min-height: 800px;
+    padding: 96px 64px;
+    background: #EEF4FA;
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    column-gap: 32px;
+    align-items: center;
+  }
+
+  .intro {
+    grid-column: 1 / span 6;
+  }
+
+  h1 {
+    margin: 0;
+    font-family: "Unbounded", "Helvetica Neue", Arial, sans-serif;
+    font-weight: 300;
+    font-size: 56px;
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+    text-transform: uppercase;
+    color: #0B1416;
+  }
+
+  .card {
+    grid-column: 7 / span 6;
+    background: #FFFFFF;
+    border: 1px solid #9CC3EA;
+    border-radius: 16px;
+    padding: 48px;
+  }
+
+  form {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
+
+  .field {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  label.label {
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 1.5;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: #0263AC;
+  }
+
+  input[type="email"],
+  input[type="password"] {
+    width: 100%;
+    height: 48px;
+    padding: 0 16px;
+    font-family: inherit;
+    font-size: 16px;
+    color: #0B1416;
+    background: #FFFFFF;
+    border: 1px solid #55656A;
+    border-radius: 12px;
+    transition: border-color 120ms cubic-bezier(0.2, 0.7, 0.2, 1),
+                background-color 120ms cubic-bezier(0.2, 0.7, 0.2, 1);
+  }
+
+  input[type="email"]:hover,
+  input[type="password"]:hover {
+    background: #E6EFF7;
+  }
+
+  input[type="email"]:focus,
+  input[type="password"]:focus {
+    outline: 2px solid #0263AC;
+    outline-offset: 2px;
+    border-color: #0263AC;
+    background: #FFFFFF;
+  }
+
+  .options {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+  }
+
+  .check {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    min-height: 44px;
+    cursor: pointer;
+    font-size: 16px;
+    color: #0B1416;
+  }
+
+  .check input {
+    width: 20px;
+    height: 20px;
+    margin: 0;
+    accent-color: #0263AC;
+    cursor: pointer;
+  }
+
+  .check input:focus-visible {
+    outline: 2px solid #0263AC;
+    outline-offset: 2px;
+  }
+
+  a.forgot {
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
+    font-size: 16px;
+    color: #0263AC;
+    text-decoration: underline;
+    text-underline-offset: 4px;
+    text-decoration-thickness: 1px;
+    border-radius: 8px;
+    transition: background-color 120ms cubic-bezier(0.2, 0.7, 0.2, 1);
+  }
+
+  a.forgot:hover { background: #E6EFF7; }
+
+  a.forgot:focus-visible {
+    outline: 2px solid #0263AC;
+    outline-offset: 2px;
+  }
+
+  .actions {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .btn {
+    width: 100%;
+    min-height: 48px;
+    padding: 0 24px;
+    border-radius: 999px;
+    font-family: inherit;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 1.5;
+    cursor: pointer;
+    transition: background-color 180ms cubic-bezier(0.2, 0.7, 0.2, 1),
+                color 180ms cubic-bezier(0.2, 0.7, 0.2, 1),
+                border-color 180ms cubic-bezier(0.2, 0.7, 0.2, 1);
+  }
+
+  .btn:focus-visible {
+    outline: 2px solid #0263AC;
+    outline-offset: 2px;
+  }
+
+  .btn-primary {
+    background: #0B1416;
+    color: #FFFFFF;
+    border: 1px solid #0B1416;
+  }
+
+  .btn-primary:hover {
+    background: #0263AC;
+    border-color: #0263AC;
+  }
+
+  .btn-secondary {
+    background: transparent;
+    color: #0B1416;
+    border: 1px solid #9CC3EA;
+  }
+
+  .btn-secondary:hover {
+    background: #E6EFF7;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    * { transition: none !important; }
+  }
+</style>
+</head>
+<body>
+<div id="component">
+  <section class="intro" aria-labelledby="signin-title">
+    <h1 id="signin-title">Sign in to Harbor</h1>
+  </section>
+
+  <div class="card">
+    <form action="#" method="post">
+      <div class="field">
+        <label class="label" for="email">Work email</label>
+        <input id="email" name="email" type="email" autocomplete="username" required>
+      </div>
+
+      <div class="field">
+        <label class="label" for="password">Password</label>
+        <input id="password" name="password" type="password" autocomplete="current-password" required>
+      </div>
+
+      <div class="options">
+        <label class="check">
+          <input type="checkbox" name="remember">
+          <span>Keep me signed in</span>
+        </label>
+        <a class="forgot" href="#">Forgot Password?</a>
+      </div>
+
+      <div class="actions">
+        <button class="btn btn-primary" type="submit">Sign In</button>
+        <button class="btn btn-secondary" type="button">Continue with SSO</button>
+      </div>
+    </form>
+  </div>
+</div>
+</body>
+</html>

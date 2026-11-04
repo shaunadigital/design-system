@@ -1,0 +1,1 @@
+You can see them on the system page. Just go to shauna dot dev, slash system. It's a live specimen of the colours, type and spacing. The source is a single token file in the repo, and the Figma library is built from it too.

@@ -1,0 +1,5 @@
+It all starts with one token file. Shauna's colours, type and spacing live in that single file, and it builds everything else: the site's styles, her Figma library, and the rules that Claude reads. So a change happens in one place and flows everywhere.
+
+There's a short rulebook for both people and Claude, and a set of seven automatic checks that run on every build. They cover things like text contrast, using only token values, and respecting reduced motion.
+
+She tested it on Claude with two hundred and forty page builds. With her system, all one hundred twenty pages passed, and they used far fewer button styles than the standard setup. If you'd like, I can tell you more about that test, or you can see the live specimen on the system page of this site.

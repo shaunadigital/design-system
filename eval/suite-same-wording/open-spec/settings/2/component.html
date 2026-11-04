@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Workspace settings</title>
+<style>
+  * { box-sizing: border-box; }
+  body { margin: 0; background: #FFFFFF; color: #0B1416; font-family: "Archivo", system-ui, sans-serif; font-size: 16px; line-height: 1.5; }
+  #component { width: 1280px; margin: 0 auto; padding: 64px 64px 96px; background: #FFFFFF; }
+  h1 { font-family: "Unbounded", system-ui, sans-serif; font-weight: 300; font-size: 56px; line-height: 1.1; letter-spacing: -0.02em; text-transform: uppercase; margin: 0 0 48px; }
+  h2 { font-family: "Unbounded", system-ui, sans-serif; font-weight: 500; font-size: 28px; line-height: 1.2; letter-spacing: -0.01em; margin: 0 0 24px; }
+  .card { background: #FFFFFF; border: 1px solid #9CC3EA; border-radius: 16px; padding: 48px; margin-bottom: 32px; }
+  .card.danger { background: #EEF4FA; border-color: #0B1416; margin-bottom: 0; }
+  .field { display: block; margin-bottom: 24px; max-width: 560px; }
+  .field span { display: block; font-weight: 500; font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: #0263AC; margin-bottom: 8px; }
+  .field input { width: 100%; min-height: 48px; padding: 12px 16px; font: inherit; font-size: 16px; color: #0B1416; background: #FFFFFF; border: 1px solid #55656A; border-radius: 12px; transition: border-color 120ms cubic-bezier(0.2, 0.7, 0.2, 1), background 120ms cubic-bezier(0.2, 0.7, 0.2, 1); }
+  .field input:hover { background: #E6EFF7; }
+  .field input:focus-visible, .btn:focus-visible, .switch input:focus-visible { outline: 2px solid #0263AC; outline-offset: 2px; }
+  .btn { display: inline-flex; align-items: center; justify-content: center; min-height: 44px; padding: 8px 32px; font: inherit; font-size: 16px; font-weight: 500; border-radius: 999px; cursor: pointer; transition: background 180ms cubic-bezier(0.2, 0.7, 0.2, 1), color 180ms cubic-bezier(0.2, 0.7, 0.2, 1); }
+  .btn.primary { background: #0B1416; color: #FFFFFF; border: 1px solid #0B1416; }
+  .btn.primary:hover { background: #0263AC; border-color: #0263AC; }
+  .btn.quiet { background: transparent; color: #0B1416; border: 1px solid #0B1416; }
+  .btn.quiet:hover { background: #E6EFF7; }
+  .switches { list-style: none; margin: 0; padding: 0; max-width: 720px; }
+  .switches li { border-top: 1px solid #9CC3EA; }
+  .switches li:last-child { border-bottom: 1px solid #9CC3EA; }
+  .switch { display: flex; align-items: center; justify-content: space-between; gap: 32px; min-height: 64px; padding: 12px 0; cursor: pointer; }
+  .switch input { appearance: none; -webkit-appearance: none; flex: none; position: relative; width: 52px; height: 32px; margin: 0; background: #FFFFFF; border: 2px solid #55656A; border-radius: 999px; cursor: pointer; transition: background 120ms cubic-bezier(0.2, 0.7, 0.2, 1), border-color 120ms cubic-bezier(0.2, 0.7, 0.2, 1); }
+  .switch input::after { content: ""; position: absolute; top: 4px; left: 4px; width: 20px; height: 20px; border-radius: 50%; background: #55656A; transition: transform 120ms cubic-bezier(0.2, 0.7, 0.2, 1), background 120ms cubic-bezier(0.2, 0.7, 0.2, 1); }
+  .switch input:checked { background: #0263AC; border-color: #0263AC; }
+  .switch input:checked::after { background: #FFFFFF; transform: translateX(20px); }
+  .danger p { margin: 0 0 24px; font-size: 18px; color: #0B1416; }
+  @media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+</style>
+</head>
+<body>
+<div id="component">
+  <h1>Workspace settings</h1>
+
+  <section class="card" aria-labelledby="general">
+    <h2 id="general">General</h2>
+    <label class="field"><span>Workspace name</span><input type="text" value="Harbor Ops"></label>
+    <label class="field"><span>Workspace URL</span><input type="text" value="harbor.app/ops"></label>
+    <button class="btn primary" type="button">Save Changes</button>
+  </section>
+
+  <section class="card" aria-labelledby="notifications">
+    <h2 id="notifications">Notifications</h2>
+    <ul class="switches">
+      <li><label class="switch"><span>Email me when a request is assigned to me</span><input type="checkbox" role="switch" checked></label></li>
+      <li><label class="switch"><span>Weekly summary</span><input type="checkbox" role="switch"></label></li>
+      <li><label class="switch"><span>Product updates</span><input type="checkbox" role="switch"></label></li>
+    </ul>
+  </section>
+
+  <section class="card danger" aria-labelledby="danger">
+    <h2 id="danger">Danger zone</h2>
+    <p>Deleting a workspace removes all of its requests for everyone.</p>
+    <button class="btn quiet" type="button">Delete Workspace</button>
+  </section>
+</div>
+</body>
+</html>

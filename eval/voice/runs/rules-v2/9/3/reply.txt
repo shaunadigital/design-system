@@ -1,0 +1,1 @@
+Three things stand out. Every control is forty-four pixels, so it's easy to tap. It works from the keyboard: Enter sends, Shift and Enter makes a new line, and Escape stops. And screen readers get announcements as things change. Want the details?

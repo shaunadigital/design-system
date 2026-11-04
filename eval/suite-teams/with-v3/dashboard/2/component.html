@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Overview</title>
+<meta name="viewport" content="width=1280">
+<style>
+/* Tokens from tokens.css (day theme), only those used here */
+:root {
+  --paper: #FFFFFF;
+  --sand: #EEF4FA;
+  --card: #FFFFFF;
+  --ink: #0B1416;
+  --ink-rgb: 11, 20, 22;
+  --muted: #55656A;
+  --accent-text: #0263AC;
+  --accent-tint: #E6EFF7;
+  --font-display: 'Unbounded', system-ui, sans-serif;
+  --font-body: 'Archivo', system-ui, -apple-system, sans-serif;
+  --font-label: 'Archivo', system-ui, sans-serif;
+  --font-hero: 'Unbounded', system-ui, sans-serif;
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 24px;
+  --space-6: 32px;
+  --space-7: 48px;
+  --space-8: 64px;
+  --radius-sm: 8px;
+  --radius-card: 16px;
+  --tracking-tight: -0.02em;
+  --tracking-label: 0.14em;
+  --text-hero: clamp(1.5rem, 3.34vw, 3rem);
+  --text-display-xl: clamp(2rem, 4vw, 3.5rem);
+  --text-body: 1rem;
+  --text-small: 0.875rem;
+  --text-label: 0.75rem;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { background: var(--paper); color: var(--ink); font-family: var(--font-body); font-size: var(--text-body); }
+
+#component { width: 1280px; min-height: 800px; background: var(--paper); }
+
+.nav {
+  background: var(--sand);
+  border-bottom: 1px solid rgba(var(--ink-rgb), 0.1);
+  padding: var(--space-2) var(--space-8);
+}
+.nav ul { list-style: none; display: flex; gap: var(--space-1); }
+.nav a {
+  display: flex; align-items: center; height: 44px; padding: 0 var(--space-4);
+  border-radius: var(--radius-sm);
+  font-size: var(--text-small); color: var(--ink); text-decoration: none;
+}
+.nav a[aria-current="page"] { background: var(--accent-tint); color: var(--accent-text); font-weight: 600; }
+
+main { padding: var(--space-6) var(--space-8) var(--space-8); }
+
+h1 {
+  font-family: var(--font-display); font-weight: 300; font-size: var(--text-display-xl);
+  text-transform: uppercase; letter-spacing: var(--tracking-tight); line-height: 1.1;
+  margin-bottom: var(--space-5);
+}
+
+.label {
+  font-family: var(--font-label); font-weight: 500; font-size: var(--text-label);
+  letter-spacing: var(--tracking-label); text-transform: uppercase;
+}
+
+.stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--space-4); margin-bottom: var(--space-6); }
+.tile {
+  background: var(--card); border: 1px solid rgba(var(--ink-rgb), 0.1); border-radius: var(--radius-card);
+  padding: var(--space-5);
+}
+.tile .label { color: var(--accent-text); }
+.tile .value {
+  display: flex; align-items: baseline; gap: var(--space-2);
+  margin-top: var(--space-2);
+  font-family: var(--font-hero); font-weight: 300; font-size: var(--text-hero); line-height: 1.2;
+  white-space: nowrap;
+}
+.tile .unit { font-family: var(--font-body); font-size: var(--text-small); color: var(--muted); }
+
+h2 { margin-bottom: var(--space-3); color: var(--muted); }
+.activity {
+  list-style: none; background: var(--card);
+  border: 1px solid rgba(var(--ink-rgb), 0.1); border-radius: var(--radius-card);
+  padding: var(--space-2);
+}
+.activity li {
+  display: flex; align-items: center; min-height: 44px; padding: 0 var(--space-4);
+  font-size: var(--text-body);
+}
+.activity li + li { border-top: 1px solid rgba(var(--ink-rgb), 0.1); }
+.activity strong { font-weight: 600; margin-right: var(--space-1); }
+</style>
+</head>
+<body>
+<div id="component">
+  <nav class="nav" aria-label="Primary">
+    <ul>
+      <li><a href="#" aria-current="page">Overview</a></li>
+      <li><a href="#">Requests</a></li>
+      <li><a href="#">Team</a></li>
+      <li><a href="#">Settings</a></li>
+    </ul>
+  </nav>
+  <main>
+    <h1>Overview</h1>
+    <section class="stats" aria-label="Key figures">
+      <div class="tile">
+        <div class="label">Active users</div>
+        <div class="value">1,284</div>
+      </div>
+      <div class="tile">
+        <div class="label">Open requests</div>
+        <div class="value">37</div>
+      </div>
+      <div class="tile">
+        <div class="label">Average response</div>
+        <div class="value">2.4 <span class="unit">hours</span></div>
+      </div>
+      <div class="tile">
+        <div class="label">Uptime</div>
+        <div class="value">99.9%</div>
+      </div>
+    </section>
+    <section aria-labelledby="activity-title">
+      <h2 class="label" id="activity-title">Recent activity</h2>
+      <ul class="activity">
+        <li><strong>Maya Chen</strong> opened Laptop refresh for design</li>
+        <li><strong>Leo Park</strong> approved Q4 travel budget</li>
+        <li><strong>Ana Ruiz</strong> closed VPN access for contractors</li>
+        <li><strong>Sam Ito</strong> commented on New hire onboarding</li>
+        <li><strong>Kai Lee</strong> assigned Office move to Facilities</li>
+      </ul>
+    </section>
+  </main>
+</div>
+</body>
+</html>

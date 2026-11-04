@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Audit log</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+  * { box-sizing: border-box; }
+  body { margin: 0; background: #F4EFE6; }
+  #component {
+    width: 1280px;
+    min-height: 800px;
+    margin: 0 auto;
+    padding: 72px 160px 96px;
+    background: #F4EFE6;
+    color: #1E2B24;
+    font-family: "Instrument Sans", "Helvetica Neue", Arial, sans-serif;
+    font-size: 16px;
+    line-height: 1.5;
+  }
+  #component .head {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 24px;
+    padding-bottom: 28px;
+    border-bottom: 2px solid #1E2B24;
+  }
+  #component h1 {
+    margin: 0;
+    font-family: "Fraunces", Georgia, "Times New Roman", serif;
+    font-weight: 600;
+    font-size: 40px;
+    line-height: 1.1;
+    letter-spacing: 0;
+  }
+  #component .filter {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+  #component .filter label {
+    font-size: 13px;
+    font-weight: 600;
+    color: #1E2B24;
+  }
+  #component .filter select {
+    appearance: none;
+    -webkit-appearance: none;
+    min-width: 200px;
+    height: 44px;
+    padding: 0 40px 0 14px;
+    font: inherit;
+    font-size: 15px;
+    color: #1E2B24;
+    background: #FBF8F2 url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1.5l5 5 5-5' fill='none' stroke='%23C2410C' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") no-repeat right 14px center;
+    border: 1px solid #1E2B24;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  #component .filter select:hover { border-color: #C2410C; }
+  #component .filter select:focus-visible,
+  #component .events li:focus-visible {
+    outline: 3px solid #C2410C;
+    outline-offset: 2px;
+  }
+  #component .cols,
+  #component .events li {
+    display: grid;
+    grid-template-columns: 180px 200px 1fr;
+    column-gap: 24px;
+    align-items: center;
+  }
+  #component .cols {
+    padding: 20px 20px 10px;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #1E2B24;
+  }
+  #component .events {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    border: 1px solid rgba(30, 43, 36, 0.25);
+    border-radius: 4px;
+    overflow: hidden;
+    box-shadow: 0 1px 2px rgba(30, 43, 36, 0.06);
+  }
+  #component .events li {
+    padding: 18px 20px;
+    border-top: 1px solid rgba(30, 43, 36, 0.15);
+    background: #FBF8F2;
+  }
+  #component .events li:first-child { border-top: 0; }
+  #component .events li:hover { background: #F4EFE6; }
+  #component .time {
+    font-size: 14px;
+    font-variant-numeric: tabular-nums;
+    color: #1E2B24;
+  }
+  #component .time::before {
+    content: "";
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    margin-right: 12px;
+    border-radius: 50%;
+    background: #C2410C;
+    vertical-align: 1px;
+  }
+  #component .person { font-weight: 600; }
+  #component .action { color: #1E2B24; }
+</style>
+</head>
+<body>
+<div id="component">
+  <div class="head">
+    <h1>Audit log</h1>
+    <div class="filter">
+      <label for="date-range">Date range</label>
+      <select id="date-range" name="date-range">
+        <option selected>Last 7 days</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="cols" aria-hidden="true">
+    <span>Time</span><span>Person</span><span>Action</span>
+  </div>
+
+  <ul class="events">
+    <li><span class="time">Today 9:14</span><span class="person">Maya Chen</span><span class="action">Changed Leo Park's role to Editor</span></li>
+    <li><span class="time">Today 8:02</span><span class="person">Leo Park</span><span class="action">Approved Q4 travel budget</span></li>
+    <li><span class="time">Yesterday 17:40</span><span class="person">Ana Ruiz</span><span class="action">Closed VPN access for contractors</span></li>
+    <li><span class="time">Yesterday 11:05</span><span class="person">Sam Ito</span><span class="action">Invited kai@harbor.app</span></li>
+    <li><span class="time">Oct 16 15:22</span><span class="person">Maya Chen</span><span class="action">Exported requests</span></li>
+    <li><span class="time">Oct 16 10:10</span><span class="person">Kai Lee</span><span class="action">Signed in from a new device</span></li>
+    <li><span class="time">Oct 15 14:48</span><span class="person">Leo Park</span><span class="action">Updated billing details</span></li>
+    <li><span class="time">Oct 15 09:30</span><span class="person">Maya Chen</span><span class="action">Created workspace Harbor Ops</span></li>
+  </ul>
+</div>
+</body>
+</html>

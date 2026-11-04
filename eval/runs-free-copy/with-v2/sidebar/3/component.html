@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sidebar</title>
+<style>
+/* Tokens copied from tokens.css (generated, light values, plus dusk via system setting) */
+:root {
+  color-scheme: light dark;
+  --paper: #FFFFFF;
+  --sand: #EEF4FA;
+  --ink: #0B1416;
+  --muted: #55656A;
+  --accent-text: #0263AC;
+  --accent: #0263AC;
+  --accent-tint: #E6EFF7;
+  --accent-line: #9CC3EA;
+  --plate-hover: #E3ECF5;
+  --on-ink: #FFFFFF;
+  --shadow-rgb: 11, 20, 22;
+  --font-body: 'Archivo', system-ui, -apple-system, sans-serif;
+  --font-label: 'Archivo', system-ui, sans-serif;
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 24px;
+  --space-6: 32px;
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-card: 16px;
+  --radius-pill: 999px;
+  --tracking-label: 0.14em;
+  --text-body: 1rem;
+  --text-small: 0.875rem;
+  --text-label: 0.75rem;
+  --ease: cubic-bezier(0.2, 0.7, 0.2, 1);
+  --dur-fast: 120ms;
+  --dur-base: 180ms;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --paper: #0E1618;
+    --sand: #131E21;
+    --ink: #E9EFEF;
+    --muted: #9DAEB1;
+    --accent-text: #9CC3EA;
+    --accent: #6FAAE6;
+    --accent-tint: #13283A;
+    --accent-line: #2D5B85;
+    --plate-hover: #1A2A36;
+    --on-ink: #0E1618;
+    --shadow-rgb: 0, 0, 0;
+  }
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: var(--text-body);
+}
+
+#component {
+  width: 280px;
+  height: 560px;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+  padding: var(--space-4);
+  background: var(--sand);
+  border-radius: var(--radius-card);
+  box-shadow: 0 8px 24px rgba(var(--shadow-rgb), 0.08);
+}
+
+.btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  min-height: 44px;
+  padding: 0 var(--space-5);
+  border: 0;
+  border-radius: var(--radius-pill);
+  font-family: var(--font-body);
+  font-size: var(--text-body);
+  font-weight: 500;
+  text-decoration: none;
+  cursor: pointer;
+  transition: opacity var(--dur-base) var(--ease), transform var(--dur-fast) var(--ease);
+}
+.btn--fill {
+  background: var(--ink);
+  color: var(--on-ink);
+}
+.btn--fill:hover { opacity: 0.88; }
+.btn--fill:active { transform: scale(0.98); }
+.btn:focus-visible,
+.chat:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+.icon {
+  width: 20px;
+  height: 20px;
+  flex: none;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.recent {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  min-height: 0;
+}
+.label {
+  margin: 0;
+  padding: 0 var(--space-3);
+  font-family: var(--font-label);
+  font-size: var(--text-label);
+  font-weight: 500;
+  letter-spacing: var(--tracking-label);
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.chats {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+}
+.chat {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  min-height: 44px;
+  padding: 0 var(--space-3);
+  border: 1px solid transparent;
+  border-radius: var(--radius-md);
+  color: var(--ink);
+  font-size: var(--text-small);
+  text-decoration: none;
+  transition: background var(--dur-fast) var(--ease);
+}
+.chat:hover { background: var(--plate-hover); }
+.chat .icon { color: var(--muted); }
+.chat span {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.chat[aria-current="page"] {
+  background: var(--accent-tint);
+  border-color: var(--accent-line);
+  color: var(--accent-text);
+  font-weight: 500;
+}
+.chat[aria-current="page"] .icon { color: var(--accent-text); }
+
+@media (prefers-reduced-motion: reduce) {
+  .btn, .chat { transition: none; }
+}
+</style>
+</head>
+<body>
+<nav id="component" aria-label="Chats">
+  <a class="btn btn--fill" href="#new">
+    <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>
+    New Chat
+  </a>
+
+  <section class="recent" aria-labelledby="recent-label">
+    <h2 class="label" id="recent-label">Recent</h2>
+    <ul class="chats">
+      <li>
+        <a class="chat" href="#trip" aria-current="page">
+          <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 12a8 8 0 0 1-11.6 7.1L4 20l1-4.2A8 8 0 1 1 20 12z"/></svg>
+          <span data-user-content>Planning a Honolulu trip</span>
+        </a>
+      </li>
+      <li>
+        <a class="chat" href="#cover">
+          <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 12a8 8 0 0 1-11.6 7.1L4 20l1-4.2A8 8 0 1 1 20 12z"/></svg>
+          <span data-user-content>Cover letter feedback</span>
+        </a>
+      </li>
+      <li>
+        <a class="chat" href="#flex">
+          <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 12a8 8 0 0 1-11.6 7.1L4 20l1-4.2A8 8 0 1 1 20 12z"/></svg>
+          <span data-user-content>CSS grid vs flexbox</span>
+        </a>
+      </li>
+      <li>
+        <a class="chat" href="#sourdough">
+          <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 12a8 8 0 0 1-11.6 7.1L4 20l1-4.2A8 8 0 1 1 20 12z"/></svg>
+          <span data-user-content>Sourdough starter troubleshooting</span>
+        </a>
+      </li>
+      <li>
+        <a class="chat" href="#budget">
+          <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 12a8 8 0 0 1-11.6 7.1L4 20l1-4.2A8 8 0 1 1 20 12z"/></svg>
+          <span data-user-content>Monthly budget spreadsheet</span>
+        </a>
+      </li>
+    </ul>
+  </section>
+</nav>
+</body>
+</html>

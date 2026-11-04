@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Harbor – Connect your tools</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+  * { box-sizing: border-box; }
+  body { margin: 0; background: #fff; }
+  #component {
+    width: 1280px;
+    min-height: 800px;
+    margin: 0 auto;
+    padding: 96px 0 80px;
+    background: #fff;
+    color: #0B1416;
+    font-family: "Archivo", Arial, Helvetica, sans-serif;
+    font-size: 16px;
+    line-height: 1.5;
+  }
+  #component .wrap { width: 640px; margin: 0 auto; }
+  #component .progress {
+    margin: 0 0 16px;
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #0263AC;
+  }
+  #component .bar { display: flex; gap: 8px; margin: 0 0 40px; padding: 0; list-style: none; }
+  #component .bar li { flex: 1; height: 4px; background: #D9DFE1; }
+  #component .bar li.done { background: #0263AC; }
+  #component h1 {
+    margin: 0 0 16px;
+    font-family: "Unbounded", "Archivo", Arial, sans-serif;
+    font-weight: 300;
+    font-size: 36px;
+    line-height: 1.2;
+    text-transform: uppercase;
+  }
+  #component .lead { margin: 0 0 40px; font-size: 18px; }
+  #component ul.options { margin: 0; padding: 0; list-style: none; border-top: 1px solid #0B1416; }
+  #component .option {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+    padding: 24px 0;
+    border-bottom: 1px solid #0B1416;
+  }
+  #component .name { margin: 0; font-size: 18px; font-weight: 700; }
+  #component .desc { margin: 4px 0 0; font-size: 16px; }
+  #component button {
+    font: inherit;
+    font-weight: 600;
+    min-height: 44px;
+    padding: 0 24px;
+    border-radius: 4px;
+    cursor: pointer;
+    border: 2px solid #0263AC;
+    background: #fff;
+    color: #0263AC;
+  }
+  #component .option button { min-width: 112px; }
+  #component .actions {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 48px;
+  }
+  #component .actions .primary { background: #0263AC; color: #fff; }
+  #component .actions .skip { border-color: transparent; color: #0B1416; text-decoration: underline; padding-left: 0; }
+  #component button:hover { background: #E8F1F8; }
+  #component .actions .primary:hover { background: #014F8A; border-color: #014F8A; }
+  #component button:focus-visible { outline: 3px solid #0B1416; outline-offset: 3px; }
+</style>
+</head>
+<body>
+<div id="component">
+  <main class="wrap">
+    <p class="progress">Step 2 of 4</p>
+    <ol class="bar" aria-hidden="true">
+      <li class="done"></li><li class="done"></li><li></li><li></li>
+    </ol>
+    <h1>Connect your tools</h1>
+    <p class="lead">Harbor works best with the tools your team already uses.</p>
+
+    <ul class="options">
+      <li class="option">
+        <div>
+          <h2 class="name">Slack</h2>
+          <p class="desc">Get request updates in your channels</p>
+        </div>
+        <button type="button" aria-label="Connect Slack">Connect</button>
+      </li>
+      <li class="option">
+        <div>
+          <h2 class="name">Google Calendar</h2>
+          <p class="desc">See due dates on your calendar</p>
+        </div>
+        <button type="button" aria-label="Connect Google Calendar">Connect</button>
+      </li>
+      <li class="option">
+        <div>
+          <h2 class="name">Jira</h2>
+          <p class="desc">Link requests to engineering tickets</p>
+        </div>
+        <button type="button" aria-label="Connect Jira">Connect</button>
+      </li>
+    </ul>
+
+    <div class="actions">
+      <button type="button" class="skip">Skip for Now</button>
+      <button type="button" class="primary">Continue</button>
+    </div>
+  </main>
+</div>
+</body>
+</html>

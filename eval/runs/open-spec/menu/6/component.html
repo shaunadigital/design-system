@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Chat Options Menu</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; }
+
+  html, body { margin: 0; height: 100%; }
+
+  body {
+    display: grid;
+    place-items: center;
+    background: #FFFFFF;
+    color: #0B1416;
+    font-family: "Archivo", system-ui, -apple-system, "Segoe UI", Arial, sans-serif;
+    font-size: 16px;
+    line-height: 1.5;
+  }
+
+  #component {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 240px;
+  }
+
+  .trigger {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    min-height: 44px;
+    padding: 8px 24px;
+    border: 0;
+    border-radius: 999px;
+    background: #0B1416;
+    color: #FFFFFF;
+    font: 500 16px/1.5 "Archivo", system-ui, -apple-system, "Segoe UI", Arial, sans-serif;
+    letter-spacing: 0;
+    cursor: pointer;
+    transition: background-color 180ms cubic-bezier(0.2, 0.7, 0.2, 1);
+  }
+
+  .trigger svg {
+    width: 24px;
+    height: 24px;
+    margin-right: -8px;
+    transform: rotate(180deg);
+    flex: none;
+  }
+
+  .trigger:focus-visible,
+  .item:focus-visible {
+    outline: 2px solid #0263AC;
+    outline-offset: 2px;
+  }
+
+  .menu {
+    width: 100%;
+    margin: 8px 0 0;
+    padding: 8px;
+    list-style: none;
+    background: #FFFFFF;
+    border: 1px solid #9CC3EA;
+    border-radius: 16px;
+    box-shadow: 0 8px 24px rgba(11, 20, 22, 0.12);
+  }
+
+  .menu li + li { margin-top: 4px; }
+
+  .item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    width: 100%;
+    min-height: 44px;
+    padding: 8px 12px;
+    border: 0;
+    border-radius: 8px;
+    background: transparent;
+    color: #0B1416;
+    font: 400 16px/1.5 "Archivo", system-ui, -apple-system, "Segoe UI", Arial, sans-serif;
+    letter-spacing: 0;
+    text-align: left;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background-color 120ms cubic-bezier(0.2, 0.7, 0.2, 1);
+  }
+
+  .item:hover { background: #E6EFF7; }
+
+  .item svg {
+    width: 24px;
+    height: 24px;
+    flex: none;
+    color: #0263AC;
+  }
+
+  .trigger svg, .item svg {
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 1.5;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .trigger, .item { transition: none; }
+  }
+</style>
+</head>
+<body>
+  <div id="component">
+    <button class="trigger" type="button" aria-haspopup="menu" aria-expanded="true" aria-controls="chat-menu">
+      Chat Options
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 14l5-5 5 5"/></svg>
+    </button>
+    <ul class="menu" id="chat-menu" role="menu" aria-label="Chat Options">
+      <li role="none">
+        <button class="item" type="button" role="menuitem">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20h4L19 9a2.8 2.8 0 0 0-4-4L4 16v4z"/><path d="M13.5 6.5l4 4"/></svg>
+          Rename
+        </button>
+      </li>
+      <li role="none">
+        <button class="item" type="button" role="menuitem">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 15V4"/><path d="M8 8l4-4 4 4"/><path d="M5 12v7h14v-7"/></svg>
+          Share
+        </button>
+      </li>
+      <li role="none">
+        <button class="item" type="button" role="menuitem">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5h16v4H4z"/><path d="M5 9v10h14V9"/><path d="M10 13h4"/></svg>
+          Archive
+        </button>
+      </li>
+      <li role="none">
+        <button class="item" type="button" role="menuitem">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16"/><path d="M9 7V4h6v3"/><path d="M6 7l1 13h10l1-13"/><path d="M10 11v5M14 11v5"/></svg>
+          Delete
+        </button>
+      </li>
+    </ul>
+  </div>
+</body>
+</html>

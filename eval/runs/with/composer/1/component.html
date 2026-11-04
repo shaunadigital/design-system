@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Message Composer</title>
+<style>
+/* Tokens from tokens.css (generated from tokens/tokens.json), only the roles used here */
+:root {
+  --paper: #FFFFFF;
+  --card: #FFFFFF;
+  --ink: #0B1416;
+  --muted: #55656A;
+  --accent: #0263AC;
+  --accent-text: #0263AC;
+  --accent-tint: #E6EFF7;
+  --accent-line: #9CC3EA;
+  --plate-hover: #E3ECF5;
+  --on-ink: #FFFFFF;
+  --shadow-rgb: 11, 20, 22;
+  --font-body: 'Archivo', system-ui, -apple-system, sans-serif;
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 24px;
+  --space-8: 64px;
+  --radius-card: 16px;
+  --radius-pill: 999px;
+  --text-body-l: 1.125rem;
+  --text-body: 1rem;
+  --ease: cubic-bezier(0.2, 0.7, 0.2, 1);
+  --dur-fast: 120ms;
+  --dur-base: 180ms;
+  color-scheme: light;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --paper: #0E1618;
+    --card: #172327;
+    --ink: #E9EFEF;
+    --muted: #9DAEB1;
+    --accent-text: #9CC3EA;
+    --accent: #6FAAE6;
+    --accent-tint: #13283A;
+    --accent-line: #2D5B85;
+    --plate-hover: #1A2A36;
+    --on-ink: #0E1618;
+    --shadow-rgb: 0, 0, 0;
+    color-scheme: dark;
+  }
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  padding: var(--space-5);
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: var(--text-body);
+}
+
+#component {
+  width: 100%;
+  max-width: 720px;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  padding: var(--space-3) var(--space-3) var(--space-3) var(--space-4);
+  background: var(--card);
+  border: 1px solid var(--accent-line);
+  border-radius: var(--radius-card);
+  box-shadow: 0 8px 24px rgba(var(--shadow-rgb), 0.08);
+  transition: border-color var(--dur-base) var(--ease), box-shadow var(--dur-base) var(--ease);
+}
+#component:focus-within {
+  border-color: var(--accent);
+  box-shadow: 0 8px 24px rgba(var(--shadow-rgb), 0.12);
+}
+
+.field {
+  display: block;
+  width: 100%;
+  min-height: var(--space-8);
+  max-height: 240px;
+  margin: 0;
+  padding: var(--space-2) var(--space-2) var(--space-2) 0;
+  border: 0;
+  outline: 0;
+  resize: none;
+  background: transparent;
+  color: var(--ink);
+  font: inherit;
+  font-size: var(--text-body-l);
+  line-height: 1.5;
+}
+.field::placeholder { color: var(--muted); opacity: 1; }
+
+.actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  border: 0;
+  border-radius: var(--radius-pill);
+  background: transparent;
+  color: var(--ink);
+  cursor: pointer;
+  transition: background var(--dur-fast) var(--ease), transform var(--dur-fast) var(--ease);
+}
+.btn svg { width: 24px; height: 24px; display: block; }
+.btn:active { transform: scale(0.96); }
+.btn:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+.btn--plain:hover { background: var(--accent-tint); color: var(--accent-text); }
+
+.btn--fill { background: var(--ink); color: var(--on-ink); }
+.btn--fill:hover { background: var(--accent); }
+
+@media (prefers-reduced-motion: reduce) {
+  * { transition: none !important; }
+}
+</style>
+</head>
+<body>
+<div id="component">
+  <textarea class="field" rows="1" placeholder="Message Claude" aria-label="Message Claude"></textarea>
+  <div class="actions">
+    <button class="btn btn--plain" type="button" aria-label="Attach File">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M20.5 11.5l-8.6 8.6a5.5 5.5 0 0 1-7.8-7.8l8.9-8.9a3.7 3.7 0 0 1 5.2 5.2l-8.9 8.9a1.8 1.8 0 0 1-2.6-2.6l8.2-8.2"/>
+      </svg>
+    </button>
+    <button class="btn btn--fill" type="submit" aria-label="Send Message">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M12 19V5"/>
+        <path d="M5 12l7-7 7 7"/>
+      </svg>
+    </button>
+  </div>
+</div>
+</body>
+</html>

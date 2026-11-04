@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Chat Options</title>
+<style>
+  :root {
+    --ink: #0B1416;
+    --accent: #0263AC;
+    --bg: #FFFFFF;
+    --line: rgba(11, 20, 22, 0.16);
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; height: 100%; }
+  body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: "Archivo", Arial, Helvetica, sans-serif;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  #component {
+    position: relative;
+    width: 240px;
+    /* room for the open menu below the button, so the pair sits centered */
+    height: 230px;
+  }
+  .trigger {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    width: 100%;
+    height: 48px;
+    padding: 0 16px;
+    background: var(--accent);
+    color: #fff;
+    border: 2px solid var(--accent);
+    border-radius: 8px;
+    font: 500 16px/1 "Archivo", Arial, Helvetica, sans-serif;
+    cursor: pointer;
+  }
+  .trigger:focus-visible,
+  .item:focus-visible {
+    outline: 3px solid var(--ink);
+    outline-offset: 2px;
+  }
+  .chevron {
+    width: 10px;
+    height: 10px;
+    border-right: 2px solid currentColor;
+    border-bottom: 2px solid currentColor;
+    transform: rotate(-135deg) translate(-2px, -2px);
+  }
+  .menu {
+    position: absolute;
+    top: 56px;
+    left: 0;
+    width: 100%;
+    margin: 0;
+    padding: 6px;
+    list-style: none;
+    background: var(--bg);
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    box-shadow: 0 8px 24px rgba(11, 20, 22, 0.12);
+  }
+  .item {
+    display: block;
+    width: 100%;
+    padding: 12px 12px;
+    background: none;
+    border: 0;
+    border-radius: 4px;
+    color: var(--ink);
+    font: 400 16px/1.2 "Archivo", Arial, Helvetica, sans-serif;
+    text-align: left;
+    text-decoration: none;
+    cursor: pointer;
+  }
+  .item:hover { background: rgba(2, 99, 172, 0.1); color: var(--accent); }
+  .item.current { background: rgba(2, 99, 172, 0.1); color: var(--accent); }
+  .divider {
+    height: 1px;
+    margin: 6px 6px;
+    background: var(--line);
+  }
+</style>
+</head>
+<body>
+  <div id="component">
+    <button class="trigger" type="button" aria-haspopup="menu" aria-expanded="true" aria-controls="chat-menu">
+      <span>Chat Options</span>
+      <span class="chevron" aria-hidden="true"></span>
+    </button>
+    <ul class="menu" id="chat-menu" role="menu" aria-label="Chat Options">
+      <li role="none"><a class="item" role="menuitem" href="#rename">Rename</a></li>
+      <li role="none"><a class="item" role="menuitem" href="#share">Share</a></li>
+      <li role="none"><a class="item" role="menuitem" href="#archive">Archive</a></li>
+      <li role="separator" class="divider"></li>
+      <li role="none"><a class="item" role="menuitem" href="#delete">Delete</a></li>
+    </ul>
+  </div>
+</body>
+</html>

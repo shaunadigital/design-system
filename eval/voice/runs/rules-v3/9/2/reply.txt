@@ -1,0 +1,1 @@
+Three things make it accessible: big controls, keyboard shortcuts and screen reader announcements. Every control is 44 pixels. Enter sends, Shift plus Enter adds a new line, and Escape stops. Want the details?

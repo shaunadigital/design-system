@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=1280">
+<title>Requests · Harbor</title>
+<style>
+/* tokens.css (inlined) */
+:root {
+  --paper: #FFFFFF;
+  --paper-rgb: 255, 255, 255;
+  --sand: #EEF4FA;
+  --sand-rgb: 238, 244, 250;
+  --card: #FFFFFF;
+  --card-rgb: 255, 255, 255;
+  --ink: #0B1416;
+  --ink-rgb: 11, 20, 22;
+  --muted: #55656A;
+  --muted-rgb: 85, 101, 106;
+  --accent-text: #0263AC;
+  --accent-text-rgb: 2, 99, 172;
+  --accent: #0263AC;
+  --accent-rgb: 2, 99, 172;
+  --koa: #A65F35;
+  --koa-rgb: 166, 95, 53;
+  --white: #FFFFFF;
+  --white-rgb: 255, 255, 255;
+  --accent-tint: #E6EFF7;
+  --accent-tint-rgb: 230, 239, 247;
+  --accent-line: #9CC3EA;
+  --accent-line-rgb: 156, 195, 234;
+  --koa-tint: #F5E8DF;
+  --koa-tint-rgb: 245, 232, 223;
+  --plate-hover: #E3ECF5;
+  --plate-hover-rgb: 227, 236, 245;
+  --chrome-bar: #F6F8F8;
+  --chrome-bar-rgb: 246, 248, 248;
+  --chrome-dot: #D3D9DB;
+  --chrome-dot-rgb: 211, 217, 219;
+  --term-text: #E6EEF0;
+  --term-text-rgb: 230, 238, 240;
+  --term-dim: #8FA3A8;
+  --term-dim-rgb: 143, 163, 168;
+  --term-ok: #7FD3DC;
+  --term-ok-rgb: 127, 211, 220;
+  --on-ink: #FFFFFF;
+  --on-ink-rgb: 255, 255, 255;
+  --deep: #0B1416;
+  --deep-rgb: 11, 20, 22;
+  --shadow: #0B1416;
+  --shadow-rgb: 11, 20, 22;
+  --live: #E26D7E;
+  --live-rgb: 226, 109, 126;
+  --sky: #83BDDF;
+  --sky-rgb: 131, 189, 223;
+  --lagoon: #24C0CB;
+  --lagoon-rgb: 36, 192, 203;
+  --art-sand: #EDE6DD;
+  --art-sand-rgb: 237, 230, 221;
+  --palm: #5E6B3A;
+  --palm-rgb: 94, 107, 58;
+  --haze: #EBF6FA;
+  --haze-rgb: 235, 246, 250;
+  --dusk-high: #FFFFFF;
+  --dusk-high-rgb: 255, 255, 255;
+  --dusk-low: #FFFFFF;
+  --dusk-low-rgb: 255, 255, 255;
+  --trade-wind: #5193CF;
+  --trade-wind-rgb: 81, 147, 207;
+  --frond: #25461D;
+  --frond-rgb: 37, 70, 29;
+  --pink-palace: #F3B2B5;
+  --pink-palace-rgb: 243, 178, 181;
+  --rescue: #7A2FB0;
+  --rescue-rgb: 122, 47, 176;
+  --rescue-text: #6E2A9E;
+  --rescue-text-rgb: 110, 42, 158;
+  --rescue-tint: #F1E8FA;
+  --rescue-tint-rgb: 241, 232, 250;
+  --rescue-ink: #1E1530;
+  --rescue-ink-rgb: 30, 21, 48;
+  --font-display: 'Unbounded', system-ui, sans-serif;
+  --font-body: 'Archivo', system-ui, -apple-system, sans-serif;
+  --font-label: 'Archivo', system-ui, sans-serif;
+  --font-hero: 'Unbounded', system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, monospace;
+  --font-script: 'Vujahday Script', cursive;
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 24px;
+  --space-6: 32px;
+  --space-7: 48px;
+  --space-8: 64px;
+  --space-9: 96px;
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-card: 16px;
+  --radius-pill: 999px;
+  --tracking-tighter: -0.03em;
+  --tracking-tight: -0.02em;
+  --tracking-snug: -0.01em;
+  --tracking-loose: 0.02em;
+  --tracking-wordmark: 0.04em;
+  --tracking-wide: 0.06em;
+  --tracking-wider: 0.08em;
+  --tracking-caps: 0.1em;
+  --tracking-caps-wide: 0.12em;
+  --tracking-label: 0.14em;
+  --wordmark-weight: 800;
+  --wordmark-stretch: 112%;
+  --wordmark-wdth: 112;
+  --text-script: clamp(3.75rem, 6.1vw, 5.5rem);
+  --text-hero: clamp(1.5rem, 3.34vw, 3rem);
+  --text-display-xl: clamp(2rem, 4vw, 3.5rem);
+  --text-heading: clamp(1.75rem, 3.2vw, 2.875rem);
+  --text-statement: clamp(1.25rem, 2.22vw, 2rem);
+  --text-step: clamp(1.375rem, 1.9vw, 1.75rem);
+  --text-title: 1.75rem;
+  --text-lead: 1.375rem;
+  --text-body-l: 1.125rem;
+  --text-body: 1rem;
+  --text-small: 0.875rem;
+  --text-label: 0.75rem;
+  --ease: cubic-bezier(0.2, 0.7, 0.2, 1);
+  --dur-fast: 120ms;
+  --dur-base: 180ms;
+  --dur-slow: 320ms;
+}
+:root { color-scheme: light; }
+:root[data-theme="dusk"] {
+  color-scheme: dark;
+  --paper: #0E1618;
+  --paper-rgb: 14, 22, 24;
+  --sand: #131E21;
+  --sand-rgb: 19, 30, 33;
+  --card: #172327;
+  --card-rgb: 23, 35, 39;
+  --ink: #E9EFEF;
+  --ink-rgb: 233, 239, 239;
+  --muted: #9DAEB1;
+  --muted-rgb: 157, 174, 177;
+  --accent-text: #9CC3EA;
+  --accent-text-rgb: 156, 195, 234;
+  --accent: #6FAAE6;
+  --accent-rgb: 111, 170, 230;
+  --koa: #E3A47E;
+  --koa-rgb: 227, 164, 126;
+  --accent-tint: #13283A;
+  --accent-tint-rgb: 19, 40, 58;
+  --accent-line: #2D5B85;
+  --accent-line-rgb: 45, 91, 133;
+  --koa-tint: #3B2A21;
+  --koa-tint-rgb: 59, 42, 33;
+  --plate-hover: #1A2A36;
+  --plate-hover-rgb: 26, 42, 54;
+  --chrome-bar: #1D2A2E;
+  --chrome-bar-rgb: 29, 42, 46;
+  --chrome-dot: #3B4B50;
+  --chrome-dot-rgb: 59, 75, 80;
+  --on-ink: #0E1618;
+  --on-ink-rgb: 14, 22, 24;
+  --deep: #060C0E;
+  --deep-rgb: 6, 12, 14;
+  --shadow: #000000;
+  --shadow-rgb: 0, 0, 0;
+  --live: #EE8D9A;
+  --live-rgb: 238, 141, 154;
+  --haze: #0E1820;
+  --haze-rgb: 14, 24, 32;
+  --dusk-high: #2C3A6E;
+  --dusk-high-rgb: 44, 58, 110;
+  --dusk-low: #8C6A86;
+  --dusk-low-rgb: 140, 106, 134;
+  --rescue: #B98AE0;
+  --rescue-rgb: 185, 138, 224;
+  --rescue-text: #CDB0EC;
+  --rescue-text-rgb: 205, 176, 236;
+  --rescue-tint: #2A1C38;
+  --rescue-tint-rgb: 42, 28, 56;
+}
+
+/* Screen */
+*, *::before, *::after { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--paper);
+}
+
+#component {
+  width: 1280px;
+  min-height: 800px;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: var(--text-body);
+  line-height: 1.5;
+}
+
+.page {
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: var(--space-7) var(--space-6);
+  box-sizing: content-box;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6);
+}
+
+.page-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-5);
+}
+
+.page-title {
+  margin: 0;
+  font-family: var(--font-display);
+  font-weight: 300;
+  font-size: var(--text-heading);
+  line-height: 1.1;
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-tight);
+  color: var(--ink);
+}
+
+/* Buttons: 44px pills */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 44px;
+  padding: 0 20px;
+  border-radius: var(--radius-pill);
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: var(--text-small);
+  line-height: 1;
+  white-space: nowrap;
+  cursor: pointer;
+  border: 1.5px solid transparent;
+  background: none;
+  color: var(--ink);
+}
+.btn:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.btn--primary { background: var(--ink); color: var(--on-ink); border-color: var(--ink); }
+.btn--secondary { border-color: var(--ink); }
+.btn--quiet { border-color: transparent; }
+
+/* Toolbar */
+.toolbar {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: var(--space-5);
+}
+
+.field { display: flex; flex-direction: column; gap: var(--space-2); }
+
+.field label {
+  font-family: var(--font-label);
+  font-weight: 500;
+  font-size: var(--text-label);
+  line-height: 1.2;
+  letter-spacing: var(--tracking-label);
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.field input {
+  width: 360px;
+  height: 44px;
+  padding: 0 12px;
+  font: inherit;
+  font-size: var(--text-body);
+  color: var(--ink);
+  background: var(--white);
+  border: 1px solid rgba(var(--ink-rgb), 0.2);
+  border-radius: var(--radius-md);
+  outline: none;
+}
+.field input::placeholder { color: var(--muted); }
+.field input:focus { outline: 2px solid var(--accent); outline-offset: 0; }
+
+.filters { display: flex; align-items: center; gap: var(--space-2); }
+
+/* Table card */
+.table-card {
+  background: var(--card);
+  border: 1px solid rgba(var(--ink-rgb), 0.1);
+  border-radius: var(--radius-card);
+  padding: var(--space-5);
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: fixed;
+  font-size: var(--text-small);
+}
+
+th, td {
+  height: 52px;
+  padding: 0 var(--space-3);
+  text-align: left;
+  vertical-align: middle;
+  border-bottom: 1px solid rgba(var(--ink-rgb), 0.1);
+}
+tbody tr:last-child td { border-bottom: 0; }
+
+th {
+  font-family: var(--font-label);
+  font-weight: 500;
+  font-size: var(--text-label);
+  letter-spacing: var(--tracking-label);
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+td { color: var(--ink); }
+td.request { font-weight: 500; }
+td.updated { color: var(--muted); }
+
+col.c-request { width: 34%; }
+col.c-requester { width: 20%; }
+col.c-status { width: 16%; }
+col.c-priority { width: 16%; }
+col.c-updated { width: 14%; }
+
+.pill {
+  display: inline-block;
+  padding: 2px 10px;
+  border-radius: var(--radius-pill);
+  background: var(--accent-tint);
+  color: var(--accent-text);
+  font-size: var(--text-label);
+  font-weight: 600;
+  line-height: 1.5;
+  white-space: nowrap;
+}
+</style>
+</head>
+<body>
+<div id="component">
+  <main class="page">
+    <div class="page-top">
+      <h1 class="page-title">Requests</h1>
+      <button type="button" class="btn btn--primary">New Request</button>
+    </div>
+
+    <div class="toolbar">
+      <div class="field">
+        <label for="search">Search requests</label>
+        <input id="search" type="search" name="search" autocomplete="off">
+      </div>
+      <div class="filters" role="group" aria-label="Filter requests">
+        <button type="button" class="btn btn--secondary" aria-pressed="true">All</button>
+        <button type="button" class="btn btn--quiet" aria-pressed="false">Open</button>
+        <button type="button" class="btn btn--quiet" aria-pressed="false">Closed</button>
+      </div>
+    </div>
+
+    <div class="table-card">
+      <table>
+        <colgroup>
+          <col class="c-request">
+          <col class="c-requester">
+          <col class="c-status">
+          <col class="c-priority">
+          <col class="c-updated">
+        </colgroup>
+        <thead>
+          <tr>
+            <th scope="col">Request</th>
+            <th scope="col">Requester</th>
+            <th scope="col">Status</th>
+            <th scope="col">Priority</th>
+            <th scope="col">Updated</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="request">Laptop refresh for design</td>
+            <td>Maya Chen</td>
+            <td><span class="pill">Open</span></td>
+            <td>High</td>
+            <td class="updated">2h ago</td>
+          </tr>
+          <tr>
+            <td class="request">Q4 travel budget</td>
+            <td>Leo Park</td>
+            <td><span class="pill">Approved</span></td>
+            <td>Medium</td>
+            <td class="updated">5h ago</td>
+          </tr>
+          <tr>
+            <td class="request">VPN access for contractors</td>
+            <td>Ana Ruiz</td>
+            <td><span class="pill">Closed</span></td>
+            <td>High</td>
+            <td class="updated">1d ago</td>
+          </tr>
+          <tr>
+            <td class="request">New hire onboarding</td>
+            <td>Sam Ito</td>
+            <td><span class="pill">Open</span></td>
+            <td>Medium</td>
+            <td class="updated">1d ago</td>
+          </tr>
+          <tr>
+            <td class="request">Office move</td>
+            <td>Kai Lee</td>
+            <td><span class="pill">In review</span></td>
+            <td>Low</td>
+            <td class="updated">2d ago</td>
+          </tr>
+          <tr>
+            <td class="request">Security training</td>
+            <td>Ava Brooks</td>
+            <td><span class="pill">Open</span></td>
+            <td>Low</td>
+            <td class="updated">3d ago</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </main>
+</div>
+</body>
+</html>

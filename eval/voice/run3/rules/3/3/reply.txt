@@ -1,0 +1,1 @@
+You can see them on the System page, which is a live specimen of the whole design system. The tokens file itself sits in the repo. Want the details?

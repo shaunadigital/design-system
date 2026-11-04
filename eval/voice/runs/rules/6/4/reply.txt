@@ -1,0 +1,1 @@
+Shauna works mostly in Claude Code and Figma. She builds with Astro, React and TypeScript, uses Supabase for data, and deploys on Vercel and Netlify. Want to hear how the design system ties them together?

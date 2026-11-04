@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Requests · Harbor</title>
+<style>
+/* Tokens from tokens.css (generated from tokens/tokens.json) */
+:root {
+  --paper: #FFFFFF;
+  --card: #FFFFFF;
+  --ink: #0B1416;
+  --ink-rgb: 11, 20, 22;
+  --muted: #55656A;
+  --accent-text: #0263AC;
+  --accent: #0263AC;
+  --on-ink: #FFFFFF;
+  --font-display: 'Unbounded', system-ui, sans-serif;
+  --font-body: 'Archivo', system-ui, -apple-system, sans-serif;
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 24px;
+  --space-6: 32px;
+  --space-7: 48px;
+  --space-8: 64px;
+  --space-9: 96px;
+  --radius-pill: 999px;
+  --tracking-tight: -0.02em;
+  --text-heading: clamp(1.75rem, 3.2vw, 2.875rem);
+  --text-lead: 1.375rem;
+  --text-body: 1rem;
+  --text-small: 0.875rem;
+  --ease: cubic-bezier(0.2, 0.7, 0.2, 1);
+  --dur-fast: 120ms;
+  --dur-base: 180ms;
+}
+:root { color-scheme: light; }
+:root[data-theme="dusk"] {
+  color-scheme: dark;
+  --paper: #0E1618;
+  --card: #172327;
+  --ink: #E9EFEF;
+  --ink-rgb: 233, 239, 239;
+  --muted: #9DAEB1;
+  --accent-text: #9CC3EA;
+  --accent: #6FAAE6;
+  --on-ink: #0E1618;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: var(--text-body);
+  line-height: 1.5;
+}
+
+#component {
+  width: 1280px;
+  min-height: 800px;
+  background: var(--paper);
+  color: var(--ink);
+}
+
+.page {
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: var(--space-7) var(--space-6);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6);
+}
+
+.page-title {
+  margin: 0;
+  font-family: var(--font-display);
+  font-weight: 300;
+  font-size: var(--text-heading);
+  line-height: 1.1;
+  letter-spacing: var(--tracking-tight);
+  text-transform: uppercase;
+  color: var(--ink);
+}
+
+.empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: var(--space-9) var(--space-6);
+}
+
+.empty-title {
+  margin: 0;
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: var(--text-lead);
+  line-height: 1.3;
+  color: var(--ink);
+}
+
+.empty-text {
+  margin: var(--space-3) 0 0;
+  max-width: 36ch;
+  font-size: var(--text-body);
+  color: var(--muted);
+}
+
+.empty-actions {
+  margin-top: var(--space-6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: var(--space-4);
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 44px;
+  padding: 0 20px;
+  border: 0;
+  border-radius: var(--radius-pill);
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: var(--text-small);
+  line-height: 1;
+  cursor: pointer;
+  transition: opacity var(--dur-base) var(--ease), transform var(--dur-fast) var(--ease);
+}
+.btn--primary {
+  background: var(--ink);
+  color: var(--on-ink);
+}
+.btn--primary:hover { opacity: 0.88; }
+.btn--primary:active { transform: translateY(1px); }
+
+.text-link {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  padding: 0 var(--space-2);
+  font-size: var(--text-small);
+  font-weight: 500;
+  color: var(--accent-text);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  border-radius: var(--space-2);
+  transition: opacity var(--dur-base) var(--ease);
+}
+.text-link:hover { opacity: 0.8; }
+
+.btn:focus-visible,
+.text-link:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+</style>
+</head>
+<body>
+<div id="component">
+  <main class="page">
+    <h1 class="page-title">Requests</h1>
+
+    <section class="empty" aria-labelledby="empty-title">
+      <h2 class="empty-title" id="empty-title">No requests yet</h2>
+      <p class="empty-text">When your team asks for something, it shows up here.</p>
+      <div class="empty-actions">
+        <button type="button" class="btn btn--primary">Create a Request</button>
+        <a class="text-link" href="#import">Import from a spreadsheet</a>
+      </div>
+    </section>
+  </main>
+</div>
+</body>
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Harbor – Notifications</title>
+<style>
+  * { box-sizing: border-box; }
+  body { margin: 0; background: #F4EFE6; color: #1E2B24; font-family: "Instrument Sans", "Helvetica Neue", Arial, sans-serif; }
+  #component { width: 1280px; min-height: 720px; margin: 0 auto; padding: 32px 40px; background: #F4EFE6; }
+  .header { display: flex; align-items: center; justify-content: space-between; padding-bottom: 16px; border-bottom: 2px solid #1E2B24; }
+  h1 { margin: 0; font-family: Fraunces, Georgia, "Times New Roman", serif; font-weight: 600; font-size: 28px; letter-spacing: 0; }
+  .mark-all { font: 600 14px "Instrument Sans", "Helvetica Neue", Arial, sans-serif; color: #C2410C; background: #FBF8F2; border: 1.5px solid #C2410C; border-radius: 4px; padding: 8px 16px; cursor: pointer; }
+  .mark-all:focus-visible { outline: 3px solid #1E2B24; outline-offset: 2px; }
+  ul { list-style: none; margin: 0; padding: 0; }
+  li { display: flex; align-items: center; gap: 14px; padding: 10px 12px 10px 9px; border-bottom: 1px solid #D9D1C2; font-size: 15px; line-height: 1.3; border-left: 3px solid transparent; border-radius: 4px; }
+  li.unread { border-left-color: #C2410C; background: #FBF8F2; font-weight: 600; }
+  .dot { flex: none; width: 8px; height: 8px; border-radius: 50%; background: transparent; }
+  li.unread .dot { background: #C2410C; }
+  .text { flex: 1; }
+  .time { flex: none; font-size: 13px; font-weight: 400; color: #4B5A51; font-variant-numeric: tabular-nums; }
+  .sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+</style>
+</head>
+<body>
+<div id="component">
+  <div class="header">
+    <h1>Notifications</h1>
+    <button class="mark-all" type="button">Mark All as Read</button>
+  </div>
+  <ul>
+    <li class="unread"><span class="dot" aria-hidden="true"></span><span class="text"><span class="sr">Unread: </span>Leo Park approved Q4 travel budget</span><span class="time">2h ago</span></li>
+    <li class="unread"><span class="dot" aria-hidden="true"></span><span class="text"><span class="sr">Unread: </span>Maya Chen assigned you Laptop refresh for design</span><span class="time">3h ago</span></li>
+    <li class="unread"><span class="dot" aria-hidden="true"></span><span class="text"><span class="sr">Unread: </span>Your weekly summary is ready</span><span class="time">1d ago</span></li>
+    <li><span class="dot" aria-hidden="true"></span><span class="text">Ana Ruiz commented on VPN access for contractors</span><span class="time">1d ago</span></li>
+    <li><span class="dot" aria-hidden="true"></span><span class="text">Sam Ito joined Harbor Ops</span><span class="time">2d ago</span></li>
+    <li><span class="dot" aria-hidden="true"></span><span class="text">Billing details were updated</span><span class="time">3d ago</span></li>
+  </ul>
+</div>
+</body>
+</html>

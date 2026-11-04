@@ -1,0 +1,1 @@
+Both groups did well, but Shauna's system was more consistent. Across 240 page builds, her system passed all 120 pages with 7 button styles. The standard setup passed 118 but produced 30 button styles. Want the details?

@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Team</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: #fff;
+    color: #0B1416;
+    font-family: Archivo, "Helvetica Neue", Arial, sans-serif;
+    font-size: 16px;
+    line-height: 1.5;
+  }
+  #component {
+    width: 1280px;
+    margin: 0 auto;
+    padding: 64px 80px;
+    background: #fff;
+  }
+  .header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-bottom: 24px;
+    border-bottom: 2px solid #0B1416;
+  }
+  h1 {
+    margin: 0;
+    font-family: Unbounded, "Arial Rounded MT Bold", Archivo, Arial, sans-serif;
+    font-weight: 300;
+    font-size: 40px;
+    line-height: 1.2;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+  }
+  .invite {
+    font: inherit;
+    font-weight: 600;
+    color: #fff;
+    background: #0263AC;
+    border: 2px solid #0263AC;
+    border-radius: 4px;
+    padding: 12px 24px;
+    cursor: pointer;
+  }
+  .invite:focus-visible, select:focus-visible {
+    outline: 3px solid #0B1416;
+    outline-offset: 2px;
+  }
+  ul.members {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  .member {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+    padding: 20px 0;
+    border-bottom: 1px solid #0B1416;
+  }
+  .who { display: flex; flex-direction: column; }
+  .name { font-weight: 600; font-size: 18px; }
+  .email { font-size: 16px; }
+  select {
+    font: inherit;
+    color: #0B1416;
+    background: #fff;
+    border: 1px solid #0B1416;
+    border-radius: 4px;
+    padding: 8px 12px;
+    min-width: 140px;
+  }
+</style>
+</head>
+<body>
+<div id="component">
+  <div class="header">
+    <h1>Team</h1>
+    <button class="invite" type="button">Invite Member</button>
+  </div>
+  <ul class="members">
+    <li class="member">
+      <div class="who"><span class="name">Maya Chen</span><span class="email">maya@harbor.app</span></div>
+      <select aria-label="Role for Maya Chen">
+        <option selected>Admin</option><option>Editor</option><option>Viewer</option>
+      </select>
+    </li>
+    <li class="member">
+      <div class="who"><span class="name">Leo Park</span><span class="email">leo@harbor.app</span></div>
+      <select aria-label="Role for Leo Park">
+        <option>Admin</option><option selected>Editor</option><option>Viewer</option>
+      </select>
+    </li>
+    <li class="member">
+      <div class="who"><span class="name">Ana Ruiz</span><span class="email">ana@harbor.app</span></div>
+      <select aria-label="Role for Ana Ruiz">
+        <option>Admin</option><option selected>Editor</option><option>Viewer</option>
+      </select>
+    </li>
+    <li class="member">
+      <div class="who"><span class="name">Sam Ito</span><span class="email">sam@harbor.app</span></div>
+      <select aria-label="Role for Sam Ito">
+        <option>Admin</option><option>Editor</option><option selected>Viewer</option>
+      </select>
+    </li>
+    <li class="member">
+      <div class="who"><span class="name">Kai Lee</span><span class="email">kai@harbor.app</span></div>
+      <select aria-label="Role for Kai Lee">
+        <option>Admin</option><option>Editor</option><option selected>Viewer</option>
+      </select>
+    </li>
+  </ul>
+</div>
+</body>
+</html>

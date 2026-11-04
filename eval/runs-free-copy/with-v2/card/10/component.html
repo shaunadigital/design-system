@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Book a Working Session</title>
+<style>
+/* Tokens from tokens.css, inlined so this file stands alone */
+:root {
+  --paper: #FFFFFF;
+  --sand: #EEF4FA;
+  --card: #FFFFFF;
+  --ink: #0B1416;
+  --muted: #55656A;
+  --accent-text: #0263AC;
+  --accent: #0263AC;
+  --accent-tint: #E6EFF7;
+  --accent-line: #9CC3EA;
+  --on-ink: #FFFFFF;
+  --shadow-rgb: 11, 20, 22;
+  --font-display: 'Unbounded', system-ui, sans-serif;
+  --font-body: 'Archivo', system-ui, -apple-system, sans-serif;
+  --font-label: 'Archivo', system-ui, sans-serif;
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 24px;
+  --space-6: 32px;
+  --space-7: 48px;
+  --space-8: 64px;
+  --radius-card: 16px;
+  --radius-pill: 999px;
+  --tracking-tight: -0.02em;
+  --tracking-label: 0.14em;
+  --text-hero: clamp(1.5rem, 3.34vw, 3rem);
+  --text-lead: 1.375rem;
+  --text-body: 1rem;
+  --text-small: 0.875rem;
+  --text-label: 0.75rem;
+  --ease: cubic-bezier(0.2, 0.7, 0.2, 1);
+  --dur-fast: 120ms;
+  --dur-base: 180ms;
+  color-scheme: light;
+}
+:root[data-theme="dusk"] {
+  color-scheme: dark;
+  --paper: #0E1618;
+  --sand: #131E21;
+  --card: #172327;
+  --ink: #E9EFEF;
+  --muted: #9DAEB1;
+  --accent-text: #9CC3EA;
+  --accent: #6FAAE6;
+  --accent-tint: #13283A;
+  --accent-line: #2D5B85;
+  --on-ink: #0E1618;
+  --shadow-rgb: 0, 0, 0;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: var(--text-body);
+  line-height: 1.5;
+}
+
+#component {
+  width: 100%;
+  max-width: 400px;
+  padding: var(--space-6);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+  background: var(--card);
+  border: 1px solid var(--accent-line);
+  border-radius: var(--radius-card);
+  box-shadow:
+    0 1px 2px rgba(var(--shadow-rgb), 0.06),
+    0 12px 32px rgba(var(--shadow-rgb), 0.08);
+}
+
+.label {
+  margin: 0;
+  font-family: var(--font-label);
+  font-weight: 500;
+  font-size: var(--text-label);
+  letter-spacing: var(--tracking-label);
+  text-transform: uppercase;
+  color: var(--accent-text);
+}
+
+.title {
+  margin: var(--space-2) 0 0;
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: var(--text-lead);
+  letter-spacing: var(--tracking-tight);
+  line-height: 1.2;
+}
+
+.price {
+  margin: 0;
+  display: flex;
+  align-items: baseline;
+  gap: var(--space-2);
+}
+.price-amount {
+  font-family: var(--font-display);
+  font-weight: 300;
+  font-size: var(--text-hero);
+  letter-spacing: var(--tracking-tight);
+  line-height: 1;
+}
+.price-unit {
+  font-size: var(--text-small);
+  color: var(--muted);
+}
+
+.desc {
+  margin: 0;
+  color: var(--muted);
+}
+
+.includes {
+  list-style: none;
+  margin: 0;
+  padding: var(--space-5) 0 0;
+  border-top: 1px solid var(--accent-line);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+.includes li {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+}
+.tick {
+  flex: none;
+  width: 24px;
+  height: 24px;
+  color: var(--accent-text);
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-3);
+  min-height: 48px;
+  padding: var(--space-3) var(--space-5);
+  border-radius: var(--radius-pill);
+  font-family: var(--font-body);
+  font-weight: 500;
+  font-size: var(--text-body);
+  text-decoration: none;
+  cursor: pointer;
+  transition: transform var(--dur-fast) var(--ease), box-shadow var(--dur-base) var(--ease);
+}
+.btn--fill {
+  background: var(--ink);
+  color: var(--on-ink);
+}
+.btn--fill:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 16px rgba(var(--shadow-rgb), 0.16);
+}
+.btn--fill:active { transform: translateY(0); }
+.btn:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+.btn-shape {
+  width: 24px;
+  height: 24px;
+  color: var(--accent-text);
+  background: var(--accent-tint);
+  border-radius: var(--radius-pill);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .btn { transition: none; }
+  .btn--fill:hover { transform: none; }
+}
+</style>
+</head>
+<body>
+<section id="component" aria-labelledby="session-title">
+  <div>
+    <p class="label">One Hour</p>
+    <h2 class="title" id="session-title">Working session</h2>
+  </div>
+
+  <p class="price">
+    <span class="price-amount">$150</span>
+    <span class="price-unit">per hour</span>
+  </p>
+
+  <p class="desc">Sit down with me for a focused hour on your project. Bring a problem, a draft or a question, and we will work through it together.</p>
+
+  <ul class="includes">
+    <li>
+      <svg class="tick" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10" fill="currentColor"/><path d="M7.5 12.5l3 3 6-6.5" fill="none" stroke="var(--card)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <span>60 minutes live on video</span>
+    </li>
+    <li>
+      <svg class="tick" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10" fill="currentColor"/><path d="M7.5 12.5l3 3 6-6.5" fill="none" stroke="var(--card)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <span>Written notes afterward</span>
+    </li>
+    <li>
+      <svg class="tick" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10" fill="currentColor"/><path d="M7.5 12.5l3 3 6-6.5" fill="none" stroke="var(--card)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <span>One follow-up question by email</span>
+    </li>
+  </ul>
+
+  <a class="btn btn--fill" href="#book">
+    Book This Session
+    <svg class="btn-shape" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 12h10m-4-4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+  </a>
+</section>
+</body>
+</html>

@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=1280">
+<title>New request</title>
+<style>
+  /* Tokens copied from tokens.css (only those this screen uses) */
+  :root {
+    --paper: #FFFFFF;
+    --card: #FFFFFF;
+    --ink: #0B1416;
+    --ink-rgb: 11, 20, 22;
+    --muted: #55656A;
+    --accent: #0263AC;
+    --on-ink: #FFFFFF;
+    --font-display: 'Unbounded', system-ui, sans-serif;
+    --font-body: 'Archivo', system-ui, -apple-system, sans-serif;
+    --space-1: 4px;
+    --space-2: 8px;
+    --space-3: 12px;
+    --space-4: 16px;
+    --space-5: 24px;
+    --space-6: 32px;
+    --space-7: 48px;
+    --radius-md: 12px;
+    --radius-card: 16px;
+    --radius-pill: 999px;
+    --tracking-label: 0.14em;
+    --text-heading: clamp(1.75rem, 3.2vw, 2.875rem);
+    --text-body: 1rem;
+    --text-small: 0.875rem;
+    --text-label: 0.75rem;
+    --ease: cubic-bezier(0.2, 0.7, 0.2, 1);
+    --dur-fast: 120ms;
+    --dur-base: 180ms;
+    color-scheme: light;
+  }
+  :root[data-theme="dusk"] {
+    color-scheme: dark;
+    --paper: #0E1618;
+    --card: #172327;
+    --ink: #E9EFEF;
+    --ink-rgb: 233, 239, 239;
+    --muted: #9DAEB1;
+    --accent: #6FAAE6;
+    --on-ink: #0E1618;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; background: var(--paper); }
+  body { font-family: var(--font-body); font-size: var(--text-body); color: var(--ink); -webkit-font-smoothing: antialiased; }
+
+  #component {
+    width: 1280px;
+    min-height: 800px;
+    margin: 0 auto;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: var(--font-body);
+  }
+
+  .page {
+    max-width: 1120px;
+    margin: 0 auto;
+    padding: var(--space-7) var(--space-6);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-6);
+  }
+
+  .page-title {
+    margin: 0;
+    font-family: var(--font-display);
+    font-weight: 300;
+    font-size: var(--text-heading);
+    line-height: 1.1;
+    text-transform: uppercase;
+    color: var(--ink);
+  }
+
+  .form-card {
+    background: var(--card);
+    border: 1px solid rgba(var(--ink-rgb), 0.1);
+    border-radius: var(--radius-card);
+    padding: var(--space-5);
+    margin: 0;
+  }
+
+  .fields {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    column-gap: var(--space-5);
+    row-gap: var(--space-5);
+  }
+  .field { display: flex; flex-direction: column; gap: var(--space-2); min-width: 0; }
+  .field--full { grid-column: 1 / -1; }
+
+  .field label {
+    font-family: var(--font-body);
+    font-weight: 500;
+    font-size: var(--text-label);
+    letter-spacing: var(--tracking-label);
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  .control {
+    display: block;
+    width: 100%;
+    height: 44px;
+    padding: 0 var(--space-3);
+    font: inherit;
+    font-size: var(--text-body);
+    color: var(--ink);
+    background: var(--paper);
+    border: 1px solid rgba(var(--ink-rgb), 0.2);
+    border-radius: var(--radius-md);
+    outline: none;
+    transition: border-color var(--dur-fast) var(--ease), box-shadow var(--dur-fast) var(--ease);
+  }
+  .control::placeholder { color: var(--muted); opacity: 1; }
+  .control:hover { border-color: rgba(var(--ink-rgb), 0.35); }
+  .control:focus { border-color: var(--accent); box-shadow: 0 0 0 2px var(--accent); }
+
+  textarea.control {
+    height: 112px;
+    padding: var(--space-3);
+    line-height: 1.5;
+    resize: none;
+  }
+
+  input[type="date"].control { color: var(--muted); }
+  input[type="date"].control:focus { color: var(--ink); }
+
+  .select { position: relative; }
+  .select select.control {
+    appearance: none;
+    -webkit-appearance: none;
+    padding-right: 40px;
+    cursor: pointer;
+  }
+  .select::after {
+    content: "";
+    position: absolute;
+    right: 16px;
+    top: 50%;
+    width: 7px;
+    height: 7px;
+    border-right: 1.5px solid var(--ink);
+    border-bottom: 1.5px solid var(--ink);
+    transform: translateY(-70%) rotate(45deg);
+    pointer-events: none;
+  }
+
+  .actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: var(--space-3);
+    margin-top: var(--space-5);
+    padding-top: var(--space-5);
+    border-top: 1px solid rgba(var(--ink-rgb), 0.1);
+  }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    height: 44px;
+    padding: 0 20px;
+    font-family: var(--font-body);
+    font-weight: 600;
+    font-size: var(--text-small);
+    line-height: 1;
+    border-radius: var(--radius-pill);
+    border: 0;
+    cursor: pointer;
+    transition: background-color var(--dur-fast) var(--ease), opacity var(--dur-fast) var(--ease), transform var(--dur-fast) var(--ease);
+  }
+  .btn:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+  .btn--primary { background: var(--ink); color: var(--on-ink); }
+  .btn--primary:hover { opacity: 0.88; }
+  .btn--primary:active { transform: scale(0.98); }
+  .btn--quiet { background: transparent; color: var(--ink); }
+  .btn--quiet:hover { background: rgba(var(--ink-rgb), 0.06); }
+
+  @media (prefers-reduced-motion: reduce) {
+    * { transition: none !important; }
+  }
+</style>
+</head>
+<body>
+<div id="component">
+  <main class="page">
+    <h1 class="page-title">New request</h1>
+
+    <form class="form-card" action="#" method="post">
+      <div class="fields">
+        <div class="field field--full">
+          <label for="title">Title</label>
+          <input class="control" type="text" id="title" name="title">
+        </div>
+
+        <div class="field field--full">
+          <label for="description">Description</label>
+          <textarea class="control" id="description" name="description"></textarea>
+        </div>
+
+        <div class="field">
+          <label for="priority">Priority</label>
+          <div class="select">
+            <select class="control" id="priority" name="priority">
+              <option>Low</option>
+              <option selected>Medium</option>
+              <option>High</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="field">
+          <label for="assignee">Assignee</label>
+          <div class="select">
+            <select class="control" id="assignee" name="assignee">
+              <option>Maya Chen</option>
+              <option>Leo Park</option>
+              <option>Ana Ruiz</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="field">
+          <label for="due">Due date</label>
+          <input class="control" type="date" id="due" name="due">
+        </div>
+      </div>
+
+      <div class="actions">
+        <button class="btn btn--quiet" type="button">Cancel</button>
+        <button class="btn btn--primary" type="submit">Create Request</button>
+      </div>
+    </form>
+  </main>
+</div>
+</body>
+</html>

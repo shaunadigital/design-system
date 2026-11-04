@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Message composer</title>
+<style>
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #fff;
+    color: #0B1416;
+    font-family: "Archivo", system-ui, -apple-system, "Segoe UI", Arial, sans-serif;
+  }
+
+  #component {
+    width: 100%;
+    max-width: 640px;
+    padding: 12px 12px 12px 16px;
+    display: flex;
+    align-items: flex-end;
+    gap: 8px;
+    background: #fff;
+    border: 1.5px solid #0B1416;
+    border-radius: 16px;
+  }
+
+  #component:focus-within {
+    border-color: #0263AC;
+    box-shadow: 0 0 0 3px rgba(2, 99, 172, 0.25);
+  }
+
+  #component textarea {
+    flex: 1;
+    min-width: 0;
+    height: 72px;
+    margin: 0;
+    padding: 8px 0;
+    border: 0;
+    outline: none;
+    resize: none;
+    background: transparent;
+    color: #0B1416;
+    font: inherit;
+    font-size: 16px;
+    line-height: 1.5;
+  }
+
+  #component textarea::placeholder {
+    color: #4F5B5E;
+    opacity: 1;
+  }
+
+  #component button {
+    flex: none;
+    width: 44px;
+    height: 44px;
+    padding: 0;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border: 0;
+    border-radius: 12px;
+    cursor: pointer;
+    font: inherit;
+  }
+
+  #component button svg {
+    width: 22px;
+    height: 22px;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 1.75;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+
+  #component .attach {
+    background: transparent;
+    color: #0B1416;
+  }
+
+  #component .attach:hover { background: rgba(11, 20, 22, 0.08); }
+
+  #component .send {
+    background: #0263AC;
+    color: #fff;
+  }
+
+  #component .send:hover { background: #014F8A; }
+
+  #component button:focus-visible {
+    outline: 3px solid #0263AC;
+    outline-offset: 2px;
+  }
+
+  #component .send:focus-visible {
+    outline-color: #0B1416;
+  }
+</style>
+</head>
+<body>
+  <div id="component" role="group" aria-label="Message composer">
+    <button type="button" class="attach" aria-label="Attach a file">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 11.5l-8.6 8.6a5.5 5.5 0 0 1-7.8-7.8l8.6-8.6a3.7 3.7 0 0 1 5.2 5.2l-8.6 8.6a1.8 1.8 0 0 1-2.6-2.6l7.9-7.9"/></svg>
+    </button>
+    <textarea aria-label="Message" placeholder="Message Claude" rows="3"></textarea>
+    <button type="button" class="send" aria-label="Send message">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 19V5"/><path d="M5 12l7-7 7 7"/></svg>
+    </button>
+  </div>
+</body>
+</html>

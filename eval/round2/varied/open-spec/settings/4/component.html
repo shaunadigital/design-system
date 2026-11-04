@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Workspace settings</title>
+<meta name="viewport" content="width=1280">
+<style>
+  *, *::before, *::after { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; background: #EEF4FA; }
+  body {
+    font-family: "Archivo", -apple-system, "Helvetica Neue", Arial, sans-serif;
+    font-size: 16px;
+    line-height: 1.5;
+    color: #0B1416;
+  }
+
+  #component {
+    width: 1280px;
+    min-height: 100vh;
+    margin: 0 auto;
+    padding: 48px 64px 64px;
+    background: #EEF4FA;
+  }
+
+  h1 {
+    margin: 0 0 32px;
+    font-family: "Unbounded", "Archivo", sans-serif;
+    font-weight: 300;
+    font-size: 56px;
+    line-height: 1.1;
+    letter-spacing: 0;
+    text-transform: uppercase;
+  }
+
+  .card {
+    margin: 0 0 24px;
+    padding: 32px;
+    background: #FFFFFF;
+    border: 1px solid #9CC3EA;
+    border-radius: 16px;
+  }
+  .card:last-child { margin-bottom: 0; }
+  .card--danger { border-color: #0B1416; }
+
+  h2 {
+    margin: 0 0 24px;
+    font-family: "Unbounded", "Archivo", sans-serif;
+    font-weight: 500;
+    font-size: 28px;
+    line-height: 1.2;
+    letter-spacing: -0.01em;
+  }
+
+  .fields {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 32px;
+    margin-bottom: 24px;
+  }
+  .field { display: flex; flex-direction: column; gap: 8px; }
+  .field label {
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 16px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: #0263AC;
+  }
+  .field input {
+    width: 100%;
+    height: 48px;
+    padding: 0 16px;
+    font-family: inherit;
+    font-size: 16px;
+    color: #0B1416;
+    background: #FFFFFF;
+    border: 1px solid #55656A;
+    border-radius: 12px;
+    transition: border-color 120ms cubic-bezier(0.2, 0.7, 0.2, 1);
+  }
+  .field input:hover { border-color: #0B1416; }
+  .field input:focus-visible { outline: 2px solid #0263AC; outline-offset: 2px; border-color: #0263AC; }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 44px;
+    padding: 0 24px;
+    font-family: inherit;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 1;
+    letter-spacing: 0;
+    border-radius: 999px;
+    border: 1px solid transparent;
+    cursor: pointer;
+    transition: background-color 180ms cubic-bezier(0.2, 0.7, 0.2, 1), color 180ms cubic-bezier(0.2, 0.7, 0.2, 1);
+  }
+  .btn:focus-visible { outline: 2px solid #0263AC; outline-offset: 2px; }
+  .btn--primary { background: #0B1416; color: #FFFFFF; }
+  .btn--primary:hover { background: #0263AC; }
+  .btn--quiet { background: transparent; color: #0B1416; border-color: #0B1416; }
+  .btn--quiet:hover { background: #E6EFF7; }
+
+  .switches { list-style: none; margin: 0; padding: 0; }
+  .switches li { border-top: 1px solid #9CC3EA; }
+  .switches li:first-child { border-top: 0; padding-top: 0; }
+
+  .switch {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    min-height: 56px;
+    cursor: pointer;
+  }
+  .switch input {
+    position: absolute;
+    opacity: 0;
+    width: 1px;
+    height: 1px;
+    margin: 0;
+  }
+  .track {
+    position: relative;
+    flex: none;
+    width: 48px;
+    height: 28px;
+    border-radius: 999px;
+    background: #FFFFFF;
+    border: 1px solid #55656A;
+    transition: background-color 180ms cubic-bezier(0.2, 0.7, 0.2, 1), border-color 180ms cubic-bezier(0.2, 0.7, 0.2, 1);
+  }
+  .track::after {
+    content: "";
+    position: absolute;
+    top: 3px;
+    left: 3px;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: #55656A;
+    transition: transform 180ms cubic-bezier(0.2, 0.7, 0.2, 1), background-color 180ms cubic-bezier(0.2, 0.7, 0.2, 1);
+  }
+  .switch input:checked + .track { background: #0B1416; border-color: #0B1416; }
+  .switch input:checked + .track::after { transform: translateX(20px); background: #FFFFFF; }
+  .switch input:focus-visible + .track { outline: 2px solid #0263AC; outline-offset: 2px; }
+
+  .danger-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 32px;
+  }
+  .danger-row p { margin: 0; }
+
+  @media (prefers-reduced-motion: reduce) {
+    * { transition: none !important; }
+  }
+</style>
+</head>
+<body>
+<div id="component">
+  <h1>Workspace settings</h1>
+
+  <section class="card" aria-labelledby="general-title">
+    <h2 id="general-title">General</h2>
+    <div class="fields">
+      <div class="field">
+        <label for="ws-name">Workspace name</label>
+        <input id="ws-name" type="text" value="Harbor Ops">
+      </div>
+      <div class="field">
+        <label for="ws-url">Workspace URL</label>
+        <input id="ws-url" type="text" value="harbor.app/ops">
+      </div>
+    </div>
+    <button type="button" class="btn btn--primary">Save Changes</button>
+  </section>
+
+  <section class="card" aria-labelledby="notifications-title">
+    <h2 id="notifications-title">Notifications</h2>
+    <ul class="switches">
+      <li>
+        <label class="switch">
+          <input type="checkbox" role="switch" checked>
+          <span class="track" aria-hidden="true"></span>
+          <span>Email me when a request is assigned to me</span>
+        </label>
+      </li>
+      <li>
+        <label class="switch">
+          <input type="checkbox" role="switch" checked>
+          <span class="track" aria-hidden="true"></span>
+          <span>Weekly summary</span>
+        </label>
+      </li>
+      <li>
+        <label class="switch">
+          <input type="checkbox" role="switch">
+          <span class="track" aria-hidden="true"></span>
+          <span>Product updates</span>
+        </label>
+      </li>
+    </ul>
+  </section>
+
+  <section class="card card--danger" aria-labelledby="danger-title">
+    <h2 id="danger-title">Danger zone</h2>
+    <div class="danger-row">
+      <p>Deleting a workspace removes all of its requests for everyone.</p>
+      <button type="button" class="btn btn--quiet">Delete Workspace</button>
+    </div>
+  </section>
+</div>
+</body>
+</html>

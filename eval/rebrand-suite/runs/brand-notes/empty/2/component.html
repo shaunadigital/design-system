@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Requests</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:wght@600&family=Instrument+Sans:wght@400;600&display=swap">
+<style>
+  * { box-sizing: border-box; }
+  body { margin: 0; background: #F4EFE6; }
+  #component {
+    width: 1280px;
+    min-height: 720px;
+    margin: 0 auto;
+    padding: 24px 32px;
+    background: #F4EFE6;
+    color: #1E2B24;
+    font-family: "Instrument Sans", Arial, Helvetica, sans-serif;
+    font-size: 14px;
+    line-height: 1.4;
+  }
+  #component h1 {
+    margin: 0;
+    padding-bottom: 12px;
+    border-bottom: 1px solid #1E2B24;
+    font-family: "Fraunces", Georgia, serif;
+    font-weight: 600;
+    font-size: 20px;
+  }
+  #component .empty {
+    max-width: 420px;
+    margin: 120px auto 0;
+    padding: 32px 24px;
+    background: #FBF8F2;
+    border-radius: 4px;
+    text-align: center;
+  }
+  #component h2 {
+    margin: 0 0 6px;
+    font-family: "Fraunces", Georgia, serif;
+    font-weight: 600;
+    font-size: 16px;
+  }
+  #component p { margin: 0 0 20px; font-size: 14px; }
+  #component .actions {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+  }
+  #component .btn {
+    display: inline-block;
+    padding: 9px 18px;
+    background: #C2410C;
+    color: #fff;
+    border: 2px solid #C2410C;
+    border-radius: 4px;
+    font: inherit;
+    font-weight: 600;
+    text-decoration: none;
+  }
+  #component .btn:focus-visible,
+  #component a.link:focus-visible { outline: 3px solid #1E2B24; outline-offset: 2px; }
+  #component a.link { color: #C2410C; text-decoration: underline; }
+</style>
+</head>
+<body>
+<div id="component">
+  <h1>Requests</h1>
+  <main class="empty">
+    <h2>No requests yet</h2>
+    <p>When your team asks for something, it shows up here.</p>
+    <div class="actions">
+      <a class="btn" href="#">Create a Request</a>
+      <a class="link" href="#">Import from a spreadsheet</a>
+    </div>
+  </main>
+</div>
+</body>
+</html>

@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Pipeline</title>
+<style>
+:root {
+  --paper: #FFFFFF;
+  --card: #FFFFFF;
+  --ink: #0B1416;
+  --ink-rgb: 11, 20, 22;
+  --muted: #55656A;
+  --accent-text: #0263AC;
+  --accent: #0263AC;
+  --accent-tint: #E6EFF7;
+  --on-ink: #FFFFFF;
+  --shadow-rgb: 11, 20, 22;
+  --font-display: 'Unbounded', system-ui, sans-serif;
+  --font-body: 'Archivo', system-ui, -apple-system, sans-serif;
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 24px;
+  --space-6: 32px;
+  --space-7: 48px;
+  --space-8: 64px;
+  --radius-md: 12px;
+  --radius-card: 16px;
+  --radius-pill: 999px;
+  --tracking-tight: -0.02em;
+  --tracking-label: 0.14em;
+  --text-heading: clamp(1.75rem, 3.2vw, 2.875rem);
+  --text-body: 1rem;
+  --text-small: 0.875rem;
+  --text-label: 0.75rem;
+  --ease: cubic-bezier(0.2, 0.7, 0.2, 1);
+  --dur-base: 180ms;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-body);
+}
+
+#component {
+  width: 1280px;
+  min-height: 800px;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-body);
+  padding: var(--space-7) var(--space-6);
+}
+
+.page {
+  max-width: 1120px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6);
+}
+
+.top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+h1 {
+  margin: 0;
+  font-family: var(--font-display);
+  font-weight: 300;
+  font-size: var(--text-heading);
+  line-height: 1.1;
+  letter-spacing: var(--tracking-tight);
+  text-transform: uppercase;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 44px;
+  padding: 0 20px;
+  border-radius: var(--radius-pill);
+  border: 0;
+  font: inherit;
+  font-weight: 600;
+  font-size: var(--text-small);
+  cursor: pointer;
+  transition: transform var(--dur-base) var(--ease), box-shadow var(--dur-base) var(--ease);
+}
+
+.btn--primary {
+  background: var(--ink);
+  color: var(--on-ink);
+}
+
+.btn--primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 24px -12px rgba(var(--shadow-rgb), 0.35);
+}
+
+.btn:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+.field { width: 360px; }
+
+.field label {
+  display: block;
+  margin-bottom: var(--space-2);
+  font-weight: 500;
+  font-size: var(--text-label);
+  letter-spacing: var(--tracking-label);
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.field input {
+  width: 100%;
+  height: 44px;
+  padding: 0 12px;
+  font: inherit;
+  font-size: var(--text-body);
+  color: var(--ink);
+  background: var(--paper);
+  border: 1px solid rgba(var(--ink-rgb), 0.2);
+  border-radius: var(--radius-md);
+}
+
+.field input:focus { outline: 2px solid var(--accent); outline-offset: 0; }
+
+.card {
+  background: var(--card);
+  border: 1px solid rgba(var(--ink-rgb), 0.1);
+  border-radius: var(--radius-card);
+  padding: var(--space-5);
+  box-shadow: 0 24px 48px -32px rgba(var(--shadow-rgb), 0.35);
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: var(--text-small);
+}
+
+th {
+  height: 52px;
+  padding: 0 var(--space-3);
+  text-align: left;
+  font-weight: 500;
+  font-size: var(--text-label);
+  letter-spacing: var(--tracking-label);
+  text-transform: uppercase;
+  color: var(--muted);
+  border-bottom: 1px solid rgba(var(--ink-rgb), 0.1);
+}
+
+td {
+  height: 52px;
+  padding: 0 var(--space-3);
+  border-bottom: 1px solid rgba(var(--ink-rgb), 0.1);
+  color: var(--ink);
+}
+
+tbody tr:last-child td { border-bottom: 0; }
+
+th.num, td.num { text-align: right; }
+
+td.company { font-weight: 600; }
+td.num { font-weight: 600; font-variant-numeric: tabular-nums; }
+
+.pill {
+  display: inline-block;
+  padding: 2px 10px;
+  border-radius: var(--radius-pill);
+  background: var(--accent-tint);
+  color: var(--accent-text);
+  font-size: var(--text-label);
+  font-weight: 600;
+}
+</style>
+</head>
+<body>
+<div id="component">
+  <main class="page">
+    <div class="top">
+      <h1>Pipeline</h1>
+      <button class="btn btn--primary" type="button">New Deal</button>
+    </div>
+
+    <div class="field">
+      <label for="search">Search deals</label>
+      <input id="search" type="search" name="search">
+    </div>
+
+    <section class="card">
+      <table>
+        <thead>
+          <tr>
+            <th scope="col">Company</th>
+            <th scope="col" class="num">Value</th>
+            <th scope="col">Stage</th>
+            <th scope="col">Owner</th>
+            <th scope="col">Close Date</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="company">Kona Coffee Co.</td>
+            <td class="num">$48,000</td>
+            <td><span class="pill">Proposal</span></td>
+            <td>Maya Chen</td>
+            <td>Nov 14</td>
+          </tr>
+          <tr>
+            <td class="company">Lanai Labs</td>
+            <td class="num">$32,500</td>
+            <td><span class="pill">Negotiation</span></td>
+            <td>Leo Park</td>
+            <td>Nov 2</td>
+          </tr>
+          <tr>
+            <td class="company">Pali Health</td>
+            <td class="num">$120,000</td>
+            <td><span class="pill">Discovery</span></td>
+            <td>Ana Ruiz</td>
+            <td>Dec 5</td>
+          </tr>
+          <tr>
+            <td class="company">Mauka Freight</td>
+            <td class="num">$18,200</td>
+            <td><span class="pill">Won</span></td>
+            <td>Sam Ito</td>
+            <td>Oct 18</td>
+          </tr>
+          <tr>
+            <td class="company">Hale Studio</td>
+            <td class="num">$9,600</td>
+            <td><span class="pill">Proposal</span></td>
+            <td>Kai Lee</td>
+            <td>Nov 21</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+  </main>
+</div>
+</body>
+</html>

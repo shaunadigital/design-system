@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Harbor Overview</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: #fff; }
+  #component {
+    width: 1280px;
+    min-height: 900px;
+    background: #fff;
+    color: #0B1416;
+    font-family: "Archivo", "Helvetica Neue", Arial, sans-serif;
+    font-size: 16px;
+    line-height: 1.5;
+  }
+  #component .display {
+    font-family: "Unbounded", "Archivo", "Helvetica Neue", Arial, sans-serif;
+    font-weight: 300;
+    text-transform: uppercase;
+  }
+  #component nav {
+    display: flex;
+    justify-content: flex-end;
+    gap: 8px;
+    padding: 32px 96px 0;
+    border-bottom: 1px solid #E4E8EA;
+  }
+  #component nav a {
+    display: block;
+    padding: 12px 16px 20px;
+    color: #4A5558;
+    text-decoration: none;
+    font-size: 15px;
+    border-bottom: 2px solid transparent;
+    margin-bottom: -1px;
+  }
+  #component nav a[aria-current="page"] {
+    color: #0263AC;
+    font-weight: 600;
+    border-bottom-color: #0263AC;
+  }
+  #component main { padding: 80px 96px 120px; }
+  #component h1 {
+    font-size: 40px;
+    line-height: 1.2;
+    letter-spacing: 0.04em;
+  }
+  #component .stats {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 24px;
+    margin-top: 56px;
+  }
+  #component .tile {
+    padding: 32px 28px 36px;
+    border: 1px solid #E4E8EA;
+    border-radius: 16px;
+  }
+  #component .tile dt {
+    font-size: 14px;
+    color: #4A5558;
+    letter-spacing: 0.02em;
+  }
+  #component .tile dd {
+    margin-top: 20px;
+    font-size: 36px;
+    line-height: 1.1;
+    white-space: nowrap;
+  }
+  #component .tile dd span { font-size: 16px; font-family: "Archivo", "Helvetica Neue", Arial, sans-serif; text-transform: none; color: #4A5558; margin-left: 4px; }
+  #component .tile.accent { border-top: 3px solid #0263AC; }
+  #component h2 {
+    margin-top: 96px;
+    font-size: 18px;
+    letter-spacing: 0.06em;
+  }
+  #component ul { list-style: none; margin-top: 24px; border-top: 1px solid #E4E8EA; }
+  #component li {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    padding: 24px 0;
+    border-bottom: 1px solid #E4E8EA;
+    font-size: 17px;
+  }
+  #component li::before {
+    content: "";
+    flex: none;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #0263AC;
+  }
+  #component li strong { font-weight: 600; }
+</style>
+</head>
+<body>
+<div id="component">
+  <nav aria-label="Primary">
+    <a href="#" aria-current="page">Overview</a>
+    <a href="#">Requests</a>
+    <a href="#">Team</a>
+    <a href="#">Settings</a>
+  </nav>
+  <main>
+    <h1 class="display">Overview</h1>
+    <dl class="stats">
+      <div class="tile accent"><dt>Active users</dt><dd class="display">1,284</dd></div>
+      <div class="tile"><dt>Open requests</dt><dd class="display">37</dd></div>
+      <div class="tile"><dt>Average response</dt><dd class="display">2.4<span>hours</span></dd></div>
+      <div class="tile"><dt>Uptime</dt><dd class="display">99.9%</dd></div>
+    </dl>
+    <h2 class="display">Recent activity</h2>
+    <ul>
+      <li><span><strong>Maya Chen</strong> opened Laptop refresh for design</span></li>
+      <li><span><strong>Leo Park</strong> approved Q4 travel budget</span></li>
+      <li><span><strong>Ana Ruiz</strong> closed VPN access for contractors</span></li>
+      <li><span><strong>Sam Ito</strong> commented on New hire onboarding</span></li>
+      <li><span><strong>Kai Lee</strong> assigned Office move to Facilities</span></li>
+    </ul>
+  </main>
+</div>
+</body>
+</html>

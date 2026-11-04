@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Requests | Harbor</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; }
+
+  html, body {
+    margin: 0;
+    padding: 0;
+    background: #FFFFFF;
+  }
+
+  #component {
+    width: 1280px;
+    min-height: 800px;
+    margin: 0 auto;
+    padding: 64px 64px 96px;
+    background: #FFFFFF;
+    color: #0B1416;
+    font-family: "Archivo", "Helvetica Neue", Arial, sans-serif;
+    font-size: 16px;
+    line-height: 24px;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  #component h1,
+  #component h2,
+  #component p {
+    margin: 0;
+  }
+
+  #component .page-title {
+    font-family: "Unbounded", "Archivo", "Helvetica Neue", Arial, sans-serif;
+    font-weight: 300;
+    font-size: 56px;
+    line-height: 64px;
+    letter-spacing: -0.02em;
+    text-transform: uppercase;
+    color: #0B1416;
+  }
+
+  #component .grid {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    column-gap: 32px;
+  }
+
+  #component .stage {
+    margin-top: 48px;
+    padding-top: 32px;
+    border-top: 1px solid #9CC3EA;
+  }
+
+  #component .empty {
+    grid-column: 4 / span 6;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 64px 48px;
+    background: #FFFFFF;
+    border: 1px solid #9CC3EA;
+    border-radius: 16px;
+  }
+
+  #component .empty-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 64px;
+    height: 64px;
+    border-radius: 999px;
+    background: #EEF4FA;
+    color: #0B1416;
+  }
+
+  #component .empty-icon svg {
+    width: 24px;
+    height: 24px;
+    display: block;
+  }
+
+  #component .empty-title {
+    margin-top: 24px;
+    font-family: "Unbounded", "Archivo", "Helvetica Neue", Arial, sans-serif;
+    font-weight: 500;
+    font-size: 28px;
+    line-height: 36px;
+    letter-spacing: -0.01em;
+    color: #0B1416;
+  }
+
+  #component .empty-text {
+    margin-top: 12px;
+    max-width: 400px;
+    font-size: 18px;
+    line-height: 28px;
+    color: #55656A;
+  }
+
+  #component .actions {
+    margin-top: 32px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+  }
+
+  #component .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 48px;
+    padding: 12px 32px;
+    border: 0;
+    border-radius: 999px;
+    background: #0B1416;
+    color: #FFFFFF;
+    font-family: "Archivo", "Helvetica Neue", Arial, sans-serif;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 24px;
+    letter-spacing: 0.02em;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background-color 180ms cubic-bezier(0.2, 0.7, 0.2, 1);
+  }
+
+  #component .btn:hover {
+    background: #0263AC;
+  }
+
+  #component .link {
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
+    padding: 8px 16px;
+    border-radius: 999px;
+    color: #0263AC;
+    font-size: 16px;
+    line-height: 24px;
+    text-decoration: underline;
+    text-underline-offset: 4px;
+    text-decoration-thickness: 1px;
+    transition: background-color 120ms cubic-bezier(0.2, 0.7, 0.2, 1);
+  }
+
+  #component .link:hover {
+    background: #E6EFF7;
+  }
+
+  #component .btn:focus-visible,
+  #component .link:focus-visible {
+    outline: 2px solid #0263AC;
+    outline-offset: 4px;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    #component .btn,
+    #component .link { transition: none; }
+  }
+</style>
+</head>
+<body>
+<div id="component">
+  <h1 class="page-title">Requests</h1>
+
+  <main class="stage grid">
+    <section class="empty" aria-labelledby="empty-title">
+      <div class="empty-icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M3 13l3-8h12l3 8"/>
+          <path d="M3 13v6a1 1 0 0 0 1 1h16a1 1 0 0 0 1-1v-6"/>
+          <path d="M3 13h5a4 4 0 0 0 8 0h5"/>
+        </svg>
+      </div>
+      <h2 class="empty-title" id="empty-title">No requests yet</h2>
+      <p class="empty-text">When your team asks for something, it shows up here.</p>
+      <div class="actions">
+        <a class="btn" href="#create">Create a Request</a>
+        <a class="link" href="#import">Import from a spreadsheet</a>
+      </div>
+    </section>
+  </main>
+</div>
+</body>
+</html>

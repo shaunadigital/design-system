@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Approvals · Harbor</title>
+<style>
+  /* Tokens inlined from tokens.css (subset used here) */
+  :root {
+    --paper: #FFFFFF;
+    --card: #FFFFFF;
+    --ink: #0B1416;
+    --ink-rgb: 11, 20, 22;
+    --muted: #55656A;
+    --accent: #0263AC;
+    --accent-tint: #E6EFF7;
+    --on-ink: #FFFFFF;
+    --font-display: 'Unbounded', system-ui, sans-serif;
+    --font-body: 'Archivo', system-ui, -apple-system, sans-serif;
+    --space-1: 4px;
+    --space-2: 8px;
+    --space-3: 12px;
+    --space-4: 16px;
+    --space-5: 24px;
+    --space-6: 32px;
+    --space-7: 48px;
+    --radius-card: 16px;
+    --radius-pill: 999px;
+    --tracking-snug: -0.01em;
+    --text-hero: clamp(1.5rem, 3.34vw, 3rem);
+    --text-heading: clamp(1.75rem, 3.2vw, 2.875rem);
+    --text-lead: 1.375rem;
+    --text-body: 1rem;
+    --text-small: 0.875rem;
+    --ease: cubic-bezier(0.2, 0.7, 0.2, 1);
+    --dur-fast: 120ms;
+    --dur-base: 180ms;
+    color-scheme: light;
+  }
+  :root[data-theme="dusk"] {
+    --paper: #0E1618;
+    --card: #172327;
+    --ink: #E9EFEF;
+    --ink-rgb: 233, 239, 239;
+    --muted: #9DAEB1;
+    --accent: #6FAAE6;
+    --accent-tint: #13283A;
+    --on-ink: #0E1618;
+    color-scheme: dark;
+  }
+
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: var(--font-body);
+    font-size: var(--text-body);
+    line-height: 1.5;
+  }
+
+  #component {
+    width: 1280px;
+    min-height: 100vh;
+    background: var(--paper);
+    padding: var(--space-7) var(--space-6);
+  }
+
+  .page {
+    max-width: 1120px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-6);
+  }
+
+  .page-top {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+  }
+
+  .page-title {
+    margin: 0;
+    font-family: var(--font-display);
+    font-weight: 300;
+    font-size: var(--text-heading);
+    line-height: 1.1;
+    letter-spacing: var(--tracking-snug);
+    text-transform: uppercase;
+  }
+
+  .page-sub {
+    margin: 0;
+    font-size: var(--text-body);
+    color: var(--muted);
+  }
+
+  .queue {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+  }
+
+  .approval {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto auto;
+    align-items: center;
+    column-gap: var(--space-6);
+    padding: var(--space-5);
+    background: var(--card);
+    border: 1px solid rgba(var(--ink-rgb), 0.1);
+    border-radius: var(--radius-card);
+  }
+
+  .approval-info {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-1);
+    min-width: 0;
+  }
+
+  .approval-title {
+    margin: 0;
+    font-family: var(--font-display);
+    font-weight: 500;
+    font-size: var(--text-lead);
+    line-height: 1.3;
+  }
+
+  .approval-requester {
+    margin: 0;
+    font-size: var(--text-small);
+    color: var(--muted);
+  }
+
+  .approval-amount {
+    margin: 0;
+    min-width: 200px;
+    text-align: right;
+    font-family: var(--font-display);
+    font-weight: 300;
+    font-size: var(--text-hero);
+    line-height: 1.1;
+    white-space: nowrap;
+  }
+
+  .approval-actions {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+  }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    height: 44px;
+    padding: 0 20px;
+    border-radius: var(--radius-pill);
+    font: inherit;
+    font-weight: 600;
+    font-size: var(--text-small);
+    line-height: 1;
+    color: var(--ink);
+    background: none;
+    border: 0;
+    cursor: pointer;
+    transition: background-color var(--dur-fast) var(--ease);
+  }
+  .btn:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+  }
+  .btn--secondary {
+    border: 1.5px solid var(--ink);
+  }
+  .btn--secondary:hover,
+  .btn--quiet:hover {
+    background: var(--accent-tint);
+  }
+</style>
+</head>
+<body>
+<div id="component">
+  <main class="page">
+    <header class="page-top">
+      <h1 class="page-title">Approvals</h1>
+      <p class="page-sub">3 waiting for you</p>
+    </header>
+
+    <ul class="queue">
+      <li class="approval">
+        <div class="approval-info">
+          <h2 class="approval-title" data-user-content>Q4 travel budget</h2>
+          <p class="approval-requester">Leo Park</p>
+        </div>
+        <p class="approval-amount">$4,800</p>
+        <div class="approval-actions">
+          <button type="button" class="btn btn--secondary" aria-label="Approve Q4 travel budget">Approve</button>
+          <button type="button" class="btn btn--quiet" aria-label="Decline Q4 travel budget">Decline</button>
+        </div>
+      </li>
+
+      <li class="approval">
+        <div class="approval-info">
+          <h2 class="approval-title" data-user-content>Design conference tickets</h2>
+          <p class="approval-requester">Maya Chen</p>
+        </div>
+        <p class="approval-amount">$1,250</p>
+        <div class="approval-actions">
+          <button type="button" class="btn btn--secondary" aria-label="Approve Design conference tickets">Approve</button>
+          <button type="button" class="btn btn--quiet" aria-label="Decline Design conference tickets">Decline</button>
+        </div>
+      </li>
+
+      <li class="approval">
+        <div class="approval-info">
+          <h2 class="approval-title" data-user-content>Standing desks for support</h2>
+          <p class="approval-requester">Ana Ruiz</p>
+        </div>
+        <p class="approval-amount">$2,100</p>
+        <div class="approval-actions">
+          <button type="button" class="btn btn--secondary" aria-label="Approve Standing desks for support">Approve</button>
+          <button type="button" class="btn btn--quiet" aria-label="Decline Standing desks for support">Decline</button>
+        </div>
+      </li>
+    </ul>
+  </main>
+</div>
+</body>
+</html>

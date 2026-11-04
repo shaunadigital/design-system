@@ -1,0 +1,68 @@
+{
+ "pass": false,
+ "hasRoot": true,
+ "box": {
+  "x": 580,
+  "y": 328.390625,
+  "w": 280,
+  "h": 343.21875
+ },
+ "checks": {
+  "type": {
+   "pass": false,
+   "issues": [
+    "a.new-chat font-size 15px"
+   ]
+  },
+  "color": {
+   "pass": false,
+   "issues": [
+    "nav#component border rgb(220, 227, 230)",
+    "a.chat background rgb(232, 241, 248)"
+   ]
+  },
+  "radius": {
+   "pass": false,
+   "issues": [
+    "a.chat radius 6px"
+   ]
+  },
+  "tracking": {
+   "pass": true,
+   "issues": []
+  },
+  "fonts": {
+   "pass": true,
+   "issues": []
+  },
+  "contrast": {
+   "pass": true,
+   "issues": []
+  },
+  "hover": {
+   "pass": true,
+   "issues": []
+  },
+  "motion": {
+   "pass": true,
+   "issues": []
+  },
+  "copy": {
+   "pass": false,
+   "issues": [
+    "button \"New chat\" is not Title Case",
+    "button \"Portfolio case study outline\" is not Title Case"
+   ]
+  },
+  "labels": {
+   "pass": true,
+   "issues": []
+  },
+  "targets": {
+   "pass": false,
+   "issues": [
+    "a.chat 250x39"
+   ]
+  }
+ }
+}

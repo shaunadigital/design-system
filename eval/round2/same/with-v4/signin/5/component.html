@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sign in to Harbor</title>
+<style>
+/* Tokens inlined from tokens.css */
+:root {
+  --paper: #FFFFFF;
+  --paper-rgb: 255, 255, 255;
+  --sand: #EEF4FA;
+  --sand-rgb: 238, 244, 250;
+  --card: #FFFFFF;
+  --card-rgb: 255, 255, 255;
+  --ink: #0B1416;
+  --ink-rgb: 11, 20, 22;
+  --muted: #55656A;
+  --muted-rgb: 85, 101, 106;
+  --accent-text: #0263AC;
+  --accent-text-rgb: 2, 99, 172;
+  --accent: #0263AC;
+  --accent-rgb: 2, 99, 172;
+  --koa: #A65F35;
+  --koa-rgb: 166, 95, 53;
+  --white: #FFFFFF;
+  --white-rgb: 255, 255, 255;
+  --accent-tint: #E6EFF7;
+  --accent-tint-rgb: 230, 239, 247;
+  --accent-line: #9CC3EA;
+  --accent-line-rgb: 156, 195, 234;
+  --koa-tint: #F5E8DF;
+  --koa-tint-rgb: 245, 232, 223;
+  --plate-hover: #E3ECF5;
+  --plate-hover-rgb: 227, 236, 245;
+  --chrome-bar: #F6F8F8;
+  --chrome-bar-rgb: 246, 248, 248;
+  --chrome-dot: #D3D9DB;
+  --chrome-dot-rgb: 211, 217, 219;
+  --term-text: #E6EEF0;
+  --term-text-rgb: 230, 238, 240;
+  --term-dim: #8FA3A8;
+  --term-dim-rgb: 143, 163, 168;
+  --term-ok: #7FD3DC;
+  --term-ok-rgb: 127, 211, 220;
+  --on-ink: #FFFFFF;
+  --on-ink-rgb: 255, 255, 255;
+  --deep: #0B1416;
+  --deep-rgb: 11, 20, 22;
+  --shadow: #0B1416;
+  --shadow-rgb: 11, 20, 22;
+  --live: #E26D7E;
+  --live-rgb: 226, 109, 126;
+  --sky: #83BDDF;
+  --sky-rgb: 131, 189, 223;
+  --lagoon: #24C0CB;
+  --lagoon-rgb: 36, 192, 203;
+  --art-sand: #EDE6DD;
+  --art-sand-rgb: 237, 230, 221;
+  --palm: #5E6B3A;
+  --palm-rgb: 94, 107, 58;
+  --haze: #EBF6FA;
+  --haze-rgb: 235, 246, 250;
+  --dusk-high: #FFFFFF;
+  --dusk-high-rgb: 255, 255, 255;
+  --dusk-low: #FFFFFF;
+  --dusk-low-rgb: 255, 255, 255;
+  --trade-wind: #5193CF;
+  --trade-wind-rgb: 81, 147, 207;
+  --frond: #25461D;
+  --frond-rgb: 37, 70, 29;
+  --pink-palace: #F3B2B5;
+  --pink-palace-rgb: 243, 178, 181;
+  --rescue: #7A2FB0;
+  --rescue-rgb: 122, 47, 176;
+  --rescue-text: #6E2A9E;
+  --rescue-text-rgb: 110, 42, 158;
+  --rescue-tint: #F1E8FA;
+  --rescue-tint-rgb: 241, 232, 250;
+  --rescue-ink: #1E1530;
+  --rescue-ink-rgb: 30, 21, 48;
+  --font-display: 'Unbounded', system-ui, sans-serif;
+  --font-body: 'Archivo', system-ui, -apple-system, sans-serif;
+  --font-label: 'Archivo', system-ui, sans-serif;
+  --font-hero: 'Unbounded', system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, monospace;
+  --font-script: 'Vujahday Script', cursive;
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 24px;
+  --space-6: 32px;
+  --space-7: 48px;
+  --space-8: 64px;
+  --space-9: 96px;
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-card: 16px;
+  --radius-pill: 999px;
+  --tracking-tighter: -0.03em;
+  --tracking-tight: -0.02em;
+  --tracking-snug: -0.01em;
+  --tracking-loose: 0.02em;
+  --tracking-wordmark: 0.04em;
+  --tracking-wide: 0.06em;
+  --tracking-wider: 0.08em;
+  --tracking-caps: 0.1em;
+  --tracking-caps-wide: 0.12em;
+  --tracking-label: 0.14em;
+  --wordmark-weight: 800;
+  --wordmark-stretch: 112%;
+  --wordmark-wdth: 112;
+  --text-script: clamp(3.75rem, 6.1vw, 5.5rem);
+  --text-hero: clamp(1.5rem, 3.34vw, 3rem);
+  --text-display-xl: clamp(2rem, 4vw, 3.5rem);
+  --text-heading: clamp(1.75rem, 3.2vw, 2.875rem);
+  --text-statement: clamp(1.25rem, 2.22vw, 2rem);
+  --text-step: clamp(1.375rem, 1.9vw, 1.75rem);
+  --text-title: 1.75rem;
+  --text-lead: 1.375rem;
+  --text-body-l: 1.125rem;
+  --text-body: 1rem;
+  --text-small: 0.875rem;
+  --text-label: 0.75rem;
+  --ease: cubic-bezier(0.2, 0.7, 0.2, 1);
+  --dur-fast: 120ms;
+  --dur-base: 180ms;
+  --dur-slow: 320ms;
+}
+
+:root { color-scheme: light; }
+:root[data-theme="dusk"] {
+  color-scheme: dark;
+  --paper: #0E1618;
+  --paper-rgb: 14, 22, 24;
+  --sand: #131E21;
+  --sand-rgb: 19, 30, 33;
+  --card: #172327;
+  --card-rgb: 23, 35, 39;
+  --ink: #E9EFEF;
+  --ink-rgb: 233, 239, 239;
+  --muted: #9DAEB1;
+  --muted-rgb: 157, 174, 177;
+  --accent-text: #9CC3EA;
+  --accent-text-rgb: 156, 195, 234;
+  --accent: #6FAAE6;
+  --accent-rgb: 111, 170, 230;
+  --koa: #E3A47E;
+  --koa-rgb: 227, 164, 126;
+  --accent-tint: #13283A;
+  --accent-tint-rgb: 19, 40, 58;
+  --accent-line: #2D5B85;
+  --accent-line-rgb: 45, 91, 133;
+  --koa-tint: #3B2A21;
+  --koa-tint-rgb: 59, 42, 33;
+  --plate-hover: #1A2A36;
+  --plate-hover-rgb: 26, 42, 54;
+  --chrome-bar: #1D2A2E;
+  --chrome-bar-rgb: 29, 42, 46;
+  --chrome-dot: #3B4B50;
+  --chrome-dot-rgb: 59, 75, 80;
+  --on-ink: #0E1618;
+  --on-ink-rgb: 14, 22, 24;
+  --deep: #060C0E;
+  --deep-rgb: 6, 12, 14;
+  --shadow: #000000;
+  --shadow-rgb: 0, 0, 0;
+  --live: #EE8D9A;
+  --live-rgb: 238, 141, 154;
+  --haze: #0E1820;
+  --haze-rgb: 14, 24, 32;
+  --dusk-high: #2C3A6E;
+  --dusk-high-rgb: 44, 58, 110;
+  --dusk-low: #8C6A86;
+  --dusk-low-rgb: 140, 106, 134;
+  --rescue: #B98AE0;
+  --rescue-rgb: 185, 138, 224;
+  --rescue-text: #CDB0EC;
+  --rescue-text-rgb: 205, 176, 236;
+  --rescue-tint: #2A1C38;
+  --rescue-tint-rgb: 42, 28, 56;
+}
+
+/* Screen */
+*, *::before, *::after { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: var(--text-body);
+  line-height: 1.5;
+}
+
+#component {
+  width: 1280px;
+  min-height: 800px;
+  margin: 0 auto;
+  padding: var(--space-7) var(--space-6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--paper);
+}
+
+.card {
+  width: 400px;
+  padding: var(--space-6);
+  background: var(--card);
+  border: 1px solid rgba(var(--ink-rgb), 0.1);
+  border-radius: var(--radius-card);
+}
+
+.card h1 {
+  margin: 0 0 var(--space-6);
+  font-family: var(--font-display);
+  font-weight: 300;
+  font-size: var(--text-step);
+  line-height: 1.25;
+  letter-spacing: 0;
+  text-transform: uppercase;
+  color: var(--ink);
+}
+
+.field + .field { margin-top: var(--space-5); }
+
+.field label {
+  display: block;
+  margin-bottom: var(--space-2);
+  font-family: var(--font-label);
+  font-weight: 500;
+  font-size: var(--text-label);
+  line-height: 1.33;
+  letter-spacing: var(--tracking-label);
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.field input {
+  display: block;
+  width: 100%;
+  height: 44px;
+  padding: 0 12px;
+  font: inherit;
+  font-size: var(--text-body);
+  color: var(--ink);
+  background: var(--card);
+  border: 1px solid rgba(var(--ink-rgb), 0.2);
+  border-radius: var(--radius-md);
+  outline: none;
+  transition: border-color var(--dur-fast) var(--ease);
+}
+
+.field input::placeholder { color: var(--muted); }
+
+.field input:focus {
+  border-color: var(--accent);
+  outline: 2px solid var(--accent);
+  outline-offset: 0;
+}
+
+.check {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  min-height: 44px;
+  margin-top: var(--space-3);
+  font-size: var(--text-body);
+  color: var(--ink);
+  cursor: pointer;
+}
+
+.check input {
+  width: 20px;
+  height: 20px;
+  margin: 0;
+  accent-color: var(--accent);
+  cursor: pointer;
+}
+
+.check input:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+.actions {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  margin-top: var(--space-5);
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 44px;
+  padding: 0 20px;
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: var(--text-small);
+  line-height: 1;
+  border-radius: var(--radius-pill);
+  cursor: pointer;
+  transition: background-color var(--dur-fast) var(--ease), color var(--dur-fast) var(--ease);
+}
+
+.btn:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+.btn--primary {
+  background: var(--ink);
+  color: var(--on-ink);
+  border: 0;
+}
+
+.btn--primary:hover { background: rgba(var(--ink-rgb), 0.86); }
+
+.btn--secondary {
+  background: transparent;
+  color: var(--ink);
+  border: 1.5px solid var(--ink);
+}
+
+.btn--secondary:hover { background: rgba(var(--ink-rgb), 0.06); }
+
+.help {
+  display: flex;
+  justify-content: center;
+  margin-top: var(--space-3);
+}
+
+.help a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  padding: 0 var(--space-3);
+  font-size: var(--text-small);
+  font-weight: 500;
+  color: var(--accent-text);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  border-radius: var(--radius-sm);
+}
+
+.help a:hover { background: var(--accent-tint); }
+
+.help a:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * { transition: none !important; }
+}
+</style>
+</head>
+<body>
+<div id="component">
+  <main class="card">
+    <h1>Sign in to Harbor</h1>
+    <form action="#">
+      <div class="field">
+        <label for="email">Work email</label>
+        <input id="email" name="email" type="email" autocomplete="username">
+      </div>
+      <div class="field">
+        <label for="password">Password</label>
+        <input id="password" name="password" type="password" autocomplete="current-password">
+      </div>
+      <label class="check">
+        <input type="checkbox" name="remember">
+        <span>Keep me signed in</span>
+      </label>
+      <div class="actions">
+        <button class="btn btn--primary" type="submit">Sign In</button>
+        <button class="btn btn--secondary" type="button">Continue with SSO</button>
+      </div>
+      <div class="help">
+        <a href="#">Forgot Password?</a>
+      </div>
+    </form>
+  </main>
+</div>
+</body>
+</html>

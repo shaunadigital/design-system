@@ -1,0 +1,1 @@
+A few ways. Every control in the composer is forty-four pixels, so it's easy to hit. On a keyboard, Enter sends, Shift plus Enter starts a new line, and Escape stops a reply. Screen readers get announcements as things change. You can also talk to it instead of typing, and nothing sends until you press send. You can try it live on the system page of shauna dot dev.

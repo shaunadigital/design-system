@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Message composer</title>
+<style>
+  :root {
+    --ink: #0B1416;
+    --accent: #0263AC;
+    --bg: #ffffff;
+    --muted: #4a5659;
+    --line: #c9d1d3;
+  }
+
+  * { box-sizing: border-box; }
+
+  html, body { height: 100%; margin: 0; }
+
+  body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: "Archivo", system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  }
+
+  #component {
+    width: 720px;
+    max-width: 100%;
+    padding: 12px 12px 12px 16px;
+    background: var(--bg);
+    border: 1px solid var(--line);
+    border-radius: 16px;
+    box-shadow: 0 1px 2px rgba(11, 20, 22, 0.06);
+  }
+
+  #component:focus-within {
+    border-color: var(--accent);
+    box-shadow: 0 0 0 1px var(--accent);
+  }
+
+  .field {
+    display: block;
+    width: 100%;
+    min-height: 56px;
+    margin: 0;
+    padding: 4px 4px 4px 0;
+    border: 0;
+    outline: 0;
+    resize: none;
+    background: transparent;
+    color: var(--ink);
+    font: inherit;
+    font-size: 16px;
+    line-height: 1.5;
+  }
+
+  .field::placeholder { color: var(--muted); opacity: 1; }
+
+  .actions {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 8px;
+  }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    padding: 0;
+    border: 0;
+    border-radius: 12px;
+    font: inherit;
+    cursor: pointer;
+  }
+
+  .btn svg {
+    width: 22px;
+    height: 22px;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 1.8;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+
+  .btn:focus-visible {
+    outline: 3px solid var(--accent);
+    outline-offset: 2px;
+  }
+
+  .attach {
+    background: transparent;
+    color: var(--ink);
+  }
+
+  .attach:hover { background: #eef2f3; }
+
+  .send {
+    background: var(--accent);
+    color: #ffffff;
+  }
+
+  .send:hover { background: #02508c; }
+</style>
+</head>
+<body>
+  <div id="component">
+    <label class="field-label" for="message" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;">Message Claude</label>
+    <textarea class="field" id="message" name="message" rows="2" placeholder="Message Claude"></textarea>
+    <div class="actions">
+      <button type="button" class="btn attach" aria-label="Attach a file">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 11.5l-8.6 8.6a5.5 5.5 0 0 1-7.8-7.8l8.9-8.9a3.7 3.7 0 0 1 5.2 5.2l-8.9 8.9a1.8 1.8 0 0 1-2.6-2.6l8.2-8.2"/></svg>
+      </button>
+      <button type="button" class="btn send" aria-label="Send message">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
+      </button>
+    </div>
+  </div>
+</body>
+</html>

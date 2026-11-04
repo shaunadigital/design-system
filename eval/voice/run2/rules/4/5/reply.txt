@@ -1,0 +1,1 @@
+Both groups did well, but Shauna's system produced far more consistent buttons and fields. It ran two hundred forty page builds on Claude. Her system passed all one hundred twenty pages, with seven button styles and four field styles. The standard file used thirty button styles and sixteen field styles. Want the details?

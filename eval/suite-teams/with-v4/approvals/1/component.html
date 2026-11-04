@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Approvals · Harbor</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+/* Tokens used here, copied from tokens.css (light theme) */
+:root {
+  --paper: #FFFFFF;
+  --card: #FFFFFF;
+  --ink: #0B1416;
+  --ink-rgb: 11, 20, 22;
+  --muted: #55656A;
+  --on-ink: #FFFFFF;
+  --accent: #0263AC;
+  --font-display: 'Unbounded', system-ui, sans-serif;
+  --font-body: 'Archivo', system-ui, -apple-system, sans-serif;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 24px;
+  --space-6: 32px;
+  --space-7: 48px;
+  --radius-card: 16px;
+  --radius-pill: 999px;
+  --tracking-tight: -0.02em;
+  --tracking-snug: -0.01em;
+  --text-hero: clamp(1.5rem, 3.34vw, 3rem);
+  --text-heading: clamp(1.75rem, 3.2vw, 2.875rem);
+  --text-lead: 1.375rem;
+  --text-body-l: 1.125rem;
+  --text-body: 1rem;
+  --text-small: 0.875rem;
+  --ease: cubic-bezier(0.2, 0.7, 0.2, 1);
+  --dur-base: 180ms;
+}
+
+* { box-sizing: border-box; }
+html, body { margin: 0; background: var(--paper); }
+
+#component {
+  width: 1280px;
+  min-height: 800px;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: var(--text-body);
+  -webkit-font-smoothing: antialiased;
+}
+
+.page {
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: var(--space-7) var(--space-6);
+}
+
+.page-head { display: block; }
+
+h1 {
+  margin: 0;
+  font-family: var(--font-display);
+  font-weight: 300;
+  font-size: var(--text-heading);
+  line-height: 1.1;
+  letter-spacing: var(--tracking-tight);
+  text-transform: uppercase;
+}
+
+.count {
+  margin: var(--space-4) 0 0;
+  font-size: var(--text-body-l);
+  color: var(--muted);
+}
+
+.queue {
+  list-style: none;
+  margin: var(--space-7) 0 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+}
+
+.item {
+  display: flex;
+  align-items: center;
+  gap: var(--space-6);
+  padding: var(--space-5) var(--space-6);
+  background: var(--card);
+  border: 1px solid rgba(var(--ink-rgb), 0.1);
+  border-radius: var(--radius-card);
+}
+
+.info { flex: 1; min-width: 0; }
+
+.title {
+  margin: 0;
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: var(--text-lead);
+  line-height: 1.3;
+  letter-spacing: var(--tracking-snug);
+}
+
+.requester {
+  margin: var(--space-2) 0 0;
+  font-size: var(--text-body);
+  color: var(--muted);
+}
+
+.amount {
+  font-family: var(--font-display);
+  font-weight: 300;
+  font-size: var(--text-hero);
+  line-height: 1;
+  letter-spacing: var(--tracking-tight);
+  white-space: nowrap;
+  min-width: 200px;
+  text-align: right;
+}
+
+.actions {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 44px;
+  padding: 0 20px;
+  border-radius: var(--radius-pill);
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: var(--text-small);
+  color: var(--ink);
+  background: none;
+  border: 0;
+  cursor: pointer;
+  transition: background var(--dur-base) var(--ease), color var(--dur-base) var(--ease);
+}
+.btn--secondary { border: 1.5px solid var(--ink); }
+.btn--secondary:hover { background: var(--ink); color: var(--on-ink); }
+.btn--quiet:hover { background: rgba(var(--ink-rgb), 0.06); }
+.btn:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+</style>
+</head>
+<body>
+<div id="component">
+  <main class="page">
+    <header class="page-head">
+      <h1>Approvals</h1>
+      <p class="count">3 waiting for you</p>
+    </header>
+
+    <ul class="queue">
+      <li class="item">
+        <div class="info">
+          <h2 class="title">Q4 travel budget</h2>
+          <p class="requester">Leo Park</p>
+        </div>
+        <div class="amount">$4,800</div>
+        <div class="actions">
+          <button class="btn btn--quiet" type="button">Decline</button>
+          <button class="btn btn--secondary" type="button">Approve</button>
+        </div>
+      </li>
+
+      <li class="item">
+        <div class="info">
+          <h2 class="title">Design conference tickets</h2>
+          <p class="requester">Maya Chen</p>
+        </div>
+        <div class="amount">$1,250</div>
+        <div class="actions">
+          <button class="btn btn--quiet" type="button">Decline</button>
+          <button class="btn btn--secondary" type="button">Approve</button>
+        </div>
+      </li>
+
+      <li class="item">
+        <div class="info">
+          <h2 class="title">Standing desks for support</h2>
+          <p class="requester">Ana Ruiz</p>
+        </div>
+        <div class="amount">$2,100</div>
+        <div class="actions">
+          <button class="btn btn--quiet" type="button">Decline</button>
+          <button class="btn btn--secondary" type="button">Approve</button>
+        </div>
+      </li>
+    </ul>
+  </main>
+</div>
+</body>
+</html>

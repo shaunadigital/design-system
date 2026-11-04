@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Audit log · Harbor</title>
+<style>
+:root {
+  --paper: #FFFFFF;
+  --sand: #EEF4FA;
+  --card: #FFFFFF;
+  --ink: #0B1416;
+  --ink-rgb: 11, 20, 22;
+  --muted: #55656A;
+  --accent-text: #0263AC;
+  --accent-tint: #E6EFF7;
+  --shadow-rgb: 11, 20, 22;
+  --font-display: 'Unbounded', system-ui, sans-serif;
+  --font-body: 'Archivo', system-ui, -apple-system, sans-serif;
+  --font-label: 'Archivo', system-ui, sans-serif;
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 24px;
+  --space-6: 32px;
+  --space-7: 48px;
+  --space-8: 64px;
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-card: 16px;
+  --radius-pill: 999px;
+  --tracking-tight: -0.02em;
+  --tracking-label: 0.14em;
+  --text-display-xl: clamp(2rem, 4vw, 3.5rem);
+  --text-body: 1rem;
+  --text-small: 0.875rem;
+  --text-label: 0.75rem;
+  --ease: cubic-bezier(0.2, 0.7, 0.2, 1);
+  --dur-fast: 120ms;
+  color-scheme: light;
+}
+:root[data-theme="dusk"] {
+  --paper: #0E1618;
+  --sand: #131E21;
+  --card: #172327;
+  --ink: #E9EFEF;
+  --ink-rgb: 233, 239, 239;
+  --muted: #9DAEB1;
+  --accent-text: #9CC3EA;
+  --accent-tint: #13283A;
+  --shadow-rgb: 0, 0, 0;
+  color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: var(--text-body);
+}
+
+#component {
+  width: 1280px;
+  min-height: 720px;
+  padding: var(--space-8);
+  background: var(--paper);
+}
+
+.head {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: var(--space-6);
+  padding-bottom: var(--space-6);
+}
+.head h1 {
+  margin: 0;
+  font-family: var(--font-display);
+  font-weight: 300;
+  font-size: var(--text-display-xl);
+  line-height: 1.1;
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-tight);
+}
+
+.filter {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+.filter label {
+  font-family: var(--font-label);
+  font-weight: 500;
+  font-size: var(--text-label);
+  letter-spacing: var(--tracking-label);
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.filter select {
+  min-width: 200px;
+  height: 44px;
+  padding: 0 var(--space-4);
+  border: 1px solid rgba(var(--ink-rgb), 0.1);
+  border-radius: var(--radius-pill);
+  background: var(--card);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: var(--text-body);
+}
+.filter select:focus-visible,
+.filter select:hover {
+  border-color: var(--accent-text);
+  outline: none;
+}
+.filter select { transition: border-color var(--dur-fast) var(--ease); }
+
+.events {
+  margin: 0;
+  padding: var(--space-2) var(--space-6);
+  list-style: none;
+  background: var(--card);
+  border: 1px solid rgba(var(--ink-rgb), 0.1);
+  border-radius: var(--radius-card);
+}
+.events li {
+  display: grid;
+  grid-template-columns: 176px 200px 1fr;
+  align-items: center;
+  column-gap: var(--space-5);
+  min-height: 64px;
+  border-top: 1px solid rgba(var(--ink-rgb), 0.1);
+}
+.events li:first-child { border-top: 0; }
+.time {
+  font-size: var(--text-small);
+  color: var(--muted);
+}
+.person {
+  font-size: var(--text-body);
+  font-weight: 600;
+}
+.action {
+  font-size: var(--text-body);
+}
+</style>
+</head>
+<body>
+<div id="component">
+  <div class="head">
+    <h1>Audit log</h1>
+    <div class="filter">
+      <label for="date-range">Date range</label>
+      <select id="date-range" name="date-range">
+        <option selected>Last 7 days</option>
+      </select>
+    </div>
+  </div>
+
+  <ul class="events">
+    <li><span class="time">Today 9:14</span><span class="person">Maya Chen</span><span class="action">Changed Leo Park's role to Editor</span></li>
+    <li><span class="time">Today 8:02</span><span class="person">Leo Park</span><span class="action">Approved Q4 travel budget</span></li>
+    <li><span class="time">Yesterday 17:40</span><span class="person">Ana Ruiz</span><span class="action">Closed VPN access for contractors</span></li>
+    <li><span class="time">Yesterday 11:05</span><span class="person">Sam Ito</span><span class="action">Invited kai@harbor.app</span></li>
+    <li><span class="time">Oct 16 15:22</span><span class="person">Maya Chen</span><span class="action">Exported requests</span></li>
+    <li><span class="time">Oct 16 10:10</span><span class="person">Kai Lee</span><span class="action">Signed in from a new device</span></li>
+    <li><span class="time">Oct 15 14:48</span><span class="person">Leo Park</span><span class="action">Updated billing details</span></li>
+    <li><span class="time">Oct 15 09:30</span><span class="person">Maya Chen</span><span class="action">Created workspace Harbor Ops</span></li>
+  </ul>
+</div>
+</body>
+</html>

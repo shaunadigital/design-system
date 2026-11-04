@@ -1,0 +1,74 @@
+{
+ "pass": false,
+ "hasRoot": true,
+ "box": {
+  "x": 0,
+  "y": 0,
+  "w": 1280,
+  "h": 800
+ },
+ "checks": {
+  "type": {
+   "pass": false,
+   "issues": [
+    "h1 font-size 24px"
+   ]
+  },
+  "color": {
+   "pass": false,
+   "issues": [
+    "main.card border rgb(213, 219, 221)",
+    "input#email border rgb(138, 149, 152)",
+    "input#password border rgb(138, 149, 152)",
+    "div.divider background rgb(213, 219, 221)",
+    "button.secondary border rgb(138, 149, 152)"
+   ]
+  },
+  "radius": {
+   "pass": false,
+   "issues": [
+    "div.mark radius 10px",
+    "input#email radius 10px",
+    "input#password radius 10px",
+    "a radius 4px",
+    "button.primary radius 10px",
+    "button.secondary radius 10px"
+   ]
+  },
+  "tracking": {
+   "pass": true,
+   "issues": []
+  },
+  "fonts": {
+   "pass": true,
+   "issues": []
+  },
+  "contrast": {
+   "pass": true,
+   "issues": []
+  },
+  "hover": {
+   "pass": true,
+   "issues": []
+  },
+  "motion": {
+   "pass": false,
+   "issues": [
+    "transition uses an off-system duration: #component input[type=\"email\"], #component input[type=\"password\"]",
+    "transition uses an off-system duration: #component button"
+   ]
+  },
+  "copy": {
+   "pass": true,
+   "issues": []
+  },
+  "labels": {
+   "pass": true,
+   "issues": []
+  },
+  "targets": {
+   "pass": true,
+   "issues": []
+  }
+ }
+}

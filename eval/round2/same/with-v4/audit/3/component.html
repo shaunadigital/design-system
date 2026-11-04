@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Audit log · Harbor</title>
+<style>
+:root {
+  --paper: #FFFFFF;
+  --card: #FFFFFF;
+  --ink: #0B1416;
+  --ink-rgb: 11, 20, 22;
+  --muted: #55656A;
+  --accent: #0263AC;
+  --font-display: 'Unbounded', system-ui, sans-serif;
+  --font-body: 'Archivo', system-ui, -apple-system, sans-serif;
+  --font-label: 'Archivo', system-ui, sans-serif;
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-5: 24px;
+  --space-6: 32px;
+  --space-7: 48px;
+  --radius-md: 12px;
+  --radius-card: 16px;
+  --tracking-tight: -0.02em;
+  --tracking-label: 0.14em;
+  --text-heading: clamp(1.75rem, 3.2vw, 2.875rem);
+  --text-body: 1rem;
+  --text-small: 0.875rem;
+  --text-label: 0.75rem;
+  --ease: cubic-bezier(0.2, 0.7, 0.2, 1);
+  --dur-fast: 120ms;
+  color-scheme: light;
+}
+:root[data-theme="dusk"] {
+  --paper: #0E1618;
+  --card: #172327;
+  --ink: #E9EFEF;
+  --ink-rgb: 233, 239, 239;
+  --muted: #9DAEB1;
+  --accent: #6FAAE6;
+  color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--paper); }
+
+#component {
+  width: 1280px;
+  min-height: 100vh;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: var(--text-body);
+  line-height: 1.5;
+}
+
+.page {
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: var(--space-7) var(--space-6);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6);
+}
+@media (min-width: 1184px) {
+  .page { padding-left: 0; padding-right: 0; }
+}
+
+.page-title {
+  margin: 0;
+  font-family: var(--font-display);
+  font-weight: 300;
+  font-size: var(--text-heading);
+  line-height: 1.1;
+  letter-spacing: var(--tracking-tight);
+  text-transform: uppercase;
+  color: var(--ink);
+}
+
+.field { display: flex; flex-direction: column; gap: var(--space-2); width: 240px; }
+.field-label {
+  font-family: var(--font-label);
+  font-weight: 500;
+  font-size: var(--text-label);
+  letter-spacing: var(--tracking-label);
+  text-transform: uppercase;
+  line-height: 1.2;
+  color: var(--muted);
+}
+.select-wrap { position: relative; }
+.select-wrap::after {
+  content: "";
+  position: absolute;
+  right: 16px;
+  top: 50%;
+  width: 8px;
+  height: 8px;
+  border-right: 2px solid var(--ink);
+  border-bottom: 2px solid var(--ink);
+  transform: translateY(-70%) rotate(45deg);
+  pointer-events: none;
+}
+.select {
+  appearance: none;
+  -webkit-appearance: none;
+  display: block;
+  width: 100%;
+  height: 44px;
+  margin: 0;
+  padding: 0 40px 0 12px;
+  font: inherit;
+  font-size: var(--text-body);
+  color: var(--ink);
+  background: var(--card);
+  border: 1px solid rgba(var(--ink-rgb), 0.2);
+  border-radius: var(--radius-md);
+  cursor: pointer;
+}
+.select:focus-visible { outline: 2px solid var(--accent); outline-offset: 0; }
+
+.card {
+  background: var(--card);
+  border: 1px solid rgba(var(--ink-rgb), 0.1);
+  border-radius: var(--radius-card);
+  padding: var(--space-5);
+}
+
+.events { width: 100%; border-collapse: collapse; text-align: left; }
+.events caption { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+.events th {
+  height: 44px;
+  padding: 0 var(--space-3) 0 0;
+  font-family: var(--font-label);
+  font-weight: 500;
+  font-size: var(--text-label);
+  letter-spacing: var(--tracking-label);
+  text-transform: uppercase;
+  color: var(--muted);
+  border-bottom: 1px solid rgba(var(--ink-rgb), 0.1);
+}
+.events td {
+  height: 52px;
+  padding: 0 var(--space-3) 0 0;
+  font-size: var(--text-small);
+  color: var(--ink);
+  border-bottom: 1px solid rgba(var(--ink-rgb), 0.1);
+  vertical-align: middle;
+}
+.events tbody tr:last-child td { border-bottom: 0; }
+.events .col-time { width: 200px; }
+.events .col-person { width: 240px; }
+.events td.time { color: var(--muted); font-variant-numeric: tabular-nums; }
+.events td.person { font-weight: 600; }
+</style>
+</head>
+<body>
+<div id="component">
+  <main class="page">
+    <h1 class="page-title">Audit log</h1>
+
+    <div class="field">
+      <label class="field-label" for="date-range">Date range</label>
+      <div class="select-wrap">
+        <select class="select" id="date-range" name="date-range">
+          <option selected>Last 7 days</option>
+        </select>
+      </div>
+    </div>
+
+    <section class="card" aria-label="Events">
+      <table class="events">
+        <caption>Audit log events</caption>
+        <thead>
+          <tr>
+            <th class="col-time" scope="col">Time</th>
+            <th class="col-person" scope="col">Person</th>
+            <th scope="col">Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td class="time">Today 9:14</td><td class="person">Maya Chen</td><td>Changed Leo Park's role to Editor</td></tr>
+          <tr><td class="time">Today 8:02</td><td class="person">Leo Park</td><td>Approved Q4 travel budget</td></tr>
+          <tr><td class="time">Yesterday 17:40</td><td class="person">Ana Ruiz</td><td>Closed VPN access for contractors</td></tr>
+          <tr><td class="time">Yesterday 11:05</td><td class="person">Sam Ito</td><td>Invited kai@harbor.app</td></tr>
+          <tr><td class="time">Oct 16 15:22</td><td class="person">Maya Chen</td><td>Exported requests</td></tr>
+          <tr><td class="time">Oct 16 10:10</td><td class="person">Kai Lee</td><td>Signed in from a new device</td></tr>
+          <tr><td class="time">Oct 15 14:48</td><td class="person">Leo Park</td><td>Updated billing details</td></tr>
+          <tr><td class="time">Oct 15 09:30</td><td class="person">Maya Chen</td><td>Created workspace Harbor Ops</td></tr>
+        </tbody>
+      </table>
+    </section>
+  </main>
+</div>
+</body>
+</html>

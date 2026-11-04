@@ -1,0 +1,7 @@
+It starts with one token file. Every colour, type size and spacing value lives there, and that single file builds the site's styles, the Figma library, and the rules Claude reads when it helps build pages. So designers and code always pull from the same source.
+
+The system is small on purpose. Two typefaces, twelve type sizes, a four pixel spacing base, nine base colours, and a Day and a Dusk theme.
+
+A set of seven checks runs on every build. They cover things like text contrast, using tokens only, accessible labels, and consistent motion.
+
+In her test on Claude, her system passed every page and produced far fewer button and field styles than a standard design rules file. If you'd like, I can tell you more about that test, or you can see the live system page on the site.

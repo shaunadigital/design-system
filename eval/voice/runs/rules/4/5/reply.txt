@@ -1,0 +1,1 @@
+Both setups passed almost every page, but Shauna's system produced far more consistent buttons and fields. The standard file used thirty button styles and sixteen field styles. Her system used seven and four. Want the details?

@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=1280">
+<title>Connect your tools · Harbor</title>
+<style>
+:root {
+  --paper: #FFFFFF;
+  --card: #FFFFFF;
+  --ink: #0B1416;
+  --ink-rgb: 11, 20, 22;
+  --muted: #55656A;
+  --accent-text: #0263AC;
+  --accent: #0263AC;
+  --accent-rgb: 2, 99, 172;
+  --accent-tint: #E6EFF7;
+  --on-ink: #FFFFFF;
+  --shadow-rgb: 11, 20, 22;
+  --font-display: 'Unbounded', system-ui, sans-serif;
+  --font-body: 'Archivo', system-ui, -apple-system, sans-serif;
+  --font-label: 'Archivo', system-ui, sans-serif;
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 24px;
+  --space-6: 32px;
+  --space-7: 48px;
+  --space-8: 64px;
+  --radius-md: 12px;
+  --radius-card: 16px;
+  --radius-pill: 999px;
+  --tracking-label: 0.14em;
+  --text-heading: clamp(1.75rem, 3.2vw, 2.875rem);
+  --text-lead: 1.375rem;
+  --text-body-l: 1.125rem;
+  --text-body: 1rem;
+  --text-small: 0.875rem;
+  --text-label: 0.75rem;
+  --ease: cubic-bezier(0.2, 0.7, 0.2, 1);
+  --dur-fast: 120ms;
+  --dur-base: 180ms;
+}
+
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--paper); color: var(--ink); font-family: var(--font-body); font-size: var(--text-body); }
+
+#component { width: 1280px; min-height: 800px; background: var(--paper); }
+.page { max-width: 1120px; margin: 0 auto; padding: var(--space-7) var(--space-6); display: flex; flex-direction: column; gap: var(--space-6); }
+
+.progress { display: flex; align-items: center; gap: var(--space-4); }
+.progress-label { font-family: var(--font-label); font-weight: 500; font-size: var(--text-label); letter-spacing: var(--tracking-label); text-transform: uppercase; color: var(--accent-text); }
+.progress-bar { display: flex; gap: var(--space-2); }
+.progress-bar span { width: 48px; height: 4px; border-radius: var(--radius-pill); background: rgba(var(--ink-rgb), 0.1); }
+.progress-bar span.done { background: var(--accent); }
+
+.head { display: flex; flex-direction: column; gap: var(--space-4); }
+h1 { margin: 0; font-family: var(--font-display); font-weight: 300; font-size: var(--text-heading); line-height: 1.1; text-transform: uppercase; }
+.lede { margin: 0; font-size: var(--text-body-l); color: var(--muted); }
+
+.options { display: flex; flex-direction: column; gap: var(--space-4); }
+.option { display: flex; align-items: center; gap: var(--space-5); padding: var(--space-5); background: var(--card); border: 1px solid rgba(var(--ink-rgb), 0.1); border-radius: var(--radius-card); }
+.tile { flex: none; width: 56px; height: 56px; display: grid; place-items: center; border-radius: var(--radius-md); background: var(--accent-tint); color: var(--accent-text); }
+.tile svg { width: 28px; height: 28px; }
+.text { flex: 1; display: flex; flex-direction: column; gap: var(--space-1); }
+.name { margin: 0; font-size: var(--text-body-l); font-weight: 600; }
+.desc { margin: 0; font-size: var(--text-body); color: var(--muted); }
+
+.btn { display: inline-flex; align-items: center; justify-content: center; height: 44px; padding: 0 20px; border-radius: var(--radius-pill); font: 600 var(--text-small) var(--font-body); color: var(--ink); background: none; border: 1.5px solid transparent; cursor: pointer; white-space: nowrap; transition: background var(--dur-fast) var(--ease), opacity var(--dur-fast) var(--ease); }
+.btn:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.btn--primary { background: var(--ink); color: var(--on-ink); }
+.btn--primary:hover { opacity: 0.88; }
+.btn--secondary { border-color: var(--ink); }
+.btn--secondary:hover { background: rgba(var(--ink-rgb), 0.05); }
+.btn--quiet:hover { background: rgba(var(--ink-rgb), 0.05); }
+
+.actions { display: flex; justify-content: flex-end; align-items: center; gap: var(--space-3); padding-top: var(--space-5); border-top: 1px solid rgba(var(--ink-rgb), 0.1); }
+</style>
+</head>
+<body>
+<div id="component">
+  <main class="page">
+    <div class="progress">
+      <div class="progress-bar" aria-hidden="true"><span class="done"></span><span class="done"></span><span></span><span></span></div>
+      <span class="progress-label">Step 2 of 4</span>
+    </div>
+
+    <header class="head">
+      <h1>Connect your tools</h1>
+      <p class="lede">Harbor works best with the tools your team already uses.</p>
+    </header>
+
+    <section class="options" aria-label="Integrations">
+      <div class="option">
+        <div class="tile" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="currentColor"><rect x="10" y="2" width="4" height="9" rx="2"/><rect x="2" y="10" width="9" height="4" rx="2"/><rect x="13" y="10" width="9" height="4" rx="2"/><rect x="10" y="13" width="4" height="9" rx="2"/></svg>
+        </div>
+        <div class="text">
+          <h2 class="name">Slack</h2>
+          <p class="desc">Get request updates in your channels</p>
+        </div>
+        <button class="btn btn--secondary" type="button">Connect</button>
+      </div>
+
+      <div class="option">
+        <div class="tile" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4.5" width="18" height="16" rx="3"/><path d="M3 10h18M8 2.5v4M16 2.5v4"/></svg>
+        </div>
+        <div class="text">
+          <h2 class="name">Google Calendar</h2>
+          <p class="desc">See due dates on your calendar</p>
+        </div>
+        <button class="btn btn--secondary" type="button">Connect</button>
+      </div>
+
+      <div class="option">
+        <div class="tile" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2 21 11a1.4 1.4 0 0 1 0 2l-8 8a1.4 1.4 0 0 1-2 0L3 13a1.4 1.4 0 0 1 0-2z"/><circle cx="12" cy="12" r="2.6" fill="var(--card)"/></svg>
+        </div>
+        <div class="text">
+          <h2 class="name">Jira</h2>
+          <p class="desc">Link requests to engineering tickets</p>
+        </div>
+        <button class="btn btn--secondary" type="button">Connect</button>
+      </div>
+    </section>
+
+    <div class="actions">
+      <button class="btn btn--quiet" type="button">Skip for Now</button>
+      <button class="btn btn--primary" type="button">Continue</button>
+    </div>
+  </main>
+</div>
+</body>
+</html>

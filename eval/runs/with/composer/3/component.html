@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Message Composer</title>
+<style>
+/* Tokens used here, copied from tokens.css (generated from tokens/tokens.json) */
+:root {
+  --paper: #FFFFFF;
+  --sand: #EEF4FA;
+  --card: #FFFFFF;
+  --ink: #0B1416;
+  --muted: #55656A;
+  --accent: #0263AC;
+  --accent-tint: #E6EFF7;
+  --accent-line: #9CC3EA;
+  --on-ink: #FFFFFF;
+  --shadow-rgb: 11, 20, 22;
+  --font-body: 'Archivo', system-ui, -apple-system, sans-serif;
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 24px;
+  --radius-card: 16px;
+  --radius-pill: 999px;
+  --text-body-l: 1.125rem;
+  --ease: cubic-bezier(0.2, 0.7, 0.2, 1);
+  --dur-fast: 120ms;
+  --dur-base: 180ms;
+}
+:root { color-scheme: light; }
+:root[data-theme="dusk"] {
+  color-scheme: dark;
+  --paper: #0E1618;
+  --sand: #131E21;
+  --card: #172327;
+  --ink: #E9EFEF;
+  --muted: #9DAEB1;
+  --accent: #6FAAE6;
+  --accent-tint: #13283A;
+  --accent-line: #2D5B85;
+  --on-ink: #0E1618;
+  --shadow-rgb: 0, 0, 0;
+}
+
+* { box-sizing: border-box; }
+
+html, body { height: 100%; margin: 0; }
+
+body {
+  display: grid;
+  place-items: center;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-body);
+}
+
+#component {
+  width: min(720px, calc(100% - 128px));
+  display: flex;
+  align-items: flex-end;
+  gap: var(--space-2);
+  padding: var(--space-3);
+  background: var(--card);
+  border: 1px solid var(--accent-line);
+  border-radius: var(--radius-card);
+  box-shadow: 0 8px 24px rgba(var(--shadow-rgb), 0.08);
+  transition: border-color var(--dur-base) var(--ease);
+}
+#component:focus-within { border-color: var(--accent); }
+
+.composer-input {
+  flex: 1;
+  min-width: 0;
+  min-height: 44px;
+  height: 88px;
+  margin: 0;
+  padding: 10px var(--space-2);
+  border: 0;
+  background: transparent;
+  color: var(--ink);
+  font: inherit;
+  font-size: var(--text-body-l);
+  line-height: 1.5;
+  resize: none;
+}
+.composer-input::placeholder { color: var(--muted); opacity: 1; }
+.composer-input:focus { outline: none; }
+
+.icon-btn {
+  flex: none;
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  border: 0;
+  border-radius: var(--radius-pill);
+  font: inherit;
+  cursor: pointer;
+  transition: background-color var(--dur-fast) var(--ease), transform var(--dur-fast) var(--ease);
+}
+.icon-btn svg {
+  width: 24px;
+  height: 24px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.icon-btn:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.icon-btn:active { transform: scale(0.96); }
+
+.attach { background: transparent; color: var(--ink); }
+.attach:hover { background: var(--accent-tint); }
+
+.send { background: var(--ink); color: var(--on-ink); }
+.send:hover { background: var(--accent); }
+
+@media (prefers-reduced-motion: reduce) {
+  * { transition: none !important; }
+}
+</style>
+</head>
+<body>
+<div id="component">
+  <button type="button" class="icon-btn attach" aria-label="Attach File">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 11.5l-8.1 8.1a5 5 0 0 1-7.1-7.1l8.5-8.5a3.3 3.3 0 0 1 4.7 4.7l-8.5 8.5a1.7 1.7 0 0 1-2.4-2.4l7.8-7.8"/></svg>
+  </button>
+  <textarea class="composer-input" rows="3" placeholder="Message Claude" aria-label="Message Claude"></textarea>
+  <button type="button" class="icon-btn send" aria-label="Send Message">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 19V5"/><path d="M5.5 11.5L12 5l6.5 6.5"/></svg>
+  </button>
+</div>
+</body>
+</html>

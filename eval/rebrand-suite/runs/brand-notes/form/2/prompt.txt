@@ -1,0 +1,1 @@
+Harbor has a new brand, described in BRAND.md in this folder. Update component.html so this screen follows the new brand everywhere. Keep the content and the layout; change only the styling. Edit component.html in place. Static HTML and CSS only.

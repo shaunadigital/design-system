@@ -1,0 +1,15 @@
+{
+ "pass": false,
+ "words": 37,
+ "longestSentence": 13,
+ "issues": {
+  "length": [],
+  "sentences": [],
+  "markdown": [],
+  "links": [
+   "DESIGN.md"
+  ],
+  "shorthand": [],
+  "emoji": []
+ }
+}

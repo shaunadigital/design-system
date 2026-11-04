@@ -1,0 +1,63 @@
+{
+ "pass": false,
+ "hasRoot": true,
+ "box": {
+  "x": 80,
+  "y": 0,
+  "w": 1280,
+  "h": 672
+ },
+ "checks": {
+  "type": {
+   "pass": true,
+   "issues": []
+  },
+  "color": {
+   "pass": false,
+   "issues": [
+    "th border rgb(213, 218, 220)",
+    "td border rgb(213, 218, 220)"
+   ]
+  },
+  "radius": {
+   "pass": false,
+   "issues": [
+    "button.primary radius 6px",
+    "input#search radius 6px",
+    "button radius 6px"
+   ]
+  },
+  "tracking": {
+   "pass": true,
+   "issues": []
+  },
+  "fonts": {
+   "pass": true,
+   "issues": []
+  },
+  "contrast": {
+   "pass": true,
+   "issues": []
+  },
+  "hover": {
+   "pass": true,
+   "issues": []
+  },
+  "motion": {
+   "pass": true,
+   "issues": []
+  },
+  "copy": {
+   "pass": true,
+   "issues": []
+  },
+  "labels": {
+   "pass": true,
+   "issues": []
+  },
+  "targets": {
+   "pass": true,
+   "issues": []
+  }
+ }
+}

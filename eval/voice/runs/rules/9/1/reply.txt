@@ -1,0 +1,1 @@
+Every control in the chat composer is 44 pixels, so it's easy to hit. It works from the keyboard: Enter sends, Shift and Enter adds a new line, and Escape stops a reply. Screen readers get spoken announcements too. Want the details?

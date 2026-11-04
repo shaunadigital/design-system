@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Message Composer</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+  * { box-sizing: border-box; }
+  html, body { height: 100%; margin: 0; }
+  body {
+    background: #FFFFFF;
+    color: #0B1416;
+    font-family: "Archivo", system-ui, sans-serif;
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  #component {
+    width: 100%;
+    max-width: 640px;
+    background: #FFFFFF;
+    border: 1px solid #9CC3EA;
+    border-radius: 16px;
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    transition: background-color 180ms cubic-bezier(0.2, 0.7, 0.2, 1);
+  }
+  #component textarea {
+    display: block;
+    width: 100%;
+    min-height: 96px;
+    resize: none;
+    margin: 0;
+    padding: 12px 16px;
+    font-family: "Archivo", system-ui, sans-serif;
+    font-size: 16px;
+    line-height: 1.5;
+    color: #0B1416;
+    background: #FFFFFF;
+    border: 1px solid #9CC3EA;
+    border-radius: 12px;
+    transition: background-color 120ms cubic-bezier(0.2, 0.7, 0.2, 1);
+  }
+  #component textarea::placeholder { color: #55656A; opacity: 1; }
+  #component textarea:hover { background: #E6EFF7; }
+  #component textarea:focus-visible {
+    outline: 2px solid #0263AC;
+    outline-offset: 2px;
+    background: #FFFFFF;
+  }
+  #component .bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+  }
+  #component button {
+    width: 44px;
+    height: 44px;
+    padding: 0;
+    border: 0;
+    border-radius: 999px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-family: "Archivo", system-ui, sans-serif;
+    font-size: 16px;
+    transition: background-color 180ms cubic-bezier(0.2, 0.7, 0.2, 1), color 180ms cubic-bezier(0.2, 0.7, 0.2, 1);
+  }
+  #component button svg {
+    width: 24px;
+    height: 24px;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 1.5;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+  #component .attach { background: transparent; color: #0B1416; }
+  #component .attach:hover { background: #E6EFF7; color: #0263AC; }
+  #component .send { background: #0B1416; color: #FFFFFF; }
+  #component .send:hover { background: #0263AC; }
+  #component button:focus-visible {
+    outline: 2px solid #0263AC;
+    outline-offset: 2px;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    #component, #component * { transition: none; }
+  }
+</style>
+</head>
+<body>
+  <div id="component">
+    <textarea name="message" placeholder="Message Claude" aria-label="Message Claude" rows="3"></textarea>
+    <div class="bar">
+      <button type="button" class="attach" aria-label="Attach File" title="Attach File">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 11.5l-7.8 7.8a5 5 0 0 1-7.1-7.1l8.5-8.5a3.3 3.3 0 0 1 4.7 4.7l-8.5 8.5a1.7 1.7 0 0 1-2.4-2.4l7.8-7.8"/></svg>
+      </button>
+      <button type="button" class="send" aria-label="Send Message" title="Send Message">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
+      </button>
+    </div>
+  </div>
+</body>
+</html>

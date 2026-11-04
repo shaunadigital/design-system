@@ -1,0 +1,6 @@
+[
+ {"name": "platform", "tpl": "Quick ask from the platform team: we need the {what} for Harbor. {content}. Keep it simple, we just need it working."},
+ {"name": "product", "tpl": "User story: as a Harbor admin, I need a {what} so I can get my work done without friction. Acceptance criteria: {content}. It should look polished and modern, like the best SaaS tools."},
+ {"name": "design", "tpl": "Design the {what} for Harbor. Aim for a clean, airy, premium feel with plenty of white space and a clear hierarchy. Content: {content}."},
+ {"name": "engineering", "tpl": "Implement the Harbor {what} as a static mock. Requirements: {content}. Dense is fine, it's an internal tool, prioritize scannability."}
+]

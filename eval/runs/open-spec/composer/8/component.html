@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Message Composer</title>
+<style>
+  * { box-sizing: border-box; }
+  html, body { margin: 0; height: 100%; }
+  body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #FFFFFF;
+    color: #0B1416;
+    font-family: "Archivo", system-ui, -apple-system, "Segoe UI", Arial, sans-serif;
+    font-size: 16px;
+  }
+  #component {
+    width: 640px;
+    max-width: 100%;
+    padding: 16px;
+    background: #FFFFFF;
+    border: 1px solid #9CC3EA;
+    border-radius: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    transition: background-color 180ms cubic-bezier(0.2, 0.7, 0.2, 1);
+  }
+  #component:focus-within { background: #FFFFFF; border-color: #0263AC; }
+  textarea {
+    display: block;
+    width: 100%;
+    min-height: 96px;
+    padding: 12px 16px;
+    border: 1px solid transparent;
+    border-radius: 12px;
+    background: #FFFFFF;
+    color: #0B1416;
+    font: 400 16px/1.5 "Archivo", system-ui, -apple-system, "Segoe UI", Arial, sans-serif;
+    letter-spacing: 0;
+    resize: vertical;
+    outline: none;
+    transition: background-color 120ms cubic-bezier(0.2, 0.7, 0.2, 1);
+  }
+  textarea::placeholder { color: #55656A; opacity: 1; }
+  textarea:hover { background: #EEF4FA; }
+  textarea:focus { background: #FFFFFF; }
+  .toolbar {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+  }
+  button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    padding: 0;
+    border: 1px solid transparent;
+    border-radius: 999px;
+    font: inherit;
+    cursor: pointer;
+    transition: background-color 180ms cubic-bezier(0.2, 0.7, 0.2, 1),
+                color 180ms cubic-bezier(0.2, 0.7, 0.2, 1),
+                border-color 180ms cubic-bezier(0.2, 0.7, 0.2, 1);
+  }
+  button svg {
+    width: 24px;
+    height: 24px;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 1.5;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+  .attach { background: transparent; color: #0B1416; }
+  .attach:hover { background: #E6EFF7; color: #0263AC; }
+  .send { background: #0B1416; color: #FFFFFF; }
+  .send:hover { background: #0263AC; }
+  button:focus-visible { outline: 2px solid #0263AC; outline-offset: 2px; }
+</style>
+</head>
+<body>
+  <div id="component">
+    <textarea name="message" rows="3" placeholder="Message Claude" aria-label="Message Claude"></textarea>
+    <div class="toolbar">
+      <button type="button" class="attach" aria-label="Attach File" title="Attach File">
+        <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+          <path d="M20 11.5l-8.2 8.2a5 5 0 0 1-7.1-7.1l8.5-8.5a3.3 3.3 0 0 1 4.7 4.7l-8.5 8.5a1.7 1.7 0 0 1-2.4-2.4l7.8-7.8"/>
+        </svg>
+      </button>
+      <button type="button" class="send" aria-label="Send Message" title="Send Message">
+        <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+          <path d="M12 19V5M5 12l7-7 7 7"/>
+        </svg>
+      </button>
+    </div>
+  </div>
+</body>
+</html>

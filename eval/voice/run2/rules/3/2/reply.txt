@@ -1,0 +1,1 @@
+You can see them on the System page, which is a live specimen of the whole design system. The tokens also live in one tokens file in the code. Want the details?

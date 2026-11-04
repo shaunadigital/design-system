@@ -1,0 +1,1 @@
+Both passed almost every page check, but her system produced far more consistent results. In the test, a standard file gave thirty button styles and sixteen field styles. Her system gave seven and four. Want the details?

@@ -1,0 +1,16 @@
+import { Client } from '@modelcontextprotocol/sdk/client/index.js';
+import { StdioClientTransport } from '@modelcontextprotocol/sdk/client/stdio.js';
+const c = new Client({ name: 't', version: '1' });
+await c.connect(new StdioClientTransport({ command: 'node', args: [new URL('./server.mjs', import.meta.url).pathname] }));
+const tools = await c.listTools(); console.log('tools:', tools.tools.map(t => t.name).join(', '));
+const call = async (name, args) => { const r = await c.callTool({ name, arguments: args }); return r.content[0].text; };
+console.log('groups:', (await call('get_tokens', {})).slice(0, 160));
+console.log('motion:', await call('get_tokens', { group: 'motion' }));
+console.log('sections:', await call('list_rules', {}));
+console.log('components:', await call('get_component', {}));
+console.log('composer:', (await call('get_component', { name: 'composer' })).slice(0, 200));
+console.log('bad html:', await call('check_html', { html: '<style>.c{color:#ff0000;font-size:15px;transition:all .3s}.card:hover{transform:translateY(-2px)}</style><div class="card"><img src=x.png><button class="btn">send now</button><button></button><p>Fast — easy</p></div>' }));
+console.log('good html:', await call('check_html', { html: '<style>.c{color:var(--ink);font-size:var(--text-body);transition:background var(--dur-base) var(--ease)}</style><a class="btn" href="/x">Send Now</a><img src="x.png" alt="">' }));
+console.log('spoken bad:', await call('check_spoken', { text: 'Here are the checks:\n1. Contrast\n2. See https://shauna.dev/system/' }));
+console.log('spoken good:', await call('check_spoken', { text: 'Seven checks run on every build. The three that matter most are contrast, tokens and labels. Want the other four?' }));
+await c.close();

@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Sign in to Harbor</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+/* Tokens from tokens.css (light theme), inlined so the file is self-contained. */
+:root {
+  --paper: #FFFFFF;
+  --sand: #EEF4FA;
+  --card: #FFFFFF;
+  --ink: #0B1416;
+  --ink-rgb: 11, 20, 22;
+  --muted: #55656A;
+  --accent-text: #0263AC;
+  --accent-tint: #E6EFF7;
+  --on-ink: #FFFFFF;
+  --shadow-rgb: 11, 20, 22;
+  --font-display: 'Unbounded', system-ui, sans-serif;
+  --font-body: 'Archivo', system-ui, -apple-system, sans-serif;
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 24px;
+  --space-6: 32px;
+  --space-8: 64px;
+  --radius-sm: 8px;
+  --radius-card: 16px;
+  --radius-pill: 999px;
+  --tracking-tight: -0.02em;
+  --text-step: clamp(1.375rem, 1.9vw, 1.75rem);
+  --text-body: 1rem;
+  --text-small: 0.875rem;
+  --text-label: 0.75rem;
+  --ease: cubic-bezier(0.2, 0.7, 0.2, 1);
+  --dur-fast: 120ms;
+  --dur-base: 180ms;
+  color-scheme: light;
+}
+
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--paper); }
+
+#component {
+  width: 1280px;
+  min-height: 800px;
+  margin: 0 auto;
+  padding: var(--space-8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--sand);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: var(--text-body);
+  line-height: 1.5;
+}
+
+#component .card {
+  width: 400px;
+  padding: var(--space-6);
+  background: var(--card);
+  border: 1px solid rgba(var(--ink-rgb), 0.1);
+  border-radius: var(--radius-card);
+}
+
+#component h1 {
+  margin: 0 0 var(--space-5);
+  font-family: var(--font-display);
+  font-weight: 300;
+  font-size: var(--text-step);
+  line-height: 1.2;
+  letter-spacing: var(--tracking-tight);
+  text-transform: uppercase;
+  color: var(--ink);
+}
+
+#component form { display: block; margin: 0; }
+
+#component .field { display: block; margin-bottom: var(--space-5); }
+#component .field label {
+  display: block;
+  margin-bottom: var(--space-2);
+  font-size: var(--text-small);
+  font-weight: 500;
+  color: var(--ink);
+}
+#component .field input {
+  display: block;
+  width: 100%;
+  height: 48px;
+  padding: 0 var(--space-4);
+  font: inherit;
+  font-size: var(--text-body);
+  color: var(--ink);
+  background: var(--card);
+  border: 1px solid var(--muted);
+  border-radius: var(--radius-sm);
+  transition: border-color var(--dur-fast) var(--ease), box-shadow var(--dur-fast) var(--ease);
+}
+#component .field input:hover { border-color: var(--ink); }
+#component .field input:focus-visible {
+  outline: none;
+  border-color: var(--accent-text);
+  box-shadow: 0 0 0 3px var(--accent-tint), 0 0 0 4px var(--accent-text);
+}
+
+#component .keep {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  min-height: 44px;
+  margin-bottom: var(--space-5);
+  font-size: var(--text-body);
+  color: var(--ink);
+  cursor: pointer;
+}
+#component .keep input {
+  width: 20px;
+  height: 20px;
+  margin: 0;
+  accent-color: var(--accent-text);
+  cursor: pointer;
+}
+#component .keep input:focus-visible {
+  outline: 2px solid var(--accent-text);
+  outline-offset: 2px;
+}
+
+#component .btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  min-height: 48px;
+  padding: 0 var(--space-5);
+  font: inherit;
+  font-size: var(--text-body);
+  font-weight: 600;
+  border-radius: var(--radius-pill);
+  cursor: pointer;
+  transition: background var(--dur-base) var(--ease), color var(--dur-base) var(--ease), transform var(--dur-fast) var(--ease);
+}
+#component .btn:focus-visible {
+  outline: 2px solid var(--accent-text);
+  outline-offset: 3px;
+}
+#component .btn:active { transform: translateY(1px); }
+
+#component .btn--primary {
+  color: var(--on-ink);
+  background: var(--ink);
+  border: 1px solid var(--ink);
+}
+#component .btn--primary:hover { background: var(--accent-text); border-color: var(--accent-text); }
+
+#component .btn--secondary {
+  margin-top: var(--space-3);
+  color: var(--ink);
+  background: transparent;
+  border: 1px solid var(--ink);
+}
+#component .btn--secondary:hover { background: var(--accent-tint); }
+
+#component .forgot {
+  display: flex;
+  justify-content: center;
+  margin-top: var(--space-4);
+}
+#component .forgot a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  padding: 0 var(--space-2);
+  font-size: var(--text-small);
+  font-weight: 500;
+  color: var(--accent-text);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  border-radius: var(--radius-sm);
+  transition: background var(--dur-fast) var(--ease);
+}
+#component .forgot a:hover { background: var(--accent-tint); }
+#component .forgot a:focus-visible { outline: 2px solid var(--accent-text); outline-offset: 2px; }
+
+@media (prefers-reduced-motion: reduce) {
+  #component * { transition: none !important; }
+}
+</style>
+</head>
+<body>
+<div id="component">
+  <main class="card">
+    <h1>Sign in to Harbor</h1>
+    <form action="#" method="post">
+      <div class="field">
+        <label for="email">Work email</label>
+        <input id="email" name="email" type="email" autocomplete="email">
+      </div>
+      <div class="field">
+        <label for="password">Password</label>
+        <input id="password" name="password" type="password" autocomplete="current-password">
+      </div>
+      <label class="keep">
+        <input type="checkbox" name="remember">
+        <span>Keep me signed in</span>
+      </label>
+      <button class="btn btn--primary" type="submit">Sign In</button>
+      <button class="btn btn--secondary" type="button">Continue with SSO</button>
+      <div class="forgot"><a href="#">Forgot Password?</a></div>
+    </form>
+  </main>
+</div>
+</body>
+</html>

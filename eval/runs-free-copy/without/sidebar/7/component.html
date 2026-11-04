@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sidebar</title>
+<style>
+  :root {
+    --ink: #0B1416;
+    --accent: #0263AC;
+    --muted: #4A5659;
+    --line: #DCE2E4;
+    --tint: #E8F1F8;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; height: 100%; }
+  body {
+    background: #fff;
+    color: var(--ink);
+    font-family: "Archivo", "Helvetica Neue", Arial, sans-serif;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+  }
+  #component {
+    width: 280px;
+    height: 560px;
+    background: #fff;
+    border: 1px solid var(--line);
+    padding: 20px 14px;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
+  #component .new-chat {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    width: 100%;
+    min-height: 44px;
+    padding: 10px 16px;
+    background: var(--accent);
+    color: #fff;
+    border: 2px solid var(--accent);
+    font: 600 15px/1.2 "Archivo", "Helvetica Neue", Arial, sans-serif;
+    text-decoration: none;
+    border-radius: 6px;
+  }
+  #component .new-chat:hover { background: #fff; color: var(--accent); }
+  #component .new-chat:focus-visible,
+  #component .chat:focus-visible {
+    outline: 3px solid var(--ink);
+    outline-offset: 2px;
+  }
+  #component .new-chat svg { width: 16px; height: 16px; flex: none; }
+  #component h2 {
+    margin: 0 0 8px;
+    padding: 0 12px;
+    font-family: "Unbounded", "Archivo", "Helvetica Neue", Arial, sans-serif;
+    font-weight: 300;
+    font-size: 12px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--ink);
+  }
+  #component ul { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 2px; }
+  #component .chat {
+    display: block;
+    padding: 10px 12px;
+    min-height: 40px;
+    color: var(--ink);
+    text-decoration: none;
+    font-size: 14px;
+    line-height: 1.4;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    border-radius: 6px;
+    border-left: 3px solid transparent;
+  }
+  #component .chat:hover { background: #F2F5F6; }
+  #component .chat[aria-current="page"] {
+    background: var(--tint);
+    border-left-color: var(--accent);
+    color: var(--accent);
+    font-weight: 600;
+  }
+</style>
+</head>
+<body>
+  <nav id="component" aria-label="Chat history">
+    <a class="new-chat" href="#new">
+      <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M8 2v12M2 8h12"/></svg>
+      New chat
+    </a>
+    <div>
+      <h2 id="recent-label">Recent</h2>
+      <ul aria-labelledby="recent-label">
+        <li><a class="chat" href="#portfolio-case-study" aria-current="page">Portfolio case study outline</a></li>
+        <li><a class="chat" href="#color-palette">Accessible color palette ideas</a></li>
+        <li><a class="chat" href="#type-pairing">Typeface pairing feedback</a></li>
+        <li><a class="chat" href="#client-email">Draft reply to client email</a></li>
+        <li><a class="chat" href="#about-page">Rewrite my about page</a></li>
+      </ul>
+    </div>
+  </nav>
+</body>
+</html>

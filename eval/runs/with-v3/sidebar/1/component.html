@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sidebar</title>
+<style>
+/* Tokens used by this component, copied from tokens.css */
+:root {
+  --paper: #FFFFFF;
+  --sand: #EEF4FA;
+  --ink: #0B1416;
+  --ink-rgb: 11, 20, 22;
+  --muted: #55656A;
+  --accent-text: #0263AC;
+  --accent-tint: #E6EFF7;
+  --plate-hover: #E3ECF5;
+  --on-ink: #FFFFFF;
+  --font-body: 'Archivo', system-ui, -apple-system, sans-serif;
+  --font-label: 'Archivo', system-ui, sans-serif;
+  --space-1: 4px;
+  --space-4: 16px;
+  --space-5: 24px;
+  --radius-sm: 8px;
+  --radius-pill: 999px;
+  --tracking-label: 0.14em;
+  --text-body: 1rem;
+  --text-small: 0.875rem;
+  --text-label: 0.75rem;
+  --ease: cubic-bezier(0.2, 0.7, 0.2, 1);
+  --dur-fast: 120ms;
+  --dur-base: 180ms;
+}
+:root { color-scheme: light; }
+:root[data-theme="dusk"] {
+  color-scheme: dark;
+  --paper: #0E1618;
+  --sand: #131E21;
+  --ink: #E9EFEF;
+  --ink-rgb: 233, 239, 239;
+  --muted: #9DAEB1;
+  --accent-text: #9CC3EA;
+  --accent-tint: #13283A;
+  --plate-hover: #1A2A36;
+  --on-ink: #0E1618;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-body);
+}
+
+#component {
+  width: 280px;
+  height: 640px;
+  padding: var(--space-4);
+  background: var(--sand);
+  border-radius: 0;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  min-height: 44px;
+  padding: 0 var(--space-5);
+  border: 0;
+  border-radius: var(--radius-pill);
+  background: var(--ink);
+  color: var(--on-ink);
+  font-family: var(--font-body);
+  font-size: var(--text-body);
+  font-weight: 500;
+  line-height: 1;
+  cursor: pointer;
+  transition: opacity var(--dur-fast) var(--ease);
+}
+.btn:hover { opacity: 0.88; }
+
+.section-label {
+  margin: var(--space-5) 0 var(--space-1);
+  padding: 0 12px;
+  font-family: var(--font-label);
+  font-size: var(--text-label);
+  font-weight: 500;
+  letter-spacing: var(--tracking-label);
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.chats {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+}
+
+.chat {
+  display: flex;
+  align-items: center;
+  height: 44px;
+  padding: 0 12px;
+  border-radius: var(--radius-sm);
+  font-size: var(--text-small);
+  font-weight: 400;
+  color: var(--ink);
+  text-decoration: none;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  transition: background var(--dur-fast) var(--ease);
+}
+.chat:hover { background: var(--plate-hover); }
+.chat[aria-current="page"] {
+  background: var(--accent-tint);
+  color: var(--accent-text);
+  font-weight: 600;
+}
+
+.btn:focus-visible,
+.chat:focus-visible {
+  outline: 2px solid var(--accent-text);
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .btn, .chat { transition: none; }
+}
+</style>
+</head>
+<body>
+  <aside id="component" aria-label="Chat sidebar">
+    <button class="btn" type="button">New Chat</button>
+    <h2 class="section-label" id="recent-label">Recent</h2>
+    <nav aria-labelledby="recent-label">
+      <ul class="chats">
+        <li><a class="chat" href="#trip-planning" data-user-content>Trip planning for Maui</a></li>
+        <li><a class="chat" href="#q3-budget" aria-current="page" data-user-content>Q3 budget review</a></li>
+        <li><a class="chat" href="#menu-ideas" data-user-content>Menu ideas for Saturday</a></li>
+        <li><a class="chat" href="#reading-list" data-user-content>Reading list</a></li>
+        <li><a class="chat" href="#garden-plan" data-user-content>Garden plan</a></li>
+      </ul>
+    </nav>
+  </aside>
+</body>
+</html>

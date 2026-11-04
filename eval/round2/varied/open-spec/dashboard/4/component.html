@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Harbor: Overview</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    background: #FFFFFF;
+    color: #0B1416;
+    font-family: "Archivo", "Helvetica Neue", Arial, sans-serif;
+    font-size: 16px;
+    line-height: 1.5;
+  }
+
+  #component {
+    width: 1280px;
+    min-height: 100vh;
+    background: #FFFFFF;
+    color: #0B1416;
+  }
+
+  .topnav {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 16px 64px;
+    border-bottom: 1px solid #9CC3EA;
+  }
+
+  .topnav a {
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
+    padding: 0 16px;
+    border-radius: 999px;
+    color: #0B1416;
+    font-size: 16px;
+    font-weight: 500;
+    text-decoration: none;
+    transition: background-color 120ms cubic-bezier(0.2, 0.7, 0.2, 1);
+  }
+
+  .topnav a:hover { background: #E6EFF7; }
+
+  .topnav a[aria-current="page"] {
+    background: #E6EFF7;
+    color: #0263AC;
+  }
+
+  .topnav a:focus-visible,
+  .activity a:focus-visible {
+    outline: 2px solid #0263AC;
+    outline-offset: 2px;
+  }
+
+  main { padding: 64px 64px 96px; }
+
+  h1 {
+    margin: 0 0 48px;
+    font-family: "Unbounded", "Archivo", "Helvetica Neue", Arial, sans-serif;
+    font-weight: 300;
+    font-size: 56px;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    text-transform: uppercase;
+  }
+
+  .stats {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 32px;
+    margin: 0 0 64px;
+    padding: 0;
+    list-style: none;
+  }
+
+  .tile {
+    background: #FFFFFF;
+    border: 1px solid #9CC3EA;
+    border-radius: 16px;
+    padding: 24px;
+  }
+
+  .tile .label {
+    margin: 0 0 16px;
+    color: #0263AC;
+    font-size: 12px;
+    font-weight: 500;
+    line-height: 1.5;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+  }
+
+  .tile .value {
+    margin: 0;
+    font-family: "Unbounded", "Archivo", "Helvetica Neue", Arial, sans-serif;
+    font-weight: 300;
+    font-size: 28px;
+    line-height: 1.25;
+    letter-spacing: -0.02em;
+  }
+
+  h2 {
+    margin: 0 0 24px;
+    font-family: "Unbounded", "Archivo", "Helvetica Neue", Arial, sans-serif;
+    font-weight: 500;
+    font-size: 28px;
+    line-height: 1.25;
+    letter-spacing: -0.01em;
+  }
+
+  .activity {
+    margin: 0;
+    padding: 0 32px;
+    list-style: none;
+    background: #FFFFFF;
+    border: 1px solid #9CC3EA;
+    border-radius: 16px;
+  }
+
+  .activity li {
+    padding: 16px 0;
+    font-size: 18px;
+    line-height: 1.5;
+    border-top: 1px solid #9CC3EA;
+  }
+
+  .activity li:first-child { border-top: 0; }
+
+  .activity strong { font-weight: 600; }
+</style>
+</head>
+<body>
+<div id="component">
+  <nav class="topnav" aria-label="Main">
+    <a href="#overview" aria-current="page">Overview</a>
+    <a href="#requests">Requests</a>
+    <a href="#team">Team</a>
+    <a href="#settings">Settings</a>
+  </nav>
+
+  <main>
+    <h1>Overview</h1>
+
+    <ul class="stats" aria-label="Key figures">
+      <li class="tile">
+        <p class="label">Active users</p>
+        <p class="value">1,284</p>
+      </li>
+      <li class="tile">
+        <p class="label">Open requests</p>
+        <p class="value">37</p>
+      </li>
+      <li class="tile">
+        <p class="label">Average response</p>
+        <p class="value">2.4 hours</p>
+      </li>
+      <li class="tile">
+        <p class="label">Uptime</p>
+        <p class="value">99.9%</p>
+      </li>
+    </ul>
+
+    <section aria-labelledby="recent-activity">
+      <h2 id="recent-activity">Recent activity</h2>
+      <ul class="activity">
+        <li><strong>Maya Chen</strong> opened Laptop refresh for design</li>
+        <li><strong>Leo Park</strong> approved Q4 travel budget</li>
+        <li><strong>Ana Ruiz</strong> closed VPN access for contractors</li>
+        <li><strong>Sam Ito</strong> commented on New hire onboarding</li>
+        <li><strong>Kai Lee</strong> assigned Office move to Facilities</li>
+      </ul>
+    </section>
+  </main>
+</div>
+</body>
+</html>

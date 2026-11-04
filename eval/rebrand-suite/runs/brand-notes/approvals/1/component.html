@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Approvals – Harbor</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+  @import url("https://fonts.googleapis.com/css2?family=Fraunces:wght@300;500&family=Instrument+Sans:wght@400;500&display=swap");
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: #F4EFE6; }
+  #component {
+    width: 1280px;
+    min-height: 800px;
+    margin: 0 auto;
+    padding: 120px 0 160px;
+    background: #F4EFE6;
+    color: #1E2B24;
+    font-family: "Instrument Sans", "Helvetica Neue", Arial, sans-serif;
+  }
+  .wrap { width: 800px; margin: 0 auto; }
+  h1 {
+    font-family: "Fraunces", Georgia, "Times New Roman", serif;
+    font-weight: 300;
+    font-size: 44px;
+    line-height: 1.1;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+  .count {
+    margin-top: 20px;
+    font-size: 18px;
+    line-height: 1.5;
+    color: #C2410C;
+  }
+  ul { list-style: none; margin-top: 72px; border-top: 1px solid #1E2B24; }
+  li {
+    background: #FBF8F2;
+    margin: 0 -24px;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    column-gap: 48px;
+    row-gap: 28px;
+    align-items: center;
+    padding: 40px 24px;
+    border-bottom: 1px solid rgba(30, 43, 36, 0.14);
+    border-radius: 4px;
+  }
+  h2 {
+    font-family: "Fraunces", Georgia, "Times New Roman", serif;
+    font-weight: 500;
+    font-size: 24px;
+    line-height: 1.3;
+  }
+  .requester { margin-top: 6px; font-size: 16px; color: rgba(30, 43, 36, 0.78); }
+  .amount {
+    font-size: 28px;
+    font-weight: 300;
+    text-align: right;
+    font-variant-numeric: tabular-nums;
+  }
+  .actions { grid-column: 1 / -1; display: flex; gap: 12px; }
+  button {
+    font: inherit;
+    font-size: 15px;
+    font-weight: 500;
+    height: 44px;
+    padding: 0 28px;
+    border-radius: 4px;
+    cursor: pointer;
+    border: 1.5px solid #C2410C;
+  }
+  .approve { background: #C2410C; color: #FBF8F2; }
+  .decline { background: #FBF8F2; color: #1E2B24; border-color: #1E2B24; }
+  button:focus-visible { outline: 3px solid #1E2B24; outline-offset: 3px; }
+</style>
+</head>
+<body>
+<div id="component">
+  <main class="wrap">
+    <h1>Approvals</h1>
+    <p class="count">3 waiting for you</p>
+    <ul>
+      <li>
+        <div>
+          <h2>Q4 travel budget</h2>
+          <p class="requester">Leo Park</p>
+        </div>
+        <p class="amount">$4,800</p>
+        <div class="actions">
+          <button class="approve" type="button">Approve</button>
+          <button class="decline" type="button">Decline</button>
+        </div>
+      </li>
+      <li>
+        <div>
+          <h2>Design conference tickets</h2>
+          <p class="requester">Maya Chen</p>
+        </div>
+        <p class="amount">$1,250</p>
+        <div class="actions">
+          <button class="approve" type="button">Approve</button>
+          <button class="decline" type="button">Decline</button>
+        </div>
+      </li>
+      <li>
+        <div>
+          <h2>Standing desks for support</h2>
+          <p class="requester">Ana Ruiz</p>
+        </div>
+        <p class="amount">$2,100</p>
+        <div class="actions">
+          <button class="approve" type="button">Approve</button>
+          <button class="decline" type="button">Decline</button>
+        </div>
+      </li>
+    </ul>
+  </main>
+</div>
+</body>
+</html>

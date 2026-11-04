@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Invoices</title>
+<style>
+  * { box-sizing: border-box; }
+  body { margin: 0; background: #fff; }
+  #component {
+    width: 1280px;
+    min-height: 720px;
+    margin: 0 auto;
+    padding: 32px 40px;
+    background: #fff;
+    color: #0B1416;
+    font-family: "Archivo", "Helvetica Neue", Arial, sans-serif;
+    font-size: 14px;
+    line-height: 1.4;
+  }
+  #component .head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-bottom: 16px;
+    border-bottom: 2px solid #0B1416;
+  }
+  #component h1 {
+    margin: 0;
+    font-family: "Unbounded", "Archivo", "Helvetica Neue", Arial, sans-serif;
+    font-weight: 300;
+    font-size: 24px;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+  #component .primary {
+    font: inherit;
+    font-weight: 600;
+    height: 36px;
+    padding: 0 16px;
+    background: #0263AC;
+    color: #fff;
+    border: 1px solid #0263AC;
+    border-radius: 2px;
+    cursor: pointer;
+  }
+  #component .filters {
+    display: flex;
+    gap: 0;
+    margin: 16px 0;
+  }
+  #component .filters button {
+    font: inherit;
+    font-weight: 500;
+    height: 30px;
+    min-width: 72px;
+    padding: 0 14px;
+    background: #fff;
+    color: #0B1416;
+    border: 1px solid #0B1416;
+    margin-left: -1px;
+    cursor: pointer;
+  }
+  #component .filters button:first-child { margin-left: 0; border-radius: 2px 0 0 2px; }
+  #component .filters button:last-child { border-radius: 0 2px 2px 0; }
+  #component .filters button[aria-pressed="true"] {
+    background: #0263AC;
+    border-color: #0263AC;
+    color: #fff;
+    font-weight: 600;
+    position: relative;
+  }
+  #component button:focus-visible { outline: 3px solid #0B1416; outline-offset: 2px; }
+  #component table {
+    width: 100%;
+    border-collapse: collapse;
+    border: 1px solid #0B1416;
+    font-variant-numeric: tabular-nums;
+  }
+  #component th,
+  #component td {
+    height: 34px;
+    padding: 0 12px;
+    text-align: left;
+    border: 1px solid #C5CCCE;
+    white-space: nowrap;
+  }
+  #component thead th {
+    background: #EEF1F2;
+    border-bottom: 2px solid #0B1416;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+  #component tbody tr:nth-child(even) { background: #F6F8F8; }
+  #component .num { text-align: right; }
+  #component td.id { font-weight: 600; color: #0263AC; }
+  #component td.amt { font-weight: 600; font-size: 15px; }
+  #component .status { font-weight: 500; }
+  #component .status::before { display: inline-block; width: 14px; }
+  #component .status.unpaid::before { content: "\25CB"; }
+  #component .status.overdue { font-weight: 700; text-decoration: underline; text-decoration-thickness: 2px; text-underline-offset: 3px; }
+  #component .status.overdue::before { content: "\25B2"; text-decoration: none; display: inline-block; }
+  #component .status.paid::before { content: "\2713"; }
+</style>
+</head>
+<body>
+<div id="component">
+  <div class="head">
+    <h1>Invoices</h1>
+    <button class="primary" type="button">New Invoice</button>
+  </div>
+
+  <div class="filters" role="group" aria-label="Filter invoices">
+    <button type="button" aria-pressed="true">All</button>
+    <button type="button" aria-pressed="false">Unpaid</button>
+    <button type="button" aria-pressed="false">Paid</button>
+  </div>
+
+  <table>
+    <thead>
+      <tr>
+        <th scope="col">Invoice</th>
+        <th scope="col">Customer</th>
+        <th scope="col" class="num">Amount</th>
+        <th scope="col">Due</th>
+        <th scope="col">Status</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td class="id">INV-1042</td><td>Kona Coffee Co.</td><td class="num amt">$4,800.00</td><td>Nov 1</td><td><span class="status unpaid">Unpaid</span></td></tr>
+      <tr><td class="id">INV-1041</td><td>Lanai Labs</td><td class="num amt">$3,250.00</td><td>Oct 28</td><td><span class="status overdue">Overdue</span></td></tr>
+      <tr><td class="id">INV-1040</td><td>Pali Health</td><td class="num amt">$12,000.00</td><td>Oct 15</td><td><span class="status paid">Paid</span></td></tr>
+      <tr><td class="id">INV-1039</td><td>Mauka Freight</td><td class="num amt">$1,820.00</td><td>Oct 10</td><td><span class="status paid">Paid</span></td></tr>
+      <tr><td class="id">INV-1038</td><td>Hale Studio</td><td class="num amt">$960.00</td><td>Oct 3</td><td><span class="status paid">Paid</span></td></tr>
+    </tbody>
+  </table>
+</div>
+</body>
+</html>

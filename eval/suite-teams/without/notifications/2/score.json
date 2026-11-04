@@ -1,0 +1,70 @@
+{
+ "pass": false,
+ "hasRoot": true,
+ "box": {
+  "x": 80,
+  "y": 0,
+  "w": 1280,
+  "h": 720
+ },
+ "checks": {
+  "type": {
+   "pass": false,
+   "issues": [
+    "h1 font-size 24px",
+    "span.text font-size 15px",
+    "span.sr font-size 15px",
+    "span.time font-size 13px"
+   ]
+  },
+  "color": {
+   "pass": false,
+   "issues": [
+    "li.unread background rgb(240, 246, 251)",
+    "li.unread border rgb(213, 218, 220)",
+    "span.time text rgb(74, 85, 88)",
+    "li border rgb(213, 218, 220)"
+   ]
+  },
+  "radius": {
+   "pass": false,
+   "issues": [
+    "button.mark-all radius 4px"
+   ]
+  },
+  "tracking": {
+   "pass": true,
+   "issues": []
+  },
+  "fonts": {
+   "pass": true,
+   "issues": []
+  },
+  "contrast": {
+   "pass": true,
+   "issues": []
+  },
+  "hover": {
+   "pass": true,
+   "issues": []
+  },
+  "motion": {
+   "pass": true,
+   "issues": []
+  },
+  "copy": {
+   "pass": true,
+   "issues": []
+  },
+  "labels": {
+   "pass": true,
+   "issues": []
+  },
+  "targets": {
+   "pass": false,
+   "issues": [
+    "button.mark-all 140x33"
+   ]
+  }
+ }
+}

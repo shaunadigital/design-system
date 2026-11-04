@@ -1,0 +1,1 @@
+Both mostly passed, but her system produced far more consistent pages. In 240 test builds, a standard design rules file ended up with 30 button styles and 16 field styles. Her system had only 7 and 4. Want the details?

@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Workspace settings</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@600&family=Instrument+Sans:wght@400;600&display=swap" rel="stylesheet">
+<style>
+  body { margin: 0; background: #F4EFE6; }
+  #component {
+    width: 1280px;
+    box-sizing: border-box;
+    margin: 0 auto;
+    padding: 64px 160px 96px;
+    background: #F4EFE6;
+    color: #1E2B24;
+    font-family: "Instrument Sans", "Helvetica Neue", Arial, sans-serif;
+    font-size: 16px;
+    line-height: 1.5;
+  }
+  #component h1, #component h2 {
+    font-family: Fraunces, Georgia, serif;
+    font-weight: 600;
+    margin: 0;
+  }
+  #component h1 { font-size: 36px; line-height: 1.2; margin-bottom: 48px; }
+  #component h2 { font-size: 20px; margin-bottom: 24px; }
+  #component section { padding: 32px 0; border-top: 1px solid #1E2B24; }
+  #component .field { margin-bottom: 20px; max-width: 480px; }
+  #component label.text { display: block; font-weight: 600; margin-bottom: 6px; }
+  #component input[type="text"] {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 10px 12px;
+    font: inherit;
+    color: #1E2B24;
+    background: #FBF8F2;
+    border: 1px solid #1E2B24;
+    border-radius: 4px;
+  }
+  #component button {
+    font: inherit;
+    font-weight: 600;
+    padding: 10px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+    border: 2px solid #C2410C;
+  }
+  #component .primary { background: #C2410C; color: #fff; }
+  #component .danger { background: #FBF8F2; color: #C2410C; }
+  #component .switch {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    max-width: 640px;
+    padding: 14px 0;
+    border-bottom: 1px solid #D8D0C0;
+    cursor: pointer;
+  }
+  #component .switch input {
+    appearance: none;
+    -webkit-appearance: none;
+    flex: none;
+    width: 44px;
+    height: 24px;
+    margin: 0 0 0 24px;
+    border-radius: 4px;
+    background: #FBF8F2;
+    border: 2px solid #1E2B24;
+    position: relative;
+    cursor: pointer;
+  }
+  #component .switch input::after {
+    content: "";
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    width: 16px;
+    height: 16px;
+    border-radius: 2px;
+    background: #1E2B24;
+  }
+  #component .switch input:checked { background: #C2410C; border-color: #C2410C; }
+  #component .switch input:checked::after { left: 22px; background: #fff; }
+  #component button:focus-visible, #component input:focus-visible {
+    outline: 3px solid #C2410C;
+    outline-offset: 2px;
+  }
+  #component p { margin: 0 0 20px; }
+</style>
+</head>
+<body>
+<div id="component">
+  <h1>Workspace settings</h1>
+
+  <section>
+    <h2>General</h2>
+    <div class="field">
+      <label class="text" for="ws-name">Workspace name</label>
+      <input type="text" id="ws-name" value="Harbor Ops">
+    </div>
+    <div class="field">
+      <label class="text" for="ws-url">Workspace URL</label>
+      <input type="text" id="ws-url" value="harbor.app/ops">
+    </div>
+    <button type="button" class="primary">Save Changes</button>
+  </section>
+
+  <section>
+    <h2>Notifications</h2>
+    <label class="switch">
+      <span>Email me when a request is assigned to me</span>
+      <input type="checkbox" role="switch">
+    </label>
+    <label class="switch">
+      <span>Weekly summary</span>
+      <input type="checkbox" role="switch">
+    </label>
+    <label class="switch">
+      <span>Product updates</span>
+      <input type="checkbox" role="switch">
+    </label>
+  </section>
+
+  <section>
+    <h2>Danger zone</h2>
+    <p>Deleting a workspace removes all of its requests for everyone.</p>
+    <button type="button" class="danger">Delete Workspace</button>
+  </section>
+</div>
+</body>
+</html>

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Workspace settings</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+  * { box-sizing: border-box; }
+  body { margin: 0; background: #F4EFE6; color: #1E2B24; font-family: "Instrument Sans", system-ui, sans-serif; font-size: 16px; line-height: 1.5; }
+  #component { width: 1280px; margin: 0 auto; padding: 64px 64px 96px; background: #F4EFE6; }
+  h1 { margin: 0 0 48px; font-family: "Fraunces", Georgia, serif; font-weight: 400; font-size: 56px; line-height: 1.1; letter-spacing: -0.02em; }
+  h2 { margin: 0 0 24px; font-family: "Fraunces", Georgia, serif; font-weight: 400; font-size: 28px; line-height: 1.2; letter-spacing: -0.01em; }
+  .card { width: 100%; max-width: 768px; margin: 0 0 32px; padding: 32px; background: #FBF8F2; border: 1px solid #E9E1D2; border-radius: 6px; }
+  .field { display: block; margin: 0 0 24px; }
+  .field span { display: block; margin: 0 0 8px; font-weight: 500; font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: #C2410C; }
+  .field input { display: block; width: 100%; min-height: 48px; padding: 12px 16px; font: inherit; font-size: 16px; color: #1E2B24; background: #FBF8F2; border: 1px solid #5E6B63; border-radius: 4px; transition: border-color 120ms cubic-bezier(0.2, 0.7, 0.2, 1); }
+  .field input:hover { background: #F6DFD0; }
+  .btn { display: inline-block; min-height: 44px; padding: 8px 24px; font: inherit; font-size: 16px; font-weight: 500; color: #FBF8F2; background: #1E2B24; border: 1px solid #1E2B24; border-radius: 4px; cursor: pointer; transition: background-color 180ms cubic-bezier(0.2, 0.7, 0.2, 1), color 180ms cubic-bezier(0.2, 0.7, 0.2, 1); }
+  .btn:hover { background: #5E6B63; border-color: #5E6B63; }
+  .btn.quiet { color: #1E2B24; background: transparent; border-color: #1E2B24; }
+  .btn.quiet:hover { background: #F6DFD0; border-color: #1E2B24; }
+  :focus-visible { outline: 2px solid #C2410C; outline-offset: 2px; }
+  .switches { margin: 0; padding: 0; list-style: none; }
+  .switches li + li { border-top: 1px solid #E9E1D2; }
+  .switch { display: flex; align-items: center; justify-content: space-between; gap: 24px; min-height: 56px; padding: 8px 0; cursor: pointer; }
+  .switch input { appearance: none; -webkit-appearance: none; flex: none; position: relative; width: 48px; height: 28px; margin: 0; background: #FBF8F2; border: 1px solid #5E6B63; border-radius: 6px; cursor: pointer; transition: background-color 120ms cubic-bezier(0.2, 0.7, 0.2, 1); }
+  .switch input::after { content: ""; position: absolute; top: 3px; left: 3px; width: 20px; height: 20px; background: #5E6B63; border-radius: 4px; transition: transform 120ms cubic-bezier(0.2, 0.7, 0.2, 1), background-color 120ms cubic-bezier(0.2, 0.7, 0.2, 1); }
+  .switch input:checked { background: #1E2B24; border-color: #1E2B24; }
+  .switch input:checked::after { background: #FBF8F2; transform: translateX(20px); }
+  .danger p { margin: 0 0 24px; color: #5E6B63; }
+  @media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+</style>
+</head>
+<body>
+<div id="component">
+  <h1>Workspace settings</h1>
+
+  <section class="card" aria-labelledby="general-title">
+    <h2 id="general-title">General</h2>
+    <label class="field"><span>Workspace name</span><input type="text" value="Harbor Ops"></label>
+    <label class="field"><span>Workspace URL</span><input type="text" value="harbor.app/ops"></label>
+    <button class="btn" type="button">Save Changes</button>
+  </section>
+
+  <section class="card" aria-labelledby="notifications-title">
+    <h2 id="notifications-title">Notifications</h2>
+    <ul class="switches">
+      <li><label class="switch">Email me when a request is assigned to me<input type="checkbox" role="switch" checked></label></li>
+      <li><label class="switch">Weekly summary<input type="checkbox" role="switch"></label></li>
+      <li><label class="switch">Product updates<input type="checkbox" role="switch"></label></li>
+    </ul>
+  </section>
+
+  <section class="card danger" aria-labelledby="danger-title">
+    <h2 id="danger-title">Danger zone</h2>
+    <p>Deleting a workspace removes all of its requests for everyone.</p>
+    <button class="btn quiet" type="button">Delete Workspace</button>
+  </section>
+</div>
+</body>
+</html>

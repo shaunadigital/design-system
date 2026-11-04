@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=1280">
+<title>Team</title>
+<style>
+/* Tokens from tokens.css */
+:root {
+  --paper: #FFFFFF;
+  --sand: #EEF4FA;
+  --card: #FFFFFF;
+  --ink: #0B1416;
+  --ink-rgb: 11, 20, 22;
+  --muted: #55656A;
+  --accent-text: #0263AC;
+  --accent: #0263AC;
+  --accent-tint: #E6EFF7;
+  --on-ink: #FFFFFF;
+  --shadow-rgb: 11, 20, 22;
+  --font-display: 'Unbounded', system-ui, sans-serif;
+  --font-body: 'Archivo', system-ui, -apple-system, sans-serif;
+  --font-label: 'Archivo', system-ui, sans-serif;
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 24px;
+  --space-6: 32px;
+  --space-7: 48px;
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-card: 16px;
+  --radius-pill: 999px;
+  --tracking-tight: -0.02em;
+  --tracking-label: 0.14em;
+  --text-heading: clamp(1.75rem, 3.2vw, 2.875rem);
+  --text-body: 1rem;
+  --text-small: 0.875rem;
+  --text-label: 0.75rem;
+  --ease: cubic-bezier(0.2, 0.7, 0.2, 1);
+  --dur-fast: 120ms;
+  --dur-base: 180ms;
+}
+:root { color-scheme: light; }
+
+*, *::before, *::after { box-sizing: border-box; }
+html, body { margin: 0; background: var(--paper); }
+body { font-family: var(--font-body); color: var(--ink); -webkit-font-smoothing: antialiased; }
+
+#component {
+  width: 1280px;
+  min-height: 720px;
+  background: var(--paper);
+  padding: var(--space-7) var(--space-6);
+}
+
+.page { max-width: 1120px; margin: 0 auto; display: flex; flex-direction: column; gap: var(--space-6); }
+
+.page-top { display: flex; align-items: center; justify-content: space-between; gap: var(--space-5); }
+.page-title {
+  margin: 0;
+  font-family: var(--font-display);
+  font-weight: 300;
+  font-size: var(--text-heading);
+  line-height: 1.1;
+  letter-spacing: var(--tracking-tight);
+  text-transform: uppercase;
+  color: var(--ink);
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 44px;
+  padding: 0 20px;
+  border-radius: var(--radius-pill);
+  border: 0;
+  font: inherit;
+  font-weight: 600;
+  font-size: var(--text-small);
+  cursor: pointer;
+  transition: opacity var(--dur-fast) var(--ease), transform var(--dur-fast) var(--ease);
+}
+.btn--primary { background: var(--ink); color: var(--on-ink); }
+.btn--primary:hover { opacity: 0.88; }
+.btn--primary:active { transform: translateY(1px); }
+.btn:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+.card {
+  background: var(--card);
+  border: 1px solid rgba(var(--ink-rgb), 0.1);
+  border-radius: var(--radius-card);
+  padding: var(--space-5);
+}
+
+.list { list-style: none; margin: 0; padding: 0; }
+.row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) 160px;
+  align-items: center;
+  column-gap: var(--space-5);
+  font-size: var(--text-small);
+}
+.list-head {
+  min-height: 44px;
+  border-bottom: 1px solid rgba(var(--ink-rgb), 0.1);
+  font-family: var(--font-label);
+  font-weight: 500;
+  font-size: var(--text-label);
+  letter-spacing: var(--tracking-label);
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.member { height: 52px; }
+.member + .member { border-top: 1px solid rgba(var(--ink-rgb), 0.1); }
+.member { margin-top: 0; }
+.list-body { padding-top: var(--space-2); }
+.list-body .member:first-child { border-top: 0; }
+
+.who { display: flex; align-items: center; gap: var(--space-3); min-width: 0; }
+.avatar {
+  flex: none;
+  width: 32px;
+  height: 32px;
+  border-radius: var(--radius-pill);
+  background: var(--accent-tint);
+  color: var(--accent-text);
+  display: grid;
+  place-items: center;
+  font-size: var(--text-label);
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+.name { font-weight: 600; color: var(--ink); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.email { color: var(--muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+
+.select { position: relative; display: block; }
+.select select {
+  appearance: none;
+  -webkit-appearance: none;
+  display: block;
+  width: 100%;
+  height: 44px;
+  padding: 0 40px 0 12px;
+  font: inherit;
+  font-size: var(--text-body);
+  color: var(--ink);
+  background: var(--paper);
+  border: 1px solid rgba(var(--ink-rgb), 0.2);
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition: border-color var(--dur-fast) var(--ease);
+}
+.select select:hover { border-color: rgba(var(--ink-rgb), 0.45); }
+.select select:focus-visible { outline: 2px solid var(--accent); outline-offset: 0; border-color: var(--accent); }
+.select::after {
+  content: "";
+  position: absolute;
+  right: 16px;
+  top: 50%;
+  width: 7px;
+  height: 7px;
+  border-right: 1.5px solid var(--ink);
+  border-bottom: 1.5px solid var(--ink);
+  transform: translateY(-70%) rotate(45deg);
+  pointer-events: none;
+}
+</style>
+</head>
+<body>
+<div id="component">
+  <main class="page">
+    <div class="page-top">
+      <h1 class="page-title">Team</h1>
+      <button class="btn btn--primary" type="button">Invite Member</button>
+    </div>
+
+    <section class="card" aria-label="Team members">
+      <div class="row list-head" aria-hidden="true">
+        <span>Name</span>
+        <span>Email</span>
+        <span>Role</span>
+      </div>
+      <ul class="list list-body">
+        <li class="row member">
+          <div class="who"><span class="avatar" aria-hidden="true">MC</span><span class="name">Maya Chen</span></div>
+          <span class="email">maya@harbor.app</span>
+          <label class="select">
+            <select aria-label="Role for Maya Chen">
+              <option selected>Admin</option>
+              <option>Editor</option>
+              <option>Viewer</option>
+            </select>
+          </label>
+        </li>
+        <li class="row member">
+          <div class="who"><span class="avatar" aria-hidden="true">LP</span><span class="name">Leo Park</span></div>
+          <span class="email">leo@harbor.app</span>
+          <label class="select">
+            <select aria-label="Role for Leo Park">
+              <option>Admin</option>
+              <option selected>Editor</option>
+              <option>Viewer</option>
+            </select>
+          </label>
+        </li>
+        <li class="row member">
+          <div class="who"><span class="avatar" aria-hidden="true">AR</span><span class="name">Ana Ruiz</span></div>
+          <span class="email">ana@harbor.app</span>
+          <label class="select">
+            <select aria-label="Role for Ana Ruiz">
+              <option>Admin</option>
+              <option selected>Editor</option>
+              <option>Viewer</option>
+            </select>
+          </label>
+        </li>
+        <li class="row member">
+          <div class="who"><span class="avatar" aria-hidden="true">SI</span><span class="name">Sam Ito</span></div>
+          <span class="email">sam@harbor.app</span>
+          <label class="select">
+            <select aria-label="Role for Sam Ito">
+              <option>Admin</option>
+              <option>Editor</option>
+              <option selected>Viewer</option>
+            </select>
+          </label>
+        </li>
+        <li class="row member">
+          <div class="who"><span class="avatar" aria-hidden="true">KL</span><span class="name">Kai Lee</span></div>
+          <span class="email">kai@harbor.app</span>
+          <label class="select">
+            <select aria-label="Role for Kai Lee">
+              <option>Admin</option>
+              <option>Editor</option>
+              <option selected>Viewer</option>
+            </select>
+          </label>
+        </li>
+      </ul>
+    </section>
+  </main>
+</div>
+</body>
+</html>

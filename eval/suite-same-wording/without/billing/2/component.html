@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Billing – Harbor</title>
+<style>
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: #fff;
+    color: #0B1416;
+    font-family: Archivo, "Helvetica Neue", Arial, sans-serif;
+    font-size: 16px;
+    line-height: 1.5;
+  }
+  #component {
+    width: 1280px;
+    margin: 0 auto;
+    padding: 64px 80px 96px;
+    background: #fff;
+  }
+  h1, h2 {
+    font-family: Unbounded, "Arial Rounded MT Bold", Arial, sans-serif;
+    font-weight: 300;
+    text-transform: uppercase;
+    margin: 0;
+    line-height: 1.2;
+  }
+  h1 { font-size: 40px; letter-spacing: 0.02em; margin-bottom: 40px; }
+  h2 { font-size: 20px; letter-spacing: 0.04em; margin-bottom: 24px; }
+  .plan {
+    border: 1px solid #0B1416;
+    padding: 32px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 64px;
+  }
+  .plan-name { font-size: 24px; font-weight: 600; margin: 0 0 4px; }
+  .plan-price { margin: 0 0 16px; font-size: 18px; }
+  .plan-seats { margin: 0; }
+  .seats-bar {
+    width: 320px;
+    height: 8px;
+    background: #fff;
+    border: 1px solid #0B1416;
+    margin-top: 8px;
+  }
+  .seats-bar span { display: block; height: 100%; width: 72%; background: #0263AC; }
+  .btn {
+    font-family: inherit;
+    font-size: 16px;
+    font-weight: 600;
+    color: #fff;
+    background: #0263AC;
+    border: 2px solid #0263AC;
+    padding: 12px 28px;
+    cursor: pointer;
+  }
+  .btn:hover { background: #0B1416; border-color: #0B1416; }
+  .btn:focus-visible { outline: 3px solid #0B1416; outline-offset: 3px; }
+  table { width: 100%; border-collapse: collapse; }
+  th, td { text-align: left; padding: 16px 12px; border-bottom: 1px solid #0B1416; }
+  th { font-weight: 600; border-bottom-width: 2px; }
+  td.amount, th.amount { text-align: right; }
+  .status { color: #0263AC; font-weight: 600; }
+</style>
+</head>
+<body>
+<div id="component">
+  <h1>Billing</h1>
+
+  <section class="plan" aria-label="Current plan">
+    <div>
+      <p class="plan-name">Team plan</p>
+      <p class="plan-price">$24 per seat per month</p>
+      <p class="plan-seats">18 of 25 seats used</p>
+      <div class="seats-bar" role="presentation"><span></span></div>
+    </div>
+    <button class="btn" type="button">Change Plan</button>
+  </section>
+
+  <section aria-labelledby="invoices-heading">
+    <h2 id="invoices-heading">Invoices</h2>
+    <table>
+      <thead>
+        <tr><th scope="col">Date</th><th scope="col" class="amount">Amount</th><th scope="col">Status</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Oct 1, 2026</td><td class="amount">$432.00</td><td class="status">Paid</td></tr>
+        <tr><td>Sep 1, 2026</td><td class="amount">$432.00</td><td class="status">Paid</td></tr>
+        <tr><td>Aug 1, 2026</td><td class="amount">$408.00</td><td class="status">Paid</td></tr>
+        <tr><td>Jul 1, 2026</td><td class="amount">$408.00</td><td class="status">Paid</td></tr>
+      </tbody>
+    </table>
+  </section>
+</div>
+</body>
+</html>

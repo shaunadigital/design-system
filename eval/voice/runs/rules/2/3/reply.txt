@@ -1,0 +1,1 @@
+Seven checks run on every build. They cover text contrast, tokens only for colour, type and spacing, button and copy style, alt text, motion, hover behaviour, and the phone frame. Want the details?

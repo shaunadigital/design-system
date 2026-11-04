@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=1280">
+<title>Notifications</title>
+<style>
+/* Tokens from tokens.css (day theme) */
+:root {
+  --paper: #FFFFFF;
+  --sand: #EEF4FA;
+  --card: #FFFFFF;
+  --ink: #0B1416;
+  --ink-rgb: 11, 20, 22;
+  --muted: #55656A;
+  --accent-text: #0263AC;
+  --accent: #0263AC;
+  --accent-tint: #E6EFF7;
+  --on-ink: #FFFFFF;
+  --shadow-rgb: 11, 20, 22;
+  --font-display: 'Unbounded', system-ui, sans-serif;
+  --font-body: 'Archivo', system-ui, -apple-system, sans-serif;
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 24px;
+  --space-6: 32px;
+  --space-7: 48px;
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-card: 16px;
+  --radius-pill: 999px;
+  --tracking-tight: -0.02em;
+  --text-heading: clamp(1.75rem, 3.2vw, 2.875rem);
+  --text-small: 0.875rem;
+  --ease: cubic-bezier(0.2, 0.7, 0.2, 1);
+  --dur-base: 180ms;
+  color-scheme: light;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-body);
+}
+
+#component {
+  width: 1280px;
+  min-height: 720px;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: var(--text-small);
+  -webkit-font-smoothing: antialiased;
+}
+
+.page {
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: var(--space-7) var(--space-6);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6);
+}
+
+.page-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-5);
+}
+
+.page-title {
+  margin: 0;
+  font-family: var(--font-display);
+  font-weight: 300;
+  font-size: var(--text-heading);
+  line-height: 1.1;
+  letter-spacing: var(--tracking-tight);
+  text-transform: uppercase;
+  color: var(--ink);
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 44px;
+  padding: 0 20px;
+  border: 0;
+  border-radius: var(--radius-pill);
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: var(--text-small);
+  line-height: 1;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: transform var(--dur-base) var(--ease);
+}
+.btn--primary {
+  background: var(--ink);
+  color: var(--on-ink);
+}
+.btn:active { transform: scale(0.98); }
+.btn:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+.card {
+  background: var(--card);
+  border: 1px solid rgba(var(--ink-rgb), 0.1);
+  border-radius: var(--radius-card);
+  padding: var(--space-5);
+  box-shadow: 0 1px 2px rgba(var(--shadow-rgb), 0.04);
+}
+
+.list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.row {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  height: 52px;
+  border-bottom: 1px solid rgba(var(--ink-rgb), 0.1);
+  font-size: var(--text-small);
+  color: var(--muted);
+}
+.row:last-child { border-bottom: 0; }
+
+.dot {
+  flex: none;
+  width: 8px;
+  height: 8px;
+  border-radius: var(--radius-pill);
+  background: transparent;
+}
+.row--unread .dot { background: var(--accent); }
+
+.icon-tile {
+  flex: none;
+  display: grid;
+  place-items: center;
+  width: 32px;
+  height: 32px;
+  border-radius: var(--radius-sm);
+  background: var(--sand);
+  color: var(--muted);
+}
+.row--unread .icon-tile {
+  background: var(--accent-tint);
+  color: var(--accent-text);
+}
+.icon-tile svg {
+  width: 20px;
+  height: 20px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.row-text {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.row--unread .row-text {
+  color: var(--ink);
+  font-weight: 600;
+}
+
+.row-time {
+  flex: none;
+  color: var(--muted);
+  font-size: var(--text-small);
+  font-variant-numeric: tabular-nums;
+}
+</style>
+</head>
+<body>
+<div id="component">
+  <main class="page">
+    <div class="page-top">
+      <h1 class="page-title">Notifications</h1>
+      <button class="btn btn--primary" type="button">Mark All as Read</button>
+    </div>
+
+    <section class="card" aria-label="Notifications">
+      <ul class="list">
+        <li class="row row--unread">
+          <span class="dot" role="img" aria-label="Unread"></span>
+          <span class="icon-tile" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M8 12.5l2.7 2.7L16 9.8"/></svg>
+          </span>
+          <span class="row-text">Leo Park approved Q4 travel budget</span>
+          <time class="row-time">2h ago</time>
+        </li>
+        <li class="row row--unread">
+          <span class="dot" role="img" aria-label="Unread"></span>
+          <span class="icon-tile" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><rect x="5" y="4" width="14" height="17" rx="2"/><path d="M9 4.5h6V3H9z"/><path d="M9 11h6M9 15h4"/></svg>
+          </span>
+          <span class="row-text">Maya Chen assigned you Laptop refresh for design</span>
+          <time class="row-time">3h ago</time>
+        </li>
+        <li class="row row--unread">
+          <span class="dot" role="img" aria-label="Unread"></span>
+          <span class="icon-tile" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><path d="M5 20V10M12 20V4M19 20v-7"/></svg>
+          </span>
+          <span class="row-text">Your weekly summary is ready</span>
+          <time class="row-time">1d ago</time>
+        </li>
+        <li class="row">
+          <span class="dot" aria-hidden="true"></span>
+          <span class="icon-tile" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><path d="M5 5h14a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1h-8l-4.5 3.5V16H5a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1z"/></svg>
+          </span>
+          <span class="row-text">Ana Ruiz commented on VPN access for contractors</span>
+          <time class="row-time">1d ago</time>
+        </li>
+        <li class="row">
+          <span class="dot" aria-hidden="true"></span>
+          <span class="icon-tile" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><circle cx="10" cy="8" r="3.5"/><path d="M3.5 20c0-3.6 2.9-6 6.5-6s6.5 2.4 6.5 6"/><path d="M19 8v6M16 11h6"/></svg>
+          </span>
+          <span class="row-text">Sam Ito joined Harbor Ops</span>
+          <time class="row-time">2d ago</time>
+        </li>
+        <li class="row">
+          <span class="dot" aria-hidden="true"></span>
+          <span class="icon-tile" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><rect x="3" y="5.5" width="18" height="13" rx="2"/><path d="M3 10h18M7 15h3"/></svg>
+          </span>
+          <span class="row-text">Billing details were updated</span>
+          <time class="row-time">3d ago</time>
+        </li>
+      </ul>
+    </section>
+  </main>
+</div>
+</body>
+</html>

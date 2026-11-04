@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=1280">
+<title>Harbor Overview</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; background: #FFFFFF; }
+
+  #component {
+    --paper: #FFFFFF;
+    --sand: #EEF4FA;
+    --ink: #0B1416;
+    --muted: #55656A;
+    --accent: #0263AC;
+    --accent-tint: #E6EFF7;
+    --accent-line: #9CC3EA;
+    --curve: cubic-bezier(0.2, 0.7, 0.2, 1);
+
+    width: 1280px;
+    min-height: 1024px;
+    margin: 0 auto;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: "Archivo", "Helvetica Neue", Arial, sans-serif;
+    font-size: 16px;
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  #component a { color: inherit; text-decoration: none; }
+
+  .topbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 24px 64px;
+    border-bottom: 1px solid var(--sand);
+  }
+  .wordmark {
+    font-family: "Unbounded", "Archivo", "Helvetica Neue", Arial, sans-serif;
+    font-weight: 500;
+    font-size: 22px;
+    line-height: 1.2;
+    letter-spacing: -0.02em;
+  }
+  .nav { display: flex; gap: 8px; }
+  .nav a {
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
+    padding: 0 24px;
+    border-radius: 999px;
+    color: var(--muted);
+    transition: background-color 120ms var(--curve), color 120ms var(--curve);
+  }
+  .nav a:hover { background: var(--accent-tint); color: var(--accent); }
+  .nav a[aria-current="page"] { background: var(--accent-tint); color: var(--accent); font-weight: 500; }
+  .nav a:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+  main { padding: 96px 64px 96px; }
+
+  h1 {
+    margin: 0 0 64px;
+    font-family: "Unbounded", "Archivo", "Helvetica Neue", Arial, sans-serif;
+    font-weight: 300;
+    font-size: 56px;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    text-transform: uppercase;
+  }
+
+  .stats {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 32px;
+    margin: 0 0 96px;
+    padding: 0;
+    list-style: none;
+  }
+  .stat {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    padding: 32px 24px;
+    background: var(--paper);
+    border: 1px solid var(--accent-line);
+    border-radius: 16px;
+  }
+  .stat-label {
+    margin: 0;
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 1.5;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+  .stat-value {
+    display: flex;
+    align-items: baseline;
+    gap: 8px;
+    margin: 0;
+    font-family: "Unbounded", "Archivo", "Helvetica Neue", Arial, sans-serif;
+    font-weight: 300;
+    font-size: 32px;
+    line-height: 1.2;
+    letter-spacing: -0.02em;
+    white-space: nowrap;
+  }
+  .stat-unit {
+    font-family: "Archivo", "Helvetica Neue", Arial, sans-serif;
+    font-weight: 400;
+    font-size: 16px;
+    letter-spacing: 0;
+    color: var(--muted);
+  }
+
+  h2 {
+    margin: 0 0 32px;
+    font-family: "Unbounded", "Archivo", "Helvetica Neue", Arial, sans-serif;
+    font-weight: 500;
+    font-size: 28px;
+    line-height: 1.2;
+    letter-spacing: -0.02em;
+  }
+
+  .activity {
+    margin: 0;
+    padding: 16px 32px;
+    list-style: none;
+    background: var(--paper);
+    border: 1px solid var(--accent-line);
+    border-radius: 16px;
+  }
+  .activity li {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    padding: 16px 0;
+    border-top: 1px solid var(--sand);
+  }
+  .activity li:first-child { border-top: 0; }
+  .avatar {
+    flex: none;
+    display: grid;
+    place-items: center;
+    width: 48px;
+    height: 48px;
+    border-radius: 999px;
+    background: var(--sand);
+    color: var(--ink);
+    font-weight: 500;
+    font-size: 14px;
+    letter-spacing: 0.04em;
+  }
+  .activity-text { margin: 0; font-size: 18px; line-height: 1.5; color: var(--muted); }
+  .activity-text strong { font-weight: 500; color: var(--ink); }
+  .activity-text em { font-style: normal; font-weight: 500; color: var(--ink); }
+</style>
+</head>
+<body>
+<div id="component">
+  <header class="topbar">
+    <a class="wordmark" href="#overview" aria-label="Harbor home">Harbor</a>
+    <nav class="nav" aria-label="Primary">
+      <a href="#overview" aria-current="page">Overview</a>
+      <a href="#requests">Requests</a>
+      <a href="#team">Team</a>
+      <a href="#settings">Settings</a>
+    </nav>
+  </header>
+
+  <main id="overview">
+    <h1>Overview</h1>
+
+    <ul class="stats" aria-label="Key figures">
+      <li class="stat">
+        <p class="stat-label">Active users</p>
+        <p class="stat-value">1,284</p>
+      </li>
+      <li class="stat">
+        <p class="stat-label">Open requests</p>
+        <p class="stat-value">37</p>
+      </li>
+      <li class="stat">
+        <p class="stat-label">Average response</p>
+        <p class="stat-value">2.4 <span class="stat-unit">hours</span></p>
+      </li>
+      <li class="stat">
+        <p class="stat-label">Uptime</p>
+        <p class="stat-value">99.9%</p>
+      </li>
+    </ul>
+
+    <section aria-labelledby="activity-title">
+      <h2 id="activity-title">Recent activity</h2>
+      <ul class="activity">
+        <li>
+          <span class="avatar" aria-hidden="true">MC</span>
+          <p class="activity-text"><strong>Maya Chen</strong> opened <em>Laptop refresh for design</em></p>
+        </li>
+        <li>
+          <span class="avatar" aria-hidden="true">LP</span>
+          <p class="activity-text"><strong>Leo Park</strong> approved <em>Q4 travel budget</em></p>
+        </li>
+        <li>
+          <span class="avatar" aria-hidden="true">AR</span>
+          <p class="activity-text"><strong>Ana Ruiz</strong> closed <em>VPN access for contractors</em></p>
+        </li>
+        <li>
+          <span class="avatar" aria-hidden="true">SI</span>
+          <p class="activity-text"><strong>Sam Ito</strong> commented on <em>New hire onboarding</em></p>
+        </li>
+        <li>
+          <span class="avatar" aria-hidden="true">KL</span>
+          <p class="activity-text"><strong>Kai Lee</strong> assigned <em>Office move</em> to <em>Facilities</em></p>
+        </li>
+      </ul>
+    </section>
+  </main>
+</div>
+</body>
+</html>

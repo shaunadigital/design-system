@@ -1,0 +1,1 @@
+Shauna tested both on 240 page builds. A standard design rules file passed 118 of 120 pages but produced 30 button styles. Her system passed all 120 with just 7. Want the details?

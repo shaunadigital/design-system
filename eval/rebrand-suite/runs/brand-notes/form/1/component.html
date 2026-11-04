@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>New request – Harbor</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@600&family=Instrument+Sans:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #1E2B24;
+    --accent: #C2410C;
+    --bg: #F4EFE6;
+    --card: #FBF8F2;
+    --line: rgba(30, 43, 36, 0.28);
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; background: var(--bg); }
+
+  #component {
+    width: 1280px;
+    min-height: 900px;
+    margin: 0 auto;
+    padding: 56px 80px 120px;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: "Instrument Sans", "Helvetica Neue", Arial, sans-serif;
+    font-size: 16px;
+    line-height: 1.5;
+  }
+
+  .topbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 40px;
+  }
+  .brand {
+    font-family: "Fraunces", Georgia, serif;
+    font-weight: 600;
+    font-size: 20px;
+    color: var(--ink);
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .brand::before {
+    content: "";
+    width: 10px;
+    height: 10px;
+    border-radius: 4px;
+    background: var(--accent);
+  }
+
+  .page {
+    width: 640px;
+    margin: 104px auto 0;
+  }
+
+  h1 {
+    margin: 0;
+    font-family: "Fraunces", Georgia, serif;
+    font-weight: 600;
+    font-size: 40px;
+    line-height: 1.15;
+  }
+  .rule {
+    width: 48px;
+    height: 2px;
+    background: var(--accent);
+    margin: 32px 0 0;
+  }
+
+  form { margin: 56px 0 0; }
+
+  .field { margin: 0 0 36px; }
+  .row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 32px;
+  }
+
+  label {
+    display: block;
+    margin: 0 0 10px;
+    font-size: 14px;
+    font-weight: 500;
+    letter-spacing: 0.02em;
+    color: var(--ink);
+  }
+
+  input, select, textarea {
+    display: block;
+    width: 100%;
+    margin: 0;
+    padding: 0 16px;
+    height: 52px;
+    font: inherit;
+    font-size: 16px;
+    color: var(--ink);
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 4px;
+    outline: none;
+  }
+  textarea {
+    height: 160px;
+    padding: 14px 16px;
+    resize: none;
+    line-height: 1.6;
+  }
+  select {
+    appearance: none;
+    -webkit-appearance: none;
+    padding-right: 44px;
+    background-image:
+      linear-gradient(45deg, transparent 50%, var(--ink) 50%),
+      linear-gradient(135deg, var(--ink) 50%, transparent 50%);
+    background-position: calc(100% - 22px) 22px, calc(100% - 16px) 22px;
+    background-size: 6px 6px, 6px 6px;
+    background-repeat: no-repeat;
+  }
+  input:hover, select:hover, textarea:hover { border-color: var(--ink); }
+  input:focus, select:focus, textarea:focus {
+    border-color: var(--accent);
+    box-shadow: 0 0 0 3px rgba(194, 65, 12, 0.25);
+  }
+
+  .actions {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 16px;
+    margin-top: 56px;
+    padding-top: 32px;
+    border-top: 1px solid var(--line);
+  }
+  button {
+    font: inherit;
+    font-size: 15px;
+    font-weight: 500;
+    height: 52px;
+    padding: 0 32px;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  .btn-secondary {
+    background: var(--card);
+    color: var(--ink);
+    border: 1px solid var(--line);
+  }
+  .btn-secondary:hover { border-color: var(--ink); }
+  .btn-primary {
+    background: var(--accent);
+    color: var(--card);
+    border: 1px solid var(--accent);
+  }
+  .btn-primary:hover { background: #9A3412; border-color: #9A3412; }
+  button:focus-visible {
+    outline: 3px solid rgba(194, 65, 12, 0.5);
+    outline-offset: 2px;
+  }
+</style>
+</head>
+<body>
+<div id="component">
+  <header class="topbar">
+    <div class="brand">Harbor</div>
+  </header>
+
+  <main class="page">
+    <h1>New request</h1>
+    <div class="rule"></div>
+
+    <form action="#">
+      <div class="field">
+        <label for="title">Title</label>
+        <input id="title" name="title" type="text">
+      </div>
+
+      <div class="field">
+        <label for="description">Description</label>
+        <textarea id="description" name="description"></textarea>
+      </div>
+
+      <div class="row">
+        <div class="field">
+          <label for="priority">Priority</label>
+          <select id="priority" name="priority">
+            <option>Low</option>
+            <option>Medium</option>
+            <option>High</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="assignee">Assignee</label>
+          <select id="assignee" name="assignee">
+            <option>Maya Chen</option>
+            <option>Leo Park</option>
+            <option>Ana Ruiz</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="field">
+        <label for="due">Due date</label>
+        <input id="due" name="due" type="date">
+      </div>
+
+      <div class="actions">
+        <button type="button" class="btn-secondary">Cancel</button>
+        <button type="submit" class="btn-primary">Create Request</button>
+      </div>
+    </form>
+  </main>
+</div>
+</body>
+</html>

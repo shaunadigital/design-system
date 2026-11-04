@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Message composer</title>
+<style>
+  * { box-sizing: border-box; }
+  html, body { height: 100%; margin: 0; }
+  body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #fff;
+    color: #0B1416;
+    font-family: "Archivo", system-ui, -apple-system, "Segoe UI", Arial, sans-serif;
+  }
+  #component {
+    width: 640px;
+    max-width: 100%;
+  }
+  .composer {
+    display: flex;
+    align-items: flex-end;
+    gap: 8px;
+    padding: 10px;
+    background: #fff;
+    border: 1px solid #0B1416;
+    border-radius: 16px;
+  }
+  .composer:focus-within {
+    border-color: #0263AC;
+    box-shadow: 0 0 0 1px #0263AC;
+  }
+  .composer textarea {
+    flex: 1;
+    min-height: 44px;
+    height: 44px;
+    margin: 0;
+    padding: 10px 6px;
+    border: 0;
+    outline: 0;
+    resize: none;
+    background: transparent;
+    color: #0B1416;
+    font: inherit;
+    font-size: 16px;
+    line-height: 24px;
+  }
+  .composer textarea::placeholder { color: #4a5659; opacity: 1; }
+  .btn {
+    flex: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    padding: 0;
+    border-radius: 12px;
+    border: 0;
+    cursor: pointer;
+    font: inherit;
+  }
+  .btn svg {
+    width: 22px;
+    height: 22px;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+  .attach { background: transparent; color: #0B1416; }
+  .attach:hover { background: #eef2f3; }
+  .send { background: #0263AC; color: #fff; }
+  .send:hover { background: #02538f; }
+  .btn:focus-visible { outline: 3px solid #0263AC; outline-offset: 2px; }
+  .send:focus-visible { outline-color: #0B1416; }
+</style>
+</head>
+<body>
+  <div id="component">
+    <form class="composer" action="#" onsubmit="return false">
+      <button type="button" class="btn attach" aria-label="Attach File" title="Attach File">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 11.5l-8.6 8.6a5.5 5.5 0 0 1-7.8-7.8l8.6-8.6a3.7 3.7 0 0 1 5.2 5.2l-8.6 8.6a1.8 1.8 0 0 1-2.6-2.6l7.9-7.9"/></svg>
+      </button>
+      <textarea rows="1" placeholder="Message Claude" aria-label="Message Claude"></textarea>
+      <button type="submit" class="btn send" aria-label="Send Message" title="Send Message">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
+      </button>
+    </form>
+  </div>
+</body>
+</html>

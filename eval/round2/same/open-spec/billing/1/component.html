@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Billing</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+  *, *::before, *::after { box-sizing: border-box; }
+
+  html, body {
+    margin: 0;
+    background: #FFFFFF;
+  }
+
+  #component {
+    width: 1280px;
+    min-height: 100vh;
+    margin: 0 auto;
+    padding: 64px 64px 96px;
+    background: #FFFFFF;
+    color: #0B1416;
+    font-family: "Archivo", system-ui, -apple-system, "Segoe UI", Helvetica, Arial, sans-serif;
+    font-size: 16px;
+    line-height: 1.5;
+    letter-spacing: 0;
+  }
+
+  #component h1,
+  #component h2,
+  #component h3,
+  #component p {
+    margin: 0;
+  }
+
+  .page-title {
+    font-family: "Unbounded", "Archivo", system-ui, sans-serif;
+    font-weight: 300;
+    font-size: 56px;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    text-transform: uppercase;
+    margin-bottom: 48px;
+  }
+
+  .card {
+    background: #FFFFFF;
+    border: 1px solid #9CC3EA;
+    border-radius: 16px;
+    padding: 32px;
+  }
+
+  .card-title {
+    font-family: "Unbounded", "Archivo", system-ui, sans-serif;
+    font-weight: 500;
+    font-size: 28px;
+    line-height: 1.25;
+    letter-spacing: -0.01em;
+  }
+
+  /* Current plan */
+  .plan {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    column-gap: 32px;
+    align-items: center;
+    margin-bottom: 48px;
+  }
+
+  .plan-info {
+    grid-column: 1 / span 8;
+  }
+
+  .plan-price {
+    margin-top: 8px;
+    font-size: 18px;
+    line-height: 1.5;
+  }
+
+  .seats {
+    margin-top: 24px;
+    max-width: 480px;
+  }
+
+  .seats-text {
+    font-size: 16px;
+    color: #55656A;
+  }
+
+  .seats-track {
+    margin-top: 8px;
+    height: 8px;
+    border-radius: 999px;
+    background: #EEF4FA;
+    overflow: hidden;
+  }
+
+  .seats-fill {
+    width: 72%;
+    height: 100%;
+    border-radius: 999px;
+    background: #0B1416;
+  }
+
+  .plan-action {
+    grid-column: 9 / span 4;
+    justify-self: end;
+    align-self: start;
+  }
+
+  .button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 44px;
+    padding: 8px 24px;
+    border: 1px solid #0B1416;
+    border-radius: 999px;
+    background: #0B1416;
+    color: #FFFFFF;
+    font-family: "Archivo", system-ui, sans-serif;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 1.5;
+    letter-spacing: 0;
+    cursor: pointer;
+    transition:
+      background-color 180ms cubic-bezier(0.2, 0.7, 0.2, 1),
+      border-color 180ms cubic-bezier(0.2, 0.7, 0.2, 1);
+  }
+
+  .button:hover {
+    background: #0263AC;
+    border-color: #0263AC;
+  }
+
+  .button:focus-visible {
+    outline: 2px solid #0263AC;
+    outline-offset: 4px;
+  }
+
+  /* Invoices */
+  .invoices {
+    padding: 32px 32px 16px;
+  }
+
+  .invoices .card-title {
+    margin-bottom: 24px;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-variant-numeric: tabular-nums;
+  }
+
+  th {
+    padding: 12px 16px;
+    background: #EEF4FA;
+    color: #55656A;
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 1.5;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    text-align: left;
+  }
+
+  th:first-child { border-radius: 8px 0 0 8px; }
+  th:last-child  { border-radius: 0 8px 8px 0; }
+
+  td {
+    padding: 16px;
+    border-bottom: 1px solid #EEF4FA;
+    font-size: 16px;
+    line-height: 1.5;
+    vertical-align: middle;
+  }
+
+  tbody tr:last-child td { border-bottom: 0; }
+
+  th.num, td.num { text-align: right; }
+
+  .status {
+    display: inline-block;
+    padding: 4px 12px;
+    border-radius: 999px;
+    background: #E6EFF7;
+    color: #0263AC;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 1.5;
+    letter-spacing: 0.02em;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .button { transition: none; }
+  }
+</style>
+</head>
+<body>
+<div id="component">
+  <main>
+    <h1 class="page-title">Billing</h1>
+
+    <section class="card plan" aria-labelledby="plan-title">
+      <div class="plan-info">
+        <h2 class="card-title" id="plan-title">Team plan</h2>
+        <p class="plan-price">$24 per seat per month</p>
+        <div class="seats">
+          <p class="seats-text">18 of 25 seats used</p>
+          <div class="seats-track" aria-hidden="true"><div class="seats-fill"></div></div>
+        </div>
+      </div>
+      <div class="plan-action">
+        <button type="button" class="button">Change Plan</button>
+      </div>
+    </section>
+
+    <section class="card invoices" aria-labelledby="invoices-title">
+      <h2 class="card-title" id="invoices-title">Invoices</h2>
+      <table>
+        <thead>
+          <tr>
+            <th scope="col">Date</th>
+            <th scope="col" class="num">Amount</th>
+            <th scope="col">Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Oct 1, 2026</td>
+            <td class="num">$432.00</td>
+            <td><span class="status">Paid</span></td>
+          </tr>
+          <tr>
+            <td>Sep 1, 2026</td>
+            <td class="num">$432.00</td>
+            <td><span class="status">Paid</span></td>
+          </tr>
+          <tr>
+            <td>Aug 1, 2026</td>
+            <td class="num">$408.00</td>
+            <td><span class="status">Paid</span></td>
+          </tr>
+          <tr>
+            <td>Jul 1, 2026</td>
+            <td class="num">$408.00</td>
+            <td><span class="status">Paid</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+  </main>
+</div>
+</body>
+</html>

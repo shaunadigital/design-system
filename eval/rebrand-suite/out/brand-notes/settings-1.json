@@ -1,0 +1,158 @@
+{
+ "size": {
+  "w": 1280,
+  "h": 1099.1875
+ },
+ "elements": 4,
+ "oldElements": 1,
+ "offElements": 3,
+ "pieces": [
+  {
+   "tag": "button",
+   "text": "Save Changes",
+   "box": {
+    "x": 160,
+    "y": 434.1875,
+    "w": 150.53125,
+    "h": 48
+   },
+   "hits": [
+    {
+     "k": "old",
+     "what": "text",
+     "v": "255,255,255"
+    }
+   ]
+  },
+  {
+   "tag": "label",
+   "text": "Email me when a request is assigned to m",
+   "box": {
+    "x": 160,
+    "y": 601.1875,
+    "w": 640,
+    "h": 53
+   },
+   "hits": [
+    {
+     "k": "off",
+     "what": "border",
+     "v": "216,208,192"
+    }
+   ]
+  },
+  {
+   "tag": "label",
+   "text": "Weekly summary",
+   "box": {
+    "x": 160,
+    "y": 654.1875,
+    "w": 640,
+    "h": 53
+   },
+   "hits": [
+    {
+     "k": "off",
+     "what": "border",
+     "v": "216,208,192"
+    }
+   ]
+  },
+  {
+   "tag": "label",
+   "text": "Product updates",
+   "box": {
+    "x": 160,
+    "y": 707.1875,
+    "w": 640,
+    "h": 53
+   },
+   "hits": [
+    {
+     "k": "off",
+     "what": "border",
+     "v": "216,208,192"
+    }
+   ]
+  }
+ ],
+ "oldPieces": 1,
+ "values": {
+  "old": [
+   "text:255,255,255"
+  ],
+  "off": [
+   "border:216,208,192"
+  ]
+ },
+ "all": [
+  {
+   "tag": "button",
+   "text": "Save Changes",
+   "box": {
+    "x": 160,
+    "y": 434.1875,
+    "w": 150.53125,
+    "h": 48
+   },
+   "hits": [
+    {
+     "k": "old",
+     "what": "text",
+     "v": "255,255,255"
+    }
+   ]
+  },
+  {
+   "tag": "label",
+   "text": "Email me when a request is assigned to m",
+   "box": {
+    "x": 160,
+    "y": 601.1875,
+    "w": 640,
+    "h": 53
+   },
+   "hits": [
+    {
+     "k": "off",
+     "what": "border",
+     "v": "216,208,192"
+    }
+   ]
+  },
+  {
+   "tag": "label",
+   "text": "Weekly summary",
+   "box": {
+    "x": 160,
+    "y": 654.1875,
+    "w": 640,
+    "h": 53
+   },
+   "hits": [
+    {
+     "k": "off",
+     "what": "border",
+     "v": "216,208,192"
+    }
+   ]
+  },
+  {
+   "tag": "label",
+   "text": "Product updates",
+   "box": {
+    "x": 160,
+    "y": 707.1875,
+    "w": 640,
+    "h": 53
+   },
+   "hits": [
+    {
+     "k": "off",
+     "what": "border",
+     "v": "216,208,192"
+    }
+   ]
+  }
+ ]
+}

@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Chat menu</title>
+<style>
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #fff;
+    color: #0B1416;
+    font-family: "Archivo", "Helvetica Neue", Arial, sans-serif;
+    font-size: 16px;
+    line-height: 1.4;
+  }
+  #component {
+    position: relative;
+    width: 220px;
+    height: 260px;
+    align-self: center;
+  }
+  .trigger {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    height: 44px;
+    padding: 0 16px;
+    background: #fff;
+    color: #0B1416;
+    border: 1px solid #0B1416;
+    border-radius: 8px;
+    font: inherit;
+    font-weight: 500;
+    cursor: pointer;
+  }
+  .trigger[aria-expanded="true"] {
+    border-color: #0263AC;
+    color: #0263AC;
+  }
+  .trigger:focus-visible,
+  .item:focus-visible {
+    outline: 2px solid #0263AC;
+    outline-offset: 2px;
+  }
+  .trigger svg { width: 16px; height: 16px; }
+  .menu {
+    position: absolute;
+    top: 52px;
+    left: 0;
+    width: 220px;
+    margin: 0;
+    padding: 6px;
+    list-style: none;
+    background: #fff;
+    border: 1px solid #0B1416;
+    border-radius: 8px;
+    box-shadow: 0 8px 24px rgba(11, 20, 22, 0.14);
+  }
+  .item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    width: 100%;
+    height: 40px;
+    padding: 0 12px;
+    background: transparent;
+    color: #0B1416;
+    border: 0;
+    border-radius: 4px;
+    font: inherit;
+    text-align: left;
+    cursor: pointer;
+  }
+  .item:hover,
+  .item.is-active {
+    background: #0263AC;
+    color: #fff;
+  }
+  .item svg {
+    width: 18px;
+    height: 18px;
+    flex: none;
+  }
+  .divider {
+    height: 1px;
+    margin: 6px 0;
+    background: #0B1416;
+    opacity: 0.2;
+  }
+</style>
+</head>
+<body>
+  <div id="component">
+    <button class="trigger" type="button" aria-haspopup="menu" aria-expanded="true" aria-controls="chat-menu">
+      Chat options
+      <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 6l5 5 5-5"/></svg>
+    </button>
+    <ul class="menu" id="chat-menu" role="menu" aria-label="Chat options">
+      <li role="none">
+        <button class="item is-active" type="button" role="menuitem">
+          <svg viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 15l1-4L12.5 2.5l3 3L7 14z"/><path d="M11 4l3 3"/></svg>
+          Rename
+        </button>
+      </li>
+      <li role="none">
+        <button class="item" type="button" role="menuitem">
+          <svg viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="4" cy="9" r="2"/><circle cx="14" cy="4" r="2"/><circle cx="14" cy="14" r="2"/><path d="M5.8 8l6.4-3M5.8 10l6.4 3"/></svg>
+          Share
+        </button>
+      </li>
+      <li role="none">
+        <button class="item" type="button" role="menuitem">
+          <svg viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="3" width="14" height="4" rx="1"/><path d="M3.5 7v7a1 1 0 001 1h9a1 1 0 001-1V7M7 10.5h4"/></svg>
+          Archive
+        </button>
+      </li>
+      <li class="divider" role="separator"></li>
+      <li role="none">
+        <button class="item" type="button" role="menuitem">
+          <svg viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2.5 4.5h13M7 4.5V3h4v1.5M4 4.5l.8 10a1 1 0 001 .9h6.4a1 1 0 001-.9l.8-10M7.5 8v4.5M10.5 8v4.5"/></svg>
+          Delete
+        </button>
+      </li>
+    </ul>
+  </div>
+</body>
+</html>

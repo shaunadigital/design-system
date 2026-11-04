@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Approvals</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; }
+
+  html, body { margin: 0; padding: 0; background: #FFFFFF; }
+
+  body {
+    font-family: "Archivo", "Helvetica Neue", Arial, sans-serif;
+    font-size: 16px;
+    line-height: 1.5;
+    color: #0B1416;
+  }
+
+  #component {
+    width: 1280px;
+    min-height: 800px;
+    background: #FFFFFF;
+    color: #0B1416;
+  }
+
+  .header {
+    padding: 64px 64px 48px;
+  }
+
+  h1 {
+    margin: 0;
+    font-family: "Unbounded", "Helvetica Neue", Arial, sans-serif;
+    font-weight: 300;
+    font-size: 56px;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    text-transform: uppercase;
+    color: #0B1416;
+  }
+
+  .count {
+    margin: 24px 0 0;
+    font-size: 22px;
+    line-height: 1.4;
+    color: #55656A;
+  }
+
+  .queue {
+    background: #EEF4FA;
+    padding: 48px 64px 96px;
+    min-height: 520px;
+  }
+
+  .list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .card {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 160px auto;
+    column-gap: 32px;
+    align-items: center;
+    padding: 32px;
+    background: #FFFFFF;
+    border: 1px solid #9CC3EA;
+    border-radius: 16px;
+  }
+
+  .card h2 {
+    margin: 0;
+    font-family: "Unbounded", "Helvetica Neue", Arial, sans-serif;
+    font-weight: 500;
+    font-size: 28px;
+    line-height: 1.25;
+    letter-spacing: -0.01em;
+    color: #0B1416;
+  }
+
+  .requester {
+    margin: 8px 0 0;
+    font-size: 16px;
+    color: #55656A;
+  }
+
+  .amount {
+    margin: 0;
+    font-size: 28px;
+    font-weight: 500;
+    line-height: 1.25;
+    letter-spacing: -0.01em;
+    text-align: right;
+    color: #0263AC;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .actions {
+    display: flex;
+    gap: 12px;
+  }
+
+  .btn {
+    appearance: none;
+    min-height: 44px;
+    min-width: 44px;
+    padding: 8px 24px;
+    border-radius: 999px;
+    border: 1px solid transparent;
+    font-family: "Archivo", "Helvetica Neue", Arial, sans-serif;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 1.5;
+    cursor: pointer;
+    transition:
+      background-color 180ms cubic-bezier(0.2, 0.7, 0.2, 1),
+      color 180ms cubic-bezier(0.2, 0.7, 0.2, 1),
+      border-color 180ms cubic-bezier(0.2, 0.7, 0.2, 1);
+  }
+
+  .btn-primary {
+    background: #0B1416;
+    color: #FFFFFF;
+  }
+  .btn-primary:hover { background: #0263AC; }
+
+  .btn-quiet {
+    background: transparent;
+    color: #0B1416;
+  }
+  .btn-quiet:hover { background: #E6EFF7; }
+
+  .btn:focus-visible {
+    outline: 2px solid #0263AC;
+    outline-offset: 2px;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .btn { transition: none; }
+  }
+</style>
+</head>
+<body>
+<div id="component">
+  <header class="header">
+    <h1>Approvals</h1>
+    <p class="count">3 waiting for you</p>
+  </header>
+
+  <main class="queue">
+    <ul class="list">
+      <li class="card">
+        <div>
+          <h2>Q4 travel budget</h2>
+          <p class="requester">Leo Park</p>
+        </div>
+        <p class="amount">$4,800</p>
+        <div class="actions">
+          <button class="btn btn-primary" type="button" aria-label="Approve Q4 travel budget">Approve</button>
+          <button class="btn btn-quiet" type="button" aria-label="Decline Q4 travel budget">Decline</button>
+        </div>
+      </li>
+
+      <li class="card">
+        <div>
+          <h2>Design conference tickets</h2>
+          <p class="requester">Maya Chen</p>
+        </div>
+        <p class="amount">$1,250</p>
+        <div class="actions">
+          <button class="btn btn-primary" type="button" aria-label="Approve Design conference tickets">Approve</button>
+          <button class="btn btn-quiet" type="button" aria-label="Decline Design conference tickets">Decline</button>
+        </div>
+      </li>
+
+      <li class="card">
+        <div>
+          <h2>Standing desks for support</h2>
+          <p class="requester">Ana Ruiz</p>
+        </div>
+        <p class="amount">$2,100</p>
+        <div class="actions">
+          <button class="btn btn-primary" type="button" aria-label="Approve Standing desks for support">Approve</button>
+          <button class="btn btn-quiet" type="button" aria-label="Decline Standing desks for support">Decline</button>
+        </div>
+      </li>
+    </ul>
+  </main>
+</div>
+</body>
+</html>

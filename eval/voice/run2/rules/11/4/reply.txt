@@ -1,0 +1,1 @@
+You can get the eval data from the case study called Testing a design system on Claude. The download includes the scripts, fixtures, builds and scores. Want the details?

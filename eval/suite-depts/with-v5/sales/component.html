@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Pipeline</title>
+<style>
+  /* Values copied from tokens.css so this file stands alone */
+  :root {
+    --paper: #FFFFFF;
+    --sand: #EEF4FA;
+    --card: #FFFFFF;
+    --ink: #0B1416;
+    --ink-rgb: 11, 20, 22;
+    --muted: #55656A;
+    --accent-text: #0263AC;
+    --accent: #0263AC;
+    --accent-tint: #E6EFF7;
+    --on-ink: #FFFFFF;
+    --shadow-rgb: 11, 20, 22;
+    --font-display: 'Unbounded', system-ui, sans-serif;
+    --font-body: 'Archivo', system-ui, -apple-system, sans-serif;
+    --space-2: 8px;
+    --space-3: 12px;
+    --space-4: 16px;
+    --space-5: 24px;
+    --space-6: 32px;
+    --space-7: 48px;
+    --radius-md: 12px;
+    --radius-card: 16px;
+    --radius-pill: 999px;
+    --tracking-snug: -0.01em;
+    --tracking-label: 0.14em;
+    --text-heading: clamp(1.75rem, 3.2vw, 2.875rem);
+    --text-body: 1rem;
+    --text-small: 0.875rem;
+    --text-label: 0.75rem;
+    --ease: cubic-bezier(0.2, 0.7, 0.2, 1);
+    --dur-base: 180ms;
+  }
+
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--paper); }
+
+  #component {
+    width: 1280px;
+    min-height: 800px;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: var(--font-body);
+    font-size: var(--text-body);
+    padding-bottom: var(--space-7);
+  }
+
+  .band {
+    background: var(--sand);
+    padding: var(--space-7) 0;
+  }
+  .wrap {
+    max-width: 1120px;
+    margin: 0 auto;
+    padding: 0 var(--space-6);
+    box-sizing: content-box;
+  }
+  .band .wrap {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-6);
+  }
+  h1 {
+    margin: 0;
+    font-family: var(--font-display);
+    font-weight: 300;
+    font-size: var(--text-heading);
+    line-height: 1.1;
+    text-transform: uppercase;
+    letter-spacing: var(--tracking-snug);
+    color: var(--ink);
+  }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    height: 44px;
+    padding: 0 20px;
+    border: 0;
+    border-radius: var(--radius-pill);
+    font: 600 var(--text-small) var(--font-body);
+    cursor: pointer;
+    transition: transform var(--dur-base) var(--ease);
+  }
+  .btn--primary { background: var(--ink); color: var(--on-ink); }
+  .btn:hover { transform: translateY(-1px); }
+  .btn:focus-visible, .field input:focus { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+  .main { padding-top: var(--space-6); }
+  .field { display: block; width: 360px; }
+  .field label {
+    display: block;
+    margin-bottom: var(--space-2);
+    font: 500 var(--text-label) var(--font-body);
+    letter-spacing: var(--tracking-label);
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+  .field input {
+    width: 100%;
+    height: 44px;
+    padding: 0 12px;
+    font: inherit;
+    font-size: var(--text-body);
+    color: var(--ink);
+    background: var(--paper);
+    border: 1px solid rgba(var(--ink-rgb), 0.2);
+    border-radius: var(--radius-md);
+  }
+  .field input::placeholder { color: var(--muted); }
+
+  .card {
+    margin-top: var(--space-6);
+    background: var(--card);
+    border: 1px solid rgba(var(--ink-rgb), 0.1);
+    border-radius: var(--radius-card);
+    padding: var(--space-6);
+    box-shadow: 0 24px 48px -24px rgba(var(--shadow-rgb), 0.35);
+  }
+
+  table { width: 100%; border-collapse: collapse; text-align: left; }
+  th {
+    height: 44px;
+    padding: 0 var(--space-4) 0 0;
+    font: 500 var(--text-label) var(--font-body);
+    letter-spacing: var(--tracking-label);
+    text-transform: uppercase;
+    color: var(--muted);
+    border-bottom: 1px solid rgba(var(--ink-rgb), 0.1);
+  }
+  td {
+    height: 60px;
+    padding: 0 var(--space-4) 0 0;
+    font-size: var(--text-body);
+    border-bottom: 1px solid rgba(var(--ink-rgb), 0.1);
+  }
+  tbody tr:last-child td { border-bottom: 0; }
+  td:first-child { font-weight: 600; }
+  th:last-child, td:last-child { padding-right: 0; }
+
+  .figure {
+    color: var(--accent-text);
+    font-weight: 600;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .pill {
+    display: inline-block;
+    padding: 2px 10px;
+    border-radius: var(--radius-pill);
+    font-size: var(--text-label);
+    font-weight: 600;
+    background: var(--accent-tint);
+    color: var(--accent-text);
+  }
+  .pill--done { background: var(--accent); color: var(--on-ink); }
+
+  .person { display: flex; align-items: center; gap: var(--space-3); }
+  .avatar {
+    flex: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: var(--accent-tint);
+    color: var(--accent-text);
+    font-size: var(--text-small);
+    font-weight: 600;
+  }
+</style>
+</head>
+<body>
+<div id="component">
+  <header class="band">
+    <div class="wrap">
+      <h1>Pipeline</h1>
+      <button class="btn btn--primary" type="button">New Deal</button>
+    </div>
+  </header>
+
+  <main class="wrap main">
+    <div class="field">
+      <label for="search">Search deals</label>
+      <input id="search" type="search" name="search">
+    </div>
+
+    <section class="card">
+      <table>
+        <thead>
+          <tr>
+            <th scope="col">Company</th>
+            <th scope="col">Value</th>
+            <th scope="col">Stage</th>
+            <th scope="col">Owner</th>
+            <th scope="col">Close Date</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Kona Coffee Co.</td>
+            <td class="figure">$48,000</td>
+            <td><span class="pill">Proposal</span></td>
+            <td><span class="person"><span class="avatar" aria-hidden="true">MC</span>Maya Chen</span></td>
+            <td>Nov 14</td>
+          </tr>
+          <tr>
+            <td>Lanai Labs</td>
+            <td class="figure">$32,500</td>
+            <td><span class="pill">Negotiation</span></td>
+            <td><span class="person"><span class="avatar" aria-hidden="true">LP</span>Leo Park</span></td>
+            <td>Nov 2</td>
+          </tr>
+          <tr>
+            <td>Pali Health</td>
+            <td class="figure">$120,000</td>
+            <td><span class="pill">Discovery</span></td>
+            <td><span class="person"><span class="avatar" aria-hidden="true">AR</span>Ana Ruiz</span></td>
+            <td>Dec 5</td>
+          </tr>
+          <tr>
+            <td>Mauka Freight</td>
+            <td class="figure">$18,200</td>
+            <td><span class="pill pill--done">Won</span></td>
+            <td><span class="person"><span class="avatar" aria-hidden="true">SI</span>Sam Ito</span></td>
+            <td>Oct 18</td>
+          </tr>
+          <tr>
+            <td>Hale Studio</td>
+            <td class="figure">$9,600</td>
+            <td><span class="pill">Proposal</span></td>
+            <td><span class="person"><span class="avatar" aria-hidden="true">KL</span>Kai Lee</span></td>
+            <td>Nov 21</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+  </main>
+</div>
+</body>
+</html>

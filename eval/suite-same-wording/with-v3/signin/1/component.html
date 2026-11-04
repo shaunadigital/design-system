@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Sign in to Harbor</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+  /* Tokens used here, copied from tokens.css */
+  :root {
+    --sand: #EEF4FA;
+    --card: #FFFFFF;
+    --ink: #0B1416;
+    --ink-rgb: 11, 20, 22;
+    --muted: #55656A;
+    --accent-text: #0263AC;
+    --on-ink: #FFFFFF;
+    --shadow-rgb: 11, 20, 22;
+    --font-display: 'Unbounded', system-ui, sans-serif;
+    --font-body: 'Archivo', system-ui, -apple-system, sans-serif;
+    --space-2: 8px;
+    --space-3: 12px;
+    --space-4: 16px;
+    --space-5: 24px;
+    --space-6: 32px;
+    --radius-sm: 8px;
+    --radius-card: 16px;
+    --radius-pill: 999px;
+    --text-step: 1.75rem;
+    --text-body: 1rem;
+    --text-small: 0.875rem;
+    --ease: cubic-bezier(0.2, 0.7, 0.2, 1);
+    --dur-fast: 120ms;
+    --dur-base: 180ms;
+    color-scheme: light;
+  }
+
+  * { box-sizing: border-box; }
+  body { margin: 0; }
+
+  #component {
+    width: 1280px;
+    min-height: 800px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--sand);
+    font-family: var(--font-body);
+    font-size: var(--text-body);
+    color: var(--ink);
+  }
+
+  #component .card {
+    width: 400px;
+    padding: var(--space-6);
+    background: var(--card);
+    border: 1px solid rgba(var(--ink-rgb), 0.1);
+    border-radius: var(--radius-card);
+    box-shadow: 0 24px 48px -24px rgba(var(--shadow-rgb), 0.35);
+  }
+
+  #component h1 {
+    margin: 0 0 var(--space-5);
+    font-family: var(--font-display);
+    font-weight: 300;
+    font-size: var(--text-step);
+    line-height: 1.2;
+    text-transform: uppercase;
+  }
+
+  #component form { display: flex; flex-direction: column; gap: var(--space-5); }
+
+  #component .field { display: flex; flex-direction: column; gap: var(--space-2); }
+  #component .field label { font-size: var(--text-small); font-weight: 500; }
+  #component .field input {
+    height: 48px;
+    padding: 0 var(--space-4);
+    font: inherit;
+    color: var(--ink);
+    background: var(--card);
+    border: 1px solid var(--muted);
+    border-radius: var(--radius-sm);
+    transition: border-color var(--dur-fast) var(--ease);
+  }
+  #component .field input:hover { border-color: var(--ink); }
+
+  #component .check {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    min-height: 44px;
+    cursor: pointer;
+  }
+  #component .check input {
+    width: 20px;
+    height: 20px;
+    margin: 0;
+    accent-color: var(--accent-text);
+    cursor: pointer;
+  }
+
+  #component .actions { display: flex; flex-direction: column; gap: var(--space-3); }
+
+  #component .btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    min-height: 48px;
+    padding: 0 var(--space-5);
+    font: inherit;
+    font-weight: 600;
+    border-radius: var(--radius-pill);
+    cursor: pointer;
+    transition: background var(--dur-base) var(--ease), opacity var(--dur-fast) var(--ease);
+  }
+  #component .btn--fill { background: var(--ink); color: var(--on-ink); border: 1px solid var(--ink); }
+  #component .btn--fill:hover { opacity: 0.88; }
+  #component .btn--outline { background: transparent; color: var(--ink); border: 1px solid var(--ink); }
+  #component .btn--outline:hover { background: rgba(var(--ink-rgb), 0.06); }
+
+  #component .forgot {
+    align-self: center;
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
+    padding: 0 var(--space-2);
+    font-size: var(--text-small);
+    font-weight: 500;
+    color: var(--accent-text);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+  #component .forgot:hover { text-decoration-thickness: 2px; }
+
+  #component :focus-visible {
+    outline: 2px solid var(--accent-text);
+    outline-offset: 2px;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    #component * { transition: none; }
+  }
+</style>
+</head>
+<body>
+<div id="component">
+  <main class="card">
+    <h1>Sign in to Harbor</h1>
+    <form action="#">
+      <div class="field">
+        <label for="email">Work email</label>
+        <input id="email" type="email" name="email" autocomplete="username">
+      </div>
+      <div class="field">
+        <label for="password">Password</label>
+        <input id="password" type="password" name="password" autocomplete="current-password">
+      </div>
+      <label class="check">
+        <input type="checkbox" name="keep">
+        <span>Keep me signed in</span>
+      </label>
+      <div class="actions">
+        <button class="btn btn--fill" type="submit">Sign In</button>
+        <button class="btn btn--outline" type="button">Continue with SSO</button>
+      </div>
+      <a class="forgot" href="#">Forgot Password?</a>
+    </form>
+  </main>
+</div>
+</body>
+</html>

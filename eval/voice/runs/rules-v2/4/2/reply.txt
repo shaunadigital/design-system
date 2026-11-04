@@ -1,0 +1,1 @@
+Across two hundred forty page builds, both setups nearly always passed. But Shauna's system passed all one hundred twenty pages, with far more consistent styling. It used seven button styles, against thirty for the standard approach. Want the details?

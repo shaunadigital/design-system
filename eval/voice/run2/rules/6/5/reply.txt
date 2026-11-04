@@ -1,0 +1,1 @@
+Shauna uses Claude Code, Figma, Astro, React, TypeScript, Supabase, Vercel and Netlify. Want the details on how she uses them in her design system?

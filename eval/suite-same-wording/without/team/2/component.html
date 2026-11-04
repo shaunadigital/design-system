@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Team – Harbor</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+  * { box-sizing: border-box; }
+  body { margin: 0; background: #fff; color: #0B1416; font-family: Archivo, "Helvetica Neue", Arial, sans-serif; font-size: 16px; line-height: 1.5; }
+  #component { width: 1280px; margin: 0 auto; padding: 64px 80px; background: #fff; }
+  .header { display: flex; align-items: center; justify-content: space-between; padding-bottom: 32px; border-bottom: 2px solid #0B1416; }
+  h1 { margin: 0; font-family: Unbounded, "Helvetica Neue", Arial, sans-serif; font-weight: 300; text-transform: uppercase; font-size: 40px; line-height: 1.2; letter-spacing: 0.02em; }
+  .invite { font: inherit; font-weight: 600; color: #fff; background: #0263AC; border: 2px solid #0263AC; border-radius: 4px; padding: 12px 24px; cursor: pointer; }
+  .invite:hover { background: #014d87; border-color: #014d87; }
+  .invite:focus-visible, select:focus-visible { outline: 3px solid #0B1416; outline-offset: 2px; }
+  ul { list-style: none; margin: 0; padding: 0; }
+  li { display: flex; align-items: center; justify-content: space-between; gap: 24px; padding: 20px 0; border-bottom: 1px solid rgba(11,20,22,0.2); }
+  .person { display: flex; flex-direction: column; }
+  .name { font-weight: 600; font-size: 18px; }
+  .email { color: #0B1416; opacity: 0.75; font-size: 15px; }
+  .role { display: flex; align-items: center; gap: 12px; }
+  .role label { font-size: 14px; }
+  select { font: inherit; color: #0B1416; background: #fff; border: 1px solid #0B1416; border-radius: 4px; padding: 8px 12px; min-width: 130px; }
+</style>
+</head>
+<body>
+<div id="component">
+  <div class="header">
+    <h1>Team</h1>
+    <button class="invite" type="button">Invite Member</button>
+  </div>
+  <ul>
+    <li>
+      <div class="person"><span class="name">Maya Chen</span><span class="email">maya@harbor.app</span></div>
+      <div class="role"><label for="r1">Role</label>
+        <select id="r1"><option selected>Admin</option><option>Editor</option><option>Viewer</option></select></div>
+    </li>
+    <li>
+      <div class="person"><span class="name">Leo Park</span><span class="email">leo@harbor.app</span></div>
+      <div class="role"><label for="r2">Role</label>
+        <select id="r2"><option>Admin</option><option selected>Editor</option><option>Viewer</option></select></div>
+    </li>
+    <li>
+      <div class="person"><span class="name">Ana Ruiz</span><span class="email">ana@harbor.app</span></div>
+      <div class="role"><label for="r3">Role</label>
+        <select id="r3"><option>Admin</option><option selected>Editor</option><option>Viewer</option></select></div>
+    </li>
+    <li>
+      <div class="person"><span class="name">Sam Ito</span><span class="email">sam@harbor.app</span></div>
+      <div class="role"><label for="r4">Role</label>
+        <select id="r4"><option>Admin</option><option>Editor</option><option selected>Viewer</option></select></div>
+    </li>
+    <li>
+      <div class="person"><span class="name">Kai Lee</span><span class="email">kai@harbor.app</span></div>
+      <div class="role"><label for="r5">Role</label>
+        <select id="r5"><option>Admin</option><option>Editor</option><option selected>Viewer</option></select></div>
+    </li>
+  </ul>
+</div>
+</body>
+</html>

@@ -1,0 +1,330 @@
+{
+ "size": {
+  "w": 1280,
+  "h": 800
+ },
+ "elements": 11,
+ "oldElements": 1,
+ "offElements": 10,
+ "pieces": [
+  {
+   "tag": "li",
+   "text": "",
+   "box": {
+    "x": 644,
+    "y": 131,
+    "w": 56,
+    "h": 4
+   },
+   "hits": [
+    {
+     "k": "off",
+     "what": "fill",
+     "v": "217,209,193"
+    }
+   ]
+  },
+  {
+   "tag": "li",
+   "text": "",
+   "box": {
+    "x": 708,
+    "y": 131,
+    "w": 56,
+    "h": 4
+   },
+   "hits": [
+    {
+     "k": "off",
+     "what": "fill",
+     "v": "217,209,193"
+    }
+   ]
+  },
+  {
+   "tag": "p",
+   "text": "Harbor works best with the tools your te",
+   "box": {
+    "x": 409.25,
+    "y": 234.1875,
+    "w": 461.5,
+    "h": 27
+   },
+   "hits": [
+    {
+     "k": "off",
+     "what": "text",
+     "v": "74,87,79"
+    }
+   ]
+  },
+  {
+   "tag": "li",
+   "text": "Slack\n        Get request updates in you",
+   "box": {
+    "x": 320,
+    "y": 309.1875,
+    "w": 640,
+    "h": 90
+   },
+   "hits": [
+    {
+     "k": "off",
+     "what": "border",
+     "v": "217,209,193"
+    }
+   ]
+  },
+  {
+   "tag": "li",
+   "text": "Google Calendar\n        See due dates on",
+   "box": {
+    "x": 320,
+    "y": 415.1875,
+    "w": 640,
+    "h": 90
+   },
+   "hits": [
+    {
+     "k": "off",
+     "what": "border",
+     "v": "217,209,193"
+    }
+   ]
+  },
+  {
+   "tag": "li",
+   "text": "Jira\n        Link requests to engineerin",
+   "box": {
+    "x": 320,
+    "y": 521.1875,
+    "w": 640,
+    "h": 90
+   },
+   "hits": [
+    {
+     "k": "off",
+     "what": "border",
+     "v": "217,209,193"
+    }
+   ]
+  },
+  {
+   "tag": "div",
+   "text": "Skip for Now\n    Continue",
+   "box": {
+    "x": 320,
+    "y": 651.1875,
+    "w": 640,
+    "h": 73
+   },
+   "hits": [
+    {
+     "k": "off",
+     "what": "border",
+     "v": "217,209,193"
+    }
+   ]
+  }
+ ],
+ "oldPieces": 0,
+ "values": {
+  "old": [
+   "text:255,255,255"
+  ],
+  "off": [
+   "fill:217,209,193",
+   "text:74,87,79",
+   "border:217,209,193"
+  ]
+ },
+ "all": [
+  {
+   "tag": "li",
+   "text": "",
+   "box": {
+    "x": 644,
+    "y": 131,
+    "w": 56,
+    "h": 4
+   },
+   "hits": [
+    {
+     "k": "off",
+     "what": "fill",
+     "v": "217,209,193"
+    }
+   ]
+  },
+  {
+   "tag": "li",
+   "text": "",
+   "box": {
+    "x": 708,
+    "y": 131,
+    "w": 56,
+    "h": 4
+   },
+   "hits": [
+    {
+     "k": "off",
+     "what": "fill",
+     "v": "217,209,193"
+    }
+   ]
+  },
+  {
+   "tag": "p",
+   "text": "Harbor works best with the tools your te",
+   "box": {
+    "x": 409.25,
+    "y": 234.1875,
+    "w": 461.5,
+    "h": 27
+   },
+   "hits": [
+    {
+     "k": "off",
+     "what": "text",
+     "v": "74,87,79"
+    }
+   ]
+  },
+  {
+   "tag": "li",
+   "text": "Slack\n        Get request updates in you",
+   "box": {
+    "x": 320,
+    "y": 309.1875,
+    "w": 640,
+    "h": 90
+   },
+   "hits": [
+    {
+     "k": "off",
+     "what": "border",
+     "v": "217,209,193"
+    }
+   ]
+  },
+  {
+   "tag": "p",
+   "text": "Get request updates in your channels",
+   "box": {
+    "x": 413,
+    "y": 354.984375,
+    "w": 402.546875,
+    "h": 22.5
+   },
+   "hits": [
+    {
+     "k": "off",
+     "what": "text",
+     "v": "74,87,79"
+    }
+   ]
+  },
+  {
+   "tag": "li",
+   "text": "Google Calendar\n        See due dates on",
+   "box": {
+    "x": 320,
+    "y": 415.1875,
+    "w": 640,
+    "h": 90
+   },
+   "hits": [
+    {
+     "k": "off",
+     "what": "border",
+     "v": "217,209,193"
+    }
+   ]
+  },
+  {
+   "tag": "p",
+   "text": "See due dates on your calendar",
+   "box": {
+    "x": 413,
+    "y": 460.984375,
+    "w": 402.546875,
+    "h": 22.5
+   },
+   "hits": [
+    {
+     "k": "off",
+     "what": "text",
+     "v": "74,87,79"
+    }
+   ]
+  },
+  {
+   "tag": "li",
+   "text": "Jira\n        Link requests to engineerin",
+   "box": {
+    "x": 320,
+    "y": 521.1875,
+    "w": 640,
+    "h": 90
+   },
+   "hits": [
+    {
+     "k": "off",
+     "what": "border",
+     "v": "217,209,193"
+    }
+   ]
+  },
+  {
+   "tag": "p",
+   "text": "Link requests to engineering tickets",
+   "box": {
+    "x": 413,
+    "y": 566.984375,
+    "w": 402.546875,
+    "h": 22.5
+   },
+   "hits": [
+    {
+     "k": "off",
+     "what": "text",
+     "v": "74,87,79"
+    }
+   ]
+  },
+  {
+   "tag": "div",
+   "text": "Skip for Now\n    Continue",
+   "box": {
+    "x": 320,
+    "y": 651.1875,
+    "w": 640,
+    "h": 73
+   },
+   "hits": [
+    {
+     "k": "off",
+     "what": "border",
+     "v": "217,209,193"
+    }
+   ]
+  },
+  {
+   "tag": "button",
+   "text": "Continue",
+   "box": {
+    "x": 828.4375,
+    "y": 680.1875,
+    "w": 131.5625,
+    "h": 44
+   },
+   "hits": [
+    {
+     "k": "old",
+     "what": "text",
+     "v": "255,255,255"
+    }
+   ]
+  }
+ ]
+}

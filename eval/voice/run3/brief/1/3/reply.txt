@@ -1,0 +1,9 @@
+It all starts from one token file. That single file builds the site's styles, the Figma library, and the rules that Claude reads. So designers, developers, and Claude are all working from the same source.
+
+The rules themselves live in a file called design dot M D, at the root of the repo. They're written for people and for Claude.
+
+The system is small on purpose. Two typefaces, twelve type sizes, a four pixel spacing base, nine base colors, and two themes, Day and Dusk.
+
+Every build also runs a set of checks. They cover things like text contrast, using only tokens for color, type, and spacing, accessible labels, and motion.
+
+If you'd like to see it live, there's a specimen on the system page of this site.

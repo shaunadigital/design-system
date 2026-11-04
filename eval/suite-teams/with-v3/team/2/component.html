@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Team · Harbor</title>
+<meta name="viewport" content="width=1280">
+<style>
+/* Tokens used by this screen, copied from tokens.css so the file stands alone */
+:root {
+  --paper: #FFFFFF;
+  --sand: #EEF4FA;
+  --card: #FFFFFF;
+  --ink: #0B1416;
+  --ink-rgb: 11, 20, 22;
+  --muted: #55656A;
+  --accent-text: #0263AC;
+  --accent-tint: #E6EFF7;
+  --on-ink: #FFFFFF;
+  --font-display: 'Unbounded', system-ui, sans-serif;
+  --font-body: 'Archivo', system-ui, -apple-system, sans-serif;
+  --font-label: 'Archivo', system-ui, sans-serif;
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 24px;
+  --space-6: 32px;
+  --space-7: 48px;
+  --space-8: 64px;
+  --radius-sm: 8px;
+  --radius-card: 16px;
+  --radius-pill: 999px;
+  --tracking-label: 0.14em;
+  --text-display-xl: 3.5rem;
+  --text-body: 1rem;
+  --text-small: 0.875rem;
+  --text-label: 0.75rem;
+  --ease: cubic-bezier(0.2, 0.7, 0.2, 1);
+  --dur-base: 180ms;
+  --dur-fast: 120ms;
+}
+
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--paper); color: var(--ink); font-family: var(--font-body); font-size: var(--text-body); }
+
+#component {
+  width: 1280px;
+  min-height: 720px;
+  padding: var(--space-8);
+  background: var(--paper);
+}
+
+.head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: var(--space-6);
+}
+.head h1 {
+  margin: 0;
+  font-family: var(--font-display);
+  font-weight: 300;
+  font-size: var(--text-display-xl);
+  line-height: 1.1;
+  text-transform: uppercase;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
+  padding: 0 var(--space-5);
+  border: 0;
+  border-radius: var(--radius-pill);
+  background: var(--ink);
+  color: var(--on-ink);
+  font-family: var(--font-body);
+  font-size: var(--text-body);
+  font-weight: 600;
+  cursor: pointer;
+  transition: opacity var(--dur-base) var(--ease);
+}
+.btn:hover { opacity: 0.86; }
+.btn:focus-visible, .role:focus-visible { outline: 2px solid var(--accent-text); outline-offset: 2px; }
+
+.list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  border: 1px solid rgba(var(--ink-rgb), 0.1);
+  border-radius: var(--radius-card);
+  background: var(--card);
+  overflow: hidden;
+}
+.row {
+  display: grid;
+  grid-template-columns: 1fr 1fr 180px;
+  column-gap: var(--space-5);
+  align-items: center;
+  padding: var(--space-2) var(--space-5);
+  min-height: 60px;
+  border-top: 1px solid rgba(var(--ink-rgb), 0.1);
+}
+.row:first-child { border-top: 0; }
+.row--head {
+  min-height: 44px;
+  background: var(--sand);
+  font-family: var(--font-label);
+  font-size: var(--text-label);
+  font-weight: 500;
+  letter-spacing: var(--tracking-label);
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.name { font-weight: 600; }
+.email { font-size: var(--text-body); color: var(--muted); }
+
+.role {
+  width: 100%;
+  min-height: 44px;
+  padding: 0 var(--space-6) 0 var(--space-3);
+  border: 1px solid rgba(var(--ink-rgb), 0.1);
+  border-radius: var(--radius-sm);
+  background-color: var(--card);
+  background-image:
+    linear-gradient(45deg, transparent 50%, var(--ink) 50%),
+    linear-gradient(135deg, var(--ink) 50%, transparent 50%);
+  background-position: calc(100% - 18px) 19px, calc(100% - 13px) 19px;
+  background-size: 5px 5px, 5px 5px;
+  background-repeat: no-repeat;
+  -webkit-appearance: none;
+  appearance: none;
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: var(--text-body);
+  cursor: pointer;
+  transition: background-color var(--dur-fast) var(--ease);
+}
+.role:hover { background-color: var(--accent-tint); }
+</style>
+</head>
+<body>
+<div id="component">
+  <div class="head">
+    <h1>Team</h1>
+    <button class="btn" type="button">Invite Member</button>
+  </div>
+
+  <ul class="list">
+    <li class="row row--head" aria-hidden="true">
+      <span>Name</span>
+      <span>Email</span>
+      <span>Role</span>
+    </li>
+    <li class="row">
+      <span class="name" data-user-content>Maya Chen</span>
+      <span class="email">maya@harbor.app</span>
+      <select class="role" aria-label="Role for Maya Chen">
+        <option selected>Admin</option>
+        <option>Editor</option>
+        <option>Viewer</option>
+      </select>
+    </li>
+    <li class="row">
+      <span class="name" data-user-content>Leo Park</span>
+      <span class="email">leo@harbor.app</span>
+      <select class="role" aria-label="Role for Leo Park">
+        <option>Admin</option>
+        <option selected>Editor</option>
+        <option>Viewer</option>
+      </select>
+    </li>
+    <li class="row">
+      <span class="name" data-user-content>Ana Ruiz</span>
+      <span class="email">ana@harbor.app</span>
+      <select class="role" aria-label="Role for Ana Ruiz">
+        <option>Admin</option>
+        <option selected>Editor</option>
+        <option>Viewer</option>
+      </select>
+    </li>
+    <li class="row">
+      <span class="name" data-user-content>Sam Ito</span>
+      <span class="email">sam@harbor.app</span>
+      <select class="role" aria-label="Role for Sam Ito">
+        <option>Admin</option>
+        <option>Editor</option>
+        <option selected>Viewer</option>
+      </select>
+    </li>
+    <li class="row">
+      <span class="name" data-user-content>Kai Lee</span>
+      <span class="email">kai@harbor.app</span>
+      <select class="role" aria-label="Role for Kai Lee">
+        <option>Admin</option>
+        <option>Editor</option>
+        <option selected>Viewer</option>
+      </select>
+    </li>
+  </ul>
+</div>
+</body>
+</html>

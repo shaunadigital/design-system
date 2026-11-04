@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Approvals</title>
+<meta name="viewport" content="width=1280">
+<style>
+:root {
+  --paper: #FFFFFF;
+  --card: #FFFFFF;
+  --ink: #0B1416;
+  --ink-rgb: 11, 20, 22;
+  --muted: #55656A;
+  --on-ink: #FFFFFF;
+  --font-display: 'Unbounded', system-ui, sans-serif;
+  --font-body: 'Archivo', system-ui, -apple-system, sans-serif;
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 24px;
+  --space-6: 32px;
+  --space-7: 48px;
+  --radius-card: 16px;
+  --radius-pill: 999px;
+  --tracking-label: 0.14em;
+  --text-heading: clamp(1.75rem, 3.2vw, 2.875rem);
+  --text-lead: 1.375rem;
+  --text-body: 1rem;
+  --text-small: 0.875rem;
+  --text-label: 0.75rem;
+  --ease: cubic-bezier(0.2, 0.7, 0.2, 1);
+  --dur-fast: 120ms;
+}
+
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: var(--text-body);
+}
+
+#component {
+  width: 1280px;
+  min-height: 720px;
+  background: var(--paper);
+  padding: var(--space-7) var(--space-6);
+}
+.page {
+  max-width: 1120px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6);
+}
+
+.top {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+}
+h1 {
+  margin: 0;
+  font-family: var(--font-display);
+  font-weight: 300;
+  font-size: var(--text-heading);
+  line-height: 1.1;
+  text-transform: uppercase;
+}
+.count {
+  margin: var(--space-2) 0 0;
+  font-size: var(--text-body);
+  font-weight: 500;
+  color: var(--muted);
+}
+
+.queue {
+  list-style: none;
+  margin: 0;
+  padding: var(--space-2) var(--space-5);
+  background: var(--card);
+  border: 1px solid rgba(var(--ink-rgb), 0.1);
+  border-radius: var(--radius-card);
+}
+.item {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 200px 120px auto;
+  align-items: center;
+  column-gap: var(--space-5);
+  min-height: 68px;
+  padding: var(--space-2) 0;
+  border-top: 1px solid rgba(var(--ink-rgb), 0.1);
+}
+.item:first-child { border-top: 0; }
+.title {
+  font-size: var(--text-body);
+  font-weight: 600;
+}
+.requester {
+  font-size: var(--text-small);
+  color: var(--muted);
+}
+.amount {
+  font-size: var(--text-lead);
+  font-weight: 600;
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+.actions {
+  display: flex;
+  gap: var(--space-2);
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 44px;
+  padding: 0 20px;
+  border-radius: var(--radius-pill);
+  font: 600 var(--text-small) var(--font-body);
+  color: var(--ink);
+  background: none;
+  border: 0;
+  cursor: pointer;
+  transition: background var(--dur-fast) var(--ease);
+}
+.btn--secondary { border: 1.5px solid var(--ink); }
+.btn:hover { background: rgba(var(--ink-rgb), 0.06); }
+.btn:focus-visible { outline: 2px solid #0263AC; outline-offset: 2px; }
+</style>
+</head>
+<body>
+<div id="component">
+  <main class="page">
+    <div class="top">
+      <div>
+        <h1>Approvals</h1>
+        <p class="count">3 waiting for you</p>
+      </div>
+    </div>
+    <ul class="queue">
+      <li class="item">
+        <span class="title" data-user-content>Q4 travel budget</span>
+        <span class="requester">Leo Park</span>
+        <span class="amount">$4,800</span>
+        <span class="actions">
+          <button class="btn btn--secondary" type="button">Approve</button>
+          <button class="btn" type="button">Decline</button>
+        </span>
+      </li>
+      <li class="item">
+        <span class="title" data-user-content>Design conference tickets</span>
+        <span class="requester">Maya Chen</span>
+        <span class="amount">$1,250</span>
+        <span class="actions">
+          <button class="btn btn--secondary" type="button">Approve</button>
+          <button class="btn" type="button">Decline</button>
+        </span>
+      </li>
+      <li class="item">
+        <span class="title" data-user-content>Standing desks for support</span>
+        <span class="requester">Ana Ruiz</span>
+        <span class="amount">$2,100</span>
+        <span class="actions">
+          <button class="btn btn--secondary" type="button">Approve</button>
+          <button class="btn" type="button">Decline</button>
+        </span>
+      </li>
+    </ul>
+  </main>
+</div>
+</body>
+</html>

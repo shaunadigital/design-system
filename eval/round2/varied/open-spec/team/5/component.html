@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Team</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; background: #FFFFFF; }
+  body {
+    font-family: "Archivo", "Helvetica Neue", Arial, sans-serif;
+    font-size: 16px;
+    line-height: 1.5;
+    color: #0B1416;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  #component {
+    width: 1280px;
+    min-height: 800px;
+    background: #FFFFFF;
+    color: #0B1416;
+  }
+
+  .topbar {
+    height: 80px;
+    padding: 0 64px;
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid #EEF4FA;
+  }
+  .brand {
+    font-family: "Unbounded", "Helvetica Neue", Arial, sans-serif;
+    font-weight: 500;
+    font-size: 18px;
+    letter-spacing: -0.01em;
+    color: #0B1416;
+  }
+
+  .page { padding: 64px 64px 96px; }
+
+  .page-head {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 32px;
+    margin-bottom: 48px;
+  }
+  h1 {
+    margin: 0;
+    font-family: "Unbounded", "Helvetica Neue", Arial, sans-serif;
+    font-weight: 300;
+    font-size: 56px;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    text-transform: uppercase;
+    color: #0B1416;
+  }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    min-height: 48px;
+    padding: 0 32px 0 24px;
+    border: 0;
+    border-radius: 999px;
+    background: #0B1416;
+    color: #FFFFFF;
+    font-family: "Archivo", "Helvetica Neue", Arial, sans-serif;
+    font-size: 16px;
+    font-weight: 500;
+    letter-spacing: 0;
+    line-height: 1;
+    cursor: pointer;
+    transition: background-color 180ms cubic-bezier(0.2, 0.7, 0.2, 1);
+  }
+  .btn:hover { background: #0263AC; }
+  .btn svg { width: 24px; height: 24px; flex: none; }
+
+  .btn:focus-visible,
+  .role:focus-visible {
+    outline: 2px solid #0263AC;
+    outline-offset: 2px;
+  }
+
+  .card {
+    background: #FFFFFF;
+    border: 1px solid #9CC3EA;
+    border-radius: 16px;
+    overflow: hidden;
+  }
+
+  .cols, .member {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    column-gap: 32px;
+    align-items: center;
+    padding: 0 32px;
+  }
+  .cols {
+    height: 48px;
+    background: #EEF4FA;
+    border-bottom: 1px solid #9CC3EA;
+  }
+  .label {
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: #55656A;
+    line-height: 1;
+  }
+  .c-name  { grid-column: 1 / span 4; }
+  .c-email { grid-column: 5 / span 5; }
+  .c-role  { grid-column: 10 / span 3; }
+
+  .members { list-style: none; margin: 0; padding: 0; }
+  .member {
+    min-height: 80px;
+    border-top: 1px solid #EEF4FA;
+    transition: background-color 120ms cubic-bezier(0.2, 0.7, 0.2, 1);
+  }
+  .member:first-child { border-top: 0; }
+  .member:hover { background: #EEF4FA; }
+
+  .who { display: flex; align-items: center; gap: 16px; }
+  .avatar {
+    width: 48px;
+    height: 48px;
+    flex: none;
+    border-radius: 999px;
+    background: #E6EFF7;
+    border: 1px solid #9CC3EA;
+    color: #0263AC;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+  }
+  .name { font-size: 16px; font-weight: 500; color: #0B1416; }
+  .email { font-size: 16px; color: #55656A; }
+
+  .role {
+    appearance: none;
+    -webkit-appearance: none;
+    width: 100%;
+    max-width: 200px;
+    min-height: 44px;
+    padding: 0 40px 0 16px;
+    border: 1px solid #9CC3EA;
+    border-radius: 12px;
+    background-color: #FFFFFF;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%230B1416' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 12px center;
+    background-size: 24px 24px;
+    color: #0B1416;
+    font-family: "Archivo", "Helvetica Neue", Arial, sans-serif;
+    font-size: 16px;
+    cursor: pointer;
+    transition: border-color 120ms cubic-bezier(0.2, 0.7, 0.2, 1);
+  }
+  .role:hover { border-color: #0263AC; }
+
+  @media (prefers-reduced-motion: reduce) {
+    * { transition: none !important; }
+  }
+</style>
+</head>
+<body>
+<div id="component">
+  <header class="topbar">
+    <span class="brand">Harbor</span>
+  </header>
+
+  <main class="page">
+    <div class="page-head">
+      <h1>Team</h1>
+      <button class="btn" type="button">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>
+        Invite Member
+      </button>
+    </div>
+
+    <section class="card" aria-label="Team members">
+      <div class="cols" aria-hidden="true">
+        <span class="label c-name">Member</span>
+        <span class="label c-email">Email</span>
+        <span class="label c-role">Role</span>
+      </div>
+
+      <ul class="members">
+        <li class="member">
+          <div class="who c-name">
+            <span class="avatar" aria-hidden="true">MC</span>
+            <span class="name">Maya Chen</span>
+          </div>
+          <span class="email c-email">maya@harbor.app</span>
+          <div class="c-role">
+            <select class="role" aria-label="Role for Maya Chen">
+              <option selected>Admin</option>
+              <option>Editor</option>
+              <option>Viewer</option>
+            </select>
+          </div>
+        </li>
+
+        <li class="member">
+          <div class="who c-name">
+            <span class="avatar" aria-hidden="true">LP</span>
+            <span class="name">Leo Park</span>
+          </div>
+          <span class="email c-email">leo@harbor.app</span>
+          <div class="c-role">
+            <select class="role" aria-label="Role for Leo Park">
+              <option>Admin</option>
+              <option selected>Editor</option>
+              <option>Viewer</option>
+            </select>
+          </div>
+        </li>
+
+        <li class="member">
+          <div class="who c-name">
+            <span class="avatar" aria-hidden="true">AR</span>
+            <span class="name">Ana Ruiz</span>
+          </div>
+          <span class="email c-email">ana@harbor.app</span>
+          <div class="c-role">
+            <select class="role" aria-label="Role for Ana Ruiz">
+              <option>Admin</option>
+              <option selected>Editor</option>
+              <option>Viewer</option>
+            </select>
+          </div>
+        </li>
+
+        <li class="member">
+          <div class="who c-name">
+            <span class="avatar" aria-hidden="true">SI</span>
+            <span class="name">Sam Ito</span>
+          </div>
+          <span class="email c-email">sam@harbor.app</span>
+          <div class="c-role">
+            <select class="role" aria-label="Role for Sam Ito">
+              <option>Admin</option>
+              <option>Editor</option>
+              <option selected>Viewer</option>
+            </select>
+          </div>
+        </li>
+
+        <li class="member">
+          <div class="who c-name">
+            <span class="avatar" aria-hidden="true">KL</span>
+            <span class="name">Kai Lee</span>
+          </div>
+          <span class="email c-email">kai@harbor.app</span>
+          <div class="c-role">
+            <select class="role" aria-label="Role for Kai Lee">
+              <option>Admin</option>
+              <option>Editor</option>
+              <option selected>Viewer</option>
+            </select>
+          </div>
+        </li>
+      </ul>
+    </section>
+  </main>
+</div>
+</body>
+</html>

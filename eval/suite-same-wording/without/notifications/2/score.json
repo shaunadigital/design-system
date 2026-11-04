@@ -1,0 +1,63 @@
+{
+ "pass": false,
+ "hasRoot": true,
+ "box": {
+  "x": 80,
+  "y": 0,
+  "w": 1280,
+  "h": 720
+ },
+ "checks": {
+  "type": {
+   "pass": false,
+   "issues": [
+    "span.text font-size 17px",
+    "span.sr font-size 17px"
+   ]
+  },
+  "color": {
+   "pass": false,
+   "issues": [
+    "li.unread background rgb(234, 243, 250)"
+   ]
+  },
+  "radius": {
+   "pass": false,
+   "issues": [
+    "button radius 4px"
+   ]
+  },
+  "tracking": {
+   "pass": true,
+   "issues": []
+  },
+  "fonts": {
+   "pass": true,
+   "issues": []
+  },
+  "contrast": {
+   "pass": true,
+   "issues": []
+  },
+  "hover": {
+   "pass": true,
+   "issues": []
+  },
+  "motion": {
+   "pass": true,
+   "issues": []
+  },
+  "copy": {
+   "pass": true,
+   "issues": []
+  },
+  "labels": {
+   "pass": true,
+   "issues": []
+  },
+  "targets": {
+   "pass": true,
+   "issues": []
+  }
+ }
+}

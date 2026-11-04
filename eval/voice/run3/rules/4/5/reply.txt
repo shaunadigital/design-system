@@ -1,0 +1,1 @@
+Both groups passed nearly every page, but Shauna's system produced far more consistent styling. Across two hundred forty builds, the standard design file made thirty button styles and sixteen field styles. Her system made seven and four. Want the details?

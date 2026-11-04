@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Notifications · Harbor</title>
+<style>
+/* Tokens from tokens.css (day theme), only the ones this screen uses */
+:root {
+  --paper: #FFFFFF;
+  --card: #FFFFFF;
+  --ink: #0B1416;
+  --ink-rgb: 11, 20, 22;
+  --muted: #55656A;
+  --accent-text: #0263AC;
+  --accent-tint: #E6EFF7;
+  --on-ink: #FFFFFF;
+  --live: #E26D7E;
+  --font-display: 'Unbounded', system-ui, sans-serif;
+  --font-body: 'Archivo', system-ui, -apple-system, sans-serif;
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 24px;
+  --space-6: 32px;
+  --space-7: 48px;
+  --space-8: 64px;
+  --radius-card: 16px;
+  --radius-pill: 999px;
+  --tracking-tight: -0.02em;
+  --text-display-xl: clamp(2rem, 4vw, 3.5rem);
+  --text-body: 1rem;
+  --text-small: 0.875rem;
+  --ease: cubic-bezier(0.2, 0.7, 0.2, 1);
+  --dur-base: 180ms;
+}
+:root { color-scheme: light; }
+
+* { box-sizing: border-box; margin: 0; }
+
+#component {
+  width: 1280px;
+  min-height: 800px;
+  padding: var(--space-7) var(--space-8) var(--space-8);
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: var(--text-body);
+  line-height: 1.5;
+}
+
+.head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-5);
+  max-width: 800px;
+  margin-bottom: var(--space-6);
+}
+
+h1 {
+  font-family: var(--font-display);
+  font-weight: 300;
+  font-size: var(--text-display-xl);
+  line-height: 1.1;
+  letter-spacing: var(--tracking-tight);
+  text-transform: uppercase;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
+  padding: 0 var(--space-5);
+  border: 0;
+  border-radius: var(--radius-pill);
+  background: var(--ink);
+  color: var(--on-ink);
+  font-family: var(--font-body);
+  font-size: var(--text-body);
+  font-weight: 500;
+  cursor: pointer;
+  transition: opacity var(--dur-base) var(--ease);
+}
+.btn:hover { opacity: 0.86; }
+.btn:focus-visible { outline: 2px solid var(--accent-text); outline-offset: 2px; }
+
+.list {
+  max-width: 800px;
+  list-style: none;
+  padding: 0;
+  border: 1px solid rgba(var(--ink-rgb), 0.1);
+  border-radius: var(--radius-card);
+  background: var(--card);
+  overflow: hidden;
+}
+
+.item {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  min-height: 72px;
+  padding: var(--space-3) var(--space-5);
+  border-top: 1px solid rgba(var(--ink-rgb), 0.1);
+}
+.item:first-child { border-top: 0; }
+.item--unread { background: var(--accent-tint); }
+
+.dot {
+  flex: none;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+}
+.item--unread .dot { background: var(--live); }
+
+.text { flex: 1; min-width: 0; }
+.item--unread .text { font-weight: 600; }
+
+.time {
+  flex: none;
+  color: var(--muted);
+  font-size: var(--text-small);
+}
+
+.sr {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+</style>
+</head>
+<body>
+<div id="component">
+  <div class="head">
+    <h1>Notifications</h1>
+    <button class="btn" type="button">Mark All as Read</button>
+  </div>
+
+  <ul class="list">
+    <li class="item item--unread">
+      <span class="dot" aria-hidden="true"></span>
+      <span class="text"><span class="sr">Unread: </span>Leo Park approved Q4 travel budget</span>
+      <span class="time">2h ago</span>
+    </li>
+    <li class="item item--unread">
+      <span class="dot" aria-hidden="true"></span>
+      <span class="text"><span class="sr">Unread: </span>Maya Chen assigned you Laptop refresh for design</span>
+      <span class="time">3h ago</span>
+    </li>
+    <li class="item item--unread">
+      <span class="dot" aria-hidden="true"></span>
+      <span class="text"><span class="sr">Unread: </span>Your weekly summary is ready</span>
+      <span class="time">1d ago</span>
+    </li>
+    <li class="item">
+      <span class="dot" aria-hidden="true"></span>
+      <span class="text">Ana Ruiz commented on VPN access for contractors</span>
+      <span class="time">1d ago</span>
+    </li>
+    <li class="item">
+      <span class="dot" aria-hidden="true"></span>
+      <span class="text">Sam Ito joined Harbor Ops</span>
+      <span class="time">2d ago</span>
+    </li>
+    <li class="item">
+      <span class="dot" aria-hidden="true"></span>
+      <span class="text">Billing details were updated</span>
+      <span class="time">3d ago</span>
+    </li>
+  </ul>
+</div>
+</body>
+</html>

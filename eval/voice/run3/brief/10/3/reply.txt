@@ -1,0 +1,5 @@
+A standard DESIGN.md is a page of written rules. Her system backs those rules with one token file, which builds the code, the Figma library, and the rules Claude reads. It also runs checks on every build.
+
+She tested both in November, with two hundred forty page builds on Claude. Nearly every page passed with the standard file, one hundred eighteen out of one hundred twenty. But those pages used thirty different button styles and sixteen field styles. With her system, every page passed, using just seven button styles and four field styles.
+
+So the difference is consistency. The case study called Testing a design system on Claude has the full details.

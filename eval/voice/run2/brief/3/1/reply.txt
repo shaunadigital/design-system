@@ -1,0 +1,1 @@
+You can see them on the system page of shauna dot dev. It's a live specimen with the colours, the type, and the spacing. Every token comes from one file, called tokens dot json, and there's a Figma library too if you'd like to look there.

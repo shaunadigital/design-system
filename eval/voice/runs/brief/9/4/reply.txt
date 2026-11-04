@@ -1,0 +1,1 @@
+A few ways. Every control is at least forty-four pixels, so it's easy to hit. It works from the keyboard: Enter sends, Shift and Enter starts a new line, and Escape stops a reply. And screen readers get announcements as things change. You can try it live on the system page of shauna dot dev.

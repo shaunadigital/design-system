@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=1280">
+<title>Approvals · Harbor</title>
+<style>
+/* Tokens used here, copied from tokens.css (day theme) so this file stands alone. */
+:root {
+  --paper: #FFFFFF;
+  --card: #FFFFFF;
+  --ink: #0B1416;
+  --ink-rgb: 11, 20, 22;
+  --muted: #55656A;
+  --accent-text: #0263AC;
+  --accent-tint: #E6EFF7;
+  --on-ink: #FFFFFF;
+  --shadow-rgb: 11, 20, 22;
+  --live: #E26D7E;
+  --font-display: 'Unbounded', system-ui, sans-serif;
+  --font-body: 'Archivo', system-ui, -apple-system, sans-serif;
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 24px;
+  --space-6: 32px;
+  --space-7: 48px;
+  --space-8: 64px;
+  --space-9: 96px;
+  --radius-card: 16px;
+  --radius-pill: 999px;
+  --tracking-tight: -0.02em;
+  --tracking-snug: -0.01em;
+  --tracking-caps: 0.1em;
+  --text-display-xl: clamp(2rem, 4vw, 3.5rem);
+  --text-step: clamp(1.375rem, 1.9vw, 1.75rem);
+  --text-lead: 1.375rem;
+  --text-body: 1rem;
+  --ease: cubic-bezier(0.2, 0.7, 0.2, 1);
+  --dur-fast: 120ms;
+  --dur-base: 180ms;
+}
+
+* { box-sizing: border-box; margin: 0; }
+
+body {
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: var(--text-body);
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+#component {
+  width: 1280px;
+  min-height: 800px;
+  margin: 0 auto;
+  padding: var(--space-9) var(--space-8);
+  background: var(--paper);
+}
+
+.page {
+  max-width: 880px;
+}
+
+.head {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  margin-bottom: var(--space-8);
+}
+
+.head h1 {
+  font-family: var(--font-display);
+  font-weight: 300;
+  font-size: var(--text-display-xl);
+  line-height: 1.1;
+  letter-spacing: var(--tracking-tight);
+  text-transform: uppercase;
+}
+
+.head p {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  font-size: var(--text-body);
+  color: var(--muted);
+}
+
+.head p::before {
+  content: "";
+  width: 8px;
+  height: 8px;
+  border-radius: var(--radius-pill);
+  background: var(--live);
+}
+
+.queue {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+}
+
+.item {
+  display: grid;
+  grid-template-columns: 1fr auto auto;
+  align-items: center;
+  column-gap: var(--space-7);
+  padding: var(--space-6);
+  background: var(--card);
+  border: 1px solid rgba(var(--ink-rgb), 0.1);
+  border-radius: var(--radius-card);
+  box-shadow: 0 24px 48px -32px rgba(var(--shadow-rgb), 0.18);
+}
+
+.who {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  min-width: 0;
+}
+
+.who h2 {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: var(--text-lead);
+  line-height: 1.3;
+  letter-spacing: var(--tracking-snug);
+}
+
+.who p {
+  color: var(--muted);
+}
+
+.amount {
+  font-family: var(--font-display);
+  font-weight: 300;
+  font-size: var(--text-step);
+  letter-spacing: var(--tracking-tight);
+  white-space: nowrap;
+  min-width: 120px;
+  text-align: right;
+}
+
+.actions {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
+  padding: 0 var(--space-5);
+  border: 1px solid transparent;
+  border-radius: var(--radius-pill);
+  font-family: var(--font-body);
+  font-size: var(--text-body);
+  font-weight: 500;
+  line-height: 1;
+  cursor: pointer;
+  transition: background var(--dur-base) var(--ease), color var(--dur-base) var(--ease), transform var(--dur-fast) var(--ease);
+}
+
+.btn:active { transform: scale(0.98); }
+.btn:focus-visible { outline: 2px solid var(--accent-text); outline-offset: 2px; }
+
+.btn--fill {
+  background: var(--ink);
+  color: var(--on-ink);
+}
+.btn--fill:hover { background: var(--accent-text); }
+
+.btn--plain {
+  background: transparent;
+  color: var(--ink);
+}
+.btn--plain:hover { background: var(--accent-tint); }
+</style>
+</head>
+<body>
+<div id="component">
+  <main class="page">
+    <header class="head">
+      <h1>Approvals</h1>
+      <p>3 waiting for you</p>
+    </header>
+
+    <ul class="queue">
+      <li class="item">
+        <div class="who">
+          <h2 data-user-content>Q4 travel budget</h2>
+          <p>Leo Park</p>
+        </div>
+        <span class="amount">$4,800</span>
+        <div class="actions">
+          <button class="btn btn--plain" type="button">Decline</button>
+          <button class="btn btn--fill" type="button">Approve</button>
+        </div>
+      </li>
+
+      <li class="item">
+        <div class="who">
+          <h2 data-user-content>Design conference tickets</h2>
+          <p>Maya Chen</p>
+        </div>
+        <span class="amount">$1,250</span>
+        <div class="actions">
+          <button class="btn btn--plain" type="button">Decline</button>
+          <button class="btn btn--fill" type="button">Approve</button>
+        </div>
+      </li>
+
+      <li class="item">
+        <div class="who">
+          <h2 data-user-content>Standing desks for support</h2>
+          <p>Ana Ruiz</p>
+        </div>
+        <span class="amount">$2,100</span>
+        <div class="actions">
+          <button class="btn btn--plain" type="button">Decline</button>
+          <button class="btn btn--fill" type="button">Approve</button>
+        </div>
+      </li>
+    </ul>
+  </main>
+</div>
+</body>
+</html>

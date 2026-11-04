@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Billing</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+  *, *::before, *::after { box-sizing: border-box; }
+  body { margin: 0; background: #FFFFFF; }
+  #component {
+    width: 1280px;
+    min-height: 800px;
+    margin: 0 auto;
+    padding: 64px;
+    background: #FFFFFF;
+    color: #0B1416;
+    font-family: "Archivo", "Helvetica Neue", Arial, sans-serif;
+    font-size: 16px;
+    line-height: 1.5;
+  }
+  #component h1 {
+    margin: 0 0 48px;
+    font-family: "Unbounded", "Archivo", "Helvetica Neue", Arial, sans-serif;
+    font-weight: 300;
+    font-size: 56px;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    text-transform: uppercase;
+  }
+  #component h2 {
+    margin: 0;
+    font-family: "Unbounded", "Archivo", "Helvetica Neue", Arial, sans-serif;
+    font-weight: 500;
+    font-size: 28px;
+    line-height: 1.2;
+    letter-spacing: -0.01em;
+  }
+  #component .plan {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 32px;
+    padding: 32px;
+    margin-bottom: 48px;
+    background: #FFFFFF;
+    border: 1px solid #9CC3EA;
+    border-radius: 16px;
+  }
+  #component .plan-info { display: flex; flex-direction: column; gap: 8px; }
+  #component .price { margin: 0; font-size: 18px; color: #0B1416; }
+  #component .seats { margin: 0; display: flex; flex-direction: column; gap: 8px; width: 384px; }
+  #component .seats-text { font-size: 14px; color: #55656A; }
+  #component .track { height: 8px; border-radius: 999px; background: #EEF4FA; overflow: hidden; }
+  #component .fill { display: block; width: 72%; height: 100%; background: #0263AC; border-radius: 999px; }
+  #component .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 44px;
+    padding: 0 24px;
+    border: 1px solid #0B1416;
+    border-radius: 999px;
+    background: #0B1416;
+    color: #FFFFFF;
+    font-family: inherit;
+    font-size: 16px;
+    font-weight: 500;
+    letter-spacing: 0;
+    cursor: pointer;
+    transition: background-color 180ms cubic-bezier(0.2, 0.7, 0.2, 1);
+  }
+  #component .btn:hover { background: #55656A; border-color: #55656A; }
+  #component .btn:focus-visible { outline: 2px solid #0263AC; outline-offset: 2px; }
+  #component .invoices { padding: 32px; background: #FFFFFF; border: 1px solid #9CC3EA; border-radius: 16px; }
+  #component table { width: 100%; margin-top: 24px; border-collapse: collapse; }
+  #component th {
+    padding: 12px 16px;
+    background: #EEF4FA;
+    color: #55656A;
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    text-align: left;
+  }
+  #component th:first-child { border-radius: 8px 0 0 8px; }
+  #component th:last-child { border-radius: 0 8px 8px 0; }
+  #component th.num, #component td.num { text-align: right; }
+  #component td { padding: 16px; border-bottom: 1px solid #EEF4FA; font-size: 16px; }
+  #component tbody tr:last-child td { border-bottom: 0; }
+  #component td.num { font-variant-numeric: tabular-nums; }
+  #component .status { color: #0263AC; font-weight: 500; }
+</style>
+</head>
+<body>
+<div id="component">
+  <h1>Billing</h1>
+
+  <section class="plan" aria-labelledby="plan-name">
+    <div class="plan-info">
+      <h2 id="plan-name">Team plan</h2>
+      <p class="price">$24 per seat per month</p>
+    </div>
+    <div class="seats">
+      <span class="seats-text">18 of 25 seats used</span>
+      <span class="track" aria-hidden="true"><span class="fill"></span></span>
+    </div>
+    <button class="btn" type="button">Change Plan</button>
+  </section>
+
+  <section class="invoices" aria-labelledby="invoices-title">
+    <h2 id="invoices-title">Invoices</h2>
+    <table>
+      <thead>
+        <tr><th scope="col">Date</th><th scope="col" class="num">Amount</th><th scope="col">Status</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Oct 1, 2026</td><td class="num">$432.00</td><td class="status">Paid</td></tr>
+        <tr><td>Sep 1, 2026</td><td class="num">$432.00</td><td class="status">Paid</td></tr>
+        <tr><td>Aug 1, 2026</td><td class="num">$408.00</td><td class="status">Paid</td></tr>
+        <tr><td>Jul 1, 2026</td><td class="num">$408.00</td><td class="status">Paid</td></tr>
+      </tbody>
+    </table>
+  </section>
+</div>
+</body>
+</html>

@@ -1,0 +1,1 @@
+A visitor on shauna.dev asked the site's voice assistant, out loud: "How do I get in touch with her?" Your answer will be read aloud by a text-to-speech engine, not shown on a screen. Read every file in this folder first and follow it. Write only the words to be spoken, nothing else, to a file named reply.txt in this folder.

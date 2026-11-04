@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Requests</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+  *, *::before, *::after { box-sizing: border-box; }
+  body { margin: 0; background: #fff; }
+
+  #component {
+    --ink: #0B1416;
+    --accent: #0263AC;
+    --muted: #4B5B60;
+    --line: #E3E8EA;
+    --soft: #F5F7F8;
+    width: 1280px;
+    min-height: 800px;
+    margin: 0 auto;
+    padding: 56px 64px;
+    background: #fff;
+    color: var(--ink);
+    font-family: "Archivo", "Helvetica Neue", Arial, sans-serif;
+    font-size: 15px;
+    line-height: 1.4;
+  }
+
+  #component .header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 36px;
+  }
+  #component h1 {
+    margin: 0;
+    font-family: "Unbounded", "Archivo", "Helvetica Neue", Arial, sans-serif;
+    font-weight: 300;
+    font-size: 32px;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    line-height: 1.1;
+  }
+
+  #component .btn-primary {
+    appearance: none;
+    border: 0;
+    background: var(--accent);
+    color: #fff;
+    font: 600 15px/1 "Archivo", Arial, sans-serif;
+    height: 44px;
+    padding: 0 22px;
+    border-radius: 8px;
+    cursor: pointer;
+    box-shadow: 0 1px 2px rgba(2, 99, 172, 0.3), inset 0 1px 0 rgba(255,255,255,0.15);
+  }
+  #component .btn-primary:hover { background: #02548f; }
+
+  #component .toolbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+    margin-bottom: 20px;
+  }
+
+  #component .search { position: relative; width: 360px; }
+  #component .search label {
+    position: absolute;
+    width: 1px; height: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    white-space: nowrap;
+  }
+  #component .search svg {
+    position: absolute;
+    left: 14px; top: 50%;
+    transform: translateY(-50%);
+    width: 18px; height: 18px;
+    stroke: var(--muted);
+    fill: none;
+    stroke-width: 2;
+    stroke-linecap: round;
+  }
+  #component .search input {
+    width: 100%;
+    height: 44px;
+    padding: 0 14px 0 42px;
+    border: 1px solid #C9D2D5;
+    border-radius: 8px;
+    font: 400 15px "Archivo", Arial, sans-serif;
+    color: var(--ink);
+    background: #fff;
+  }
+  #component .search input::placeholder { color: #5E6D72; }
+  #component .search input:focus {
+    outline: 2px solid var(--accent);
+    outline-offset: 1px;
+    border-color: var(--accent);
+  }
+
+  #component .filters {
+    display: inline-flex;
+    padding: 4px;
+    gap: 4px;
+    background: var(--soft);
+    border: 1px solid var(--line);
+    border-radius: 10px;
+  }
+  #component .filters button {
+    appearance: none;
+    border: 0;
+    background: transparent;
+    color: var(--muted);
+    font: 500 14px/1 "Archivo", Arial, sans-serif;
+    height: 34px;
+    padding: 0 18px;
+    border-radius: 7px;
+    cursor: pointer;
+  }
+  #component .filters button:hover { color: var(--ink); }
+  #component .filters button[aria-pressed="true"] {
+    background: #fff;
+    color: var(--accent);
+    font-weight: 600;
+    box-shadow: 0 1px 3px rgba(11, 20, 22, 0.12), 0 0 0 1px var(--line);
+  }
+  #component button:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+  #component .card {
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 1px 2px rgba(11, 20, 22, 0.04), 0 4px 12px rgba(11, 20, 22, 0.04);
+  }
+  #component table { width: 100%; border-collapse: collapse; }
+  #component th {
+    text-align: left;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--muted);
+    background: var(--soft);
+    padding: 14px 24px;
+    border-bottom: 1px solid var(--line);
+  }
+  #component td {
+    padding: 18px 24px;
+    border-bottom: 1px solid var(--line);
+    vertical-align: middle;
+  }
+  #component tbody tr:last-child td { border-bottom: 0; }
+  #component tbody tr:hover td { background: #FAFBFC; }
+  #component td.name { font-weight: 600; }
+  #component td.updated { color: var(--muted); }
+
+  #component .badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    height: 26px;
+    padding: 0 11px;
+    border-radius: 999px;
+    font-size: 13px;
+    font-weight: 500;
+    border: 1px solid var(--line);
+    background: #fff;
+  }
+  #component .badge::before {
+    content: "";
+    width: 7px; height: 7px;
+    border-radius: 50%;
+    background: currentColor;
+  }
+  #component .s-open { color: var(--accent); background: #EAF3FA; border-color: #C5DEF0; }
+  #component .s-approved { color: var(--ink); }
+  #component .s-approved::before { background: var(--ink); }
+  #component .s-review { color: var(--muted); }
+  #component .s-review::before { background: transparent; border: 1.5px solid var(--muted); width: 8px; height: 8px; }
+  #component .s-closed { color: var(--muted); background: var(--soft); }
+  #component .s-closed::before { background: #8A989C; }
+
+  #component .prio { display: inline-flex; align-items: center; gap: 4px; }
+  #component .prio i {
+    width: 4px; height: 14px;
+    border-radius: 2px;
+    background: #D5DCDE;
+  }
+  #component .prio span { margin-left: 8px; }
+  #component .p-high i { background: var(--accent); }
+  #component .p-med i:nth-child(-n+2) { background: var(--accent); }
+  #component .p-low i:nth-child(1) { background: var(--accent); }
+</style>
+</head>
+<body>
+<div id="component">
+  <div class="header">
+    <h1>Requests</h1>
+    <button class="btn-primary" type="button">New Request</button>
+  </div>
+
+  <div class="toolbar">
+    <div class="search">
+      <label for="search">Search requests</label>
+      <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
+      <input id="search" type="search" placeholder="Search requests">
+    </div>
+    <div class="filters" role="group" aria-label="Filter requests">
+      <button type="button" aria-pressed="true">All</button>
+      <button type="button" aria-pressed="false">Open</button>
+      <button type="button" aria-pressed="false">Closed</button>
+    </div>
+  </div>
+
+  <div class="card">
+    <table>
+      <thead>
+        <tr>
+          <th style="width:34%">Request</th>
+          <th>Requester</th>
+          <th>Status</th>
+          <th>Priority</th>
+          <th>Updated</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="name">Laptop refresh for design</td>
+          <td>Maya Chen</td>
+          <td><span class="badge s-open">Open</span></td>
+          <td><span class="prio p-high"><i></i><i></i><i></i><span>High</span></span></td>
+          <td class="updated">2h ago</td>
+        </tr>
+        <tr>
+          <td class="name">Q4 travel budget</td>
+          <td>Leo Park</td>
+          <td><span class="badge s-approved">Approved</span></td>
+          <td><span class="prio p-med"><i></i><i></i><i></i><span>Medium</span></span></td>
+          <td class="updated">5h ago</td>
+        </tr>
+        <tr>
+          <td class="name">VPN access for contractors</td>
+          <td>Ana Ruiz</td>
+          <td><span class="badge s-closed">Closed</span></td>
+          <td><span class="prio p-high"><i></i><i></i><i></i><span>High</span></span></td>
+          <td class="updated">1d ago</td>
+        </tr>
+        <tr>
+          <td class="name">New hire onboarding</td>
+          <td>Sam Ito</td>
+          <td><span class="badge s-open">Open</span></td>
+          <td><span class="prio p-med"><i></i><i></i><i></i><span>Medium</span></span></td>
+          <td class="updated">1d ago</td>
+        </tr>
+        <tr>
+          <td class="name">Office move</td>
+          <td>Kai Lee</td>
+          <td><span class="badge s-review">In review</span></td>
+          <td><span class="prio p-low"><i></i><i></i><i></i><span>Low</span></span></td>
+          <td class="updated">2d ago</td>
+        </tr>
+        <tr>
+          <td class="name">Security training</td>
+          <td>Ava Brooks</td>
+          <td><span class="badge s-open">Open</span></td>
+          <td><span class="prio p-low"><i></i><i></i><i></i><span>Low</span></span></td>
+          <td class="updated">3d ago</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+</body>
+</html>

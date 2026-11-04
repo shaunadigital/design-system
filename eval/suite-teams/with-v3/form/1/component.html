@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=1280">
+<title>New request · Harbor</title>
+<style>
+/* Tokens from tokens.css (day theme), inlined so the file is self-contained */
+:root {
+  --paper: #FFFFFF;
+  --ink: #0B1416;
+  --ink-rgb: 11, 20, 22;
+  --muted: #55656A;
+  --accent-text: #0263AC;
+  --accent-rgb: 2, 99, 172;
+  --card: #FFFFFF;
+  --on-ink: #FFFFFF;
+  --font-display: 'Unbounded', system-ui, sans-serif;
+  --font-body: 'Archivo', system-ui, -apple-system, sans-serif;
+  --font-label: 'Archivo', system-ui, sans-serif;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-6: 32px;
+  --space-7: 48px;
+  --space-8: 64px;
+  --space-9: 96px;
+  --radius-md: 12px;
+  --radius-pill: 999px;
+  --tracking-label: 0.14em;
+  --tracking-tight: -0.02em;
+  --text-display-xl: clamp(2rem, 4vw, 3.5rem);
+  --text-body: 1rem;
+  --text-label: 0.75rem;
+  --ease: cubic-bezier(0.2, 0.7, 0.2, 1);
+  --dur-fast: 120ms;
+}
+
+* { box-sizing: border-box; margin: 0; }
+
+body { background: var(--paper); }
+
+#component {
+  width: 1280px;
+  min-height: 960px;
+  padding: var(--space-9) var(--space-8);
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: var(--text-body);
+  line-height: 1.5;
+}
+
+.screen {
+  width: 640px;
+  margin: 0 auto;
+}
+
+.title {
+  font-family: var(--font-display);
+  font-weight: 300;
+  font-size: var(--text-display-xl);
+  line-height: 1.1;
+  letter-spacing: var(--tracking-tight);
+  text-transform: uppercase;
+  color: var(--ink);
+}
+
+.form {
+  margin-top: var(--space-8);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6);
+}
+
+.row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-6);
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.field--half { width: calc(50% - var(--space-6) / 2); }
+
+.label {
+  font-family: var(--font-label);
+  font-weight: 500;
+  font-size: var(--text-label);
+  letter-spacing: var(--tracking-label);
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.control {
+  width: 100%;
+  min-height: 48px;
+  padding: var(--space-3) var(--space-4);
+  font-family: var(--font-body);
+  font-size: var(--text-body);
+  color: var(--ink);
+  background: var(--card);
+  border: 1px solid rgba(var(--ink-rgb), 0.16);
+  border-radius: var(--radius-md);
+  outline: none;
+  transition: border-color var(--dur-fast) var(--ease), box-shadow var(--dur-fast) var(--ease);
+}
+
+.control:hover { border-color: rgba(var(--ink-rgb), 0.32); }
+
+.control:focus-visible {
+  border-color: var(--accent-text);
+  box-shadow: 0 0 0 3px rgba(var(--accent-rgb), 0.18);
+}
+
+textarea.control {
+  display: block;
+  min-height: 160px;
+  resize: vertical;
+  line-height: 1.6;
+}
+
+.select { position: relative; }
+
+.select select {
+  appearance: none;
+  -webkit-appearance: none;
+  padding-right: var(--space-7);
+  cursor: pointer;
+}
+
+.select::after {
+  content: "";
+  position: absolute;
+  right: var(--space-4);
+  top: 50%;
+  width: 8px;
+  height: 8px;
+  margin-top: -6px;
+  border-right: 1.8px solid var(--muted);
+  border-bottom: 1.8px solid var(--muted);
+  transform: rotate(45deg);
+  pointer-events: none;
+}
+
+.actions {
+  margin-top: var(--space-3);
+  padding-top: var(--space-6);
+  border-top: 1px solid rgba(var(--ink-rgb), 0.1);
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 48px;
+  padding: 0 var(--space-6);
+  font-family: var(--font-body);
+  font-size: var(--text-body);
+  font-weight: 500;
+  border: 1px solid transparent;
+  border-radius: var(--radius-pill);
+  cursor: pointer;
+  transition: opacity var(--dur-fast) var(--ease), background-color var(--dur-fast) var(--ease);
+}
+
+.btn--plain {
+  background: transparent;
+  color: var(--ink);
+}
+.btn--plain:hover { background: rgba(var(--ink-rgb), 0.06); }
+
+.btn--fill {
+  background: var(--ink);
+  color: var(--on-ink);
+}
+.btn--fill:hover { opacity: 0.88; }
+
+.btn:focus-visible {
+  outline: 2px solid var(--accent-text);
+  outline-offset: 2px;
+}
+</style>
+</head>
+<body>
+<div id="component">
+  <main class="screen">
+    <h1 class="title">New request</h1>
+
+    <form class="form" action="#">
+      <div class="field">
+        <label class="label" for="title">Title</label>
+        <input class="control" id="title" name="title" type="text">
+      </div>
+
+      <div class="field">
+        <label class="label" for="description">Description</label>
+        <textarea class="control" id="description" name="description" rows="5"></textarea>
+      </div>
+
+      <div class="row">
+        <div class="field">
+          <label class="label" for="priority">Priority</label>
+          <div class="select">
+            <select class="control" id="priority" name="priority">
+              <option>Low</option>
+              <option selected>Medium</option>
+              <option>High</option>
+            </select>
+          </div>
+        </div>
+        <div class="field">
+          <label class="label" for="assignee">Assignee</label>
+          <div class="select">
+            <select class="control" id="assignee" name="assignee">
+              <option>Maya Chen</option>
+              <option>Leo Park</option>
+              <option>Ana Ruiz</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <div class="field field--half">
+        <label class="label" for="due">Due date</label>
+        <input class="control" id="due" name="due" type="date">
+      </div>
+
+      <div class="actions">
+        <button class="btn btn--plain" type="button">Cancel</button>
+        <button class="btn btn--fill" type="submit">Create Request</button>
+      </div>
+    </form>
+  </main>
+</div>
+</body>
+</html>

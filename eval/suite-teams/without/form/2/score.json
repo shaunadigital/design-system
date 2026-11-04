@@ -1,0 +1,69 @@
+{
+ "pass": false,
+ "hasRoot": true,
+ "box": {
+  "x": 0,
+  "y": 0,
+  "w": 1280,
+  "h": 720
+ },
+ "checks": {
+  "type": {
+   "pass": false,
+   "issues": [
+    "label font-size 13px"
+   ]
+  },
+  "color": {
+   "pass": true,
+   "issues": []
+  },
+  "radius": {
+   "pass": false,
+   "issues": [
+    "input#title radius 2px",
+    "textarea#description radius 2px",
+    "select#priority radius 2px",
+    "select#assignee radius 2px",
+    "input#due radius 2px",
+    "button.secondary radius 2px",
+    "button.primary radius 2px"
+   ]
+  },
+  "tracking": {
+   "pass": true,
+   "issues": []
+  },
+  "fonts": {
+   "pass": true,
+   "issues": []
+  },
+  "contrast": {
+   "pass": true,
+   "issues": []
+  },
+  "hover": {
+   "pass": true,
+   "issues": []
+  },
+  "motion": {
+   "pass": true,
+   "issues": []
+  },
+  "copy": {
+   "pass": true,
+   "issues": []
+  },
+  "labels": {
+   "pass": true,
+   "issues": []
+  },
+  "targets": {
+   "pass": false,
+   "issues": [
+    "button.secondary 83x36",
+    "button.primary 138x36"
+   ]
+  }
+ }
+}

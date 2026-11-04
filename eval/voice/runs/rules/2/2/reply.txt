@@ -1,0 +1,1 @@
+Seven checks run on every build: text contrast, tokens only for colour, type and spacing, Title Case buttons, alt text and labels, motion rules, hover only on links and buttons, and phone screens inside one frame. Want the details?

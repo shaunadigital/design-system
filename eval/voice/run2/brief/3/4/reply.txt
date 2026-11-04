@@ -1,0 +1,1 @@
+You can see them on the live system page, at shauna dot dev slash system. It shows the colors, the two typefaces, the type sizes, and the spacing, in both Day and Dusk themes. If you'd like the source, they all come from one file called tokens dot json. There's also a Figma library built from the same tokens.

@@ -1,0 +1,1 @@
+You can see them on the system page of this site. Just go to shauna dot dev, slash system. It's a live specimen of the colours, type and spacing. The tokens themselves come from one file in the repo, called tokens dot json.

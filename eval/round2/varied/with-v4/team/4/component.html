@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=1280">
+<title>Team · Harbor</title>
+<style>
+:root {
+  --paper: #FFFFFF;
+  --card: #FFFFFF;
+  --ink: #0B1416;
+  --ink-rgb: 11, 20, 22;
+  --muted: #55656A;
+  --accent: #0263AC;
+  --on-ink: #FFFFFF;
+  --font-display: 'Unbounded', system-ui, sans-serif;
+  --font-body: 'Archivo', system-ui, -apple-system, sans-serif;
+  --font-label: 'Archivo', system-ui, sans-serif;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-5: 24px;
+  --space-6: 32px;
+  --space-7: 48px;
+  --radius-md: 12px;
+  --radius-card: 16px;
+  --radius-pill: 999px;
+  --tracking-label: 0.14em;
+  --text-heading: clamp(1.75rem, 3.2vw, 2.875rem);
+  --text-body: 1rem;
+  --text-small: 0.875rem;
+  --text-label: 0.75rem;
+  --ease: cubic-bezier(0.2, 0.7, 0.2, 1);
+  --dur-base: 180ms;
+}
+:root { color-scheme: light; }
+
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--paper); }
+
+#component {
+  width: 1280px;
+  min-height: 720px;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: var(--text-body);
+}
+
+.page {
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: var(--space-7) var(--space-6);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6);
+}
+
+.top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+h1 {
+  margin: 0;
+  font-family: var(--font-display);
+  font-weight: 300;
+  font-size: var(--text-heading);
+  line-height: 1.1;
+  text-transform: uppercase;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 44px;
+  padding: 0 20px;
+  border-radius: var(--radius-pill);
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: var(--text-small);
+  line-height: 1;
+  cursor: pointer;
+  transition: opacity var(--dur-base) var(--ease);
+}
+.btn--primary {
+  background: var(--ink);
+  color: var(--on-ink);
+  border: 0;
+}
+.btn:focus-visible,
+select:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+.card {
+  background: var(--card);
+  border: 1px solid rgba(var(--ink-rgb), 0.1);
+  border-radius: var(--radius-card);
+  padding: var(--space-5);
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: fixed;
+  font-size: var(--text-small);
+}
+th, td {
+  height: 52px;
+  padding: 0;
+  text-align: left;
+  vertical-align: middle;
+  border-bottom: 1px solid rgba(var(--ink-rgb), 0.1);
+}
+tbody tr:last-child td { border-bottom: 0; }
+th {
+  font-family: var(--font-label);
+  font-weight: 500;
+  font-size: var(--text-label);
+  letter-spacing: var(--tracking-label);
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.col-name { width: 30%; }
+.col-role { width: 176px; }
+td.name { font-weight: 600; }
+td.email { color: var(--muted); }
+
+select {
+  width: 160px;
+  height: 44px;
+  padding: 0 var(--space-3);
+  font: inherit;
+  font-size: var(--text-body);
+  color: var(--ink);
+  background-color: var(--paper);
+  border: 1px solid rgba(var(--ink-rgb), 0.2);
+  border-radius: var(--radius-md);
+}
+select:focus-visible { outline-offset: 0; }
+</style>
+</head>
+<body>
+<div id="component">
+  <main class="page">
+    <div class="top">
+      <h1>Team</h1>
+      <button class="btn btn--primary" type="button">Invite Member</button>
+    </div>
+
+    <section class="card" aria-label="Team members">
+      <table>
+        <thead>
+          <tr>
+            <th class="col-name" scope="col">Name</th>
+            <th scope="col">Email</th>
+            <th class="col-role" scope="col">Role</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="name">Maya Chen</td>
+            <td class="email">maya@harbor.app</td>
+            <td>
+              <select aria-label="Role for Maya Chen">
+                <option selected>Admin</option>
+                <option>Editor</option>
+                <option>Viewer</option>
+              </select>
+            </td>
+          </tr>
+          <tr>
+            <td class="name">Leo Park</td>
+            <td class="email">leo@harbor.app</td>
+            <td>
+              <select aria-label="Role for Leo Park">
+                <option>Admin</option>
+                <option selected>Editor</option>
+                <option>Viewer</option>
+              </select>
+            </td>
+          </tr>
+          <tr>
+            <td class="name">Ana Ruiz</td>
+            <td class="email">ana@harbor.app</td>
+            <td>
+              <select aria-label="Role for Ana Ruiz">
+                <option>Admin</option>
+                <option selected>Editor</option>
+                <option>Viewer</option>
+              </select>
+            </td>
+          </tr>
+          <tr>
+            <td class="name">Sam Ito</td>
+            <td class="email">sam@harbor.app</td>
+            <td>
+              <select aria-label="Role for Sam Ito">
+                <option>Admin</option>
+                <option>Editor</option>
+                <option selected>Viewer</option>
+              </select>
+            </td>
+          </tr>
+          <tr>
+            <td class="name">Kai Lee</td>
+            <td class="email">kai@harbor.app</td>
+            <td>
+              <select aria-label="Role for Kai Lee">
+                <option>Admin</option>
+                <option>Editor</option>
+                <option selected>Viewer</option>
+              </select>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+  </main>
+</div>
+</body>
+</html>

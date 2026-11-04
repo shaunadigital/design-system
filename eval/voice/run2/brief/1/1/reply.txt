@@ -1,0 +1,7 @@
+It all starts from one token file. Shauna keeps her colors, type and spacing in a single place, and that file builds the site's styles, her Figma library, and the rules that Claude reads. So designers, developers and Claude all work from the same source.
+
+The system is small on purpose: two typefaces, twelve type sizes, a four pixel spacing base, nine base colors, and a Day and Dusk theme.
+
+Seven automatic checks run on every build. They cover things like text contrast, using only token values, and reduced motion. So the rules are enforced, not just written down.
+
+If you'd like to see it live, the system page on this site shows every piece. I can also tell you about the test she ran on it with Claude.

@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=1280">
+<title>Requests · Harbor</title>
+<style>
+:root {
+  --paper: #FFFFFF;
+  --card: #FFFFFF;
+  --ink: #0B1416;
+  --ink-rgb: 11, 20, 22;
+  --muted: #55656A;
+  --accent-text: #0263AC;
+  --accent: #0263AC;
+  --accent-tint: #E6EFF7;
+  --plate-hover: #E3ECF5;
+  --on-ink: #FFFFFF;
+  --font-display: 'Unbounded', system-ui, sans-serif;
+  --font-body: 'Archivo', system-ui, -apple-system, sans-serif;
+  --font-label: 'Archivo', system-ui, sans-serif;
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 24px;
+  --space-6: 32px;
+  --space-7: 48px;
+  --radius-md: 12px;
+  --radius-card: 16px;
+  --radius-pill: 999px;
+  --tracking-tight: -0.02em;
+  --tracking-label: 0.14em;
+  --text-heading: clamp(1.75rem, 3.2vw, 2.875rem);
+  --text-body: 1rem;
+  --text-small: 0.875rem;
+  --text-label: 0.75rem;
+  --ease: cubic-bezier(0.2, 0.7, 0.2, 1);
+  --dur-fast: 120ms;
+  --dur-base: 180ms;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: var(--text-body);
+  -webkit-font-smoothing: antialiased;
+}
+
+#component {
+  width: 1280px;
+  min-height: 720px;
+  background: var(--paper);
+  padding: var(--space-7) var(--space-6);
+}
+
+.page {
+  max-width: 1120px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6);
+}
+
+.top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+h1 {
+  margin: 0;
+  font-family: var(--font-display);
+  font-weight: 300;
+  font-size: var(--text-heading);
+  line-height: 1.1;
+  letter-spacing: var(--tracking-tight);
+  text-transform: uppercase;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 44px;
+  padding: 0 20px;
+  border: 0;
+  border-radius: var(--radius-pill);
+  background: none;
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: var(--text-small);
+  font-weight: 600;
+  line-height: 1;
+  cursor: pointer;
+  transition: background var(--dur-base) var(--ease), color var(--dur-base) var(--ease), border-color var(--dur-base) var(--ease);
+}
+.btn:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.btn--primary { background: var(--ink); color: var(--on-ink); }
+.btn--primary:hover { background: rgba(var(--ink-rgb), 0.86); }
+.btn--secondary { border: 1.5px solid var(--ink); padding: 0 18.5px; }
+.btn--quiet:hover { background: rgba(var(--ink-rgb), 0.06); }
+
+.toolbar {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+}
+
+.field { display: flex; flex-direction: column; gap: var(--space-2); width: 360px; }
+.label {
+  font-family: var(--font-label);
+  font-size: var(--text-label);
+  font-weight: 500;
+  letter-spacing: var(--tracking-label);
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.field input {
+  width: 100%;
+  height: 44px;
+  padding: 0 12px;
+  border: 1px solid rgba(var(--ink-rgb), 0.2);
+  border-radius: var(--radius-md);
+  background: var(--paper);
+  color: var(--ink);
+  font: inherit;
+  font-size: var(--text-body);
+  transition: border-color var(--dur-fast) var(--ease);
+}
+.field input:focus { outline: 2px solid var(--accent); outline-offset: 0; border-color: transparent; }
+
+.filters { display: flex; gap: var(--space-2); }
+
+.card {
+  background: var(--card);
+  border: 1px solid rgba(var(--ink-rgb), 0.1);
+  border-radius: var(--radius-card);
+  padding: var(--space-5);
+}
+
+table { width: 100%; border-collapse: collapse; table-layout: fixed; font-size: var(--text-small); }
+th {
+  height: 44px;
+  padding: 0;
+  text-align: left;
+  font-family: var(--font-label);
+  font-size: var(--text-label);
+  font-weight: 500;
+  letter-spacing: var(--tracking-label);
+  text-transform: uppercase;
+  color: var(--muted);
+  border-bottom: 1px solid rgba(var(--ink-rgb), 0.1);
+}
+td {
+  height: 52px;
+  padding: 0;
+  border-bottom: 1px solid rgba(var(--ink-rgb), 0.1);
+  color: var(--muted);
+  white-space: nowrap;
+}
+tbody tr:last-child td { border-bottom: 0; }
+th:nth-child(1) { width: 36%; }
+th:nth-child(2) { width: 20%; }
+th:nth-child(3) { width: 16%; }
+th:nth-child(4) { width: 14%; }
+th:nth-child(5) { width: 14%; text-align: right; }
+td:nth-child(1) { color: var(--ink); font-weight: 500; }
+td:nth-child(4) { color: var(--ink); }
+td:nth-child(5) { text-align: right; }
+
+.pill {
+  display: inline-block;
+  padding: 2px 10px;
+  border-radius: var(--radius-pill);
+  background: var(--accent-tint);
+  color: var(--accent-text);
+  font-size: var(--text-label);
+  font-weight: 600;
+  line-height: 1.5;
+}
+</style>
+</head>
+<body>
+<div id="component">
+  <main class="page">
+    <div class="top">
+      <h1>Requests</h1>
+      <button class="btn btn--primary" type="button">New Request</button>
+    </div>
+
+    <div class="toolbar">
+      <div class="field">
+        <label class="label" for="search">Search requests</label>
+        <input id="search" type="search" name="search">
+      </div>
+      <div class="filters" role="group" aria-label="Filter requests">
+        <button class="btn btn--secondary" type="button" aria-pressed="true">All</button>
+        <button class="btn btn--quiet" type="button" aria-pressed="false">Open</button>
+        <button class="btn btn--quiet" type="button" aria-pressed="false">Closed</button>
+      </div>
+    </div>
+
+    <section class="card">
+      <table aria-label="Requests">
+        <thead>
+          <tr>
+            <th scope="col">Request</th>
+            <th scope="col">Requester</th>
+            <th scope="col">Status</th>
+            <th scope="col">Priority</th>
+            <th scope="col">Updated</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td data-user-content>Laptop refresh for design</td><td>Maya Chen</td><td><span class="pill">Open</span></td><td>High</td><td>2h ago</td></tr>
+          <tr><td data-user-content>Q4 travel budget</td><td>Leo Park</td><td><span class="pill">Approved</span></td><td>Medium</td><td>5h ago</td></tr>
+          <tr><td data-user-content>VPN access for contractors</td><td>Ana Ruiz</td><td><span class="pill">Closed</span></td><td>High</td><td>1d ago</td></tr>
+          <tr><td data-user-content>New hire onboarding</td><td>Sam Ito</td><td><span class="pill">Open</span></td><td>Medium</td><td>1d ago</td></tr>
+          <tr><td data-user-content>Office move</td><td>Kai Lee</td><td><span class="pill">In review</span></td><td>Low</td><td>2d ago</td></tr>
+          <tr><td data-user-content>Security training</td><td>Ava Brooks</td><td><span class="pill">Open</span></td><td>Low</td><td>3d ago</td></tr>
+        </tbody>
+      </table>
+    </section>
+  </main>
+</div>
+</body>
+</html>

@@ -1,0 +1,1 @@
+Across 240 page builds, Shauna's system passed every page, while the standard design file passed 118 of 120. The bigger gap was consistency. Her system produced 7 button styles and 4 field styles, versus 30 and 16. Want the details?

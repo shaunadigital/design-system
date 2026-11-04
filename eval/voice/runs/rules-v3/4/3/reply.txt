@@ -1,0 +1,1 @@
+Both groups did well, but her system was more consistent. Across 240 page builds, her system passed all 120 pages. The standard design file passed 118. The big difference was variety. The standard file produced 30 button styles, while her system produced 7. Want the details?

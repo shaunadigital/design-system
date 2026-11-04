@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Workspace settings</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; background: #F4EFE6; }
+
+  #component {
+    width: 1280px;
+    min-height: 900px;
+    margin: 0 auto;
+    padding: 64px 64px 96px;
+    background: #F4EFE6;
+    color: #1E2B24;
+    font-family: "Instrument Sans", "Helvetica Neue", Arial, sans-serif;
+    font-size: 16px;
+    line-height: 1.5;
+  }
+  #component h1, #component h2 {
+    margin: 0;
+    font-family: "Fraunces", Georgia, "Times New Roman", serif;
+  }
+  #component h1 {
+    font-size: 56px;
+    font-weight: 400;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    margin-bottom: 48px;
+  }
+  #component h2 {
+    font-size: 28px;
+    font-weight: 400;
+    line-height: 1.2;
+    letter-spacing: -0.01em;
+  }
+
+  #component .stack { display: flex; flex-direction: column; gap: 32px; }
+
+  #component .card {
+    background: #FBF8F2;
+    border: 1px solid #E9E1D2;
+    border-radius: 6px;
+    padding: 48px;
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    column-gap: 32px;
+  }
+  #component .card > h2 { grid-column: 1 / span 4; }
+  #component .card > .body { grid-column: 5 / span 8; }
+
+  /* fields */
+  #component .field { display: flex; flex-direction: column; gap: 8px; margin-bottom: 24px; }
+  #component .field label { font-weight: 500; font-size: 16px; }
+  #component .field input {
+    height: 48px;
+    padding: 0 16px;
+    font: inherit;
+    font-size: 16px;
+    color: #1E2B24;
+    background: #FBF8F2;
+    border: 1px solid #5E6B63;
+    border-radius: 4px;
+    transition: border-color 120ms cubic-bezier(0.2, 0.7, 0.2, 1), background-color 120ms cubic-bezier(0.2, 0.7, 0.2, 1);
+  }
+  #component .field input:hover { background: #F6DFD0; }
+  #component .field input:focus-visible {
+    outline: 2px solid #C2410C;
+    outline-offset: 2px;
+    border-color: #C2410C;
+  }
+
+  /* buttons */
+  #component .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 44px;
+    padding: 0 32px;
+    border-radius: 4px;
+    border: 1px solid #1E2B24;
+    font: inherit;
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 180ms cubic-bezier(0.2, 0.7, 0.2, 1), color 180ms cubic-bezier(0.2, 0.7, 0.2, 1), border-color 180ms cubic-bezier(0.2, 0.7, 0.2, 1);
+  }
+  #component .btn:focus-visible { outline: 2px solid #C2410C; outline-offset: 2px; }
+  #component .btn-primary { background: #1E2B24; color: #FBF8F2; }
+  #component .btn-primary:hover { background: #C2410C; border-color: #C2410C; }
+  #component .btn-quiet { background: transparent; color: #1E2B24; }
+  #component .btn-quiet:hover { background: #F6DFD0; border-color: #C2410C; }
+
+  /* switches */
+  #component .switches { list-style: none; margin: 0; padding: 0; }
+  #component .switches li {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+    min-height: 64px;
+    border-top: 1px solid #E9E1D2;
+  }
+  #component .switches li:first-child { border-top: 0; padding-top: 0; }
+  #component .switches li:last-child { padding-bottom: 0; }
+  #component .switches label { flex: 1; font-size: 16px; padding: 12px 0; cursor: pointer; }
+  #component .switch {
+    appearance: none;
+    -webkit-appearance: none;
+    position: relative;
+    flex: none;
+    width: 48px;
+    height: 28px;
+    margin: 0;
+    border-radius: 4px;
+    background: #FBF8F2;
+    border: 1px solid #5E6B63;
+    cursor: pointer;
+    transition: background-color 180ms cubic-bezier(0.2, 0.7, 0.2, 1), border-color 180ms cubic-bezier(0.2, 0.7, 0.2, 1);
+  }
+  #component .switch::before {
+    content: "";
+    position: absolute;
+    top: 3px;
+    left: 3px;
+    width: 20px;
+    height: 20px;
+    border-radius: 2px;
+    background: #5E6B63;
+    transition: transform 180ms cubic-bezier(0.2, 0.7, 0.2, 1), background-color 180ms cubic-bezier(0.2, 0.7, 0.2, 1);
+  }
+  #component .switch:checked { background: #1E2B24; border-color: #1E2B24; }
+  #component .switch:checked::before { background: #FBF8F2; transform: translateX(20px); }
+  #component .switch:hover:not(:checked) { background: #F6DFD0; }
+  #component .switch:focus-visible { outline: 2px solid #C2410C; outline-offset: 2px; }
+
+  /* danger zone */
+  #component .danger { border-color: #1E2B24; }
+  #component .danger .body { display: flex; flex-direction: column; align-items: flex-start; gap: 24px; }
+  #component .danger p { margin: 0; font-size: 18px; line-height: 1.5; }
+
+  @media (prefers-reduced-motion: reduce) {
+    #component *, #component *::before { transition: none !important; }
+  }
+</style>
+</head>
+<body>
+<div id="component">
+  <h1>Workspace settings</h1>
+
+  <div class="stack">
+    <section class="card" aria-labelledby="general-title">
+      <h2 id="general-title">General</h2>
+      <form class="body">
+        <div class="field">
+          <label for="ws-name">Workspace name</label>
+          <input id="ws-name" type="text" value="Harbor Ops">
+        </div>
+        <div class="field">
+          <label for="ws-url">Workspace URL</label>
+          <input id="ws-url" type="text" value="harbor.app/ops">
+        </div>
+        <button class="btn btn-primary" type="button">Save Changes</button>
+      </form>
+    </section>
+
+    <section class="card" aria-labelledby="notif-title">
+      <h2 id="notif-title">Notifications</h2>
+      <ul class="body switches">
+        <li>
+          <label for="sw-assigned">Email me when a request is assigned to me</label>
+          <input class="switch" id="sw-assigned" type="checkbox" role="switch" checked>
+        </li>
+        <li>
+          <label for="sw-weekly">Weekly summary</label>
+          <input class="switch" id="sw-weekly" type="checkbox" role="switch" checked>
+        </li>
+        <li>
+          <label for="sw-product">Product updates</label>
+          <input class="switch" id="sw-product" type="checkbox" role="switch">
+        </li>
+      </ul>
+    </section>
+
+    <section class="card danger" aria-labelledby="danger-title">
+      <h2 id="danger-title">Danger zone</h2>
+      <div class="body">
+        <p>Deleting a workspace removes all of its requests for everyone.</p>
+        <button class="btn btn-quiet" type="button">Delete Workspace</button>
+      </div>
+    </section>
+  </div>
+</div>
+</body>
+</html>

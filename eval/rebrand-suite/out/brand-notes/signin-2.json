@@ -1,0 +1,106 @@
+{
+ "size": {
+  "w": 1280,
+  "h": 800
+ },
+ "elements": 4,
+ "oldElements": 0,
+ "offElements": 4,
+ "pieces": [
+  {
+   "tag": "main",
+   "text": "Sign in to Harbor\n    \n      \n        Wo",
+   "box": {
+    "x": 420,
+    "y": 101.5,
+    "w": 440,
+    "h": 597
+   },
+   "hits": [
+    {
+     "k": "off",
+     "what": "border",
+     "v": "221,213,197"
+    }
+   ]
+  }
+ ],
+ "oldPieces": 0,
+ "values": {
+  "old": [],
+  "off": [
+   "border:221,213,197",
+   "border:111,122,112"
+  ]
+ },
+ "all": [
+  {
+   "tag": "main",
+   "text": "Sign in to Harbor\n    \n      \n        Wo",
+   "box": {
+    "x": 420,
+    "y": 101.5,
+    "w": 440,
+    "h": 597
+   },
+   "hits": [
+    {
+     "k": "off",
+     "what": "border",
+     "v": "221,213,197"
+    }
+   ]
+  },
+  {
+   "tag": "input",
+   "text": "",
+   "box": {
+    "x": 465,
+    "y": 312.5,
+    "w": 350,
+    "h": 46
+   },
+   "hits": [
+    {
+     "k": "off",
+     "what": "border",
+     "v": "111,122,112"
+    }
+   ]
+  },
+  {
+   "tag": "input",
+   "text": "",
+   "box": {
+    "x": 465,
+    "y": 405.5,
+    "w": 350,
+    "h": 46
+   },
+   "hits": [
+    {
+     "k": "off",
+     "what": "border",
+     "v": "111,122,112"
+    }
+   ]
+  },
+  {
+   "tag": "button",
+   "text": "Continue with SSO",
+   "box": {
+    "x": 465,
+    "y": 609.5,
+    "w": 350,
+    "h": 48
+   },
+   "hits": [
+    {
+     "k": "off",
+     "what": "border",
+     "v": "111,122,112"
+    }
+   ]
+  }
+ ]
+}

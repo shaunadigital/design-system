@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>New request | Harbor</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; background: #F4EFE6; }
+
+  #component {
+    width: 1280px;
+    min-height: 900px;
+    margin: 0 auto;
+    padding: 32px 64px 96px;
+    background: #F4EFE6;
+    color: #1E2B24;
+    font-family: "Instrument Sans", "Helvetica Neue", Arial, sans-serif;
+    font-size: 16px;
+    line-height: 1.5;
+  }
+
+  #component .bar {
+    display: flex;
+    align-items: center;
+    padding-bottom: 32px;
+    border-bottom: 1px solid #E8A989;
+  }
+  #component .brand {
+    font-family: "Fraunces", Georgia, serif;
+    font-weight: 400;
+    font-size: 22px;
+    letter-spacing: -0.02em;
+    color: #1E2B24;
+  }
+
+  #component .layout {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    column-gap: 32px;
+    padding-top: 96px;
+  }
+
+  #component .intro { grid-column: 1 / span 4; }
+  #component h1 {
+    margin: 0;
+    font-family: "Fraunces", Georgia, serif;
+    font-weight: 400;
+    font-size: 56px;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    color: #1E2B24;
+  }
+
+  #component form {
+    grid-column: 6 / span 7;
+    margin: 0;
+    padding: 48px;
+    background: #FBF8F2;
+    border: 1px solid #E8A989;
+    border-radius: 6px;
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+  }
+
+  #component .field { display: flex; flex-direction: column; gap: 8px; min-width: 0; }
+  #component label {
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 16px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: #C2410C;
+  }
+
+  #component .control {
+    width: 100%;
+    min-height: 48px;
+    padding: 12px 16px;
+    font-family: inherit;
+    font-size: 16px;
+    line-height: 24px;
+    color: #1E2B24;
+    background: #FBF8F2;
+    border: 1px solid #E8A989;
+    border-radius: 4px;
+    outline: none;
+    transition: border-color 120ms cubic-bezier(0.2, 0.7, 0.2, 1), background-color 120ms cubic-bezier(0.2, 0.7, 0.2, 1);
+  }
+  #component .control:hover { background: #F6DFD0; }
+  #component .control:focus { border-color: #C2410C; background: #FBF8F2; box-shadow: 0 0 0 2px #F6DFD0; }
+  #component textarea.control { min-height: 144px; resize: vertical; display: block; }
+
+  #component .select { position: relative; }
+  #component .select select { appearance: none; -webkit-appearance: none; padding-right: 48px; cursor: pointer; }
+  #component .select::after {
+    content: "";
+    position: absolute;
+    right: 20px;
+    top: 50%;
+    width: 8px;
+    height: 8px;
+    margin-top: -6px;
+    border-right: 2px solid #1E2B24;
+    border-bottom: 2px solid #1E2B24;
+    transform: rotate(45deg);
+    pointer-events: none;
+  }
+
+  #component .row {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+  }
+
+  #component .actions {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 16px;
+    margin-top: 16px;
+    padding-top: 32px;
+    border-top: 1px solid #E9E1D2;
+  }
+  #component .btn {
+    min-height: 48px;
+    padding: 12px 32px;
+    font-family: inherit;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 24px;
+    border-radius: 4px;
+    border: 1px solid transparent;
+    cursor: pointer;
+    transition: background-color 180ms cubic-bezier(0.2, 0.7, 0.2, 1), color 180ms cubic-bezier(0.2, 0.7, 0.2, 1);
+  }
+  #component .btn-quiet { background: transparent; color: #1E2B24; }
+  #component .btn-quiet:hover { background: #F6DFD0; }
+  #component .btn-primary { background: #1E2B24; color: #FBF8F2; }
+  #component .btn-primary:hover { background: #C2410C; }
+  #component .btn:focus-visible { outline: 2px solid #C2410C; outline-offset: 2px; }
+
+  @media (prefers-reduced-motion: reduce) {
+    #component * { transition: none; }
+  }
+</style>
+</head>
+<body>
+<div id="component">
+  <header class="bar">
+    <span class="brand">Harbor</span>
+  </header>
+
+  <main class="layout">
+    <section class="intro">
+      <h1>New request</h1>
+    </section>
+
+    <form action="#" method="post">
+      <div class="field">
+        <label for="title">Title</label>
+        <input class="control" id="title" name="title" type="text">
+      </div>
+
+      <div class="field">
+        <label for="description">Description</label>
+        <textarea class="control" id="description" name="description" rows="5"></textarea>
+      </div>
+
+      <div class="row">
+        <div class="field">
+          <label for="priority">Priority</label>
+          <div class="select">
+            <select class="control" id="priority" name="priority">
+              <option>Low</option>
+              <option selected>Medium</option>
+              <option>High</option>
+            </select>
+          </div>
+        </div>
+        <div class="field">
+          <label for="assignee">Assignee</label>
+          <div class="select">
+            <select class="control" id="assignee" name="assignee">
+              <option>Maya Chen</option>
+              <option>Leo Park</option>
+              <option>Ana Ruiz</option>
+            </select>
+          </div>
+        </div>
+        <div class="field">
+          <label for="due">Due date</label>
+          <input class="control" id="due" name="due" type="date">
+        </div>
+      </div>
+
+      <div class="actions">
+        <button class="btn btn-quiet" type="button">Cancel</button>
+        <button class="btn btn-primary" type="submit">Create Request</button>
+      </div>
+    </form>
+  </main>
+</div>
+</body>
+</html>

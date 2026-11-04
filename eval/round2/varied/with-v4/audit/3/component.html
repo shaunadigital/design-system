@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=1280">
+<title>Audit log · Harbor</title>
+<style>
+/* Tokens inlined from tokens.css */
+:root {
+  --paper: #FFFFFF;
+  --sand: #EEF4FA;
+  --card: #FFFFFF;
+  --ink: #0B1416;
+  --ink-rgb: 11, 20, 22;
+  --muted: #55656A;
+  --accent-text: #0263AC;
+  --accent: #0263AC;
+  --white: #FFFFFF;
+  --accent-tint: #E6EFF7;
+  --on-ink: #FFFFFF;
+  --shadow-rgb: 11, 20, 22;
+  --font-display: 'Unbounded', system-ui, sans-serif;
+  --font-body: 'Archivo', system-ui, -apple-system, sans-serif;
+  --font-label: 'Archivo', system-ui, sans-serif;
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 24px;
+  --space-6: 32px;
+  --space-7: 48px;
+  --space-8: 64px;
+  --space-9: 96px;
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-card: 16px;
+  --radius-pill: 999px;
+  --tracking-tight: -0.02em;
+  --tracking-label: 0.14em;
+  --text-heading: clamp(1.75rem, 3.2vw, 2.875rem);
+  --text-body: 1rem;
+  --text-small: 0.875rem;
+  --text-label: 0.75rem;
+  --ease: cubic-bezier(0.2, 0.7, 0.2, 1);
+  --dur-base: 180ms;
+}
+:root { color-scheme: light; }
+:root[data-theme="dusk"] {
+  color-scheme: dark;
+  --paper: #0E1618;
+  --sand: #131E21;
+  --card: #172327;
+  --ink: #E9EFEF;
+  --ink-rgb: 233, 239, 239;
+  --muted: #9DAEB1;
+  --accent-text: #9CC3EA;
+  --accent: #6FAAE6;
+  --accent-tint: #13283A;
+  --on-ink: #0E1618;
+  --shadow-rgb: 0, 0, 0;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: var(--text-body);
+  -webkit-font-smoothing: antialiased;
+}
+
+#component {
+  width: 1280px;
+  min-height: 100vh;
+  margin: 0 auto;
+  padding: var(--space-7) var(--space-6) var(--space-9);
+  background: var(--paper);
+}
+
+.page {
+  max-width: 1120px;
+  margin: 0 auto;
+}
+
+/* Top row: title left, filter right */
+.top {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: var(--space-6);
+  margin-bottom: var(--space-6);
+}
+
+h1 {
+  margin: 0;
+  font-family: var(--font-display);
+  font-weight: 300;
+  font-size: var(--text-heading);
+  line-height: 1.1;
+  letter-spacing: var(--tracking-tight);
+  text-transform: uppercase;
+  color: var(--ink);
+}
+
+.label {
+  display: block;
+  margin-bottom: var(--space-2);
+  font-family: var(--font-label);
+  font-weight: 500;
+  font-size: var(--text-label);
+  letter-spacing: var(--tracking-label);
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+/* Select */
+.field { width: 220px; flex: none; }
+.select-wrap { position: relative; }
+.select-wrap::after {
+  content: "";
+  position: absolute;
+  right: 16px;
+  top: 50%;
+  width: 8px;
+  height: 8px;
+  border-right: 2px solid var(--ink);
+  border-bottom: 2px solid var(--ink);
+  transform: translateY(-70%) rotate(45deg);
+  pointer-events: none;
+}
+select {
+  appearance: none;
+  -webkit-appearance: none;
+  display: block;
+  width: 100%;
+  height: 44px;
+  padding: 0 40px 0 12px;
+  font: inherit;
+  font-size: var(--text-body);
+  color: var(--ink);
+  background: var(--white);
+  border: 1px solid rgba(var(--ink-rgb), 0.2);
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  outline: none;
+}
+select:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 0;
+}
+
+/* Event list */
+.card {
+  background: var(--card);
+  border: 1px solid rgba(var(--ink-rgb), 0.1);
+  border-radius: var(--radius-card);
+  padding: var(--space-5);
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: fixed;
+}
+col.c-time { width: 200px; }
+col.c-person { width: 240px; }
+
+th, td {
+  height: 52px;
+  padding: 0 var(--space-3);
+  text-align: left;
+  vertical-align: middle;
+  border-bottom: 1px solid rgba(var(--ink-rgb), 0.1);
+}
+tbody tr:last-child td { border-bottom: 0; }
+
+th {
+  font-family: var(--font-label);
+  font-weight: 500;
+  font-size: var(--text-label);
+  letter-spacing: var(--tracking-label);
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+td {
+  font-size: var(--text-small);
+  line-height: 1.4;
+  color: var(--ink);
+}
+td.time {
+  color: var(--muted);
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+td.person { font-weight: 600; }
+</style>
+</head>
+<body>
+<div id="component">
+  <main class="page">
+    <div class="top">
+      <h1>Audit log</h1>
+      <div class="field">
+        <label class="label" for="date-range">Date range</label>
+        <div class="select-wrap">
+          <select id="date-range" name="date-range">
+            <option selected>Last 7 days</option>
+          </select>
+        </div>
+      </div>
+    </div>
+
+    <section class="card" aria-label="Audit log events">
+      <table>
+        <colgroup>
+          <col class="c-time">
+          <col class="c-person">
+          <col>
+        </colgroup>
+        <thead>
+          <tr>
+            <th scope="col">Time</th>
+            <th scope="col">Person</th>
+            <th scope="col">Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td class="time">Today 9:14</td><td class="person">Maya Chen</td><td>Changed Leo Park's role to Editor</td></tr>
+          <tr><td class="time">Today 8:02</td><td class="person">Leo Park</td><td>Approved Q4 travel budget</td></tr>
+          <tr><td class="time">Yesterday 17:40</td><td class="person">Ana Ruiz</td><td>Closed VPN access for contractors</td></tr>
+          <tr><td class="time">Yesterday 11:05</td><td class="person">Sam Ito</td><td>Invited kai@harbor.app</td></tr>
+          <tr><td class="time">Oct 16 15:22</td><td class="person">Maya Chen</td><td>Exported requests</td></tr>
+          <tr><td class="time">Oct 16 10:10</td><td class="person">Kai Lee</td><td>Signed in from a new device</td></tr>
+          <tr><td class="time">Oct 15 14:48</td><td class="person">Leo Park</td><td>Updated billing details</td></tr>
+          <tr><td class="time">Oct 15 09:30</td><td class="person">Maya Chen</td><td>Created workspace Harbor Ops</td></tr>
+        </tbody>
+      </table>
+    </section>
+  </main>
+</div>
+</body>
+</html>

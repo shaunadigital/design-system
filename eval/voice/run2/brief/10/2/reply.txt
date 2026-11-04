@@ -1,0 +1,7 @@
+A standard DESIGN.md is a page of rules. Her system adds one token file behind those rules. That file builds the styles, the Figma library, and the rules Claude reads, so they all agree.
+
+She tested both on two hundred forty page builds with Claude. Both groups did well. The standard file passed one hundred eighteen of one hundred twenty pages. Her system passed all one hundred twenty.
+
+The bigger gap was consistency. The standard file produced thirty button styles and sixteen field styles. Her system produced seven button styles and four field styles.
+
+The case study has the full details.

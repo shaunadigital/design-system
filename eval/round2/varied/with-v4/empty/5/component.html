@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=1280">
+<title>Requests · Harbor</title>
+<style>
+  /* Tokens inlined from tokens.css (light theme) so this file stands alone */
+  :root {
+    --paper: #FFFFFF;
+    --card: #FFFFFF;
+    --ink: #0B1416;
+    --ink-rgb: 11, 20, 22;
+    --muted: #55656A;
+    --accent: #0263AC;
+    --accent-text: #0263AC;
+    --on-ink: #FFFFFF;
+    --font-display: 'Unbounded', system-ui, sans-serif;
+    --font-body: 'Archivo', system-ui, -apple-system, sans-serif;
+    --space-2: 8px;
+    --space-3: 12px;
+    --space-4: 16px;
+    --space-5: 24px;
+    --space-6: 32px;
+    --space-7: 48px;
+    --space-8: 64px;
+    --radius-card: 16px;
+    --radius-pill: 999px;
+    --tracking-tight: -0.02em;
+    --text-heading: clamp(1.75rem, 3.2vw, 2.875rem);
+    --text-lead: 1.375rem;
+    --text-body: 1rem;
+    --text-small: 0.875rem;
+    --ease: cubic-bezier(0.2, 0.7, 0.2, 1);
+    --dur-fast: 120ms;
+    color-scheme: light;
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: var(--font-body);
+    font-size: var(--text-body);
+    line-height: 1.5;
+  }
+
+  #component {
+    width: 1280px;
+    min-height: 720px;
+    background: var(--paper);
+  }
+
+  .page {
+    max-width: 1120px;
+    margin: 0 auto;
+    padding: var(--space-7) var(--space-6);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-6);
+  }
+
+  .page-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    min-height: 44px;
+  }
+
+  h1 {
+    margin: 0;
+    font-family: var(--font-display);
+    font-weight: 300;
+    font-size: var(--text-heading);
+    line-height: 1.1;
+    letter-spacing: var(--tracking-tight);
+    text-transform: uppercase;
+  }
+
+  .card {
+    background: var(--card);
+    border: 1px solid rgba(var(--ink-rgb), 0.1);
+    border-radius: var(--radius-card);
+    padding: var(--space-5);
+  }
+
+  .empty {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: var(--space-8) 0;
+  }
+
+  h2 {
+    margin: 0;
+    font-family: var(--font-display);
+    font-weight: 500;
+    font-size: var(--text-lead);
+    line-height: 1.3;
+  }
+
+  .empty p {
+    margin: var(--space-2) 0 0;
+    font-size: var(--text-body);
+    color: var(--muted);
+  }
+
+  .actions {
+    display: flex;
+    align-items: center;
+    gap: var(--space-4);
+    margin-top: var(--space-5);
+  }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    height: 44px;
+    padding: 0 20px;
+    border: 0;
+    border-radius: var(--radius-pill);
+    font-family: var(--font-body);
+    font-weight: 600;
+    font-size: var(--text-small);
+    line-height: 1;
+    cursor: pointer;
+  }
+
+  .btn--primary {
+    background: var(--ink);
+    color: var(--on-ink);
+  }
+
+  .link {
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
+    padding: 0 var(--space-2);
+    font-size: var(--text-small);
+    font-weight: 600;
+    color: var(--accent-text);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    border-radius: var(--space-2);
+  }
+
+  .btn:focus-visible,
+  .link:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+  }
+</style>
+</head>
+<body>
+<div id="component">
+  <main class="page">
+    <div class="page-top">
+      <h1>Requests</h1>
+    </div>
+
+    <section class="card" aria-labelledby="empty-title">
+      <div class="empty">
+        <h2 id="empty-title">No requests yet</h2>
+        <p>When your team asks for something, it shows up here.</p>
+        <div class="actions">
+          <button type="button" class="btn btn--primary">Create a Request</button>
+          <a class="link" href="#import">Import from a spreadsheet</a>
+        </div>
+      </div>
+    </section>
+  </main>
+</div>
+</body>
+</html>

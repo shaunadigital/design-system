@@ -1,0 +1,1 @@
+A standard DESIGN.md is a set of written rules. Her system adds one token file that also builds the styles and the Figma library. In her test, both passed nearly every page, but her system gave far fewer button and field styles. Want the details?

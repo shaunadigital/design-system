@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Harbor Overview</title>
+<style>
+  @import url("https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600&family=Instrument+Sans:wght@400;600&display=swap");
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: #F4EFE6; }
+  #component {
+    width: 1280px;
+    min-height: 900px;
+    background: #F4EFE6;
+    color: #1E2B24;
+    font-family: "Instrument Sans", "Helvetica Neue", Arial, sans-serif;
+    font-size: 16px;
+    line-height: 1.5;
+  }
+  #component .display {
+    font-family: "Fraunces", Georgia, "Times New Roman", serif;
+    font-weight: 400;
+  }
+  #component nav {
+    display: flex;
+    justify-content: flex-end;
+    gap: 8px;
+    padding: 32px 96px 0;
+    border-bottom: 1px solid rgba(30, 43, 36, 0.2);
+  }
+  #component nav a {
+    display: block;
+    padding: 12px 16px 20px;
+    color: #1E2B24;
+    text-decoration: none;
+    font-size: 15px;
+    border-bottom: 2px solid transparent;
+    margin-bottom: -1px;
+  }
+  #component nav a[aria-current="page"] {
+    color: #C2410C;
+    font-weight: 600;
+    border-bottom-color: #C2410C;
+  }
+  #component main { padding: 80px 96px 120px; }
+  #component h1 {
+    font-size: 40px;
+    line-height: 1.2;
+    letter-spacing: 0;
+  }
+  #component .stats {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 24px;
+    margin-top: 56px;
+  }
+  #component .tile {
+    padding: 32px 28px 36px;
+    background: #FBF8F2;
+    border: 1px solid rgba(30, 43, 36, 0.2);
+    border-radius: 4px;
+  }
+  #component .tile dt {
+    font-size: 14px;
+    color: #1E2B24;
+    letter-spacing: 0.02em;
+  }
+  #component .tile dd {
+    margin-top: 20px;
+    font-size: 36px;
+    line-height: 1.1;
+    white-space: nowrap;
+  }
+  #component .tile dd span { font-size: 16px; font-family: "Instrument Sans", "Helvetica Neue", Arial, sans-serif; color: #1E2B24; margin-left: 4px; }
+  #component .tile.accent { border-top: 3px solid #C2410C; }
+  #component h2 {
+    margin-top: 96px;
+    font-size: 22px;
+    letter-spacing: 0;
+  }
+  #component ul { list-style: none; margin-top: 24px; border-top: 1px solid rgba(30, 43, 36, 0.2); }
+  #component li {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    padding: 24px 0;
+    border-bottom: 1px solid rgba(30, 43, 36, 0.2);
+    font-size: 17px;
+  }
+  #component li::before {
+    content: "";
+    flex: none;
+    width: 8px;
+    height: 8px;
+    border-radius: 4px;
+    background: #C2410C;
+  }
+  #component li strong { font-weight: 600; }
+</style>
+</head>
+<body>
+<div id="component">
+  <nav aria-label="Primary">
+    <a href="#" aria-current="page">Overview</a>
+    <a href="#">Requests</a>
+    <a href="#">Team</a>
+    <a href="#">Settings</a>
+  </nav>
+  <main>
+    <h1 class="display">Overview</h1>
+    <dl class="stats">
+      <div class="tile accent"><dt>Active users</dt><dd class="display">1,284</dd></div>
+      <div class="tile"><dt>Open requests</dt><dd class="display">37</dd></div>
+      <div class="tile"><dt>Average response</dt><dd class="display">2.4<span>hours</span></dd></div>
+      <div class="tile"><dt>Uptime</dt><dd class="display">99.9%</dd></div>
+    </dl>
+    <h2 class="display">Recent activity</h2>
+    <ul>
+      <li><span><strong>Maya Chen</strong> opened Laptop refresh for design</span></li>
+      <li><span><strong>Leo Park</strong> approved Q4 travel budget</span></li>
+      <li><span><strong>Ana Ruiz</strong> closed VPN access for contractors</span></li>
+      <li><span><strong>Sam Ito</strong> commented on New hire onboarding</span></li>
+      <li><span><strong>Kai Lee</strong> assigned Office move to Facilities</span></li>
+    </ul>
+  </main>
+</div>
+</body>
+</html>

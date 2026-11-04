@@ -1,0 +1,1 @@
+The chat composer is built for keyboard and screen reader use. Every control is 44 pixels, so it's easy to hit. Enter sends, Shift and Enter makes a new line, and Escape stops a reply. Screen readers get announcements as it changes. Want the details?

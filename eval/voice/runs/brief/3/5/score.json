@@ -1,0 +1,15 @@
+{
+ "pass": false,
+ "words": 41,
+ "longestSentence": 16,
+ "issues": {
+  "length": [],
+  "sentences": [],
+  "markdown": [],
+  "links": [
+   "shauna.dev"
+  ],
+  "shorthand": [],
+  "emoji": []
+ }
+}

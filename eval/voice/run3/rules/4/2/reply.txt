@@ -1,0 +1,1 @@
+Both setups passed almost every page, but Shauna's system produced far more consistent buttons and fields. Across 240 builds, her system passed all 120 pages with 7 button styles and 4 field styles. The standard file used 30 and 16. Want the details?

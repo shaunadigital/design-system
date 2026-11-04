@@ -1,0 +1,1 @@
+Both groups did well, but her system was more consistent. It passed all 120 pages, with 7 button styles and 4 field styles. The standard rules file passed 118 pages, but produced 30 button styles and 16 field styles. Want the details?

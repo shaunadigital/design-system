@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=1280">
+<title>Harbor · Team</title>
+<style>
+/* Tokens from tokens.css (day theme), inlined so the file is self-contained */
+:root {
+  --paper: #FFFFFF;
+  --sand: #EEF4FA;
+  --card: #FFFFFF;
+  --ink: #0B1416;
+  --ink-rgb: 11, 20, 22;
+  --muted: #55656A;
+  --accent-text: #0263AC;
+  --accent-tint: #E6EFF7;
+  --accent-line: #9CC3EA;
+  --on-ink: #FFFFFF;
+  --shadow-rgb: 11, 20, 22;
+  --font-display: 'Unbounded', system-ui, sans-serif;
+  --font-body: 'Archivo', system-ui, -apple-system, sans-serif;
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 24px;
+  --space-6: 32px;
+  --space-7: 48px;
+  --space-8: 64px;
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-card: 16px;
+  --radius-pill: 999px;
+  --tracking-tight: -0.02em;
+  --tracking-caps: 0.1em;
+  --text-display-xl: 3.5rem;
+  --text-body: 1rem;
+  --text-small: 0.875rem;
+  --text-label: 0.75rem;
+  --ease: cubic-bezier(0.2, 0.7, 0.2, 1);
+  --dur-fast: 120ms;
+  --dur-base: 180ms;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: var(--text-body);
+  line-height: 1.5;
+}
+
+#component {
+  width: 1280px;
+  min-height: 720px;
+  padding: var(--space-8);
+  background: var(--paper);
+}
+
+.page-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-6);
+  margin-bottom: var(--space-7);
+}
+
+.page-head h1 {
+  margin: 0;
+  font-family: var(--font-display);
+  font-weight: 300;
+  font-size: var(--text-display-xl);
+  line-height: 1.1;
+  letter-spacing: var(--tracking-tight);
+  text-transform: uppercase;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
+  padding: 0 var(--space-5);
+  border: 1px solid var(--ink);
+  border-radius: var(--radius-pill);
+  background: var(--ink);
+  color: var(--on-ink);
+  font-family: var(--font-body);
+  font-size: var(--text-body);
+  font-weight: 500;
+  cursor: pointer;
+  transition: opacity var(--dur-base) var(--ease), transform var(--dur-fast) var(--ease);
+}
+.btn:hover { opacity: 0.88; }
+.btn:active { transform: translateY(1px); }
+.btn:focus-visible,
+.role:focus-visible {
+  outline: 2px solid var(--accent-text);
+  outline-offset: 2px;
+}
+
+.members {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  border: 1px solid rgba(var(--ink-rgb), 0.1);
+  border-radius: var(--radius-card);
+  background: var(--card);
+}
+
+.member {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-6);
+  padding: var(--space-4) var(--space-5);
+}
+.member + .member { border-top: 1px solid rgba(var(--ink-rgb), 0.1); }
+
+.who { min-width: 0; }
+.name {
+  margin: 0;
+  font-size: var(--text-body);
+  font-weight: 600;
+  line-height: 1.4;
+}
+.email {
+  margin: 0;
+  font-size: var(--text-small);
+  color: var(--muted);
+  line-height: 1.4;
+}
+
+.role-wrap {
+  position: relative;
+  flex: none;
+  width: 160px;
+}
+.role-wrap::after {
+  content: "";
+  position: absolute;
+  right: var(--space-4);
+  top: 50%;
+  width: 7px;
+  height: 7px;
+  border-right: 2px solid var(--ink);
+  border-bottom: 2px solid var(--ink);
+  transform: translateY(-70%) rotate(45deg);
+  pointer-events: none;
+}
+.role {
+  appearance: none;
+  -webkit-appearance: none;
+  width: 100%;
+  height: 44px;
+  padding: 0 var(--space-7) 0 var(--space-4);
+  border: 1px solid rgba(var(--ink-rgb), 0.1);
+  border-radius: var(--radius-sm);
+  background: var(--card);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: var(--text-body);
+  cursor: pointer;
+  transition: background var(--dur-fast) var(--ease), border-color var(--dur-fast) var(--ease);
+}
+.role:hover {
+  background: var(--accent-tint);
+  border-color: var(--accent-line);
+}
+</style>
+</head>
+<body>
+<div id="component">
+  <header class="page-head">
+    <h1>Team</h1>
+    <button class="btn" type="button">Invite Member</button>
+  </header>
+
+  <ul class="members">
+    <li class="member">
+      <div class="who">
+        <p class="name" data-user-content>Maya Chen</p>
+        <p class="email">maya@harbor.app</p>
+      </div>
+      <div class="role-wrap">
+        <select class="role" aria-label="Role for Maya Chen">
+          <option selected>Admin</option>
+          <option>Editor</option>
+          <option>Viewer</option>
+        </select>
+      </div>
+    </li>
+    <li class="member">
+      <div class="who">
+        <p class="name" data-user-content>Leo Park</p>
+        <p class="email">leo@harbor.app</p>
+      </div>
+      <div class="role-wrap">
+        <select class="role" aria-label="Role for Leo Park">
+          <option>Admin</option>
+          <option selected>Editor</option>
+          <option>Viewer</option>
+        </select>
+      </div>
+    </li>
+    <li class="member">
+      <div class="who">
+        <p class="name" data-user-content>Ana Ruiz</p>
+        <p class="email">ana@harbor.app</p>
+      </div>
+      <div class="role-wrap">
+        <select class="role" aria-label="Role for Ana Ruiz">
+          <option>Admin</option>
+          <option selected>Editor</option>
+          <option>Viewer</option>
+        </select>
+      </div>
+    </li>
+    <li class="member">
+      <div class="who">
+        <p class="name" data-user-content>Sam Ito</p>
+        <p class="email">sam@harbor.app</p>
+      </div>
+      <div class="role-wrap">
+        <select class="role" aria-label="Role for Sam Ito">
+          <option>Admin</option>
+          <option>Editor</option>
+          <option selected>Viewer</option>
+        </select>
+      </div>
+    </li>
+    <li class="member">
+      <div class="who">
+        <p class="name" data-user-content>Kai Lee</p>
+        <p class="email">kai@harbor.app</p>
+      </div>
+      <div class="role-wrap">
+        <select class="role" aria-label="Role for Kai Lee">
+          <option>Admin</option>
+          <option>Editor</option>
+          <option selected>Viewer</option>
+        </select>
+      </div>
+    </li>
+  </ul>
+</div>
+</body>
+</html>

@@ -1,0 +1,1 @@
+It all starts from one tokens file. That file builds the website styles, the Figma library, and the rules Claude reads. It uses two typefaces, a four pixel spacing base, and light and dark themes. Seven automatic checks run on every build. Want the details?

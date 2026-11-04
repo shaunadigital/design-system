@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Harbor Overview</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: #FFFFFF; }
+  #component {
+    width: 1280px;
+    min-height: 900px;
+    background: #FFFFFF;
+    color: #0B1416;
+    font-family: "Archivo", "Helvetica Neue", Arial, sans-serif;
+    font-size: 16px;
+    line-height: 1.5;
+  }
+  #component .topbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px 64px;
+    background: #EEF4FA;
+    border-bottom: 1px solid #9CC3EA;
+  }
+  #component .brand {
+    font-family: "Unbounded", "Helvetica Neue", Arial, sans-serif;
+    font-weight: 500;
+    font-size: 18px;
+    letter-spacing: -0.01em;
+    color: #0B1416;
+  }
+  #component nav ul { display: flex; gap: 8px; list-style: none; }
+  #component nav a {
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
+    padding: 0 16px;
+    border-radius: 999px;
+    color: #0B1416;
+    text-decoration: none;
+    font-size: 16px;
+    transition: background-color 180ms cubic-bezier(0.2, 0.7, 0.2, 1);
+  }
+  #component nav a:hover { background: #E6EFF7; }
+  #component nav a:focus-visible { outline: 2px solid #0263AC; outline-offset: 2px; }
+  #component nav a[aria-current="page"] {
+    background: #E6EFF7;
+    color: #0263AC;
+    font-weight: 500;
+    border: 1px solid #9CC3EA;
+  }
+  #component main { padding: 64px 64px 96px; }
+  #component h1 {
+    font-family: "Unbounded", "Helvetica Neue", Arial, sans-serif;
+    font-weight: 300;
+    font-size: 56px;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    text-transform: uppercase;
+    margin-bottom: 48px;
+  }
+  #component .stats {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 32px;
+    list-style: none;
+    margin-bottom: 64px;
+  }
+  #component .tile {
+    background: #FFFFFF;
+    border: 1px solid #9CC3EA;
+    border-radius: 16px;
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  #component .label {
+    font-weight: 500;
+    font-size: 12px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: #55656A;
+  }
+  #component .value {
+    font-family: "Unbounded", "Helvetica Neue", Arial, sans-serif;
+    font-weight: 300;
+    font-size: 32px;
+    line-height: 1.2;
+    letter-spacing: -0.02em;
+    color: #0B1416;
+  }
+  #component h2 {
+    font-family: "Unbounded", "Helvetica Neue", Arial, sans-serif;
+    font-weight: 500;
+    font-size: 28px;
+    line-height: 1.2;
+    letter-spacing: -0.01em;
+    margin-bottom: 24px;
+  }
+  #component .activity {
+    background: #FFFFFF;
+    border: 1px solid #9CC3EA;
+    border-radius: 16px;
+    padding: 8px 32px;
+    list-style: none;
+  }
+  #component .activity li {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 16px 0;
+    font-size: 18px;
+    border-bottom: 1px solid #E6EFF7;
+  }
+  #component .activity li:last-child { border-bottom: 0; }
+  #component .activity li::before {
+    content: "";
+    flex: none;
+    width: 8px;
+    height: 8px;
+    border-radius: 999px;
+    background: #0263AC;
+  }
+  #component .activity b { font-weight: 500; }
+</style>
+</head>
+<body>
+<div id="component">
+  <header class="topbar">
+    <span class="brand">Harbor</span>
+    <nav aria-label="Main">
+      <ul>
+        <li><a href="#overview" aria-current="page">Overview</a></li>
+        <li><a href="#requests">Requests</a></li>
+        <li><a href="#team">Team</a></li>
+        <li><a href="#settings">Settings</a></li>
+      </ul>
+    </nav>
+  </header>
+  <main>
+    <h1>Overview</h1>
+    <ul class="stats">
+      <li class="tile"><span class="label">Active users</span><span class="value">1,284</span></li>
+      <li class="tile"><span class="label">Open requests</span><span class="value">37</span></li>
+      <li class="tile"><span class="label">Average response</span><span class="value">2.4 hours</span></li>
+      <li class="tile"><span class="label">Uptime</span><span class="value">99.9%</span></li>
+    </ul>
+    <section aria-labelledby="recent">
+      <h2 id="recent">Recent activity</h2>
+      <ul class="activity">
+        <li><span><b>Maya Chen</b> opened Laptop refresh for design</span></li>
+        <li><span><b>Leo Park</b> approved Q4 travel budget</span></li>
+        <li><span><b>Ana Ruiz</b> closed VPN access for contractors</span></li>
+        <li><span><b>Sam Ito</b> commented on New hire onboarding</span></li>
+        <li><span><b>Kai Lee</b> assigned Office move to Facilities</span></li>
+      </ul>
+    </section>
+  </main>
+</div>
+</body>
+</html>

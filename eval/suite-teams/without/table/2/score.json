@@ -1,0 +1,85 @@
+{
+ "pass": false,
+ "hasRoot": true,
+ "box": {
+  "x": 80,
+  "y": 0,
+  "w": 1280,
+  "h": 800
+ },
+ "checks": {
+  "type": {
+   "pass": false,
+   "issues": [
+    "button.btn-primary font-size 15px",
+    "label font-size 15px",
+    "input#search font-size 15px",
+    "td.name font-size 15px",
+    "td font-size 15px",
+    "span.badge font-size 13px",
+    "span font-size 15px",
+    "td.updated font-size 15px"
+   ]
+  },
+  "color": {
+   "pass": false,
+   "issues": [
+    "input#search border rgb(201, 210, 213)",
+    "input#search placeholder rgb(94, 109, 114)",
+    "div.filters background rgb(245, 247, 248)",
+    "div.filters border rgb(227, 232, 234)",
+    "button text rgb(75, 91, 96)",
+    "div.card border rgb(227, 232, 234)",
+    "th text rgb(75, 91, 96)",
+    "th background rgb(245, 247, 248)",
+    "th border rgb(227, 232, 234)",
+    "td.name border rgb(227, 232, 234)",
+    "td border rgb(227, 232, 234)",
+    "span.badge background rgb(234, 243, 250)"
+   ]
+  },
+  "radius": {
+   "pass": false,
+   "issues": [
+    "div.filters radius 10px",
+    "button radius 7px"
+   ]
+  },
+  "tracking": {
+   "pass": true,
+   "issues": []
+  },
+  "fonts": {
+   "pass": true,
+   "issues": []
+  },
+  "contrast": {
+   "pass": true,
+   "issues": []
+  },
+  "hover": {
+   "pass": true,
+   "issues": []
+  },
+  "motion": {
+   "pass": true,
+   "issues": []
+  },
+  "copy": {
+   "pass": true,
+   "issues": []
+  },
+  "labels": {
+   "pass": true,
+   "issues": []
+  },
+  "targets": {
+   "pass": false,
+   "issues": [
+    "button 53x34",
+    "button 71x34",
+    "button 81x34"
+   ]
+  }
+ }
+}

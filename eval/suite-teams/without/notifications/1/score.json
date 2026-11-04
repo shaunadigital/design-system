@@ -1,0 +1,65 @@
+{
+ "pass": false,
+ "hasRoot": true,
+ "box": {
+  "x": 80,
+  "y": 0,
+  "w": 1280,
+  "h": 949
+ },
+ "checks": {
+  "type": {
+   "pass": false,
+   "issues": [
+    "button.mark-all font-size 15px"
+   ]
+  },
+  "color": {
+   "pass": false,
+   "issues": [
+    "li.unread border rgb(227, 232, 234)",
+    "li border rgb(227, 232, 234)",
+    "p.text text rgb(63, 78, 82)",
+    "time text rgb(74, 90, 94)"
+   ]
+  },
+  "radius": {
+   "pass": true,
+   "issues": []
+  },
+  "tracking": {
+   "pass": false,
+   "issues": [
+    "button.mark-all letter-spacing 0.15px"
+   ]
+  },
+  "fonts": {
+   "pass": true,
+   "issues": []
+  },
+  "contrast": {
+   "pass": true,
+   "issues": []
+  },
+  "hover": {
+   "pass": true,
+   "issues": []
+  },
+  "motion": {
+   "pass": true,
+   "issues": []
+  },
+  "copy": {
+   "pass": true,
+   "issues": []
+  },
+  "labels": {
+   "pass": true,
+   "issues": []
+  },
+  "targets": {
+   "pass": true,
+   "issues": []
+  }
+ }
+}

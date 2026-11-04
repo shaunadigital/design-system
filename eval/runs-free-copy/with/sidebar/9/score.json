@@ -1,0 +1,62 @@
+{
+ "pass": false,
+ "hasRoot": true,
+ "box": {
+  "x": 576,
+  "y": 180,
+  "w": 288,
+  "h": 640
+ },
+ "checks": {
+  "type": {
+   "pass": true,
+   "issues": []
+  },
+  "color": {
+   "pass": true,
+   "issues": []
+  },
+  "radius": {
+   "pass": true,
+   "issues": []
+  },
+  "tracking": {
+   "pass": true,
+   "issues": []
+  },
+  "fonts": {
+   "pass": true,
+   "issues": []
+  },
+  "contrast": {
+   "pass": true,
+   "issues": []
+  },
+  "hover": {
+   "pass": true,
+   "issues": []
+  },
+  "motion": {
+   "pass": true,
+   "issues": []
+  },
+  "copy": {
+   "pass": false,
+   "issues": [
+    "button \"Planning a Waikīkī trip\" is not Title Case",
+    "button \"Fix my CSS grid layout\" is not Title Case",
+    "button \"Case study outline\" is not Title Case",
+    "button \"Color contrast questions\" is not Title Case",
+    "button \"Email draft to a client\" is not Title Case"
+   ]
+  },
+  "labels": {
+   "pass": true,
+   "issues": []
+  },
+  "targets": {
+   "pass": true,
+   "issues": []
+  }
+ }
+}

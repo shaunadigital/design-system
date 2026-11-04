@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Book a Working Session</title>
+<style>
+  /* Tokens from tokens.css (only the ones this component uses) */
+  :root {
+    --paper: #FFFFFF;
+    --card: #FFFFFF;
+    --ink: #0B1416;
+    --muted: #55656A;
+    --accent-text: #0263AC;
+    --accent: #0263AC;
+    --accent-tint: #E6EFF7;
+    --accent-line: #9CC3EA;
+    --on-ink: #FFFFFF;
+    --live: #E26D7E;
+    --shadow-rgb: 11, 20, 22;
+    --font-display: 'Unbounded', system-ui, sans-serif;
+    --font-body: 'Archivo', system-ui, -apple-system, sans-serif;
+    --font-label: 'Archivo', system-ui, sans-serif;
+    --space-1: 4px;
+    --space-2: 8px;
+    --space-3: 12px;
+    --space-4: 16px;
+    --space-5: 24px;
+    --space-6: 32px;
+    --space-7: 48px;
+    --space-8: 64px;
+    --radius-card: 16px;
+    --radius-pill: 999px;
+    --tracking-tight: -0.02em;
+    --tracking-wider: 0.08em;
+    --tracking-label: 0.14em;
+    --text-hero: clamp(1.5rem, 3.34vw, 3rem);
+    --text-step: clamp(1.375rem, 1.9vw, 1.75rem);
+    --text-body-l: 1.125rem;
+    --text-body: 1rem;
+    --text-label: 0.75rem;
+    --ease: cubic-bezier(0.2, 0.7, 0.2, 1);
+    --dur-fast: 120ms;
+    --dur-base: 180ms;
+    color-scheme: light;
+  }
+  :root[data-theme="dusk"] {
+    color-scheme: dark;
+    --paper: #0E1618;
+    --card: #172327;
+    --ink: #E9EFEF;
+    --muted: #9DAEB1;
+    --accent-text: #9CC3EA;
+    --accent: #6FAAE6;
+    --accent-tint: #13283A;
+    --accent-line: #2D5B85;
+    --on-ink: #0E1618;
+    --live: #EE8D9A;
+    --shadow-rgb: 0, 0, 0;
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    min-height: 100vh;
+    display: grid;
+    place-items: center;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: var(--font-body);
+    font-size: var(--text-body);
+    line-height: 1.5;
+  }
+
+  /* Button pill */
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-3);
+    min-height: 44px;
+    padding: var(--space-3) var(--space-5);
+    border-radius: var(--radius-pill);
+    font-family: var(--font-body);
+    font-size: var(--text-body);
+    font-weight: 500;
+    text-decoration: none;
+    cursor: pointer;
+    transition: transform var(--dur-fast) var(--ease), box-shadow var(--dur-base) var(--ease);
+  }
+  .btn:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+  .btn:active { transform: translateY(1px); }
+  .btn--fill {
+    background: var(--ink);
+    color: var(--on-ink);
+    box-shadow: inset 0 0 0 2px var(--ink);
+  }
+  .btn--fill:hover { box-shadow: 0 0 0 3px var(--accent-line); }
+  .btn__shape {
+    display: inline-grid;
+    place-items: center;
+    width: 24px;
+    height: 24px;
+    border-radius: var(--radius-pill);
+    background: var(--accent);
+    color: var(--on-ink);
+    transition: transform var(--dur-base) var(--ease);
+  }
+  .btn:hover .btn__shape { transform: translateX(2px); }
+
+  /* Card */
+  #component {
+    width: 100%;
+    max-width: 440px;
+    padding: var(--space-6);
+    background: var(--card);
+    border-radius: var(--radius-card);
+    box-shadow:
+      0 1px 2px rgba(var(--shadow-rgb), 0.06),
+      0 12px 32px rgba(var(--shadow-rgb), 0.1);
+    outline: 1px solid var(--accent-line);
+    outline-offset: -1px;
+  }
+
+  .label {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    margin: 0 0 var(--space-4);
+    font-family: var(--font-label);
+    font-size: var(--text-label);
+    font-weight: 500;
+    letter-spacing: var(--tracking-label);
+    text-transform: uppercase;
+    color: var(--accent-text);
+  }
+  .label::before {
+    content: "";
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--live);
+  }
+
+  .title {
+    margin: 0 0 var(--space-3);
+    font-family: var(--font-display);
+    font-size: var(--text-step);
+    font-weight: 300;
+    letter-spacing: var(--tracking-tight);
+    line-height: 1.15;
+    text-transform: uppercase;
+  }
+
+  .desc {
+    margin: 0 0 var(--space-5);
+    font-size: var(--text-body-l);
+    color: var(--muted);
+  }
+
+  .price {
+    display: flex;
+    align-items: baseline;
+    gap: var(--space-2);
+    margin: 0 0 var(--space-5);
+    padding: var(--space-4) 0;
+    border-block: 1px solid var(--accent-line);
+  }
+  .price__amount {
+    font-family: var(--font-display);
+    font-size: var(--text-hero);
+    font-weight: 300;
+    letter-spacing: var(--tracking-tight);
+    line-height: 1;
+  }
+  .price__unit {
+    font-size: var(--text-body);
+    color: var(--muted);
+  }
+
+  .includes {
+    margin: 0 0 var(--space-6);
+    padding: 0;
+    list-style: none;
+    display: grid;
+    gap: var(--space-3);
+  }
+  .includes li {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--space-3);
+  }
+  .includes svg {
+    flex: none;
+    width: 24px;
+    height: 24px;
+    padding: 2px;
+    color: var(--accent);
+  }
+
+  .book { width: 100%; }
+</style>
+</head>
+<body>
+  <article id="component" aria-labelledby="session-title">
+    <p class="label">One Hour, One Person</p>
+    <h2 class="title" id="session-title">Working Session</h2>
+    <p class="desc">A focused hour together on your project. Bring a problem, a draft or a half-built idea and we will move it forward.</p>
+
+    <p class="price">
+      <span class="price__amount">$150</span>
+      <span class="price__unit">per hour</span>
+    </p>
+
+    <ul class="includes">
+      <li>
+        <svg viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><circle cx="12" cy="12" r="10"/><path d="M7.5 12.5l3 3 6-6.5" fill="none" stroke="var(--card)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <span>60 minutes of live, one-on-one time</span>
+      </li>
+      <li>
+        <svg viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><circle cx="12" cy="12" r="10"/><path d="M7.5 12.5l3 3 6-6.5" fill="none" stroke="var(--card)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <span>A shared screen and working files</span>
+      </li>
+      <li>
+        <svg viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><circle cx="12" cy="12" r="10"/><path d="M7.5 12.5l3 3 6-6.5" fill="none" stroke="var(--card)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <span>Written notes and next steps afterward</span>
+      </li>
+    </ul>
+
+    <a class="btn btn--fill book" href="#book">
+      Book This Session
+      <span class="btn__shape" aria-hidden="true">
+        <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      </span>
+    </a>
+  </article>
+</body>
+</html>

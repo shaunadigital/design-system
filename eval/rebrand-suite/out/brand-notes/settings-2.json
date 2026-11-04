@@ -1,0 +1,240 @@
+{
+ "size": {
+  "w": 1280,
+  "h": 1114.390625
+ },
+ "elements": 9,
+ "oldElements": 3,
+ "offElements": 6,
+ "pieces": [
+  {
+   "tag": "section",
+   "text": "General\n      \n        Workspace name\n  ",
+   "box": {
+    "x": 280,
+    "y": 158.390625,
+    "w": 720,
+    "h": 358
+   },
+   "hits": [
+    {
+     "k": "off",
+     "what": "border",
+     "v": "218,210,194"
+    }
+   ]
+  },
+  {
+   "tag": "section",
+   "text": "Notifications\n      \n        \n          ",
+   "box": {
+    "x": 280,
+    "y": 540.390625,
+    "w": 720,
+    "h": 274
+   },
+   "hits": [
+    {
+     "k": "off",
+     "what": "border",
+     "v": "218,210,194"
+    }
+   ]
+  },
+  {
+   "tag": "p",
+   "text": "Deleting a workspace removes all of its ",
+   "box": {
+    "x": 313,
+    "y": 913.390625,
+    "w": 435.90625,
+    "h": 48
+   },
+   "hits": [
+    {
+     "k": "off",
+     "what": "text",
+     "v": "70,83,75"
+    }
+   ]
+  }
+ ],
+ "oldPieces": 0,
+ "values": {
+  "old": [
+   "fill:255,255,255",
+   "text:255,255,255"
+  ],
+  "off": [
+   "border:218,210,194",
+   "border:122,131,121",
+   "fill:122,131,121",
+   "text:70,83,75"
+  ]
+ },
+ "all": [
+  {
+   "tag": "section",
+   "text": "General\n      \n        Workspace name\n  ",
+   "box": {
+    "x": 280,
+    "y": 158.390625,
+    "w": 720,
+    "h": 358
+   },
+   "hits": [
+    {
+     "k": "off",
+     "what": "border",
+     "v": "218,210,194"
+    }
+   ]
+  },
+  {
+   "tag": "input",
+   "text": "",
+   "box": {
+    "x": 313,
+    "y": 270.390625,
+    "w": 654,
+    "h": 44
+   },
+   "hits": [
+    {
+     "k": "old",
+     "what": "fill",
+     "v": "255,255,255"
+    },
+    {
+     "k": "off",
+     "what": "border",
+     "v": "122,131,121"
+    }
+   ]
+  },
+  {
+   "tag": "input",
+   "text": "",
+   "box": {
+    "x": 313,
+    "y": 367.390625,
+    "w": 654,
+    "h": 44
+   },
+   "hits": [
+    {
+     "k": "old",
+     "what": "fill",
+     "v": "255,255,255"
+    },
+    {
+     "k": "off",
+     "what": "border",
+     "v": "122,131,121"
+    }
+   ]
+  },
+  {
+   "tag": "button",
+   "text": "Save Changes",
+   "box": {
+    "x": 814.46875,
+    "y": 439.390625,
+    "w": 152.53125,
+    "h": 44
+   },
+   "hits": [
+    {
+     "k": "old",
+     "what": "text",
+     "v": "255,255,255"
+    }
+   ]
+  },
+  {
+   "tag": "section",
+   "text": "Notifications\n      \n        \n          ",
+   "box": {
+    "x": 280,
+    "y": 540.390625,
+    "w": 720,
+    "h": 274
+   },
+   "hits": [
+    {
+     "k": "off",
+     "what": "border",
+     "v": "218,210,194"
+    }
+   ]
+  },
+  {
+   "tag": "div",
+   "text": "Email me when a request is assigned to m",
+   "box": {
+    "x": 313,
+    "y": 611.390625,
+    "w": 654,
+    "h": 63
+   },
+   "hits": [
+    {
+     "k": "off",
+     "what": "border",
+     "v": "218,210,194"
+    }
+   ]
+  },
+  {
+   "tag": "div",
+   "text": "Weekly summary",
+   "box": {
+    "x": 313,
+    "y": 674.390625,
+    "w": 654,
+    "h": 63
+   },
+   "hits": [
+    {
+     "k": "off",
+     "what": "border",
+     "v": "218,210,194"
+    }
+   ]
+  },
+  {
+   "tag": "span",
+   "text": "",
+   "box": {
+    "x": 923,
+    "y": 755.390625,
+    "w": 44,
+    "h": 26
+   },
+   "hits": [
+    {
+     "k": "off",
+     "what": "fill",
+     "v": "122,131,121"
+    }
+   ]
+  },
+  {
+   "tag": "p",
+   "text": "Deleting a workspace removes all of its ",
+   "box": {
+    "x": 313,
+    "y": 913.390625,
+    "w": 435.90625,
+    "h": 48
+   },
+   "hits": [
+    {
+     "k": "off",
+     "what": "text",
+     "v": "70,83,75"
+    }
+   ]
+  }
+ ]
+}

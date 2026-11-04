@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Workspace settings</title>
+<style>
+  :root {
+    --paper: #FFFFFF;
+    --sand: #EEF4FA;
+    --ink: #0B1416;
+    --muted: #55656A;
+    --accent: #0263AC;
+    --accent-tint: #E6EFF7;
+    --accent-line: #9CC3EA;
+    --on-ink: #FFFFFF;
+    --curve: cubic-bezier(0.2, 0.7, 0.2, 1);
+    --display: "Unbounded", "Arial", sans-serif;
+    --body: "Archivo", system-ui, -apple-system, "Segoe UI", Arial, sans-serif;
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: var(--body);
+    font-size: 16px;
+    line-height: 1.5;
+  }
+
+  #component {
+    width: 1280px;
+    margin: 0 auto;
+    padding: 64px 64px 96px;
+    background: var(--paper);
+  }
+
+  h1 {
+    margin: 0 0 64px;
+    font-family: var(--display);
+    font-weight: 300;
+    font-size: 56px;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    text-transform: uppercase;
+  }
+
+  .sections {
+    display: flex;
+    flex-direction: column;
+    gap: 48px;
+  }
+
+  .section {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    column-gap: 32px;
+    align-items: start;
+  }
+
+  h2 {
+    grid-column: 1 / 5;
+    margin: 0;
+    padding-top: 4px;
+    font-family: var(--display);
+    font-weight: 500;
+    font-size: 28px;
+    line-height: 1.2;
+    letter-spacing: -0.01em;
+  }
+
+  .card {
+    grid-column: 5 / 13;
+    padding: 32px;
+    background: var(--paper);
+    border: 1px solid var(--accent-line);
+    border-radius: 16px;
+  }
+
+  .card.danger { border-color: var(--ink); }
+
+  .field + .field { margin-top: 24px; }
+
+  .field label {
+    display: block;
+    margin-bottom: 8px;
+    font-family: var(--body);
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 1.5;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--accent);
+  }
+
+  .field input {
+    display: block;
+    width: 100%;
+    height: 48px;
+    padding: 0 16px;
+    font-family: var(--body);
+    font-size: 16px;
+    color: var(--ink);
+    background: var(--paper);
+    border: 1px solid var(--muted);
+    border-radius: 12px;
+    transition: border-color 120ms var(--curve), background-color 120ms var(--curve);
+  }
+
+  .field input:hover { background: var(--accent-tint); }
+
+  .field input:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+    border-color: var(--accent);
+  }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 44px;
+    padding: 0 32px;
+    font-family: var(--body);
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 1;
+    letter-spacing: 0;
+    border-radius: 999px;
+    border: 1px solid transparent;
+    cursor: pointer;
+    transition: background-color 180ms var(--curve), color 180ms var(--curve), border-color 180ms var(--curve);
+  }
+
+  .btn:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+  }
+
+  .btn-primary {
+    background: var(--ink);
+    color: var(--on-ink);
+  }
+  .btn-primary:hover { background: var(--accent); }
+
+  .btn-quiet {
+    background: transparent;
+    color: var(--ink);
+    border-color: var(--ink);
+  }
+  .btn-quiet:hover { background: var(--accent-tint); }
+
+  .card .btn-primary { margin-top: 32px; }
+
+  .switches {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    min-width: 0;
+  }
+
+  .switch-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+    min-height: 56px;
+    padding: 8px 0;
+    cursor: pointer;
+  }
+
+  .switch-row + .switch-row { border-top: 1px solid var(--accent-line); }
+
+  .switch-row:first-child { padding-top: 0; }
+  .switch-row:last-child { padding-bottom: 0; }
+
+  .switch {
+    appearance: none;
+    -webkit-appearance: none;
+    position: relative;
+    flex: none;
+    width: 48px;
+    height: 28px;
+    margin: 0;
+    background: var(--muted);
+    border-radius: 999px;
+    cursor: pointer;
+    transition: background-color 180ms var(--curve);
+  }
+
+  .switch::after {
+    content: "";
+    position: absolute;
+    top: 4px;
+    left: 4px;
+    width: 20px;
+    height: 20px;
+    background: var(--on-ink);
+    border-radius: 999px;
+    transition: transform 180ms var(--curve);
+  }
+
+  .switch:checked { background: var(--ink); }
+  .switch:checked::after { transform: translateX(20px); }
+
+  .switch:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+  }
+
+  .danger-body {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 32px;
+  }
+
+  .danger-body p {
+    margin: 0;
+    max-width: 440px;
+    font-size: 16px;
+    line-height: 1.5;
+  }
+
+  .danger-body .btn { flex: none; margin: 0; }
+
+  @media (prefers-reduced-motion: reduce) {
+    * { transition: none !important; }
+  }
+</style>
+</head>
+<body>
+<div id="component">
+  <h1>Workspace settings</h1>
+
+  <div class="sections">
+    <section class="section" aria-labelledby="general-title">
+      <h2 id="general-title">General</h2>
+      <div class="card">
+        <div class="field">
+          <label for="workspace-name">Workspace name</label>
+          <input id="workspace-name" type="text" value="Harbor Ops">
+        </div>
+        <div class="field">
+          <label for="workspace-url">Workspace URL</label>
+          <input id="workspace-url" type="text" value="harbor.app/ops">
+        </div>
+        <button class="btn btn-primary" type="button">Save Changes</button>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="notifications-title">
+      <h2 id="notifications-title">Notifications</h2>
+      <div class="card">
+        <fieldset class="switches">
+          <legend style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;">Notifications</legend>
+          <label class="switch-row">
+            <span>Email me when a request is assigned to me</span>
+            <input class="switch" type="checkbox" role="switch" checked>
+          </label>
+          <label class="switch-row">
+            <span>Weekly summary</span>
+            <input class="switch" type="checkbox" role="switch" checked>
+          </label>
+          <label class="switch-row">
+            <span>Product updates</span>
+            <input class="switch" type="checkbox" role="switch">
+          </label>
+        </fieldset>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="danger-title">
+      <h2 id="danger-title">Danger zone</h2>
+      <div class="card danger">
+        <div class="danger-body">
+          <p>Deleting a workspace removes all of its requests for everyone.</p>
+          <button class="btn btn-quiet" type="button">Delete Workspace</button>
+        </div>
+      </div>
+    </section>
+  </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,63 @@
+{
+ "pass": false,
+ "hasRoot": true,
+ "box": {
+  "x": 80,
+  "y": 0,
+  "w": 1280,
+  "h": 800
+ },
+ "checks": {
+  "type": {
+   "pass": true,
+   "issues": []
+  },
+  "color": {
+   "pass": true,
+   "issues": []
+  },
+  "radius": {
+   "pass": true,
+   "issues": []
+  },
+  "tracking": {
+   "pass": true,
+   "issues": []
+  },
+  "fonts": {
+   "pass": true,
+   "issues": []
+  },
+  "contrast": {
+   "pass": true,
+   "issues": []
+  },
+  "hover": {
+   "pass": true,
+   "issues": []
+  },
+  "motion": {
+   "pass": true,
+   "issues": []
+  },
+  "copy": {
+   "pass": false,
+   "issues": [
+    "button \"Unread:\nLeo Park approved Q4 travel budget\n2h ago\" is not Title Case",
+    "button \"Unread:\nMaya Chen assigned you Laptop refresh for design\n3h ago\" is not Title Case",
+    "button \"Unread:\nYour weekly summary is ready\n1d ago\" is not Title Case",
+    "button \"Ana Ruiz commented on VPN access for contractors\n1d ago\" is not Title Case",
+    "button \"Sam Ito joined Harbor Ops\n2d ago\" is not Title Case",
+    "button \"Billing details were updated\n3d ago\" is not Title Case"
+   ]
+  },
+  "labels": {
+   "pass": true,
+   "issues": []
+  },
+  "targets": {
+   "pass": true,
+   "issues": []
+  }
+ }
+}

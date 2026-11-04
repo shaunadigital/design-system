@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=1280">
+<title>Workspace settings</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; background: #EEF4FA; }
+
+  #component {
+    width: 1280px;
+    min-height: 100vh;
+    margin: 0 auto;
+    padding: 64px 64px 96px;
+    background: #EEF4FA;
+    color: #0B1416;
+    font-family: "Archivo", system-ui, -apple-system, "Segoe UI", sans-serif;
+    font-size: 16px;
+    line-height: 1.5;
+    letter-spacing: 0;
+  }
+
+  #component h1 {
+    margin: 0 0 48px;
+    font-family: "Unbounded", "Archivo", system-ui, sans-serif;
+    font-weight: 300;
+    font-size: 56px;
+    line-height: 1.1;
+    letter-spacing: -0.01em;
+    text-transform: uppercase;
+    color: #0B1416;
+  }
+
+  .stack { display: grid; gap: 32px; }
+
+  .card {
+    display: grid;
+    grid-template-columns: 4fr 8fr;
+    column-gap: 32px;
+    padding: 48px;
+    background: #FFFFFF;
+    border: 1px solid #9CC3EA;
+    border-radius: 16px;
+  }
+  .card.danger { border-color: #0B1416; }
+
+  .card h2 {
+    margin: 0;
+    font-family: "Unbounded", "Archivo", system-ui, sans-serif;
+    font-weight: 500;
+    font-size: 28px;
+    line-height: 1.2;
+    letter-spacing: -0.01em;
+    color: #0B1416;
+  }
+
+  .body { display: grid; gap: 24px; align-content: start; max-width: 560px; }
+
+  .field { display: grid; gap: 8px; }
+  .field label {
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 16px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: #0263AC;
+  }
+  .field input {
+    width: 100%;
+    height: 48px;
+    padding: 0 16px;
+    font-family: inherit;
+    font-size: 16px;
+    color: #0B1416;
+    background: #FFFFFF;
+    border: 1px solid #55656A;
+    border-radius: 12px;
+    transition: border-color 120ms cubic-bezier(0.2, 0.7, 0.2, 1), background-color 120ms cubic-bezier(0.2, 0.7, 0.2, 1);
+  }
+  .field input:hover { background: #E6EFF7; }
+  .field input:focus-visible { outline: 2px solid #0263AC; outline-offset: 2px; border-color: #0263AC; }
+
+  .btn {
+    justify-self: start;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 48px;
+    padding: 0 32px;
+    font-family: inherit;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 1;
+    letter-spacing: 0;
+    border-radius: 999px;
+    cursor: pointer;
+    transition: background-color 180ms cubic-bezier(0.2, 0.7, 0.2, 1), color 180ms cubic-bezier(0.2, 0.7, 0.2, 1), border-color 180ms cubic-bezier(0.2, 0.7, 0.2, 1);
+  }
+  .btn:focus-visible { outline: 2px solid #0263AC; outline-offset: 2px; }
+  .btn.primary { background: #0B1416; color: #FFFFFF; border: 1px solid #0B1416; }
+  .btn.primary:hover { background: #0263AC; border-color: #0263AC; }
+  .btn.quiet { background: transparent; color: #0B1416; border: 1px solid #0B1416; }
+  .btn.quiet:hover { background: #E6EFF7; }
+
+  .switches { margin: 0; padding: 0; list-style: none; max-width: 560px; }
+  .switches li { border-top: 1px solid #9CC3EA; }
+  .switches li:first-child { border-top: 0; }
+  .switches label {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+    min-height: 64px;
+    padding: 8px 0;
+    cursor: pointer;
+    font-size: 16px;
+    color: #0B1416;
+  }
+
+  .switch {
+    appearance: none;
+    -webkit-appearance: none;
+    flex: none;
+    position: relative;
+    width: 48px;
+    height: 28px;
+    margin: 0;
+    background: #FFFFFF;
+    border: 2px solid #55656A;
+    border-radius: 999px;
+    cursor: pointer;
+    transition: background-color 120ms cubic-bezier(0.2, 0.7, 0.2, 1), border-color 120ms cubic-bezier(0.2, 0.7, 0.2, 1);
+  }
+  .switch::before {
+    content: "";
+    position: absolute;
+    top: 4px;
+    left: 4px;
+    width: 16px;
+    height: 16px;
+    background: #55656A;
+    border-radius: 50%;
+    transition: transform 180ms cubic-bezier(0.2, 0.7, 0.2, 1), background-color 180ms cubic-bezier(0.2, 0.7, 0.2, 1);
+  }
+  .switch:checked { background: #0B1416; border-color: #0B1416; }
+  .switch:checked::before { background: #FFFFFF; transform: translateX(20px); }
+  .switch:focus-visible { outline: 2px solid #0263AC; outline-offset: 2px; }
+
+  .danger-text { margin: 0; font-size: 16px; color: #0B1416; }
+
+  @media (prefers-reduced-motion: reduce) {
+    #component *, #component *::before { transition: none !important; }
+  }
+</style>
+</head>
+<body>
+<div id="component">
+  <main>
+    <h1>Workspace settings</h1>
+
+    <div class="stack">
+      <section class="card" aria-labelledby="general-h">
+        <h2 id="general-h">General</h2>
+        <form class="body" action="#">
+          <div class="field">
+            <label for="ws-name">Workspace name</label>
+            <input id="ws-name" type="text" value="Harbor Ops">
+          </div>
+          <div class="field">
+            <label for="ws-url">Workspace URL</label>
+            <input id="ws-url" type="text" value="harbor.app/ops">
+          </div>
+          <button class="btn primary" type="button">Save Changes</button>
+        </form>
+      </section>
+
+      <section class="card" aria-labelledby="notif-h">
+        <h2 id="notif-h">Notifications</h2>
+        <ul class="switches">
+          <li>
+            <label>
+              <span>Email me when a request is assigned to me</span>
+              <input class="switch" type="checkbox" role="switch" checked>
+            </label>
+          </li>
+          <li>
+            <label>
+              <span>Weekly summary</span>
+              <input class="switch" type="checkbox" role="switch" checked>
+            </label>
+          </li>
+          <li>
+            <label>
+              <span>Product updates</span>
+              <input class="switch" type="checkbox" role="switch">
+            </label>
+          </li>
+        </ul>
+      </section>
+
+      <section class="card danger" aria-labelledby="danger-h">
+        <h2 id="danger-h">Danger zone</h2>
+        <div class="body">
+          <p class="danger-text">Deleting a workspace removes all of its requests for everyone.</p>
+          <button class="btn quiet" type="button">Delete Workspace</button>
+        </div>
+      </section>
+    </div>
+  </main>
+</div>
+</body>
+</html>

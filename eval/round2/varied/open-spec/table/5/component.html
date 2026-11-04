@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=1280">
+<title>Requests | Harbor</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; background: #FFFFFF; }
+  body {
+    font-family: "Archivo", -apple-system, "Segoe UI", Helvetica, Arial, sans-serif;
+    font-size: 16px;
+    line-height: 1.5;
+    color: #0B1416;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  #component {
+    width: 1280px;
+    min-height: 800px;
+    margin: 0 auto;
+    padding: 64px 64px 96px;
+    background: #FFFFFF;
+  }
+
+  .page-header {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 32px;
+    margin-bottom: 64px;
+  }
+  .page-title {
+    margin: 0;
+    font-family: "Unbounded", "Archivo", -apple-system, "Segoe UI", Helvetica, Arial, sans-serif;
+    font-weight: 300;
+    font-size: 56px;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    text-transform: uppercase;
+    color: #0B1416;
+  }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    min-height: 44px;
+    padding: 0 24px;
+    border: 1px solid transparent;
+    border-radius: 999px;
+    font-family: inherit;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 1;
+    letter-spacing: 0;
+    cursor: pointer;
+    transition: background-color 180ms cubic-bezier(0.2, 0.7, 0.2, 1),
+                color 180ms cubic-bezier(0.2, 0.7, 0.2, 1),
+                border-color 180ms cubic-bezier(0.2, 0.7, 0.2, 1);
+  }
+  .btn:focus-visible, .field input:focus-visible {
+    outline: 2px solid #0263AC;
+    outline-offset: 2px;
+  }
+  .btn-primary { background: #0B1416; color: #FFFFFF; padding: 0 32px; }
+  .btn-primary:hover { background: #0263AC; }
+  .btn svg { width: 24px; height: 24px; flex: none; margin-left: -8px; }
+
+  .toolbar {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 32px;
+    margin-bottom: 32px;
+  }
+
+  .field { display: flex; flex-direction: column; gap: 8px; width: 400px; }
+  .field label {
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: #55656A;
+  }
+  .field .control { position: relative; }
+  .field .control svg {
+    position: absolute;
+    left: 16px;
+    top: 50%;
+    width: 24px;
+    height: 24px;
+    margin-top: -12px;
+    color: #55656A;
+    pointer-events: none;
+  }
+  .field input {
+    width: 100%;
+    height: 48px;
+    padding: 0 16px 0 52px;
+    border: 1px solid #9CC3EA;
+    border-radius: 12px;
+    background: #FFFFFF;
+    font-family: inherit;
+    font-size: 16px;
+    color: #0B1416;
+    transition: border-color 120ms cubic-bezier(0.2, 0.7, 0.2, 1),
+                background-color 120ms cubic-bezier(0.2, 0.7, 0.2, 1);
+  }
+  .field input:hover { background: #E6EFF7; }
+
+  .filters { display: flex; gap: 8px; }
+  .btn-filter {
+    background: transparent;
+    color: #0B1416;
+    border-color: transparent;
+    padding: 0 24px;
+  }
+  .btn-filter:hover { background: #E6EFF7; }
+  .btn-filter[aria-pressed="true"] {
+    background: #E6EFF7;
+    color: #0263AC;
+    border-color: #9CC3EA;
+  }
+
+  .card {
+    background: #FFFFFF;
+    border: 1px solid #9CC3EA;
+    border-radius: 16px;
+    overflow: hidden;
+  }
+  table { width: 100%; border-collapse: separate; border-spacing: 0; table-layout: fixed; }
+  th, td { text-align: left; padding: 0 32px; vertical-align: middle; }
+  thead th {
+    height: 64px;
+    background: #EEF4FA;
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: #55656A;
+  }
+  tbody td {
+    height: 80px;
+    border-top: 1px solid #EEF4FA;
+    font-size: 16px;
+    transition: background-color 120ms cubic-bezier(0.2, 0.7, 0.2, 1);
+  }
+  tbody tr:first-child td { border-top: 0; }
+  tbody tr:hover td { background: #E6EFF7; }
+  col.c-request { width: 36%; }
+  col.c-requester { width: 20%; }
+  col.c-status { width: 18%; }
+  col.c-priority { width: 14%; }
+  col.c-updated { width: 12%; }
+  td.request { font-weight: 500; color: #0B1416; }
+  td.updated { color: #55656A; }
+
+  .status {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 4px 16px 4px 12px;
+    border: 1px solid transparent;
+    border-radius: 999px;
+    font-size: 14px;
+    line-height: 20px;
+    white-space: nowrap;
+  }
+  .status::before {
+    content: "";
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: currentColor;
+    flex: none;
+  }
+  .status.open { background: #E6EFF7; color: #0263AC; }
+  .status.approved { background: #FFFFFF; color: #0B1416; border-color: #9CC3EA; }
+  .status.approved::before { background: #0263AC; }
+  .status.review { background: #EEF4FA; color: #0B1416; }
+  .status.review::before { background: transparent; box-shadow: inset 0 0 0 2px #0263AC; }
+  .status.closed { background: #EEF4FA; color: #55656A; }
+
+  .priority { display: inline-flex; align-items: center; gap: 12px; }
+  .bars { display: inline-flex; align-items: flex-end; gap: 4px; height: 16px; }
+  .bars i { width: 4px; border-radius: 4px; background: #9CC3EA; display: block; }
+  .bars i:nth-child(1) { height: 8px; }
+  .bars i:nth-child(2) { height: 12px; }
+  .bars i:nth-child(3) { height: 16px; }
+  .p-high .bars i { background: #0B1416; }
+  .p-medium .bars i:nth-child(-n+2) { background: #0263AC; }
+  .p-low .bars i:nth-child(1) { background: #0263AC; }
+  .p-high { font-weight: 500; }
+  .p-low { color: #55656A; }
+
+  @media (prefers-reduced-motion: reduce) {
+    * { transition: none !important; }
+  }
+</style>
+</head>
+<body>
+<div id="component">
+
+  <header class="page-header">
+    <h1 class="page-title">Requests</h1>
+    <button class="btn btn-primary" type="button">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>
+      New Request
+    </button>
+  </header>
+
+  <section class="toolbar" aria-label="Search and filters">
+    <div class="field">
+      <label for="search">Search requests</label>
+      <div class="control">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="6.5"/><path d="M16 16l4 4"/></svg>
+        <input id="search" type="search" name="search">
+      </div>
+    </div>
+    <div class="filters" role="group" aria-label="Filter requests">
+      <button class="btn btn-filter" type="button" aria-pressed="true">All</button>
+      <button class="btn btn-filter" type="button" aria-pressed="false">Open</button>
+      <button class="btn btn-filter" type="button" aria-pressed="false">Closed</button>
+    </div>
+  </section>
+
+  <div class="card">
+    <table>
+      <colgroup>
+        <col class="c-request"><col class="c-requester"><col class="c-status"><col class="c-priority"><col class="c-updated">
+      </colgroup>
+      <thead>
+        <tr>
+          <th scope="col">Request</th>
+          <th scope="col">Requester</th>
+          <th scope="col">Status</th>
+          <th scope="col">Priority</th>
+          <th scope="col">Updated</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="request">Laptop refresh for design</td>
+          <td>Maya Chen</td>
+          <td><span class="status open">Open</span></td>
+          <td><span class="priority p-high"><span class="bars" aria-hidden="true"><i></i><i></i><i></i></span>High</span></td>
+          <td class="updated">2h ago</td>
+        </tr>
+        <tr>
+          <td class="request">Q4 travel budget</td>
+          <td>Leo Park</td>
+          <td><span class="status approved">Approved</span></td>
+          <td><span class="priority p-medium"><span class="bars" aria-hidden="true"><i></i><i></i><i></i></span>Medium</span></td>
+          <td class="updated">5h ago</td>
+        </tr>
+        <tr>
+          <td class="request">VPN access for contractors</td>
+          <td>Ana Ruiz</td>
+          <td><span class="status closed">Closed</span></td>
+          <td><span class="priority p-high"><span class="bars" aria-hidden="true"><i></i><i></i><i></i></span>High</span></td>
+          <td class="updated">1d ago</td>
+        </tr>
+        <tr>
+          <td class="request">New hire onboarding</td>
+          <td>Sam Ito</td>
+          <td><span class="status open">Open</span></td>
+          <td><span class="priority p-medium"><span class="bars" aria-hidden="true"><i></i><i></i><i></i></span>Medium</span></td>
+          <td class="updated">1d ago</td>
+        </tr>
+        <tr>
+          <td class="request">Office move</td>
+          <td>Kai Lee</td>
+          <td><span class="status review">In review</span></td>
+          <td><span class="priority p-low"><span class="bars" aria-hidden="true"><i></i><i></i><i></i></span>Low</span></td>
+          <td class="updated">2d ago</td>
+        </tr>
+        <tr>
+          <td class="request">Security training</td>
+          <td>Ava Brooks</td>
+          <td><span class="status open">Open</span></td>
+          <td><span class="priority p-low"><span class="bars" aria-hidden="true"><i></i><i></i><i></i></span>Low</span></td>
+          <td class="updated">3d ago</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+</div>
+</body>
+</html>

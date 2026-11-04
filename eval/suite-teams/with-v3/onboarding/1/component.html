@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Harbor: Connect your tools</title>
+<style>
+/* Tokens from tokens.css (generated) */
+:root {
+  --paper: #FFFFFF;
+  --sand: #EEF4FA;
+  --card: #FFFFFF;
+  --ink: #0B1416;
+  --ink-rgb: 11, 20, 22;
+  --muted: #55656A;
+  --accent-text: #0263AC;
+  --accent: #0263AC;
+  --accent-tint: #E6EFF7;
+  --on-ink: #FFFFFF;
+  --shadow-rgb: 11, 20, 22;
+  --font-display: 'Unbounded', system-ui, sans-serif;
+  --font-body: 'Archivo', system-ui, -apple-system, sans-serif;
+  --font-label: 'Archivo', system-ui, sans-serif;
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 24px;
+  --space-6: 32px;
+  --space-7: 48px;
+  --space-8: 64px;
+  --space-9: 96px;
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-card: 16px;
+  --radius-pill: 999px;
+  --tracking-label: 0.14em;
+  --text-display-xl: clamp(2rem, 4vw, 3.5rem);
+  --text-lead: 1.375rem;
+  --text-body-l: 1.125rem;
+  --text-body: 1rem;
+  --text-small: 0.875rem;
+  --text-label: 0.75rem;
+  --ease: cubic-bezier(0.2, 0.7, 0.2, 1);
+  --dur-fast: 120ms;
+  --dur-base: 180ms;
+  color-scheme: light;
+}
+:root[data-theme="dusk"] {
+  color-scheme: dark;
+  --paper: #0E1618;
+  --sand: #131E21;
+  --card: #172327;
+  --ink: #E9EFEF;
+  --ink-rgb: 233, 239, 239;
+  --muted: #9DAEB1;
+  --accent-text: #9CC3EA;
+  --accent: #6FAAE6;
+  --accent-tint: #13283A;
+  --on-ink: #0E1618;
+  --shadow-rgb: 0, 0, 0;
+}
+
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: var(--text-body);
+  line-height: 1.5;
+}
+
+#component {
+  width: 1280px;
+  min-height: 800px;
+  padding: var(--space-9) var(--space-8);
+  background: var(--paper);
+}
+
+.step {
+  width: 720px;
+  margin: 0 auto;
+}
+
+.progress-label {
+  margin: 0;
+  font-family: var(--font-label);
+  font-weight: 500;
+  font-size: var(--text-label);
+  letter-spacing: var(--tracking-label);
+  text-transform: uppercase;
+  color: var(--accent-text);
+}
+.progress-bar {
+  display: flex;
+  gap: var(--space-2);
+  margin: var(--space-3) 0 0;
+  padding: 0;
+  list-style: none;
+}
+.progress-bar li {
+  flex: 1;
+  height: 4px;
+  border-radius: var(--radius-pill);
+  background: var(--accent-tint);
+}
+.progress-bar li.done { background: var(--accent); }
+
+h1 {
+  margin: var(--space-7) 0 0;
+  font-family: var(--font-display);
+  font-weight: 300;
+  font-size: var(--text-display-xl);
+  line-height: 1.1;
+  text-transform: uppercase;
+  color: var(--ink);
+}
+.intro {
+  margin: var(--space-4) 0 0;
+  font-size: var(--text-body-l);
+  color: var(--muted);
+}
+
+.options {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  margin: var(--space-7) 0 0;
+  padding: 0;
+  list-style: none;
+}
+.option {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-5);
+  padding: var(--space-5);
+  background: var(--card);
+  border: 1px solid rgba(var(--ink-rgb), 0.1);
+  border-radius: var(--radius-card);
+}
+.option-name {
+  margin: 0;
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: var(--text-lead);
+  line-height: 1.3;
+  color: var(--ink);
+}
+.option-desc {
+  margin: var(--space-1) 0 0;
+  font-size: var(--text-body);
+  color: var(--muted);
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
+  padding: 0 var(--space-5);
+  border: 1px solid transparent;
+  border-radius: var(--radius-pill);
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: var(--text-body);
+  line-height: 1;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: background var(--dur-base) var(--ease), color var(--dur-base) var(--ease), border-color var(--dur-base) var(--ease);
+}
+.btn:focus-visible {
+  outline: 2px solid var(--accent-text);
+  outline-offset: 2px;
+}
+.btn--outline {
+  background: transparent;
+  color: var(--ink);
+  border-color: var(--ink);
+}
+.btn--outline:hover { background: var(--accent-tint); }
+.btn--fill {
+  background: var(--ink);
+  color: var(--on-ink);
+}
+.btn--fill:hover { background: var(--accent-text); }
+.btn--plain {
+  background: transparent;
+  color: var(--ink);
+}
+.btn--plain:hover { background: var(--accent-tint); }
+
+.actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: var(--space-3);
+  margin: var(--space-6) 0 0;
+}
+</style>
+</head>
+<body>
+<div id="component">
+  <main class="step">
+    <p class="progress-label">Step 2 of 4</p>
+    <ol class="progress-bar" aria-hidden="true">
+      <li class="done"></li>
+      <li class="done"></li>
+      <li></li>
+      <li></li>
+    </ol>
+
+    <h1>Connect your tools</h1>
+    <p class="intro">Harbor works best with the tools your team already uses.</p>
+
+    <ul class="options">
+      <li class="option">
+        <div>
+          <h2 class="option-name">Slack</h2>
+          <p class="option-desc">Get request updates in your channels</p>
+        </div>
+        <button class="btn btn--outline" type="button">Connect</button>
+      </li>
+      <li class="option">
+        <div>
+          <h2 class="option-name">Google Calendar</h2>
+          <p class="option-desc">See due dates on your calendar</p>
+        </div>
+        <button class="btn btn--outline" type="button">Connect</button>
+      </li>
+      <li class="option">
+        <div>
+          <h2 class="option-name">Jira</h2>
+          <p class="option-desc">Link requests to engineering tickets</p>
+        </div>
+        <button class="btn btn--outline" type="button">Connect</button>
+      </li>
+    </ul>
+
+    <div class="actions">
+      <button class="btn btn--plain" type="button">Skip for Now</button>
+      <button class="btn btn--fill" type="button">Continue</button>
+    </div>
+  </main>
+</div>
+</body>
+</html>

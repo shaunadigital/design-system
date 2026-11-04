@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Audit log</title>
+<style>
+  @import url("https://fonts.googleapis.com/css2?family=Fraunces:wght@600&family=Instrument+Sans:wght@400;600&display=swap");
+  body { margin: 0; background: #F4EFE6; }
+  #component {
+    width: 1280px;
+    box-sizing: border-box;
+    margin: 0 auto;
+    padding: 64px 80px;
+    background: #FBF8F2;
+    color: #1E2B24;
+    font-family: "Instrument Sans", "Helvetica Neue", Arial, sans-serif;
+    font-size: 16px;
+    line-height: 1.5;
+  }
+  #component h1 {
+    margin: 0 0 32px;
+    font-family: Fraunces, Georgia, "Times New Roman", serif;
+    font-weight: 600;
+    font-size: 32px;
+    line-height: 1.2;
+  }
+  #component .filter { margin-bottom: 24px; }
+  #component label { display: block; margin-bottom: 4px; font-weight: 600; }
+  #component select {
+    font: inherit;
+    color: #1E2B24;
+    background: #FBF8F2;
+    padding: 8px 12px;
+    min-width: 200px;
+    border: 1px solid #1E2B24;
+    border-radius: 4px;
+  }
+  #component select:focus { outline: 3px solid #C2410C; outline-offset: 2px; }
+  #component ul { list-style: none; margin: 0; padding: 0; border-top: 2px solid #1E2B24; }
+  #component li {
+    display: grid;
+    grid-template-columns: 200px 200px 1fr;
+    gap: 24px;
+    padding: 16px 0;
+    border-bottom: 1px solid #1E2B24;
+  }
+  #component .time { color: #C2410C; font-weight: 600; }
+  #component .person { font-weight: 600; }
+</style>
+</head>
+<body>
+<div id="component">
+  <h1>Audit log</h1>
+  <div class="filter">
+    <label for="date-range">Date range</label>
+    <select id="date-range" name="date-range">
+      <option selected>Last 7 days</option>
+    </select>
+  </div>
+  <ul>
+    <li><span class="time">Today 9:14</span><span class="person">Maya Chen</span><span class="action">Changed Leo Park's role to Editor</span></li>
+    <li><span class="time">Today 8:02</span><span class="person">Leo Park</span><span class="action">Approved Q4 travel budget</span></li>
+    <li><span class="time">Yesterday 17:40</span><span class="person">Ana Ruiz</span><span class="action">Closed VPN access for contractors</span></li>
+    <li><span class="time">Yesterday 11:05</span><span class="person">Sam Ito</span><span class="action">Invited kai@harbor.app</span></li>
+    <li><span class="time">Oct 16 15:22</span><span class="person">Maya Chen</span><span class="action">Exported requests</span></li>
+    <li><span class="time">Oct 16 10:10</span><span class="person">Kai Lee</span><span class="action">Signed in from a new device</span></li>
+    <li><span class="time">Oct 15 14:48</span><span class="person">Leo Park</span><span class="action">Updated billing details</span></li>
+    <li><span class="time">Oct 15 09:30</span><span class="person">Maya Chen</span><span class="action">Created workspace Harbor Ops</span></li>
+  </ul>
+</div>
+</body>
+</html>

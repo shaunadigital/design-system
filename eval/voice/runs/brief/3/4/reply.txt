@@ -1,0 +1,1 @@
+You can see them on the system page at shauna dot dev slash system. It's a live specimen of the whole design system, with the colours, the two typefaces, the type sizes and the spacing. Everything is built from one token file, so what you see there is the source of truth.

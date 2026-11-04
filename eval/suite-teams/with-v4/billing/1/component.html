@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Billing · Harbor</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+/* Tokens copied from tokens.css (generated; day theme) */
+:root {
+  --paper: #FFFFFF;
+  --card: #FFFFFF;
+  --ink: #0B1416;
+  --ink-rgb: 11, 20, 22;
+  --muted: #55656A;
+  --accent-text: #0263AC;
+  --accent-tint: #E6EFF7;
+  --on-ink: #FFFFFF;
+  --font-display: 'Unbounded', system-ui, sans-serif;
+  --font-body: 'Archivo', system-ui, -apple-system, sans-serif;
+  --font-label: 'Archivo', system-ui, sans-serif;
+  --font-hero: 'Unbounded', system-ui, sans-serif;
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 24px;
+  --space-6: 32px;
+  --space-7: 48px;
+  --radius-card: 16px;
+  --radius-pill: 999px;
+  --tracking-label: 0.14em;
+  --text-hero: clamp(1.5rem, 3.34vw, 3rem);
+  --text-heading: clamp(1.75rem, 3.2vw, 2.875rem);
+  --text-step: clamp(1.375rem, 1.9vw, 1.75rem);
+  --text-lead: 1.375rem;
+  --text-body: 1rem;
+  --text-small: 0.875rem;
+  --text-label: 0.75rem;
+  --ease: cubic-bezier(0.2, 0.7, 0.2, 1);
+  --dur-base: 180ms;
+}
+
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--paper); color: var(--ink); font-family: var(--font-body); font-size: var(--text-body); }
+
+#component { width: 1280px; background: var(--paper); }
+#component .page { max-width: 1120px; margin: 0 auto; padding: var(--space-7) var(--space-6) 0; }
+#component .page > * + * { margin-top: var(--space-6); }
+
+#component .top { display: flex; align-items: center; justify-content: space-between; }
+#component h1 { margin: 0; font-family: var(--font-display); font-weight: 300; font-size: var(--text-heading); text-transform: uppercase; }
+#component h2 { margin: 0; font-family: var(--font-display); font-weight: 300; font-size: var(--text-step); text-transform: uppercase; }
+
+#component .card { background: var(--card); border: 1px solid rgba(var(--ink-rgb), 0.1); border-radius: var(--radius-card); padding: var(--space-5); }
+
+#component .plan { display: flex; align-items: center; justify-content: space-between; gap: var(--space-5); }
+#component .plan h2 { font-family: var(--font-display); font-weight: 500; font-size: var(--text-lead); text-transform: none; }
+#component .price { margin: var(--space-3) 0 0; display: flex; align-items: baseline; gap: var(--space-2); }
+#component .price .amount { font-family: var(--font-hero); font-weight: 300; font-size: var(--text-hero); }
+#component .price .unit { font-size: var(--text-small); color: var(--muted); }
+#component .seats { margin: var(--space-3) 0 0; font-size: var(--text-body); color: var(--muted); }
+
+#component .btn { display: inline-flex; align-items: center; justify-content: center; height: 44px; padding: 0 20px; border-radius: var(--radius-pill); font: inherit; font-weight: 600; font-size: var(--text-small); cursor: pointer; transition: opacity var(--dur-base) var(--ease); }
+#component .btn--primary { background: var(--ink); color: var(--on-ink); border: 0; }
+#component .btn--primary:hover { opacity: 0.88; }
+#component .btn:focus-visible { outline: 2px solid var(--accent-text); outline-offset: 2px; }
+
+#component .invoices h2 { margin-bottom: var(--space-4); }
+#component table { width: 100%; border-collapse: collapse; font-size: var(--text-small); text-align: left; }
+#component th { height: 44px; font-family: var(--font-label); font-weight: 500; font-size: var(--text-label); letter-spacing: var(--tracking-label); text-transform: uppercase; color: var(--muted); border-bottom: 1px solid rgba(var(--ink-rgb), 0.1); }
+#component td { height: 52px; padding: 0; border-bottom: 1px solid rgba(var(--ink-rgb), 0.1); }
+#component tbody tr:last-child td { border-bottom: 0; }
+#component .pill { display: inline-block; padding: 2px 10px; border-radius: var(--radius-pill); background: var(--accent-tint); color: var(--accent-text); font-size: var(--text-label); font-weight: 600; }
+</style>
+</head>
+<body>
+<div id="component">
+  <main class="page">
+    <div class="top">
+      <h1>Billing</h1>
+    </div>
+
+    <section class="card plan" aria-label="Current plan">
+      <div>
+        <h2>Team plan</h2>
+        <p class="price"><span class="amount">$24</span><span class="unit">per seat per month</span></p>
+        <p class="seats">18 of 25 seats used</p>
+      </div>
+      <button class="btn btn--primary" type="button">Change Plan</button>
+    </section>
+
+    <section class="card invoices">
+      <h2>Invoices</h2>
+      <table>
+        <thead>
+          <tr><th scope="col">Date</th><th scope="col">Amount</th><th scope="col">Status</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Oct 1, 2026</td><td>$432.00</td><td><span class="pill">Paid</span></td></tr>
+          <tr><td>Sep 1, 2026</td><td>$432.00</td><td><span class="pill">Paid</span></td></tr>
+          <tr><td>Aug 1, 2026</td><td>$408.00</td><td><span class="pill">Paid</span></td></tr>
+          <tr><td>Jul 1, 2026</td><td>$408.00</td><td><span class="pill">Paid</span></td></tr>
+        </tbody>
+      </table>
+    </section>
+  </main>
+</div>
+</body>
+</html>

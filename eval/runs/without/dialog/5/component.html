@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Delete this chat?</title>
+<style>
+  :root {
+    --ink: #0B1416;
+    --accent: #0263AC;
+    --bg: #FFFFFF;
+  }
+  * { box-sizing: border-box; }
+  html, body { height: 100%; margin: 0; }
+  body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: "Archivo", system-ui, -apple-system, "Segoe UI", Arial, sans-serif;
+  }
+  #component {
+    width: 440px;
+    max-width: calc(100% - 48px);
+  }
+  .dialog {
+    background: var(--bg);
+    border: 1px solid var(--ink);
+    border-radius: 4px;
+    padding: 32px;
+    box-shadow: 0 12px 32px rgba(11, 20, 22, 0.16);
+  }
+  .dialog h2 {
+    margin: 0 0 16px;
+    font-family: "Unbounded", "Archivo", system-ui, sans-serif;
+    font-weight: 300;
+    font-size: 20px;
+    line-height: 1.3;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+  }
+  .dialog p {
+    margin: 0 0 32px;
+    font-size: 16px;
+    line-height: 1.5;
+  }
+  .actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 12px;
+  }
+  button {
+    min-height: 44px;
+    padding: 0 24px;
+    border: 2px solid var(--accent);
+    border-radius: 4px;
+    font: inherit;
+    font-weight: 600;
+    cursor: pointer;
+  }
+  .cancel { background: var(--bg); color: var(--accent); }
+  .delete { background: var(--accent); color: #fff; }
+  button:focus-visible {
+    outline: 3px solid var(--ink);
+    outline-offset: 2px;
+  }
+</style>
+</head>
+<body>
+  <div id="component">
+    <div class="dialog" role="alertdialog" aria-modal="true" aria-labelledby="dialog-title" aria-describedby="dialog-desc">
+      <h2 id="dialog-title">Delete this chat?</h2>
+      <p id="dialog-desc">The chat and its messages will be removed. This can't be undone.</p>
+      <div class="actions">
+        <button type="button" class="cancel">Cancel</button>
+        <button type="button" class="delete">Delete</button>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

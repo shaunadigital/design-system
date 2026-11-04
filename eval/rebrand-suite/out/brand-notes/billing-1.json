@@ -1,0 +1,54 @@
+{
+ "size": {
+  "w": 1280,
+  "h": 774.375
+ },
+ "elements": 1,
+ "oldElements": 1,
+ "offElements": 0,
+ "pieces": [
+  {
+   "tag": "button",
+   "text": "Change Plan",
+   "box": {
+    "x": 1018.984375,
+    "y": 206.59375,
+    "w": 148.015625,
+    "h": 52
+   },
+   "hits": [
+    {
+     "k": "old",
+     "what": "text",
+     "v": "255,255,255"
+    }
+   ]
+  }
+ ],
+ "oldPieces": 1,
+ "values": {
+  "old": [
+   "text:255,255,255"
+  ],
+  "off": []
+ },
+ "all": [
+  {
+   "tag": "button",
+   "text": "Change Plan",
+   "box": {
+    "x": 1018.984375,
+    "y": 206.59375,
+    "w": 148.015625,
+    "h": 52
+   },
+   "hits": [
+    {
+     "k": "old",
+     "what": "text",
+     "v": "255,255,255"
+    }
+   ]
+  }
+ ]
+}

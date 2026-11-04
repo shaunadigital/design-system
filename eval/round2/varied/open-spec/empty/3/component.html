@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Requests</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; }
+
+  html, body {
+    margin: 0;
+    padding: 0;
+    background: #FFFFFF;
+  }
+
+  #component {
+    width: 1280px;
+    height: 800px;
+    display: flex;
+    flex-direction: column;
+    background: #FFFFFF;
+    color: #0B1416;
+    font-family: "Archivo", "Helvetica Neue", Arial, sans-serif;
+    font-size: 16px;
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  #component .topbar {
+    height: 64px;
+    flex: none;
+    display: flex;
+    align-items: center;
+    padding: 0 64px;
+    border-bottom: 1px solid #E6EFF7;
+  }
+
+  #component .brand {
+    font-family: "Unbounded", "Helvetica Neue", Arial, sans-serif;
+    font-weight: 500;
+    font-size: 16px;
+    letter-spacing: -0.01em;
+    color: #0B1416;
+  }
+
+  #component main {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    padding: 48px 64px 64px;
+    min-height: 0;
+  }
+
+  #component h1 {
+    margin: 0;
+    font-family: "Unbounded", "Helvetica Neue", Arial, sans-serif;
+    font-weight: 300;
+    font-size: 56px;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    text-transform: uppercase;
+    color: #0B1416;
+  }
+
+  #component .panel {
+    flex: 1;
+    margin-top: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #FFFFFF;
+    border: 1px dashed #9CC3EA;
+    border-radius: 16px;
+    padding: 48px;
+  }
+
+  #component .message {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    max-width: 520px;
+  }
+
+  #component .icon {
+    width: 64px;
+    height: 64px;
+    border-radius: 999px;
+    background: #EEF4FA;
+    color: #0263AC;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  #component .icon svg {
+    width: 24px;
+    height: 24px;
+    display: block;
+  }
+
+  #component h2 {
+    margin: 24px 0 0;
+    font-family: "Unbounded", "Helvetica Neue", Arial, sans-serif;
+    font-weight: 500;
+    font-size: 28px;
+    line-height: 1.2;
+    letter-spacing: -0.02em;
+    color: #0B1416;
+  }
+
+  #component .message p {
+    margin: 12px 0 0;
+    font-size: 18px;
+    line-height: 1.5;
+    letter-spacing: 0;
+    color: #55656A;
+  }
+
+  #component .actions {
+    margin-top: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+
+  #component .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 48px;
+    padding: 0 32px;
+    border-radius: 999px;
+    background: #0B1416;
+    color: #FFFFFF;
+    font-family: "Archivo", "Helvetica Neue", Arial, sans-serif;
+    font-weight: 500;
+    font-size: 16px;
+    letter-spacing: 0.02em;
+    text-decoration: none;
+    border: 0;
+    transition: background-color 180ms cubic-bezier(0.2, 0.7, 0.2, 1);
+  }
+
+  #component .btn:hover { background: #0263AC; }
+
+  #component .link {
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
+    padding: 0 16px;
+    border-radius: 999px;
+    color: #0263AC;
+    font-size: 16px;
+    font-weight: 500;
+    letter-spacing: 0.02em;
+    text-decoration: underline;
+    text-underline-offset: 4px;
+    text-decoration-thickness: 1px;
+    transition: background-color 120ms cubic-bezier(0.2, 0.7, 0.2, 1);
+  }
+
+  #component .link:hover { background: #E6EFF7; }
+
+  #component .btn:focus-visible,
+  #component .link:focus-visible {
+    outline: 2px solid #0263AC;
+    outline-offset: 2px;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    #component .btn, #component .link { transition: none; }
+  }
+</style>
+</head>
+<body>
+<div id="component">
+  <header class="topbar">
+    <span class="brand">Harbor</span>
+  </header>
+  <main>
+    <h1>Requests</h1>
+    <section class="panel" aria-labelledby="empty-title">
+      <div class="message">
+        <div class="icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M3 13h5l1.5 3h5L16 13h5"/>
+            <path d="M5.5 5h13l2.5 8v5a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1v-5z"/>
+          </svg>
+        </div>
+        <h2 id="empty-title">No requests yet</h2>
+        <p>When your team asks for something, it shows up here.</p>
+        <div class="actions">
+          <a class="btn" href="#">Create a Request</a>
+          <a class="link" href="#">Import from a spreadsheet</a>
+        </div>
+      </div>
+    </section>
+  </main>
+</div>
+</body>
+</html>

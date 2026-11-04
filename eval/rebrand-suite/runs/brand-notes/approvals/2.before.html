@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Approvals</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+  * { box-sizing: border-box; }
+  body { margin: 0; background: #fff; }
+  #component {
+    width: 1280px;
+    min-height: 720px;
+    margin: 0 auto;
+    padding: 32px 40px;
+    background: #fff;
+    color: #0B1416;
+    font-family: "Archivo", Arial, sans-serif;
+    font-size: 15px;
+    line-height: 1.4;
+  }
+  #component h1 {
+    margin: 0 0 4px;
+    font-family: "Unbounded", "Archivo", Arial, sans-serif;
+    font-weight: 300;
+    font-size: 28px;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+  }
+  #component .summary {
+    margin: 0 0 20px;
+    font-size: 16px;
+    font-weight: 600;
+  }
+  #component .head,
+  #component .item {
+    display: grid;
+    grid-template-columns: 1fr 220px 110px 220px;
+    align-items: center;
+    column-gap: 24px;
+    padding: 0 16px;
+  }
+  #component .head {
+    padding-bottom: 8px;
+    font-size: 13px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    border-bottom: 2px solid #0B1416;
+  }
+  #component .head .amount, #component .item .amount { text-align: right; }
+  #component ul { list-style: none; margin: 0; padding: 0; }
+  #component .item {
+    min-height: 56px;
+    border-bottom: 1px solid #0B1416;
+  }
+  #component .title { font-weight: 600; font-size: 16px; }
+  #component .amount {
+    font-weight: 700;
+    font-size: 16px;
+    font-variant-numeric: tabular-nums;
+  }
+  #component .actions { display: flex; gap: 8px; justify-content: flex-end; }
+  #component button {
+    min-width: 96px;
+    height: 36px;
+    padding: 0 14px;
+    border: 2px solid #0263AC;
+    border-radius: 4px;
+    font-family: inherit;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+  }
+  #component button.approve { background: #0263AC; color: #fff; }
+  #component button.decline { background: #fff; color: #0263AC; }
+  #component button:focus-visible { outline: 3px solid #0B1416; outline-offset: 2px; }
+</style>
+</head>
+<body>
+<main id="component">
+  <h1>Approvals</h1>
+  <p class="summary">3 waiting for you</p>
+
+  <div class="head" aria-hidden="true">
+    <span>Request</span><span>Requester</span><span class="amount">Amount</span><span></span>
+  </div>
+  <ul>
+    <li class="item">
+      <span class="title">Q4 travel budget</span>
+      <span class="requester">Leo Park</span>
+      <span class="amount">$4,800</span>
+      <span class="actions"><button type="button" class="approve">Approve</button><button type="button" class="decline">Decline</button></span>
+    </li>
+    <li class="item">
+      <span class="title">Design conference tickets</span>
+      <span class="requester">Maya Chen</span>
+      <span class="amount">$1,250</span>
+      <span class="actions"><button type="button" class="approve">Approve</button><button type="button" class="decline">Decline</button></span>
+    </li>
+    <li class="item">
+      <span class="title">Standing desks for support</span>
+      <span class="requester">Ana Ruiz</span>
+      <span class="amount">$2,100</span>
+      <span class="actions"><button type="button" class="approve">Approve</button><button type="button" class="decline">Decline</button></span>
+    </li>
+  </ul>
+</main>
+</body>
+</html>

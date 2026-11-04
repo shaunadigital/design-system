@@ -1,0 +1,170 @@
+{
+ "run": "2026-11-02, Claude Sonnet 5.5 via Claude Code (safe mode), 12 Harbor screens x 5 builds x 2 wordings x 2 groups = 240 builds, 0 errors",
+ "groups": {
+  "open-spec": "standard DESIGN.md",
+  "with-v4": "final system (DESIGN.md v4 + tokens)"
+ },
+ "byWording_n2": {
+  "same/open-spec": {
+   "builds": 24,
+   "passed": 23,
+   "buttons": 18,
+   "fields": 7,
+   "textColors": 4,
+   "backgrounds": 5,
+   "corners": 4,
+   "fontSizes": 9,
+   "top3ButtonShare": 50
+  },
+  "same/with-v4": {
+   "builds": 24,
+   "passed": 24,
+   "buttons": 6,
+   "fields": 2,
+   "textColors": 4,
+   "backgrounds": 5,
+   "corners": 5,
+   "fontSizes": 9,
+   "top3ButtonShare": 82
+  },
+  "varied/open-spec": {
+   "builds": 24,
+   "passed": 23,
+   "buttons": 19,
+   "fields": 9,
+   "textColors": 4,
+   "backgrounds": 7,
+   "corners": 5,
+   "fontSizes": 8,
+   "top3ButtonShare": 49
+  },
+  "varied/with-v4": {
+   "builds": 24,
+   "passed": 24,
+   "buttons": 5,
+   "fields": 2,
+   "textColors": 4,
+   "backgrounds": 7,
+   "corners": 5,
+   "fontSizes": 8,
+   "top3ButtonShare": 88
+  }
+ },
+ "byWording_n5": {
+  "same/open-spec": {
+   "builds": 60,
+   "passed": 59,
+   "buttons": 25,
+   "fields": 10,
+   "textColors": 4,
+   "backgrounds": 7,
+   "corners": 4,
+   "fontSizes": 9,
+   "top3ButtonShare": 43
+  },
+  "same/with-v4": {
+   "builds": 60,
+   "passed": 60,
+   "buttons": 6,
+   "fields": 2,
+   "textColors": 4,
+   "backgrounds": 5,
+   "corners": 5,
+   "fontSizes": 9,
+   "top3ButtonShare": 78
+  },
+  "varied/open-spec": {
+   "builds": 60,
+   "passed": 59,
+   "buttons": 25,
+   "fields": 15,
+   "textColors": 4,
+   "backgrounds": 7,
+   "corners": 6,
+   "fontSizes": 9,
+   "top3ButtonShare": 43
+  },
+  "varied/with-v4": {
+   "builds": 60,
+   "passed": 60,
+   "buttons": 7,
+   "fields": 4,
+   "textColors": 4,
+   "backgrounds": 8,
+   "corners": 5,
+   "fontSizes": 10,
+   "top3ButtonShare": 87
+  }
+ },
+ "growth": {
+  "open-spec": [
+   {
+    "pages": 24,
+    "passed": 24,
+    "buttonStyles": 14,
+    "fieldStyles": 7
+   },
+   {
+    "pages": 48,
+    "passed": 46,
+    "buttonStyles": 25,
+    "fieldStyles": 10
+   },
+   {
+    "pages": 72,
+    "passed": 70,
+    "buttonStyles": 25,
+    "fieldStyles": 10
+   },
+   {
+    "pages": 96,
+    "passed": 94,
+    "buttonStyles": 28,
+    "fieldStyles": 12
+   },
+   {
+    "pages": 120,
+    "passed": 118,
+    "buttonStyles": 30,
+    "fieldStyles": 16
+   }
+  ],
+  "with-v4": [
+   {
+    "pages": 24,
+    "passed": 24,
+    "buttonStyles": 6,
+    "fieldStyles": 2
+   },
+   {
+    "pages": 48,
+    "passed": 48,
+    "buttonStyles": 6,
+    "fieldStyles": 2
+   },
+   {
+    "pages": 72,
+    "passed": 72,
+    "buttonStyles": 7,
+    "fieldStyles": 3
+   },
+   {
+    "pages": 96,
+    "passed": 96,
+    "buttonStyles": 7,
+    "fieldStyles": 4
+   },
+   {
+    "pages": 120,
+    "passed": 120,
+    "buttonStyles": 7,
+    "fieldStyles": 4
+   }
+  ]
+ },
+ "failures": [
+  "same/open-spec/notifications/2: copy",
+  "varied/open-spec/audit/2: copy"
+ ],
+ "estimatedCostUSD": 55.0
+}

@@ -1,0 +1,241 @@
+{
+ "sizes": {
+  "card": [
+   468,
+   624
+  ],
+  "menu": [
+   288,
+   320
+  ],
+  "dialog": [
+   528,
+   324
+  ],
+  "sidebar": [
+   336,
+   688
+  ],
+  "composer": [
+   768,
+   236
+  ],
+  "rebrand-without-original": [
+   960,
+   1360
+  ],
+  "rebrand-without-new": [
+   960,
+   1360
+  ],
+  "rebrand-with-original": [
+   960,
+   1360
+  ],
+  "rebrand-with-new": [
+   960,
+   1360
+  ]
+ },
+ "results": {
+  "without": {
+   "card": 0,
+   "menu": 0,
+   "dialog": 0,
+   "sidebar": 0,
+   "composer": 4
+  },
+  "open-spec": {
+   "card": 10,
+   "menu": 10,
+   "dialog": 10,
+   "sidebar": 0,
+   "composer": 10
+  },
+  "with": {
+   "card": 10,
+   "menu": 10,
+   "dialog": 10,
+   "sidebar": 0,
+   "composer": 10
+  },
+  "with-v2": {
+   "card": 10,
+   "menu": 10,
+   "dialog": 10,
+   "sidebar": 10,
+   "composer": 10
+  },
+  "with-v3": {
+   "card": 10,
+   "menu": 10,
+   "dialog": 10,
+   "sidebar": 10,
+   "composer": 10
+  }
+ },
+ "spread": {
+  "without": {
+   "card": [
+    8,
+    14
+   ],
+   "menu": [
+    9,
+    90
+   ],
+   "dialog": [
+    0,
+    2
+   ],
+   "sidebar": [
+    0,
+    66
+   ],
+   "composer": [
+    32,
+    16
+   ]
+  },
+  "with": {
+   "card": [
+    6,
+    8
+   ],
+   "menu": [
+    19,
+    23
+   ],
+   "dialog": [
+    0,
+    19
+   ],
+   "sidebar": [
+    3,
+    37
+   ],
+   "composer": [
+    12,
+    46
+   ]
+  },
+  "with-v2": {
+   "card": [
+    0,
+    4
+   ],
+   "menu": [
+    6,
+    7
+   ],
+   "dialog": [
+    0,
+    16
+   ],
+   "sidebar": [
+    4,
+    24
+   ],
+   "composer": [
+    24,
+    50
+   ]
+  },
+  "with-v3": {
+   "card": [
+    0,
+    8
+   ],
+   "menu": [
+    0,
+    5
+   ],
+   "dialog": [
+    0,
+    0
+   ],
+   "sidebar": [
+    0,
+    0
+   ],
+   "composer": [
+    0,
+    4
+   ]
+  }
+ },
+ "suite": {
+  "without": {
+   "passed": 0,
+   "of": 24,
+   "buttons": 32,
+   "fields": 14,
+   "textColors": 12,
+   "backgrounds": 13,
+   "corners": 12,
+   "fontSizes": 15
+  },
+  "open-spec": {
+   "passed": 22,
+   "of": 24,
+   "buttons": 16,
+   "fields": 9,
+   "textColors": 4,
+   "backgrounds": 6,
+   "corners": 6,
+   "fontSizes": 9
+  },
+  "with-v3": {
+   "passed": 22,
+   "of": 24,
+   "buttons": 21,
+   "fields": 11,
+   "textColors": 4,
+   "backgrounds": 9,
+   "corners": 6,
+   "fontSizes": 10
+  },
+  "with-v4": {
+   "passed": 24,
+   "of": 24,
+   "buttons": 7,
+   "fields": 2,
+   "textColors": 4,
+   "backgrounds": 6,
+   "corners": 5,
+   "fontSizes": 9
+  }
+ },
+ "suiteSameWording": {
+  "without": {
+   "passed": 0,
+   "of": 24,
+   "buttons": 19,
+   "fields": 7,
+   "textColors": 4,
+   "backgrounds": 7,
+   "corners": 6,
+   "fontSizes": 12
+  },
+  "open-spec": {
+   "passed": 24,
+   "of": 24,
+   "buttons": 14,
+   "fields": 7,
+   "textColors": 4,
+   "backgrounds": 6,
+   "corners": 4,
+   "fontSizes": 9
+  },
+  "with-v3": {
+   "passed": 23,
+   "of": 24,
+   "buttons": 15,
+   "fields": 9,
+   "textColors": 4,
+   "backgrounds": 7,
+   "corners": 6,
+   "fontSizes": 10
+  }
+ }
+}

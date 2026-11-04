@@ -1,0 +1,1 @@
+You can download it from the case study called Testing a design system on Claude. It's linked there, and it includes the scripts, fixtures, builds and scores. Want the details of what the test found?

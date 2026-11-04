@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=1280">
+<title>Audit log</title>
+<style>
+:root {
+  --paper: #FFFFFF;
+  --card: #FFFFFF;
+  --ink: #0B1416;
+  --ink-rgb: 11, 20, 22;
+  --muted: #55656A;
+  --accent-text: #0263AC;
+  --accent: #0263AC;
+  --accent-tint: #E6EFF7;
+  --shadow-rgb: 11, 20, 22;
+  --font-display: 'Unbounded', system-ui, sans-serif;
+  --font-body: 'Archivo', system-ui, -apple-system, sans-serif;
+  --font-label: 'Archivo', system-ui, sans-serif;
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 24px;
+  --space-6: 32px;
+  --space-7: 48px;
+  --space-8: 64px;
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-card: 16px;
+  --radius-pill: 999px;
+  --tracking-snug: -0.01em;
+  --tracking-label: 0.14em;
+  --text-heading: clamp(1.75rem, 3.2vw, 2.875rem);
+  --text-body: 1rem;
+  --text-small: 0.875rem;
+  --text-label: 0.75rem;
+  --ease: cubic-bezier(0.2, 0.7, 0.2, 1);
+  --dur-fast: 120ms;
+  --dur-base: 180ms;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: var(--text-body);
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+#component {
+  width: 1280px;
+  min-height: 800px;
+  background: var(--paper);
+  padding: var(--space-7) var(--space-6);
+}
+
+.page {
+  max-width: 1120px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6);
+}
+
+.top {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: var(--space-6);
+}
+
+h1 {
+  margin: 0;
+  font-family: var(--font-display);
+  font-weight: 300;
+  font-size: var(--text-heading);
+  line-height: 1.1;
+  letter-spacing: var(--tracking-snug);
+  text-transform: uppercase;
+}
+
+.label {
+  display: block;
+  font-family: var(--font-label);
+  font-weight: 500;
+  font-size: var(--text-label);
+  letter-spacing: var(--tracking-label);
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.field { width: 240px; }
+.field .label { margin-bottom: var(--space-2); }
+
+.select-wrap { position: relative; }
+
+.select-wrap select {
+  appearance: none;
+  -webkit-appearance: none;
+  display: block;
+  width: 100%;
+  height: 44px;
+  margin: 0;
+  padding: 0 40px 0 12px;
+  font: inherit;
+  font-size: var(--text-body);
+  color: var(--ink);
+  background: var(--card);
+  border: 1px solid rgba(var(--ink-rgb), 0.2);
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition: border-color var(--dur-fast) var(--ease);
+}
+
+.select-wrap select:hover { border-color: rgba(var(--ink-rgb), 0.4); }
+
+.select-wrap select:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 0;
+}
+
+.select-wrap svg {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  width: 20px;
+  height: 20px;
+  margin-top: -10px;
+  color: var(--ink);
+  pointer-events: none;
+}
+
+.card {
+  background: var(--card);
+  border: 1px solid rgba(var(--ink-rgb), 0.1);
+  border-radius: var(--radius-card);
+  padding: var(--space-5);
+  box-shadow: 0 24px 48px -32px rgba(var(--shadow-rgb), 0.18);
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: fixed;
+  font-size: var(--text-small);
+}
+
+th {
+  height: 44px;
+  padding: 0 var(--space-3);
+  text-align: left;
+  font-family: var(--font-label);
+  font-weight: 500;
+  font-size: var(--text-label);
+  letter-spacing: var(--tracking-label);
+  text-transform: uppercase;
+  color: var(--muted);
+  border-bottom: 1px solid rgba(var(--ink-rgb), 0.1);
+}
+
+td {
+  height: 52px;
+  padding: 0 var(--space-3);
+  vertical-align: middle;
+  border-bottom: 1px solid rgba(var(--ink-rgb), 0.1);
+}
+
+tbody tr:last-child td { border-bottom: 0; }
+
+tbody tr { transition: background var(--dur-fast) var(--ease); }
+
+.col-time { width: 200px; }
+.col-person { width: 240px; }
+
+.time {
+  color: var(--muted);
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+.time b {
+  color: var(--ink);
+  font-weight: 600;
+}
+
+.person {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  font-weight: 500;
+}
+
+.avatar {
+  flex: none;
+  width: 28px;
+  height: 28px;
+  border-radius: var(--radius-pill);
+  background: var(--accent-tint);
+  color: var(--accent-text);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: var(--text-label);
+  font-weight: 600;
+  line-height: 1;
+}
+
+.action { color: var(--ink); }
+</style>
+</head>
+<body>
+<div id="component">
+  <main class="page">
+    <div class="top">
+      <h1>Audit log</h1>
+      <div class="field">
+        <label class="label" for="date-range">Date range</label>
+        <div class="select-wrap">
+          <select id="date-range" name="date-range">
+            <option selected>Last 7 days</option>
+          </select>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+        </div>
+      </div>
+    </div>
+
+    <section class="card" aria-label="Events">
+      <table>
+        <thead>
+          <tr>
+            <th class="col-time" scope="col">Time</th>
+            <th class="col-person" scope="col">Person</th>
+            <th scope="col">Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="time"><b>Today</b> 9:14</td>
+            <td><span class="person"><span class="avatar" aria-hidden="true">MC</span>Maya Chen</span></td>
+            <td class="action">Changed Leo Park's role to Editor</td>
+          </tr>
+          <tr>
+            <td class="time"><b>Today</b> 8:02</td>
+            <td><span class="person"><span class="avatar" aria-hidden="true">LP</span>Leo Park</span></td>
+            <td class="action">Approved Q4 travel budget</td>
+          </tr>
+          <tr>
+            <td class="time"><b>Yesterday</b> 17:40</td>
+            <td><span class="person"><span class="avatar" aria-hidden="true">AR</span>Ana Ruiz</span></td>
+            <td class="action">Closed VPN access for contractors</td>
+          </tr>
+          <tr>
+            <td class="time"><b>Yesterday</b> 11:05</td>
+            <td><span class="person"><span class="avatar" aria-hidden="true">SI</span>Sam Ito</span></td>
+            <td class="action">Invited kai@harbor.app</td>
+          </tr>
+          <tr>
+            <td class="time"><b>Oct 16</b> 15:22</td>
+            <td><span class="person"><span class="avatar" aria-hidden="true">MC</span>Maya Chen</span></td>
+            <td class="action">Exported requests</td>
+          </tr>
+          <tr>
+            <td class="time"><b>Oct 16</b> 10:10</td>
+            <td><span class="person"><span class="avatar" aria-hidden="true">KL</span>Kai Lee</span></td>
+            <td class="action">Signed in from a new device</td>
+          </tr>
+          <tr>
+            <td class="time"><b>Oct 15</b> 14:48</td>
+            <td><span class="person"><span class="avatar" aria-hidden="true">LP</span>Leo Park</span></td>
+            <td class="action">Updated billing details</td>
+          </tr>
+          <tr>
+            <td class="time"><b>Oct 15</b> 09:30</td>
+            <td><span class="person"><span class="avatar" aria-hidden="true">MC</span>Maya Chen</span></td>
+            <td class="action">Created workspace Harbor Ops</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+  </main>
+</div>
+</body>
+</html>

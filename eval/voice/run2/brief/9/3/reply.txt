@@ -1,0 +1,1 @@
+Every control in the chat composer is forty-four pixels, so it's easy to hit. You can use it entirely from the keyboard. Enter sends, Shift plus Enter starts a new line, and Escape stops a reply. It also makes announcements for screen readers as things change. You can try it live on the system page of shauna dot dev.

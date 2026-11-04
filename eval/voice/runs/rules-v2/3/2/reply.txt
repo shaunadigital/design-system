@@ -1,0 +1,1 @@
+You can see them on the System page of Shauna's site, which is a live specimen of the whole design system. The tokens themselves live in one tokens file in the repo. Want the details?

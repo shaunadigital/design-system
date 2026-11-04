@@ -1,0 +1,1 @@
+Both passed almost every test, but her system gave much more consistent results. Across 240 page builds, a standard design file made 30 button styles and 16 field styles. Her system made 7 and 4. Want the details?

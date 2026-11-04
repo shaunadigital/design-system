@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Notifications</title>
+<style>
+  * { box-sizing: border-box; }
+  body { margin: 0; background: #F4EFE6; }
+  #component {
+    width: 1280px;
+    min-height: 720px;
+    padding: 48px 64px 64px;
+    background: #F4EFE6;
+    color: #1E2B24;
+    font-family: "Instrument Sans", Arial, sans-serif;
+    font-size: 16px;
+    line-height: 1.5;
+  }
+  #component .head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 32px;
+    margin-bottom: 32px;
+  }
+  #component h1 {
+    margin: 0;
+    font-family: "Fraunces", Georgia, serif;
+    font-weight: 400;
+    font-size: 56px;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+  }
+  #component .btn {
+    min-height: 44px;
+    padding: 8px 24px;
+    border: 0;
+    border-radius: 4px;
+    background: #1E2B24;
+    color: #FBF8F2;
+    font-family: "Instrument Sans", Arial, sans-serif;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 1.5;
+    cursor: pointer;
+    transition: background-color 180ms cubic-bezier(0.2, 0.7, 0.2, 1);
+  }
+  #component .btn:focus-visible { outline: 2px solid #C2410C; outline-offset: 4px; }
+  #component ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    border: 1px solid #E9E1D2;
+    border-radius: 6px;
+    overflow: hidden;
+    background: #FBF8F2;
+  }
+  #component li {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    min-height: 52px;
+    padding: 8px 24px;
+    background: #FBF8F2;
+    border-top: 1px solid #E9E1D2;
+  }
+  #component li:first-child { border-top: 0; }
+  #component li.unread { background: #F6DFD0; font-weight: 600; }
+  #component .dot {
+    flex: none;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: transparent;
+  }
+  #component li.unread .dot { background: #C2410C; }
+  #component .text { flex: 1; }
+  #component time {
+    flex: none;
+    font-size: 14px;
+    font-weight: 400;
+    color: #5E6B63;
+  }
+  #component li.unread time { color: #1E2B24; }
+  #component .sr {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    white-space: nowrap;
+  }
+</style>
+</head>
+<body>
+<div id="component">
+  <div class="head">
+    <h1>Notifications</h1>
+    <button class="btn" type="button">Mark All as Read</button>
+  </div>
+  <ul>
+    <li class="unread"><span class="dot" aria-hidden="true"></span><span class="text"><span class="sr">Unread: </span>Leo Park approved Q4 travel budget</span><time>2h ago</time></li>
+    <li class="unread"><span class="dot" aria-hidden="true"></span><span class="text"><span class="sr">Unread: </span>Maya Chen assigned you Laptop refresh for design</span><time>3h ago</time></li>
+    <li class="unread"><span class="dot" aria-hidden="true"></span><span class="text"><span class="sr">Unread: </span>Your weekly summary is ready</span><time>1d ago</time></li>
+    <li><span class="dot" aria-hidden="true"></span><span class="text">Ana Ruiz commented on VPN access for contractors</span><time>1d ago</time></li>
+    <li><span class="dot" aria-hidden="true"></span><span class="text">Sam Ito joined Harbor Ops</span><time>2d ago</time></li>
+    <li><span class="dot" aria-hidden="true"></span><span class="text">Billing details were updated</span><time>3d ago</time></li>
+  </ul>
+</div>
+</body>
+</html>

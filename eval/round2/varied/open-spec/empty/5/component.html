@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Harbor: Requests</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+  *, *::before, *::after { box-sizing: border-box; }
+
+  html, body {
+    margin: 0;
+    padding: 0;
+    background: #FFFFFF;
+  }
+
+  body {
+    font-family: "Archivo", system-ui, -apple-system, "Segoe UI", Arial, sans-serif;
+    font-size: 16px;
+    line-height: 1.5;
+    color: #0B1416;
+  }
+
+  #component {
+    width: 1280px;
+    min-height: 800px;
+    margin: 0 auto;
+    padding: 48px 64px 64px;
+    background: #FFFFFF;
+    color: #0B1416;
+  }
+
+  .page-header {
+    padding-bottom: 24px;
+    border-bottom: 1px solid #9CC3EA;
+  }
+
+  .page-title {
+    margin: 0;
+    font-family: "Unbounded", "Archivo", system-ui, sans-serif;
+    font-weight: 300;
+    font-size: 56px;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    text-transform: uppercase;
+    color: #0B1416;
+  }
+
+  .empty {
+    margin-top: 32px;
+    padding: 96px 32px;
+    background: #FFFFFF;
+    border: 1px solid #9CC3EA;
+    border-radius: 16px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .empty-title {
+    margin: 0;
+    font-family: "Unbounded", "Archivo", system-ui, sans-serif;
+    font-weight: 500;
+    font-size: 28px;
+    line-height: 1.2;
+    letter-spacing: -0.01em;
+    color: #0B1416;
+  }
+
+  .empty-text {
+    margin: 12px 0 0;
+    max-width: 480px;
+    font-size: 16px;
+    line-height: 1.5;
+    color: #55656A;
+  }
+
+  .actions {
+    margin-top: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 24px;
+  }
+
+  .btn-primary {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 44px;
+    padding: 0 24px;
+    border: 1px solid #0B1416;
+    border-radius: 999px;
+    background: #0B1416;
+    color: #FFFFFF;
+    font-family: "Archivo", system-ui, sans-serif;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 1;
+    letter-spacing: 0;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background-color 180ms cubic-bezier(0.2, 0.7, 0.2, 1),
+                color 180ms cubic-bezier(0.2, 0.7, 0.2, 1);
+  }
+
+  .btn-primary:hover {
+    background: #0263AC;
+    border-color: #0263AC;
+  }
+
+  .link {
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
+    padding: 0 8px;
+    color: #0263AC;
+    font-size: 16px;
+    font-weight: 500;
+    text-decoration: underline;
+    text-underline-offset: 4px;
+    text-decoration-thickness: 1px;
+    border-radius: 8px;
+    transition: background-color 120ms cubic-bezier(0.2, 0.7, 0.2, 1);
+  }
+
+  .link:hover {
+    background: #E6EFF7;
+  }
+
+  .btn-primary:focus-visible,
+  .link:focus-visible {
+    outline: 2px solid #0263AC;
+    outline-offset: 2px;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .btn-primary, .link { transition: none; }
+  }
+</style>
+</head>
+<body>
+  <div id="component">
+    <header class="page-header">
+      <h1 class="page-title">Requests</h1>
+    </header>
+
+    <main class="empty">
+      <h2 class="empty-title">No requests yet</h2>
+      <p class="empty-text">When your team asks for something, it shows up here.</p>
+      <div class="actions">
+        <a class="btn-primary" href="#create">Create a Request</a>
+        <a class="link" href="#import">Import from a spreadsheet</a>
+      </div>
+    </main>
+  </div>
+</body>
+</html>

@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Chat menu</title>
+<style>
+  :root {
+    --ink: #0B1416;
+    --accent: #0263AC;
+    --bg: #ffffff;
+    --line: rgba(11, 20, 22, 0.14);
+    --hover: rgba(2, 99, 172, 0.08);
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; min-height: 100%; background: var(--bg); }
+  body {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: "Archivo", system-ui, -apple-system, "Segoe UI", Arial, sans-serif;
+    color: var(--ink);
+  }
+  #component {
+    position: relative;
+    width: 220px;
+    height: 240px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+  }
+  .trigger {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    height: 44px;
+    padding: 0 14px 0 16px;
+    font: 500 15px/1 "Archivo", system-ui, sans-serif;
+    color: var(--bg);
+    background: var(--accent);
+    border: 1px solid var(--accent);
+    border-radius: 8px;
+    cursor: pointer;
+    outline: 2px solid var(--ink);
+    outline-offset: 2px;
+  }
+  .trigger svg { width: 16px; height: 16px; transform: rotate(180deg); }
+  .menu {
+    position: absolute;
+    top: 52px;
+    right: 0;
+    width: 100%;
+    margin: 0;
+    padding: 6px;
+    list-style: none;
+    background: var(--bg);
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    box-shadow: 0 8px 24px rgba(11, 20, 22, 0.12);
+  }
+  .item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    width: 100%;
+    height: 40px;
+    padding: 0 12px;
+    font: 400 15px/1 "Archivo", system-ui, sans-serif;
+    color: var(--ink);
+    background: none;
+    border: 0;
+    border-radius: 6px;
+    text-align: left;
+    cursor: pointer;
+  }
+  .item svg { width: 18px; height: 18px; flex: none; }
+  .item:hover { background: var(--hover); color: var(--accent); }
+  .item:focus-visible { outline: 2px solid var(--accent); outline-offset: -2px; }
+  .sep { height: 1px; margin: 6px 6px; background: var(--line); }
+  .item.danger { font-weight: 600; }
+</style>
+</head>
+<body>
+  <div id="component">
+    <button class="trigger" type="button" aria-haspopup="menu" aria-expanded="true" aria-controls="chat-menu">
+      Chat options
+      <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 6l5 5 5-5"/></svg>
+    </button>
+    <ul class="menu" id="chat-menu" role="menu" aria-label="Chat options">
+      <li role="none">
+        <button class="item" type="button" role="menuitem">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20h4L19 9l-4-4L4 16z"/><path d="M13.5 6.5l4 4"/></svg>
+          Rename
+        </button>
+      </li>
+      <li role="none">
+        <button class="item" type="button" role="menuitem">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="6" cy="12" r="2.5"/><circle cx="18" cy="6" r="2.5"/><circle cx="18" cy="18" r="2.5"/><path d="M8.2 10.8l7.6-3.6M8.2 13.2l7.6 3.6"/></svg>
+          Share
+        </button>
+      </li>
+      <li role="none">
+        <button class="item" type="button" role="menuitem">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="5" rx="1"/><path d="M5 9v10h14V9M10 13h4"/></svg>
+          Archive
+        </button>
+      </li>
+      <li class="sep" role="separator"></li>
+      <li role="none">
+        <button class="item danger" type="button" role="menuitem">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 7h16M9 7V4h6v3M6 7l1 13h10l1-13M10 11v6M14 11v6"/></svg>
+          Delete
+        </button>
+      </li>
+    </ul>
+  </div>
+</body>
+</html>

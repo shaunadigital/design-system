@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Notifications – Harbor</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+  * { box-sizing: border-box; }
+  body { margin: 0; background: #fff; }
+  #component {
+    width: 1280px;
+    min-height: 720px;
+    margin: 0 auto;
+    padding: 64px 0 96px;
+    background: #fff;
+    color: #0B1416;
+    font-family: Archivo, "Helvetica Neue", Arial, sans-serif;
+    font-size: 16px;
+    line-height: 1.5;
+  }
+  #component .wrap { width: 800px; margin: 0 auto; }
+  #component header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-bottom: 24px;
+    border-bottom: 2px solid #0B1416;
+  }
+  #component h1 {
+    margin: 0;
+    font-family: Unbounded, "Helvetica Neue", Arial, sans-serif;
+    font-weight: 300;
+    font-size: 32px;
+    line-height: 1.2;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+  #component button {
+    font: inherit;
+    font-weight: 600;
+    color: #fff;
+    background: #0263AC;
+    border: 2px solid #0263AC;
+    border-radius: 4px;
+    padding: 10px 20px;
+    cursor: pointer;
+  }
+  #component button:hover { background: #0B1416; border-color: #0B1416; }
+  #component button:focus-visible,
+  #component a:focus-visible { outline: 3px solid #0B1416; outline-offset: 3px; }
+  #component ul { list-style: none; margin: 0; padding: 0; }
+  #component li {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 20px 16px;
+    border-bottom: 1px solid #0B1416;
+  }
+  #component li.unread { background: #EAF3FA; }
+  #component .dot {
+    flex: none;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    border: 2px solid #0263AC;
+  }
+  #component .unread .dot { background: #0263AC; }
+  #component .text { flex: 1; font-size: 17px; }
+  #component .unread .text { font-weight: 600; }
+  #component time { flex: none; font-size: 14px; color: #0B1416; }
+  #component .sr {
+    position: absolute;
+    width: 1px; height: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    white-space: nowrap;
+  }
+</style>
+</head>
+<body>
+<div id="component">
+  <main class="wrap">
+    <header>
+      <h1>Notifications</h1>
+      <button type="button">Mark All as Read</button>
+    </header>
+    <ul>
+      <li class="unread"><span class="dot" aria-hidden="true"></span><span class="text"><span class="sr">Unread: </span>Leo Park approved Q4 travel budget</span><time>2h ago</time></li>
+      <li class="unread"><span class="dot" aria-hidden="true"></span><span class="text"><span class="sr">Unread: </span>Maya Chen assigned you Laptop refresh for design</span><time>3h ago</time></li>
+      <li class="unread"><span class="dot" aria-hidden="true"></span><span class="text"><span class="sr">Unread: </span>Your weekly summary is ready</span><time>1d ago</time></li>
+      <li><span class="dot" aria-hidden="true" style="border-color:transparent"></span><span class="text">Ana Ruiz commented on VPN access for contractors</span><time>1d ago</time></li>
+      <li><span class="dot" aria-hidden="true" style="border-color:transparent"></span><span class="text">Sam Ito joined Harbor Ops</span><time>2d ago</time></li>
+      <li><span class="dot" aria-hidden="true" style="border-color:transparent"></span><span class="text">Billing details were updated</span><time>3d ago</time></li>
+    </ul>
+  </main>
+</div>
+</body>
+</html>

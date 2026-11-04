@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>New request</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+  * { box-sizing: border-box; }
+  body { margin: 0; background: #fff; color: #0B1416; font-family: Archivo, "Helvetica Neue", Arial, sans-serif; }
+  #component { width: 1280px; min-height: 800px; margin: 0 auto; background: #fff; padding: 64px 0; }
+  .form-wrap { width: 640px; margin: 0 auto; }
+  h1 { font-family: Unbounded, "Helvetica Neue", Arial, sans-serif; font-weight: 300; text-transform: uppercase; font-size: 32px; line-height: 1.2; letter-spacing: 0.02em; margin: 0 0 40px; color: #0B1416; }
+  .field { margin-bottom: 24px; }
+  .row { display: flex; gap: 24px; }
+  .row .field { flex: 1; }
+  label { display: block; font-size: 16px; font-weight: 600; margin-bottom: 8px; color: #0B1416; }
+  input, select, textarea { display: block; width: 100%; font: inherit; font-size: 16px; color: #0B1416; background: #fff; border: 1px solid #0B1416; border-radius: 4px; padding: 12px 14px; min-height: 48px; }
+  textarea { min-height: 140px; resize: vertical; line-height: 1.5; }
+  input:focus, select:focus, textarea:focus, button:focus { outline: 3px solid #0263AC; outline-offset: 2px; }
+  .actions { display: flex; justify-content: flex-end; gap: 16px; margin-top: 40px; }
+  button { font: inherit; font-size: 16px; font-weight: 600; min-height: 48px; padding: 12px 24px; border-radius: 4px; cursor: pointer; border: 2px solid #0263AC; }
+  .cancel { background: #fff; color: #0263AC; }
+  .primary { background: #0263AC; color: #fff; }
+</style>
+</head>
+<body>
+<div id="component">
+  <main class="form-wrap">
+    <h1>New request</h1>
+    <form action="#" method="post">
+      <div class="field">
+        <label for="title">Title</label>
+        <input type="text" id="title" name="title">
+      </div>
+      <div class="field">
+        <label for="description">Description</label>
+        <textarea id="description" name="description"></textarea>
+      </div>
+      <div class="row">
+        <div class="field">
+          <label for="priority">Priority</label>
+          <select id="priority" name="priority">
+            <option>Low</option>
+            <option>Medium</option>
+            <option>High</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="assignee">Assignee</label>
+          <select id="assignee" name="assignee">
+            <option>Maya Chen</option>
+            <option>Leo Park</option>
+            <option>Ana Ruiz</option>
+          </select>
+        </div>
+      </div>
+      <div class="field">
+        <label for="due">Due date</label>
+        <input type="date" id="due" name="due">
+      </div>
+      <div class="actions">
+        <button type="button" class="cancel">Cancel</button>
+        <button type="submit" class="primary">Create Request</button>
+      </div>
+    </form>
+  </main>
+</div>
+</body>
+</html>

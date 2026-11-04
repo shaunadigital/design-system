@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Working Session</title>
+<style>
+  :root {
+    --ink: #0B1416;
+    --accent: #0263AC;
+    --bg: #ffffff;
+    --heading: "Unbounded", "Unbounded Light", "Arial Black", Arial, sans-serif;
+    --body: "Archivo", "Helvetica Neue", Arial, sans-serif;
+  }
+
+  * { box-sizing: border-box; }
+
+  html, body { margin: 0; }
+
+  body {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: var(--body);
+  }
+
+  #component {
+    width: 100%;
+    max-width: 400px;
+    padding: 40px;
+    background: var(--bg);
+    border: 1px solid var(--ink);
+    border-radius: 8px;
+  }
+
+  .label {
+    margin: 0 0 12px;
+    font-size: 0.8125rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    color: var(--accent);
+  }
+
+  .title {
+    margin: 0 0 24px;
+    font-family: var(--heading);
+    font-weight: 300;
+    font-size: 1.75rem;
+    line-height: 1.2;
+    text-transform: uppercase;
+  }
+
+  .price {
+    margin: 0 0 20px;
+    display: flex;
+    align-items: baseline;
+    gap: 8px;
+  }
+
+  .amount {
+    font-family: var(--heading);
+    font-weight: 300;
+    font-size: 2.5rem;
+    line-height: 1;
+  }
+
+  .unit {
+    font-size: 1rem;
+  }
+
+  .description {
+    margin: 0 0 24px;
+    font-size: 1rem;
+    line-height: 1.6;
+  }
+
+  .included {
+    margin: 0 0 32px;
+    padding: 24px 0 0;
+    list-style: none;
+    border-top: 1px solid var(--ink);
+  }
+
+  .included li {
+    position: relative;
+    padding-left: 28px;
+    font-size: 1rem;
+    line-height: 1.5;
+  }
+
+  .included li + li { margin-top: 12px; }
+
+  .included li::before {
+    content: "";
+    position: absolute;
+    left: 4px;
+    top: 0.3em;
+    width: 6px;
+    height: 11px;
+    border: solid var(--accent);
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg);
+  }
+
+  .button {
+    display: block;
+    width: 100%;
+    padding: 16px 24px;
+    background: var(--accent);
+    color: #ffffff;
+    border: 2px solid var(--accent);
+    border-radius: 6px;
+    font-family: var(--body);
+    font-size: 1rem;
+    font-weight: 600;
+    text-align: center;
+    text-decoration: none;
+  }
+
+  .button:hover { background: var(--ink); border-color: var(--ink); }
+
+  .button:focus-visible {
+    outline: 3px solid var(--ink);
+    outline-offset: 3px;
+  }
+</style>
+</head>
+<body>
+  <div id="component">
+    <p class="label">One-on-One</p>
+    <h2 class="title">Working Session</h2>
+    <p class="price"><span class="amount">$150</span> <span class="unit">per hour</span></p>
+    <p class="description">One focused hour on your project. Bring a problem or a rough idea and we move it forward together.</p>
+    <ul class="included">
+      <li>60 minutes on a video call</li>
+      <li>Live design and build feedback</li>
+      <li>Written notes and next steps</li>
+    </ul>
+    <a class="button" href="#">Book a Session</a>
+  </div>
+</body>
+</html>

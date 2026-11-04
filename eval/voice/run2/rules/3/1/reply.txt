@@ -1,0 +1,1 @@
+You can see the design tokens on the System page, which is a live specimen of the whole design system. It shows the colours, type sizes and spacing, in both Day and Dusk themes. Want the details?

@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Requests | Harbor</title>
+<style>
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: #FFFFFF;
+    color: #0B1416;
+    font-family: "Archivo", system-ui, -apple-system, "Segoe UI", sans-serif;
+    font-size: 16px;
+    line-height: 1.5;
+  }
+  #component {
+    width: 1280px;
+    margin: 0 auto;
+    padding: 64px 64px 96px;
+    background: #FFFFFF;
+  }
+  h1 {
+    margin: 0 0 48px;
+    font-family: "Unbounded", system-ui, sans-serif;
+    font-weight: 300;
+    font-size: 56px;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    text-transform: uppercase;
+  }
+  .toolbar {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-end;
+    gap: 24px 32px;
+    margin-bottom: 32px;
+  }
+  .field { display: flex; flex-direction: column; gap: 8px; width: 384px; }
+  .label {
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 16px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: #55656A;
+  }
+  input[type="search"] {
+    height: 44px;
+    width: 100%;
+    padding: 0 16px;
+    border: 1px solid #55656A;
+    border-radius: 12px;
+    background: #FFFFFF;
+    color: #0B1416;
+    font: inherit;
+    font-size: 16px;
+    transition: border-color 120ms cubic-bezier(0.2, 0.7, 0.2, 1);
+  }
+  input[type="search"]:hover { border-color: #0263AC; }
+  .filters { display: flex; gap: 8px; }
+  .btn {
+    min-height: 44px;
+    padding: 0 24px;
+    border: 1px solid transparent;
+    border-radius: 999px;
+    background: transparent;
+    color: #0B1416;
+    font: inherit;
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 180ms cubic-bezier(0.2, 0.7, 0.2, 1), border-color 180ms cubic-bezier(0.2, 0.7, 0.2, 1);
+  }
+  .btn:hover { background: #E6EFF7; }
+  .btn[aria-pressed="true"] { background: #E6EFF7; border-color: #9CC3EA; color: #0263AC; }
+  .btn-primary { background: #0B1416; color: #FFFFFF; margin-left: auto; }
+  .btn-primary:hover { background: #0263AC; }
+  .btn:focus-visible, input:focus-visible { outline: 2px solid #0263AC; outline-offset: 2px; }
+
+  .card {
+    border: 1px solid #9CC3EA;
+    border-radius: 16px;
+    background: #FFFFFF;
+    overflow: hidden;
+  }
+  table { width: 100%; border-collapse: collapse; text-align: left; }
+  th {
+    padding: 16px 24px;
+    background: #EEF4FA;
+    border-bottom: 1px solid #9CC3EA;
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 16px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: #55656A;
+  }
+  td {
+    padding: 16px 24px;
+    border-bottom: 1px solid #EEF4FA;
+    vertical-align: middle;
+  }
+  tbody tr:last-child td { border-bottom: 0; }
+  tbody tr { transition: background-color 120ms cubic-bezier(0.2, 0.7, 0.2, 1); }
+  tbody tr:hover { background: #E6EFF7; }
+  td:first-child { font-weight: 500; }
+  td:last-child { color: #55656A; }
+  @media (prefers-reduced-motion: reduce) {
+    * { transition: none !important; }
+  }
+</style>
+</head>
+<body>
+<div id="component">
+  <h1>Requests</h1>
+
+  <div class="toolbar">
+    <div class="field">
+      <label class="label" for="search">Search requests</label>
+      <input id="search" type="search" name="search">
+    </div>
+    <div class="filters" role="group" aria-label="Filter requests">
+      <button class="btn" type="button" aria-pressed="true">All</button>
+      <button class="btn" type="button" aria-pressed="false">Open</button>
+      <button class="btn" type="button" aria-pressed="false">Closed</button>
+    </div>
+    <button class="btn btn-primary" type="button">New Request</button>
+  </div>
+
+  <div class="card">
+    <table>
+      <thead>
+        <tr>
+          <th scope="col">Request</th>
+          <th scope="col">Requester</th>
+          <th scope="col">Status</th>
+          <th scope="col">Priority</th>
+          <th scope="col">Updated</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>Laptop refresh for design</td><td>Maya Chen</td><td>Open</td><td>High</td><td>2h ago</td></tr>
+        <tr><td>Q4 travel budget</td><td>Leo Park</td><td>Approved</td><td>Medium</td><td>5h ago</td></tr>
+        <tr><td>VPN access for contractors</td><td>Ana Ruiz</td><td>Closed</td><td>High</td><td>1d ago</td></tr>
+        <tr><td>New hire onboarding</td><td>Sam Ito</td><td>Open</td><td>Medium</td><td>1d ago</td></tr>
+        <tr><td>Office move</td><td>Kai Lee</td><td>In review</td><td>Low</td><td>2d ago</td></tr>
+        <tr><td>Security training</td><td>Ava Brooks</td><td>Open</td><td>Low</td><td>3d ago</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+</body>
+</html>

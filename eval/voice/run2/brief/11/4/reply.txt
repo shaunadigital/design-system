@@ -1,0 +1,1 @@
+You can get it from the case study called Testing a design system on Claude. It's on the work page of shauna dot dev. The download has the scripts, fixtures, builds and scores from the second round.

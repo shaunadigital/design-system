@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Requests</title>
+<meta name="viewport" content="width=1280">
+<style>
+  *, *::before, *::after { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; background: #FFFFFF; }
+  body {
+    font-family: "Archivo", system-ui, -apple-system, "Segoe UI", sans-serif;
+    font-size: 16px;
+    line-height: 1.5;
+    color: #0B1416;
+  }
+
+  #component {
+    width: 1280px;
+    min-height: 800px;
+    margin: 0 auto;
+    padding: 64px 64px 96px;
+    background: #FFFFFF;
+    color: #0B1416;
+  }
+
+  #component h1 {
+    margin: 0 0 48px;
+    font-family: "Unbounded", "Archivo", system-ui, sans-serif;
+    font-weight: 300;
+    font-size: 56px;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    text-transform: uppercase;
+  }
+
+  #component .empty {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 96px 64px;
+    background: #FFFFFF;
+    border: 1px solid #9CC3EA;
+    border-radius: 16px;
+  }
+
+  #component .empty h2 {
+    margin: 0 0 8px;
+    font-family: "Unbounded", "Archivo", system-ui, sans-serif;
+    font-weight: 500;
+    font-size: 28px;
+    line-height: 1.2;
+    letter-spacing: -0.01em;
+  }
+
+  #component .empty p {
+    margin: 0 0 32px;
+    max-width: 480px;
+    font-size: 16px;
+    color: #55656A;
+  }
+
+  #component .actions {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+  }
+
+  #component .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 44px;
+    padding: 0 24px;
+    border-radius: 999px;
+    font-family: inherit;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 1;
+    text-decoration: none;
+    background: #0B1416;
+    color: #FFFFFF;
+    border: 1px solid #0B1416;
+    transition: background-color 180ms cubic-bezier(0.2, 0.7, 0.2, 1),
+                border-color 180ms cubic-bezier(0.2, 0.7, 0.2, 1);
+  }
+  #component .btn:hover { background: #0263AC; border-color: #0263AC; }
+
+  #component .link {
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
+    padding: 0 12px;
+    border-radius: 999px;
+    font-size: 16px;
+    font-weight: 500;
+    color: #0263AC;
+    text-decoration: underline;
+    text-underline-offset: 4px;
+    transition: background-color 120ms cubic-bezier(0.2, 0.7, 0.2, 1);
+  }
+  #component .link:hover { background: #E6EFF7; }
+
+  #component .btn:focus-visible,
+  #component .link:focus-visible {
+    outline: 2px solid #0263AC;
+    outline-offset: 2px;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    #component .btn, #component .link { transition: none; }
+  }
+</style>
+</head>
+<body>
+<div id="component">
+  <h1>Requests</h1>
+  <section class="empty" aria-labelledby="empty-title">
+    <h2 id="empty-title">No requests yet</h2>
+    <p>When your team asks for something, it shows up here.</p>
+    <div class="actions">
+      <a class="btn" href="#create">Create a Request</a>
+      <a class="link" href="#import">Import from a spreadsheet</a>
+    </div>
+  </section>
+</div>
+</body>
+</html>

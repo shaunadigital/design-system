@@ -1,0 +1,7 @@
+It all starts from one token file. That single file builds the site's styles, her Figma library, and the rules Claude reads when it builds pages. So people and Claude work from the same source.
+
+The rules themselves live in a file called design dot m d at the root of the project. The system has two typefaces, twelve type sizes, a four pixel spacing base, nine base colors, and Day and Dusk themes.
+
+A set of seven checks runs on every build. They cover things like text contrast, using tokens only, and accessible labels.
+
+In her tests, Claude built pages from her system with fewer button and field styles than from a standard rules file. You can see the live specimen on the system page of the site, or I can tell you more about that test.

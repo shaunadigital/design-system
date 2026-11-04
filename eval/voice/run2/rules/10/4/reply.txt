@@ -1,0 +1,1 @@
+A standard design file is just written rules. Her system builds from one token file, so the rules, the styles and the Figma library all match. In her test of 240 pages, both passed almost every check. But her system made far fewer button and field styles. Want the details?

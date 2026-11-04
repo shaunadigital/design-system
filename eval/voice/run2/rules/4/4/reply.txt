@@ -1,0 +1,1 @@
+Both setups passed almost every page, but Shauna's system produced far more consistent buttons and fields. Standard rules passed 118 of 120 pages, with 30 button styles and 16 field styles. Her system passed all 120, with 7 button styles and 4 field styles. Want the details?

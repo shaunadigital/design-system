@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Workspace settings</title>
+<meta name="viewport" content="width=1280">
+<style>
+:root {
+  --paper: #FFFFFF;
+  --sand: #EEF4FA;
+  --card: #FFFFFF;
+  --ink: #0B1416;
+  --ink-rgb: 11, 20, 22;
+  --muted: #55656A;
+  --accent-text: #0263AC;
+  --accent: #0263AC;
+  --accent-tint: #E6EFF7;
+  --on-ink: #FFFFFF;
+  --font-display: 'Unbounded', system-ui, sans-serif;
+  --font-body: 'Archivo', system-ui, -apple-system, sans-serif;
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 24px;
+  --space-6: 32px;
+  --space-7: 48px;
+  --space-8: 64px;
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-card: 16px;
+  --radius-pill: 999px;
+  --tracking-tight: -0.02em;
+  --tracking-caps: 0.1em;
+  --text-display-xl: clamp(2rem, 4vw, 3.5rem);
+  --text-step: clamp(1.375rem, 1.9vw, 1.75rem);
+  --text-body: 1rem;
+  --text-small: 0.875rem;
+  --text-label: 0.75rem;
+  --ease: cubic-bezier(0.2, 0.7, 0.2, 1);
+  --dur-fast: 120ms;
+  --dur-base: 180ms;
+}
+
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--paper); color: var(--ink); font-family: var(--font-body); font-size: var(--text-body); }
+
+#component { width: 1280px; min-height: 900px; padding: var(--space-8); background: var(--paper); }
+#component .page { width: 720px; }
+
+h1, h2 { margin: 0; font-family: var(--font-display); font-weight: 300; text-transform: uppercase; }
+h1 { font-size: var(--text-display-xl); letter-spacing: var(--tracking-tight); line-height: 1.1; }
+h2 { font-size: var(--text-step); letter-spacing: var(--tracking-tight); line-height: 1.2; }
+
+.section { margin-top: var(--space-6); padding: var(--space-6); background: var(--card); border: 1px solid rgba(var(--ink-rgb), 0.1); border-radius: var(--radius-card); }
+.page h1 + .section { margin-top: var(--space-7); }
+.section h2 { margin-bottom: var(--space-5); }
+
+.field { display: flex; flex-direction: column; gap: var(--space-2); margin-bottom: var(--space-5); }
+.field label { font-weight: 500; font-size: var(--text-label); letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); }
+.field input { height: 44px; padding: 0 var(--space-4); font: inherit; font-size: var(--text-body); color: var(--ink); background: var(--card); border: 1px solid var(--muted); border-radius: var(--radius-sm); }
+.field input:focus-visible, .switch input:focus-visible, .btn:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+.btn { display: inline-flex; align-items: center; justify-content: center; min-height: 44px; padding: 0 var(--space-5); font: inherit; font-weight: 500; font-size: var(--text-body); color: var(--ink); background: transparent; border: 1px solid var(--ink); border-radius: var(--radius-pill); cursor: pointer; transition: opacity var(--dur-fast) var(--ease); }
+.btn:hover { opacity: 0.85; }
+.btn--fill { background: var(--ink); color: var(--on-ink); }
+
+.switch { display: flex; align-items: center; justify-content: space-between; gap: var(--space-5); min-height: 56px; border-top: 1px solid rgba(var(--ink-rgb), 0.1); cursor: pointer; }
+.switch:first-of-type { border-top: 0; }
+.switch span { font-size: var(--text-body); }
+.switch input { appearance: none; -webkit-appearance: none; flex: none; position: relative; width: 48px; height: 28px; margin: 0; border-radius: var(--radius-pill); background: var(--muted); cursor: pointer; transition: background var(--dur-base) var(--ease); }
+.switch input::after { content: ""; position: absolute; top: 3px; left: 3px; width: 22px; height: 22px; border-radius: 50%; background: var(--paper); transition: transform var(--dur-base) var(--ease); }
+.switch input:checked { background: var(--accent); }
+.switch input:checked::after { transform: translateX(20px); }
+
+.danger p { margin: 0 0 var(--space-5); font-size: var(--text-body); color: var(--muted); }
+</style>
+</head>
+<body>
+<div id="component">
+  <main class="page">
+    <h1>Workspace settings</h1>
+
+    <section class="section" aria-labelledby="general">
+      <h2 id="general">General</h2>
+      <div class="field">
+        <label for="ws-name">Workspace name</label>
+        <input id="ws-name" type="text" value="Harbor Ops">
+      </div>
+      <div class="field">
+        <label for="ws-url">Workspace URL</label>
+        <input id="ws-url" type="text" value="harbor.app/ops">
+      </div>
+      <button class="btn btn--fill" type="button">Save Changes</button>
+    </section>
+
+    <section class="section" aria-labelledby="notifications">
+      <h2 id="notifications">Notifications</h2>
+      <label class="switch"><span>Email me when a request is assigned to me</span><input type="checkbox" role="switch" checked></label>
+      <label class="switch"><span>Weekly summary</span><input type="checkbox" role="switch" checked></label>
+      <label class="switch"><span>Product updates</span><input type="checkbox" role="switch"></label>
+    </section>
+
+    <section class="section danger" aria-labelledby="danger">
+      <h2 id="danger">Danger zone</h2>
+      <p>Deleting a workspace removes all of its requests for everyone.</p>
+      <button class="btn" type="button">Delete Workspace</button>
+    </section>
+  </main>
+</div>
+</body>
+</html>

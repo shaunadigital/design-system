@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Audit log</title>
+<style>
+  * { box-sizing: border-box; }
+  body { margin: 0; background: #fff; color: #0B1416; font-family: Archivo, "Helvetica Neue", Arial, sans-serif; font-size: 16px; line-height: 1.5; }
+  #component { width: 1280px; margin: 0 auto; padding: 64px 80px; background: #fff; }
+  h1 { margin: 0 0 32px; font-family: Unbounded, "Helvetica Neue", Arial, sans-serif; font-weight: 300; font-size: 32px; line-height: 1.2; text-transform: uppercase; letter-spacing: 0.02em; }
+  .filter { display: flex; flex-direction: column; gap: 6px; width: 240px; margin-bottom: 32px; }
+  .filter label { font-size: 14px; font-weight: 600; }
+  .filter select { height: 44px; padding: 0 12px; font: inherit; color: #0B1416; background: #fff; border: 1px solid #0B1416; border-radius: 4px; }
+  .filter select:focus-visible { outline: 3px solid #0263AC; outline-offset: 2px; }
+  ul { list-style: none; margin: 0; padding: 0; border-top: 2px solid #0B1416; }
+  li { display: grid; grid-template-columns: 160px 200px 1fr; align-items: baseline; gap: 24px; padding: 18px 0; border-bottom: 1px solid #0B1416; }
+  .time { font-size: 14px; font-weight: 600; color: #0263AC; }
+  .person { font-weight: 600; }
+  .action { color: #0B1416; }
+</style>
+</head>
+<body>
+<div id="component">
+  <h1>Audit log</h1>
+  <div class="filter">
+    <label for="date-range">Date range</label>
+    <select id="date-range" name="date-range">
+      <option selected>Last 7 days</option>
+    </select>
+  </div>
+  <ul>
+    <li><span class="time">Today 9:14</span><span class="person">Maya Chen</span><span class="action">Changed Leo Park's role to Editor</span></li>
+    <li><span class="time">Today 8:02</span><span class="person">Leo Park</span><span class="action">Approved Q4 travel budget</span></li>
+    <li><span class="time">Yesterday 17:40</span><span class="person">Ana Ruiz</span><span class="action">Closed VPN access for contractors</span></li>
+    <li><span class="time">Yesterday 11:05</span><span class="person">Sam Ito</span><span class="action">Invited kai@harbor.app</span></li>
+    <li><span class="time">Oct 16 15:22</span><span class="person">Maya Chen</span><span class="action">Exported requests</span></li>
+    <li><span class="time">Oct 16 10:10</span><span class="person">Kai Lee</span><span class="action">Signed in from a new device</span></li>
+    <li><span class="time">Oct 15 14:48</span><span class="person">Leo Park</span><span class="action">Updated billing details</span></li>
+    <li><span class="time">Oct 15 09:30</span><span class="person">Maya Chen</span><span class="action">Created workspace Harbor Ops</span></li>
+  </ul>
+</div>
+</body>
+</html>

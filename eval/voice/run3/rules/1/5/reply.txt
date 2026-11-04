@@ -1,0 +1,1 @@
+It all starts from one tokens file. That file builds the website's styles, the Figma library, and the rules Claude reads. Those rules also live in a design document for people. A set of checks runs on every build to keep everything consistent. Want the details?

@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Workspace settings</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+  * { box-sizing: border-box; }
+  body { margin: 0; background: #fff; }
+  #component {
+    --ink: #0B1416;
+    --accent: #0263AC;
+    --muted: #4A5659;
+    --line: #DDE3E5;
+    width: 1280px;
+    min-height: 900px;
+    margin: 0 auto;
+    padding: 72px 0 96px;
+    background: #fff;
+    color: var(--ink);
+    font-family: "Archivo", "Helvetica Neue", Arial, sans-serif;
+    font-size: 16px;
+    line-height: 1.5;
+  }
+  #component .wrap { width: 720px; margin: 0 auto; }
+  #component h1, #component h2 {
+    font-family: "Unbounded", "Archivo", "Helvetica Neue", Arial, sans-serif;
+    font-weight: 300;
+    text-transform: uppercase;
+    margin: 0;
+    letter-spacing: 0.04em;
+  }
+  #component h1 { font-size: 32px; line-height: 1.2; margin-bottom: 48px; }
+  #component h2 { font-size: 15px; letter-spacing: 0.08em; }
+  #component section {
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    padding: 32px;
+    margin-bottom: 24px;
+    box-shadow: 0 1px 2px rgba(11,20,22,0.04);
+  }
+  #component .field { margin-top: 24px; }
+  #component label.lbl { display: block; font-weight: 600; font-size: 14px; margin-bottom: 8px; }
+  #component input[type="text"] {
+    width: 100%;
+    height: 44px;
+    padding: 0 14px;
+    border: 1px solid #A9B4B7;
+    border-radius: 8px;
+    font: inherit;
+    color: var(--ink);
+    background: #fff;
+  }
+  #component input[type="text"]:focus { outline: 3px solid rgba(2,99,172,0.3); border-color: var(--accent); }
+  #component .actions { margin-top: 28px; display: flex; justify-content: flex-end; }
+  #component button {
+    font: inherit;
+    font-weight: 600;
+    height: 44px;
+    padding: 0 22px;
+    border-radius: 8px;
+    cursor: pointer;
+  }
+  #component .primary { background: var(--accent); color: #fff; border: 1px solid var(--accent); }
+  #component .primary:hover { background: #02518F; }
+  #component button:focus-visible { outline: 3px solid rgba(2,99,172,0.4); outline-offset: 2px; }
+  #component .row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 18px 0;
+    border-bottom: 1px solid var(--line);
+  }
+  #component .rows { margin-top: 12px; }
+  #component .row:last-child { border-bottom: 0; padding-bottom: 0; }
+  #component .row label { font-weight: 500; cursor: pointer; flex: 1; }
+  #component .switch { position: relative; width: 44px; height: 26px; flex: none; }
+  #component .switch input {
+    position: absolute; inset: 0; width: 100%; height: 100%;
+    margin: 0; opacity: 0; cursor: pointer; z-index: 1;
+  }
+  #component .track {
+    position: absolute; inset: 0;
+    background: #8C999D;
+    border-radius: 13px;
+    transition: background .15s;
+  }
+  #component .track::after {
+    content: "";
+    position: absolute; top: 3px; left: 3px;
+    width: 20px; height: 20px;
+    background: #fff;
+    border-radius: 50%;
+    box-shadow: 0 1px 2px rgba(11,20,22,0.3);
+    transition: transform .15s;
+  }
+  #component .switch input:checked + .track { background: var(--accent); }
+  #component .switch input:checked + .track::after { transform: translateX(18px); }
+  #component .switch input:focus-visible + .track { outline: 3px solid rgba(2,99,172,0.4); outline-offset: 2px; }
+  #component .danger { border-color: var(--ink); }
+  #component .danger-body { display: flex; align-items: center; justify-content: space-between; gap: 32px; margin-top: 16px; }
+  #component .danger p { margin: 0; color: var(--muted); }
+  #component .delete {
+    background: #fff; color: var(--ink);
+    border: 2px solid var(--ink);
+    white-space: nowrap;
+  }
+  #component .delete:hover { background: var(--ink); color: #fff; }
+</style>
+</head>
+<body>
+<div id="component">
+  <main class="wrap">
+    <h1>Workspace settings</h1>
+
+    <section aria-labelledby="general">
+      <h2 id="general">General</h2>
+      <div class="field">
+        <label class="lbl" for="ws-name">Workspace name</label>
+        <input type="text" id="ws-name" value="Harbor Ops">
+      </div>
+      <div class="field">
+        <label class="lbl" for="ws-url">Workspace URL</label>
+        <input type="text" id="ws-url" value="harbor.app/ops">
+      </div>
+      <div class="actions"><button type="button" class="primary">Save Changes</button></div>
+    </section>
+
+    <section aria-labelledby="notifications">
+      <h2 id="notifications">Notifications</h2>
+      <div class="rows">
+        <div class="row">
+          <label for="n1">Email me when a request is assigned to me</label>
+          <span class="switch"><input type="checkbox" id="n1" role="switch" checked><span class="track"></span></span>
+        </div>
+        <div class="row">
+          <label for="n2">Weekly summary</label>
+          <span class="switch"><input type="checkbox" id="n2" role="switch" checked><span class="track"></span></span>
+        </div>
+        <div class="row">
+          <label for="n3">Product updates</label>
+          <span class="switch"><input type="checkbox" id="n3" role="switch"><span class="track"></span></span>
+        </div>
+      </div>
+    </section>
+
+    <section class="danger" aria-labelledby="danger">
+      <h2 id="danger">Danger zone</h2>
+      <div class="danger-body">
+        <p>Deleting a workspace removes all of its requests for everyone.</p>
+        <button type="button" class="delete">Delete Workspace</button>
+      </div>
+    </section>
+  </main>
+</div>
+</body>
+</html>

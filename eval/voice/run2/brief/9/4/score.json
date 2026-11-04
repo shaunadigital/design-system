@@ -1,0 +1,15 @@
+{
+ "pass": false,
+ "words": 76,
+ "longestSentence": 20,
+ "issues": {
+  "length": [
+   "76 words (limit 60)"
+  ],
+  "sentences": [],
+  "markdown": [],
+  "links": [],
+  "shorthand": [],
+  "emoji": []
+ }
+}

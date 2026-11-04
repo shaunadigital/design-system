@@ -1,0 +1,132 @@
+{
+ "run": "Claude Code, models: claude-sonnet-5-5",
+ "groups": {
+  "brief": {
+   "replies": 60,
+   "passed": 27,
+   "byRule": {
+    "length": 33,
+    "sentences": 6,
+    "markdown": 0,
+    "links": 4,
+    "shorthand": 0,
+    "emoji": 0
+   },
+   "medianWords": 79,
+   "byQuestion": {
+    "0": {
+     "replies": 5,
+     "passed": 5
+    },
+    "1": {
+     "replies": 5,
+     "passed": 0
+    },
+    "2": {
+     "replies": 5,
+     "passed": 0
+    },
+    "3": {
+     "replies": 5,
+     "passed": 5
+    },
+    "4": {
+     "replies": 5,
+     "passed": 0
+    },
+    "5": {
+     "replies": 5,
+     "passed": 5
+    },
+    "6": {
+     "replies": 5,
+     "passed": 5
+    },
+    "7": {
+     "replies": 5,
+     "passed": 0
+    },
+    "8": {
+     "replies": 5,
+     "passed": 0
+    },
+    "9": {
+     "replies": 5,
+     "passed": 2
+    },
+    "10": {
+     "replies": 5,
+     "passed": 0
+    },
+    "11": {
+     "replies": 5,
+     "passed": 5
+    }
+   }
+  },
+  "rules": {
+   "replies": 60,
+   "passed": 54,
+   "byRule": {
+    "length": 0,
+    "sentences": 3,
+    "markdown": 0,
+    "links": 3,
+    "shorthand": 0,
+    "emoji": 0
+   },
+   "medianWords": 35,
+   "byQuestion": {
+    "0": {
+     "replies": 5,
+     "passed": 5
+    },
+    "1": {
+     "replies": 5,
+     "passed": 5
+    },
+    "2": {
+     "replies": 5,
+     "passed": 3
+    },
+    "3": {
+     "replies": 5,
+     "passed": 5
+    },
+    "4": {
+     "replies": 5,
+     "passed": 5
+    },
+    "5": {
+     "replies": 5,
+     "passed": 5
+    },
+    "6": {
+     "replies": 5,
+     "passed": 5
+    },
+    "7": {
+     "replies": 5,
+     "passed": 4
+    },
+    "8": {
+     "replies": 5,
+     "passed": 5
+    },
+    "9": {
+     "replies": 5,
+     "passed": 5
+    },
+    "10": {
+     "replies": 5,
+     "passed": 2
+    },
+    "11": {
+     "replies": 5,
+     "passed": 5
+    }
+   }
+  }
+ },
+ "note": "byRule counts replies that broke that rule. A reply passes only if it breaks none."
+}

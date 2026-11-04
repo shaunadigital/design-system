@@ -1,0 +1,1 @@
+Seven checks run on every build. The main ones are text contrast in both day and dusk themes, colour, type and spacing coming only from the design tokens, and alt text and labels for accessibility. Want the other four?

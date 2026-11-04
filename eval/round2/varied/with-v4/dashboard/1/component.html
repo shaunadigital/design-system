@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=1280">
+<title>Overview · Harbor</title>
+<style>
+:root {
+  --paper: #FFFFFF;
+  --card: #FFFFFF;
+  --ink: #0B1416;
+  --ink-rgb: 11, 20, 22;
+  --muted: #55656A;
+  --accent-text: #0263AC;
+  --accent: #0263AC;
+  --accent-tint: #E6EFF7;
+  --live: #E26D7E;
+  --font-display: 'Unbounded', system-ui, sans-serif;
+  --font-body: 'Archivo', system-ui, -apple-system, sans-serif;
+  --font-label: 'Archivo', system-ui, sans-serif;
+  --font-hero: 'Unbounded', system-ui, sans-serif;
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 24px;
+  --space-6: 32px;
+  --space-7: 48px;
+  --space-8: 64px;
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-card: 16px;
+  --radius-pill: 999px;
+  --tracking-tight: -0.02em;
+  --tracking-label: 0.14em;
+  --text-hero: clamp(1.5rem, 3.34vw, 3rem);
+  --text-heading: clamp(1.75rem, 3.2vw, 2.875rem);
+  --text-step: clamp(1.375rem, 1.9vw, 1.75rem);
+  --text-small: 0.875rem;
+  --text-label: 0.75rem;
+  --ease: cubic-bezier(0.2, 0.7, 0.2, 1);
+  --dur-fast: 120ms;
+}
+
+* { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  padding: 0;
+  background: var(--paper);
+}
+
+#component {
+  width: 1280px;
+  min-height: 800px;
+  margin: 0 auto;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: var(--text-small);
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+#component a { color: inherit; text-decoration: none; }
+
+#component a:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+/* Navigation */
+.topnav {
+  height: 64px;
+  background: var(--paper);
+  border-bottom: 1px solid rgba(var(--ink-rgb), 0.1);
+}
+
+.topnav__inner {
+  max-width: calc(1120px + 2 * var(--space-6));
+  height: 100%;
+  margin: 0 auto;
+  padding: 0 var(--space-6);
+}
+
+.topnav__list {
+  display: flex;
+  align-items: stretch;
+  gap: var(--space-2);
+  height: 100%;
+  margin: 0 0 0 calc(-1 * var(--space-3));
+  padding: 0;
+  list-style: none;
+}
+
+.topnav__link {
+  position: relative;
+  display: flex;
+  align-items: center;
+  min-height: 44px;
+  padding: 0 var(--space-3);
+  font-size: var(--text-small);
+  font-weight: 500;
+  color: var(--ink);
+  transition: color var(--dur-fast) var(--ease);
+}
+
+.topnav__link:hover { color: var(--accent-text); }
+
+.topnav__link[aria-current="page"] { color: var(--accent-text); }
+
+.topnav__link[aria-current="page"]::after {
+  content: "";
+  position: absolute;
+  left: var(--space-3);
+  right: var(--space-3);
+  bottom: -1px;
+  height: 2px;
+  background: var(--accent);
+  border-radius: var(--radius-pill);
+}
+
+/* Page */
+.page {
+  max-width: calc(1120px + 2 * var(--space-6));
+  margin: 0 auto;
+  padding: var(--space-7) var(--space-6) var(--space-8);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6);
+}
+
+.page__title {
+  margin: 0;
+  font-family: var(--font-display);
+  font-weight: 300;
+  font-size: var(--text-heading);
+  line-height: 1.1;
+  letter-spacing: var(--tracking-tight);
+  text-transform: uppercase;
+  color: var(--ink);
+}
+
+/* Shared card */
+.card {
+  background: var(--card);
+  border: 1px solid rgba(var(--ink-rgb), 0.1);
+  border-radius: var(--radius-card);
+  padding: var(--space-5);
+}
+
+/* Stat tiles */
+.stats {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: var(--space-5);
+  margin: 0;
+}
+
+.stat { margin: 0; }
+
+.stat__label {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  margin: 0;
+  font-family: var(--font-label);
+  font-weight: 500;
+  font-size: var(--text-label);
+  letter-spacing: var(--tracking-label);
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.stat__dot {
+  flex: none;
+  width: 8px;
+  height: 8px;
+  border-radius: var(--radius-pill);
+  background: var(--live);
+}
+
+.stat__value {
+  display: flex;
+  align-items: baseline;
+  gap: var(--space-2);
+  margin: var(--space-4) 0 0;
+  white-space: nowrap;
+}
+
+.stat__number {
+  font-family: var(--font-hero);
+  font-weight: 300;
+  font-size: var(--text-hero);
+  line-height: 1.1;
+  letter-spacing: var(--tracking-tight);
+  color: var(--ink);
+}
+
+.stat__unit {
+  font-size: var(--text-small);
+  font-weight: 400;
+  color: var(--muted);
+}
+
+/* Recent activity */
+.activity__title {
+  margin: 0;
+  font-family: var(--font-display);
+  font-weight: 300;
+  font-size: var(--text-step);
+  line-height: 1.2;
+  letter-spacing: var(--tracking-tight);
+  text-transform: uppercase;
+  color: var(--ink);
+}
+
+.activity__list {
+  margin: var(--space-4) 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.activity__item {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  min-height: 52px;
+  border-top: 1px solid rgba(var(--ink-rgb), 0.1);
+  font-size: var(--text-small);
+  color: var(--muted);
+}
+
+.activity__avatar {
+  flex: none;
+  display: grid;
+  place-items: center;
+  width: 32px;
+  height: 32px;
+  border-radius: var(--radius-pill);
+  background: var(--accent-tint);
+  color: var(--accent-text);
+  font-family: var(--font-label);
+  font-size: var(--text-label);
+  font-weight: 600;
+}
+
+.activity__who,
+.activity__what {
+  color: var(--ink);
+}
+
+.activity__who { font-weight: 600; }
+.activity__what { font-weight: 500; }
+</style>
+</head>
+<body>
+<div id="component">
+  <header class="topnav">
+    <div class="topnav__inner">
+      <nav aria-label="Main">
+        <ul class="topnav__list">
+          <li><a class="topnav__link" href="#" aria-current="page">Overview</a></li>
+          <li><a class="topnav__link" href="#">Requests</a></li>
+          <li><a class="topnav__link" href="#">Team</a></li>
+          <li><a class="topnav__link" href="#">Settings</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main class="page">
+    <h1 class="page__title">Overview</h1>
+
+    <section aria-label="Key figures">
+      <dl class="stats">
+        <div class="card stat">
+          <dt class="stat__label">Active users</dt>
+          <dd class="stat__value"><span class="stat__number">1,284</span></dd>
+        </div>
+        <div class="card stat">
+          <dt class="stat__label">Open requests</dt>
+          <dd class="stat__value"><span class="stat__number">37</span></dd>
+        </div>
+        <div class="card stat">
+          <dt class="stat__label">Average response</dt>
+          <dd class="stat__value"><span class="stat__number">2.4</span><span class="stat__unit">hours</span></dd>
+        </div>
+        <div class="card stat">
+          <dt class="stat__label"><span class="stat__dot" aria-hidden="true"></span>Uptime</dt>
+          <dd class="stat__value"><span class="stat__number">99.9%</span></dd>
+        </div>
+      </dl>
+    </section>
+
+    <section class="card activity" aria-labelledby="activity-title">
+      <h2 class="activity__title" id="activity-title">Recent activity</h2>
+      <ul class="activity__list">
+        <li class="activity__item">
+          <span class="activity__avatar" aria-hidden="true">MC</span>
+          <span><span class="activity__who">Maya Chen</span> opened <span class="activity__what" data-user-content>Laptop refresh for design</span></span>
+        </li>
+        <li class="activity__item">
+          <span class="activity__avatar" aria-hidden="true">LP</span>
+          <span><span class="activity__who">Leo Park</span> approved <span class="activity__what" data-user-content>Q4 travel budget</span></span>
+        </li>
+        <li class="activity__item">
+          <span class="activity__avatar" aria-hidden="true">AR</span>
+          <span><span class="activity__who">Ana Ruiz</span> closed <span class="activity__what" data-user-content>VPN access for contractors</span></span>
+        </li>
+        <li class="activity__item">
+          <span class="activity__avatar" aria-hidden="true">SI</span>
+          <span><span class="activity__who">Sam Ito</span> commented on <span class="activity__what" data-user-content>New hire onboarding</span></span>
+        </li>
+        <li class="activity__item">
+          <span class="activity__avatar" aria-hidden="true">KL</span>
+          <span><span class="activity__who">Kai Lee</span> assigned <span class="activity__what" data-user-content>Office move</span> to <span class="activity__what" data-user-content>Facilities</span></span>
+        </li>
+      </ul>
+    </section>
+  </main>
+</div>
+</body>
+</html>

@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Message composer</title>
+<style>
+  * { box-sizing: border-box; }
+  html, body { height: 100%; margin: 0; }
+  body {
+    background: #fff;
+    color: #0B1416;
+    font-family: "Archivo", system-ui, -apple-system, "Segoe UI", Arial, sans-serif;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  #component {
+    width: 640px;
+    max-width: 100%;
+    display: flex;
+    align-items: flex-end;
+    gap: 8px;
+    padding: 10px;
+    background: #fff;
+    border: 1.5px solid #0B1416;
+    border-radius: 16px;
+  }
+  #component:focus-within { border-color: #0263AC; box-shadow: 0 0 0 3px rgba(2, 99, 172, 0.2); }
+  #component textarea {
+    flex: 1;
+    min-height: 44px;
+    height: 44px;
+    margin: 0;
+    padding: 10px 6px;
+    border: 0;
+    outline: 0;
+    resize: none;
+    background: transparent;
+    color: #0B1416;
+    font: 400 16px/24px "Archivo", system-ui, -apple-system, "Segoe UI", Arial, sans-serif;
+  }
+  #component textarea::placeholder { color: #0B1416; opacity: 0.6; }
+  #component button {
+    flex: none;
+    width: 44px;
+    height: 44px;
+    padding: 0;
+    display: grid;
+    place-items: center;
+    border-radius: 12px;
+    border: 0;
+    cursor: pointer;
+    font: inherit;
+  }
+  #component button svg {
+    width: 22px;
+    height: 22px;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+  .attach { background: transparent; color: #0B1416; }
+  .attach:hover { background: rgba(11, 20, 22, 0.08); }
+  .send { background: #0263AC; color: #fff; }
+  .send:hover { background: #014f89; }
+  #component button:focus-visible { outline: 3px solid #0B1416; outline-offset: 2px; }
+</style>
+</head>
+<body>
+  <div id="component">
+    <button type="button" class="attach" aria-label="Attach File" title="Attach File">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 11.5l-8.6 8.6a5.5 5.5 0 0 1-7.8-7.8l8.6-8.6a3.7 3.7 0 0 1 5.2 5.2l-8.6 8.6a1.8 1.8 0 0 1-2.6-2.6l7.9-7.9"/></svg>
+    </button>
+    <textarea placeholder="Message Claude" aria-label="Message Claude" rows="1"></textarea>
+    <button type="button" class="send" aria-label="Send Message" title="Send Message">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
+    </button>
+  </div>
+</body>
+</html>

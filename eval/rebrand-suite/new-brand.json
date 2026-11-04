@@ -1,0 +1,15 @@
+{
+  "name": "Harbor new brand (linen, forest ink, burnt orange, Fraunces + Instrument Sans, square corners)",
+  "colors": {
+    "paper": "#F4EFE6", "sand": "#E9E1D2", "card": "#FBF8F2", "ink": "#1E2B24", "muted": "#5E6B63",
+    "accent": "#C2410C", "accent-text": "#A8380A", "accent-tint": "#F6DFD0", "accent-line": "#E8A989",
+    "on-ink": "#FBF8F2", "plate-hover": "#EDE4D6", "deep": "#13201A", "white": "#FBF8F2", "shadow": "#1E2B24"
+  },
+  "fonts": { "display": "'Fraunces', Georgia, serif", "body": "'Instrument Sans', system-ui, sans-serif" },
+  "radius": { "sm": "2px", "md": "4px", "card": "6px", "pill": "6px" },
+  "old": {
+    "colors": ["#FFFFFF","#EEF4FA","#0B1416","#55656A","#0263AC","#E6EFF7","#9CC3EA","#E3ECF5","#F6F8F8","#A65F35","#F5E8DF","#9CC3EA"],
+    "fonts": ["Unbounded","Archivo"],
+    "radii": [8, 12, 16]
+  }
+}

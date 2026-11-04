@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Requests · Harbor</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+  * { box-sizing: border-box; }
+  body { margin: 0; background: #fff; }
+  #component {
+    width: 1280px;
+    min-height: 720px;
+    margin: 0 auto;
+    padding: 48px 64px;
+    background: #fff;
+    color: #0B1416;
+    font-family: "Archivo", Arial, Helvetica, sans-serif;
+    font-size: 16px;
+    line-height: 1.5;
+  }
+  #component h1,
+  #component h2 {
+    margin: 0;
+    font-family: "Unbounded", "Arial Black", Arial, sans-serif;
+    font-weight: 300;
+    text-transform: uppercase;
+    color: #0B1416;
+  }
+  #component h1 {
+    font-size: 32px;
+    line-height: 1.2;
+    letter-spacing: 0.02em;
+    padding-bottom: 24px;
+    border-bottom: 1px solid #0B1416;
+  }
+  #component .empty {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 120px 0 80px;
+  }
+  #component h2 {
+    font-size: 24px;
+    line-height: 1.3;
+    letter-spacing: 0.02em;
+  }
+  #component .empty p {
+    margin: 16px 0 0;
+    max-width: 420px;
+    font-size: 18px;
+  }
+  #component .actions {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    margin-top: 40px;
+  }
+  #component .button {
+    display: inline-block;
+    padding: 14px 28px;
+    background: #0263AC;
+    color: #fff;
+    border: 2px solid #0263AC;
+    border-radius: 4px;
+    font: 600 16px/1.25 "Archivo", Arial, Helvetica, sans-serif;
+    text-decoration: none;
+  }
+  #component .button:hover { background: #0B1416; border-color: #0B1416; }
+  #component a.link {
+    color: #0263AC;
+    font-size: 16px;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+  #component a.link:hover { color: #0B1416; }
+  #component .button:focus-visible,
+  #component a.link:focus-visible {
+    outline: 3px solid #0B1416;
+    outline-offset: 3px;
+  }
+</style>
+</head>
+<body>
+<div id="component">
+  <h1>Requests</h1>
+  <main class="empty">
+    <h2>No requests yet</h2>
+    <p>When your team asks for something, it shows up here.</p>
+    <div class="actions">
+      <a class="button" href="#create">Create a Request</a>
+      <a class="link" href="#import">Import from a spreadsheet</a>
+    </div>
+  </main>
+</div>
+</body>
+</html>

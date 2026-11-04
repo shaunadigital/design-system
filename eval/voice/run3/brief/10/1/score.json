@@ -1,0 +1,19 @@
+{
+ "pass": false,
+ "words": 121,
+ "longestSentence": 26,
+ "issues": {
+  "length": [
+   "121 words (limit 60)"
+  ],
+  "sentences": [
+   "longest sentence 26 words (limit 25)"
+  ],
+  "markdown": [],
+  "links": [
+   "DESIGN.md"
+  ],
+  "shorthand": [],
+  "emoji": []
+ }
+}

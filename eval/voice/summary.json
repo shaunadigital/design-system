@@ -1,0 +1,258 @@
+{
+ "run": "Claude Code, models: claude-sonnet-5-5",
+ "groups": {
+  "brief": {
+   "replies": 60,
+   "passed": 24,
+   "byRule": {
+    "length": 34,
+    "sentences": 3,
+    "markdown": 0,
+    "links": 5,
+    "shorthand": 0,
+    "emoji": 0
+   },
+   "medianWords": 75,
+   "byQuestion": {
+    "0": {
+     "replies": 5,
+     "passed": 5
+    },
+    "1": {
+     "replies": 5,
+     "passed": 0
+    },
+    "2": {
+     "replies": 5,
+     "passed": 0
+    },
+    "3": {
+     "replies": 5,
+     "passed": 3
+    },
+    "4": {
+     "replies": 5,
+     "passed": 0
+    },
+    "5": {
+     "replies": 5,
+     "passed": 5
+    },
+    "6": {
+     "replies": 5,
+     "passed": 5
+    },
+    "7": {
+     "replies": 5,
+     "passed": 0
+    },
+    "8": {
+     "replies": 5,
+     "passed": 0
+    },
+    "9": {
+     "replies": 5,
+     "passed": 1
+    },
+    "10": {
+     "replies": 5,
+     "passed": 0
+    },
+    "11": {
+     "replies": 5,
+     "passed": 5
+    }
+   }
+  },
+  "rules": {
+   "replies": 60,
+   "passed": 52,
+   "byRule": {
+    "length": 0,
+    "sentences": 6,
+    "markdown": 0,
+    "links": 2,
+    "shorthand": 0,
+    "emoji": 0
+   },
+   "medianWords": 36,
+   "byQuestion": {
+    "0": {
+     "replies": 5,
+     "passed": 5
+    },
+    "1": {
+     "replies": 5,
+     "passed": 5
+    },
+    "2": {
+     "replies": 5,
+     "passed": 3
+    },
+    "3": {
+     "replies": 5,
+     "passed": 5
+    },
+    "4": {
+     "replies": 5,
+     "passed": 5
+    },
+    "5": {
+     "replies": 5,
+     "passed": 5
+    },
+    "6": {
+     "replies": 5,
+     "passed": 5
+    },
+    "7": {
+     "replies": 5,
+     "passed": 1
+    },
+    "8": {
+     "replies": 5,
+     "passed": 5
+    },
+    "9": {
+     "replies": 5,
+     "passed": 5
+    },
+    "10": {
+     "replies": 5,
+     "passed": 3
+    },
+    "11": {
+     "replies": 5,
+     "passed": 5
+    }
+   }
+  },
+  "rules-v2": {
+   "replies": 60,
+   "passed": 54,
+   "byRule": {
+    "length": 0,
+    "sentences": 6,
+    "markdown": 0,
+    "links": 0,
+    "shorthand": 0,
+    "emoji": 0
+   },
+   "medianWords": 36,
+   "byQuestion": {
+    "0": {
+     "replies": 5,
+     "passed": 5
+    },
+    "1": {
+     "replies": 5,
+     "passed": 5
+    },
+    "2": {
+     "replies": 5,
+     "passed": 3
+    },
+    "3": {
+     "replies": 5,
+     "passed": 5
+    },
+    "4": {
+     "replies": 5,
+     "passed": 5
+    },
+    "5": {
+     "replies": 5,
+     "passed": 5
+    },
+    "6": {
+     "replies": 5,
+     "passed": 5
+    },
+    "7": {
+     "replies": 5,
+     "passed": 1
+    },
+    "8": {
+     "replies": 5,
+     "passed": 5
+    },
+    "9": {
+     "replies": 5,
+     "passed": 5
+    },
+    "10": {
+     "replies": 5,
+     "passed": 5
+    },
+    "11": {
+     "replies": 5,
+     "passed": 5
+    }
+   }
+  },
+  "rules-v3": {
+   "replies": 60,
+   "passed": 60,
+   "byRule": {
+    "length": 0,
+    "sentences": 0,
+    "markdown": 0,
+    "links": 0,
+    "shorthand": 0,
+    "emoji": 0
+   },
+   "medianWords": 35,
+   "byQuestion": {
+    "0": {
+     "replies": 5,
+     "passed": 5
+    },
+    "1": {
+     "replies": 5,
+     "passed": 5
+    },
+    "2": {
+     "replies": 5,
+     "passed": 5
+    },
+    "3": {
+     "replies": 5,
+     "passed": 5
+    },
+    "4": {
+     "replies": 5,
+     "passed": 5
+    },
+    "5": {
+     "replies": 5,
+     "passed": 5
+    },
+    "6": {
+     "replies": 5,
+     "passed": 5
+    },
+    "7": {
+     "replies": 5,
+     "passed": 5
+    },
+    "8": {
+     "replies": 5,
+     "passed": 5
+    },
+    "9": {
+     "replies": 5,
+     "passed": 5
+    },
+    "10": {
+     "replies": 5,
+     "passed": 5
+    },
+    "11": {
+     "replies": 5,
+     "passed": 5
+    }
+   }
+  }
+ },
+ "note": "byRule counts replies that broke that rule. A reply passes only if it breaks none."
+}

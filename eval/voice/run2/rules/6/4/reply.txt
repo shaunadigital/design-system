@@ -1,0 +1,1 @@
+She uses Claude Code, Figma, Astro, React, TypeScript, Supabase, Vercel and Netlify. Want to hear how she uses them in her design system?

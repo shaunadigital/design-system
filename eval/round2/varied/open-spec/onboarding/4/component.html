@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Connect your tools | Harbor</title>
+<style>
+  :root {
+    --paper: #FFFFFF;
+    --sand: #EEF4FA;
+    --ink: #0B1416;
+    --muted: #55656A;
+    --accent: #0263AC;
+    --accent-tint: #E6EFF7;
+    --accent-line: #9CC3EA;
+    --on-ink: #FFFFFF;
+    --ease: cubic-bezier(0.2, 0.7, 0.2, 1);
+  }
+
+  * { box-sizing: border-box; }
+
+  html, body {
+    margin: 0;
+    padding: 0;
+    background: var(--paper);
+  }
+
+  body {
+    font-family: "Archivo", "Helvetica Neue", Arial, sans-serif;
+    font-size: 16px;
+    line-height: 1.5;
+    color: var(--ink);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  #component {
+    width: 1280px;
+    min-height: 800px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    background: var(--paper);
+    color: var(--ink);
+  }
+
+  /* Header */
+  .topbar {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 32px 64px 0;
+  }
+  .brand-mark {
+    width: 32px;
+    height: 32px;
+    border-radius: 8px;
+    background: var(--ink);
+    color: var(--on-ink);
+    display: grid;
+    place-items: center;
+  }
+  .brand-mark svg { width: 24px; height: 24px; }
+  .brand-name {
+    font-family: "Unbounded", "Archivo", "Helvetica Neue", Arial, sans-serif;
+    font-weight: 500;
+    font-size: 18px;
+    letter-spacing: -0.01em;
+  }
+
+  /* Main */
+  main {
+    flex: 1;
+    padding: 96px 64px 64px;
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    column-gap: 32px;
+    align-items: start;
+  }
+
+  .intro { grid-column: 1 / span 5; }
+  .options { grid-column: 7 / span 6; }
+
+  /* Progress */
+  .progress {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-bottom: 32px;
+  }
+  .label {
+    font-family: "Archivo", "Helvetica Neue", Arial, sans-serif;
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 1.5;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    color: var(--accent);
+    margin: 0;
+  }
+  .segments {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 8px;
+    width: 240px;
+  }
+  .segments span {
+    height: 4px;
+    border-radius: 999px;
+    background: var(--accent-tint);
+  }
+  .segments span.done { background: var(--accent); }
+
+  h1 {
+    font-family: "Unbounded", "Archivo", "Helvetica Neue", Arial, sans-serif;
+    font-weight: 300;
+    font-size: 56px;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    text-transform: uppercase;
+    margin: 0 0 24px;
+    color: var(--ink);
+  }
+
+  .lead {
+    font-size: 22px;
+    line-height: 1.5;
+    color: var(--muted);
+    margin: 0;
+    max-width: 420px;
+  }
+
+  /* Option cards */
+  .options ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+  .card {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    padding: 24px;
+    background: var(--paper);
+    border: 1px solid var(--accent-line);
+    border-radius: 16px;
+  }
+  .icon {
+    flex: none;
+    width: 48px;
+    height: 48px;
+    border-radius: 12px;
+    background: var(--sand);
+    color: var(--accent);
+    display: grid;
+    place-items: center;
+  }
+  .icon svg { width: 24px; height: 24px; }
+
+  .card-text { flex: 1; min-width: 0; }
+  .card-name {
+    font-family: "Unbounded", "Archivo", "Helvetica Neue", Arial, sans-serif;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 1.3;
+    letter-spacing: -0.01em;
+    margin: 0 0 4px;
+  }
+  .card-desc {
+    font-size: 16px;
+    line-height: 1.5;
+    color: var(--muted);
+    margin: 0;
+  }
+
+  /* Buttons */
+  .btn {
+    appearance: none;
+    font-family: "Archivo", "Helvetica Neue", Arial, sans-serif;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 1;
+    min-height: 44px;
+    padding: 0 24px;
+    border-radius: 999px;
+    border: 1px solid transparent;
+    background: transparent;
+    color: var(--ink);
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    white-space: nowrap;
+    transition: background-color 180ms var(--ease), color 180ms var(--ease), border-color 180ms var(--ease);
+  }
+  .btn:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+  }
+  .btn-quiet:hover { background: var(--accent-tint); }
+  .btn-outline { border-color: var(--accent-line); }
+  .btn-outline:hover { border-color: var(--accent); }
+  .btn-primary {
+    background: var(--ink);
+    color: var(--on-ink);
+    padding: 0 32px;
+  }
+  .btn-primary:hover { background: var(--accent); }
+
+  /* Footer actions */
+  .actions {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 24px 64px;
+    background: var(--sand);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .btn { transition: none; }
+  }
+</style>
+</head>
+<body>
+<div id="component">
+
+  <header class="topbar">
+    <div class="brand-mark" aria-hidden="true">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M12 5v14"/>
+        <path d="M8 8h8"/>
+        <path d="M5 13c0 3.5 3 6 7 6s7-2.500 7-6"/>
+      </svg>
+    </div>
+    <span class="brand-name">Harbor</span>
+  </header>
+
+  <main>
+    <section class="intro">
+      <div class="progress">
+        <p class="label">Step 2 of 4</p>
+        <div class="segments" aria-hidden="true">
+          <span class="done"></span>
+          <span class="done"></span>
+          <span></span>
+          <span></span>
+        </div>
+      </div>
+      <h1>Connect your tools</h1>
+      <p class="lead">Harbor works best with the tools your team already uses.</p>
+    </section>
+
+    <section class="options" aria-label="Available integrations">
+      <ul>
+        <li class="card">
+          <div class="icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M9 4 7.500 20"/>
+              <path d="M16.500 4 15 20"/>
+              <path d="M4.500 9h15"/>
+              <path d="M4 15h15"/>
+            </svg>
+          </div>
+          <div class="card-text">
+            <h2 class="card-name">Slack</h2>
+            <p class="card-desc">Get request updates in your channels</p>
+          </div>
+          <button class="btn btn-outline" type="button" aria-label="Connect Slack">Connect</button>
+        </li>
+
+        <li class="card">
+          <div class="icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="4" y="5" width="16" height="15" rx="3"/>
+              <path d="M4 10h16"/>
+              <path d="M8 3v4"/>
+              <path d="M16 3v4"/>
+            </svg>
+          </div>
+          <div class="card-text">
+            <h2 class="card-name">Google Calendar</h2>
+            <p class="card-desc">See due dates on your calendar</p>
+          </div>
+          <button class="btn btn-outline" type="button" aria-label="Connect Google Calendar">Connect</button>
+        </li>
+
+        <li class="card">
+          <div class="icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 3 21 12 12 21 3 12Z"/>
+              <path d="M12 8 16 12 12 16 8 12Z"/>
+            </svg>
+          </div>
+          <div class="card-text">
+            <h2 class="card-name">Jira</h2>
+            <p class="card-desc">Link requests to engineering tickets</p>
+          </div>
+          <button class="btn btn-outline" type="button" aria-label="Connect Jira">Connect</button>
+        </li>
+      </ul>
+    </section>
+  </main>
+
+  <footer class="actions">
+    <button class="btn btn-quiet" type="button">Skip for Now</button>
+    <button class="btn btn-primary" type="button">Continue</button>
+  </footer>
+
+</div>
+</body>
+</html>

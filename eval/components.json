@@ -1,0 +1,7 @@
+{
+ "card": "card for booking a working session. Use exactly this text: a small label \"One-on-One\", the title \"Working Session\", the price \"$150\" followed by \"per hour\", the description \"One focused hour on your project. Bring a problem or a rough idea and we move it forward together.\", a list of three included items: \"60 minutes on a video call\", \"Live design and build feedback\", \"Written notes and next steps\", and a button \"Book a Session\"",
+ "menu": "dropdown menu for a chat, shown open below the button that opens it. Use exactly this text: the button that opens it is labeled \"Chat Options\", and the menu items are \"Rename\", \"Share\", \"Archive\" and \"Delete\"",
+ "dialog": "confirmation dialog, shown open. Use exactly this text: the title \"Delete this chat?\", the message \"The chat and its messages will be removed. This can't be undone.\", and two buttons, \"Cancel\" and \"Delete\"",
+ "sidebar": "left sidebar for a chat app. Use exactly this text: a button \"New Chat\", a section label \"Recent\", and five recent chats the person named themselves: \"Trip planning for Maui\", \"Q3 budget review\", \"Menu ideas for Saturday\", \"Reading list\" and \"Garden plan\". \"Q3 budget review\" is the active chat",
+ "composer": "chat message composer. Use exactly this text: a text box with the placeholder \"Message Claude\", an attach button labeled \"Attach File\" and a send button labeled \"Send Message\" (these can be icon buttons with those labels as their accessible names)"
+}

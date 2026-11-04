@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Workspace settings</title>
+<style>
+  * { box-sizing: border-box; }
+  body { margin: 0; background: #fff; color: #0B1416; font-family: Archivo, "Helvetica Neue", Arial, sans-serif; font-size: 16px; line-height: 1.5; }
+  #component { width: 1280px; margin: 0 auto; padding: 64px 160px 96px; background: #fff; }
+  h1, h2 { font-family: Unbounded, "Arial Black", Archivo, sans-serif; font-weight: 300; text-transform: uppercase; margin: 0; }
+  h1 { font-size: 36px; line-height: 1.2; letter-spacing: 0.02em; margin-bottom: 48px; }
+  h2 { font-size: 20px; line-height: 1.3; letter-spacing: 0.04em; margin-bottom: 24px; }
+  section { padding: 32px 0; border-top: 1px solid #0B1416; }
+  .field { margin-bottom: 24px; max-width: 480px; }
+  label.text { display: block; font-weight: 600; margin-bottom: 8px; }
+  input[type="text"] { width: 100%; height: 48px; padding: 0 16px; font: inherit; color: #0B1416; background: #fff; border: 1px solid #0B1416; border-radius: 4px; }
+  input:focus-visible, button:focus-visible { outline: 3px solid #0263AC; outline-offset: 2px; }
+  button { font: inherit; font-weight: 600; height: 48px; padding: 0 24px; border-radius: 4px; cursor: pointer; }
+  .primary { background: #0263AC; color: #fff; border: 2px solid #0263AC; }
+  .danger { background: #fff; color: #0B1416; border: 2px solid #0B1416; }
+  .switch-row { display: flex; align-items: center; justify-content: space-between; max-width: 640px; padding: 16px 0; border-bottom: 1px solid #0B1416; }
+  .switch-row:last-child { border-bottom: 0; }
+  .switch-row span { font-size: 16px; }
+  .switch { position: relative; width: 52px; height: 32px; flex: none; }
+  .switch input { position: absolute; inset: 0; width: 100%; height: 100%; margin: 0; opacity: 0; cursor: pointer; }
+  .track { position: absolute; inset: 0; border: 2px solid #0B1416; border-radius: 16px; background: #fff; }
+  .track::after { content: ""; position: absolute; top: 4px; left: 4px; width: 20px; height: 20px; border-radius: 50%; background: #0B1416; }
+  .switch input:checked + .track { background: #0263AC; border-color: #0263AC; }
+  .switch input:checked + .track::after { left: 24px; background: #fff; }
+  .switch input:focus-visible + .track { outline: 3px solid #0263AC; outline-offset: 2px; }
+  .danger-text { margin: 0 0 24px; max-width: 480px; }
+</style>
+</head>
+<body>
+<div id="component">
+  <h1>Workspace settings</h1>
+
+  <section aria-labelledby="general">
+    <h2 id="general">General</h2>
+    <div class="field">
+      <label class="text" for="name">Workspace name</label>
+      <input type="text" id="name" value="Harbor Ops">
+    </div>
+    <div class="field">
+      <label class="text" for="url">Workspace URL</label>
+      <input type="text" id="url" value="harbor.app/ops">
+    </div>
+    <button type="button" class="primary">Save Changes</button>
+  </section>
+
+  <section aria-labelledby="notifications">
+    <h2 id="notifications">Notifications</h2>
+    <div class="switch-row">
+      <span id="n1">Email me when a request is assigned to me</span>
+      <label class="switch"><input type="checkbox" role="switch" aria-labelledby="n1" checked><span class="track"></span></label>
+    </div>
+    <div class="switch-row">
+      <span id="n2">Weekly summary</span>
+      <label class="switch"><input type="checkbox" role="switch" aria-labelledby="n2"><span class="track"></span></label>
+    </div>
+    <div class="switch-row">
+      <span id="n3">Product updates</span>
+      <label class="switch"><input type="checkbox" role="switch" aria-labelledby="n3"><span class="track"></span></label>
+    </div>
+  </section>
+
+  <section aria-labelledby="danger">
+    <h2 id="danger">Danger zone</h2>
+    <p class="danger-text">Deleting a workspace removes all of its requests for everyone.</p>
+    <button type="button" class="danger">Delete Workspace</button>
+  </section>
+</div>
+</body>
+</html>

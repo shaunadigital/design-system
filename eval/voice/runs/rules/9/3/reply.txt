@@ -1,0 +1,1 @@
+Every control in the composer is forty-four pixels, and it works fully by keyboard. Enter sends, Shift plus Enter adds a new line, and Escape stops a reply. Screen readers get announcements as things change. Want the details?

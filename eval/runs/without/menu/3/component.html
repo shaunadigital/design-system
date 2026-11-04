@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Chat Options Menu</title>
+<style>
+  :root {
+    --ink: #0B1416;
+    --accent: #0263AC;
+    --bg: #FFFFFF;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; height: 100%; }
+  body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: "Archivo", system-ui, -apple-system, "Segoe UI", Arial, sans-serif;
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  #component {
+    position: relative;
+    width: 220px;
+    height: 260px;
+  }
+  .trigger {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    width: 100%;
+    height: 44px;
+    padding: 0 16px;
+    background: var(--accent);
+    color: #fff;
+    border: 2px solid var(--accent);
+    border-radius: 6px;
+    font: inherit;
+    font-weight: 500;
+    cursor: pointer;
+  }
+  .trigger:focus-visible,
+  .menu a:focus-visible {
+    outline: 3px solid var(--ink);
+    outline-offset: 2px;
+  }
+  .caret {
+    width: 8px;
+    height: 8px;
+    border-right: 2px solid currentColor;
+    border-bottom: 2px solid currentColor;
+    transform: rotate(-135deg) translate(-2px, -2px);
+  }
+  .menu {
+    position: absolute;
+    top: 52px;
+    left: 0;
+    width: 100%;
+    margin: 0;
+    padding: 6px;
+    list-style: none;
+    background: var(--bg);
+    border: 1px solid var(--ink);
+    border-radius: 6px;
+    box-shadow: 0 8px 20px rgba(11, 20, 22, 0.15);
+  }
+  .menu a {
+    display: block;
+    padding: 10px 12px;
+    color: var(--ink);
+    text-decoration: none;
+    border-radius: 4px;
+  }
+  .menu a:hover {
+    background: var(--accent);
+    color: #fff;
+  }
+  .menu li + li { margin-top: 2px; }
+</style>
+</head>
+<body>
+  <div id="component">
+    <button type="button" class="trigger" aria-haspopup="menu" aria-expanded="true" aria-controls="chat-menu">
+      <span>Chat Options</span>
+      <span class="caret" aria-hidden="true"></span>
+    </button>
+    <ul class="menu" id="chat-menu" role="menu" aria-label="Chat Options">
+      <li role="none"><a href="#rename" role="menuitem">Rename</a></li>
+      <li role="none"><a href="#share" role="menuitem">Share</a></li>
+      <li role="none"><a href="#archive" role="menuitem">Archive</a></li>
+      <li role="none"><a href="#delete" role="menuitem">Delete</a></li>
+    </ul>
+  </div>
+</body>
+</html>

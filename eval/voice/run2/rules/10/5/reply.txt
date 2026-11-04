@@ -1,0 +1,1 @@
+In Shauna's test, both passed almost every page, but her system produced far more consistent results. Her version made seven button styles and four field styles. The standard file made thirty button styles and sixteen field styles. Want the details?

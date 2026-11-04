@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=1280">
+<title>Requests | Harbor</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; background: #FFFFFF; }
+  body {
+    font-family: Archivo, "Helvetica Neue", Arial, sans-serif;
+    font-size: 16px;
+    line-height: 1.5;
+    color: #0B1416;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  #component {
+    width: 1280px;
+    min-height: 900px;
+    margin: 0 auto;
+    padding: 96px 64px 96px;
+    background: #FFFFFF;
+  }
+
+  .page-head {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 32px;
+    margin-bottom: 64px;
+  }
+  h1 {
+    margin: 0;
+    font-family: Unbounded, "Archivo", "Helvetica Neue", Arial, sans-serif;
+    font-weight: 300;
+    font-size: 56px;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    text-transform: uppercase;
+  }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 44px;
+    padding: 0 24px;
+    border: 1px solid transparent;
+    border-radius: 999px;
+    font: 500 16px/1 Archivo, "Helvetica Neue", Arial, sans-serif;
+    letter-spacing: 0;
+    cursor: pointer;
+    transition: background-color 180ms cubic-bezier(0.2, 0.7, 0.2, 1),
+                color 180ms cubic-bezier(0.2, 0.7, 0.2, 1),
+                border-color 180ms cubic-bezier(0.2, 0.7, 0.2, 1);
+  }
+  .btn:focus-visible, .field input:focus-visible {
+    outline: 2px solid #0263AC;
+    outline-offset: 2px;
+  }
+  .btn-primary { background: #0B1416; color: #FFFFFF; padding: 0 32px; }
+  .btn-primary:hover { background: #0263AC; }
+  .btn-quiet { background: transparent; color: #0B1416; }
+  .btn-quiet:hover { background: #EEF4FA; }
+  .btn-quiet[aria-pressed="true"] {
+    background: #E6EFF7;
+    color: #0263AC;
+    border-color: #9CC3EA;
+  }
+
+  .toolbar {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 32px;
+    margin-bottom: 32px;
+  }
+  .field { display: flex; flex-direction: column; gap: 8px; width: 400px; }
+  .label {
+    font-family: Archivo, "Helvetica Neue", Arial, sans-serif;
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 16px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: #55656A;
+  }
+  .field-control { position: relative; }
+  .field-control svg {
+    position: absolute;
+    left: 16px;
+    top: 50%;
+    width: 24px;
+    height: 24px;
+    margin-top: -12px;
+    color: #55656A;
+    pointer-events: none;
+  }
+  .field input {
+    width: 100%;
+    height: 48px;
+    padding: 0 16px 0 48px;
+    border: 1px solid #9CC3EA;
+    border-radius: 12px;
+    background: #FFFFFF;
+    color: #0B1416;
+    font: 400 16px/1 Archivo, "Helvetica Neue", Arial, sans-serif;
+    transition: border-color 120ms cubic-bezier(0.2, 0.7, 0.2, 1),
+                background-color 120ms cubic-bezier(0.2, 0.7, 0.2, 1);
+  }
+  .field input:hover { background: #EEF4FA; }
+
+  .filters { display: flex; gap: 8px; }
+
+  .card {
+    background: #FFFFFF;
+    border: 1px solid #9CC3EA;
+    border-radius: 16px;
+    overflow: hidden;
+  }
+  table { width: 100%; border-collapse: collapse; table-layout: fixed; }
+  thead th {
+    padding: 24px 0 16px;
+    text-align: left;
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 16px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: #55656A;
+    background: #EEF4FA;
+  }
+  th:first-child, td:first-child { padding-left: 32px; }
+  th:last-child, td:last-child { padding-right: 32px; }
+  tbody td {
+    padding: 24px 0;
+    border-top: 1px solid #EEF4FA;
+    font-size: 16px;
+    line-height: 24px;
+    vertical-align: middle;
+  }
+  tbody tr:first-child td { border-top: 0; }
+  tbody tr { transition: background-color 120ms cubic-bezier(0.2, 0.7, 0.2, 1); }
+  tbody tr:hover { background: #E6EFF7; }
+  .col-request { width: 36%; }
+  .col-requester { width: 20%; }
+  .col-status { width: 17%; }
+  .col-priority { width: 14%; }
+  .col-updated { width: 13%; }
+  td.request { font-weight: 500; letter-spacing: -0.01em; }
+  td.requester { color: #0B1416; }
+  td.updated { color: #55656A; }
+
+  .status { display: inline-flex; align-items: center; gap: 12px; }
+  .dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    border: 1.5px solid #55656A;
+    background: transparent;
+    flex: none;
+  }
+  .dot.open { background: #0263AC; border-color: #0263AC; }
+  .dot.done { background: #55656A; border-color: #55656A; }
+  .priority-high { font-weight: 500; }
+  .priority-medium, .priority-low { color: #55656A; }
+
+  @media (prefers-reduced-motion: reduce) {
+    * { transition: none !important; }
+  }
+</style>
+</head>
+<body>
+<div id="component">
+  <header class="page-head">
+    <h1>Requests</h1>
+    <button class="btn btn-primary" type="button">New Request</button>
+  </header>
+
+  <div class="toolbar">
+    <div class="field">
+      <label class="label" for="search">Search requests</label>
+      <div class="field-control">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="6.5"/><path d="M16 16l4.5 4.5"/></svg>
+        <input id="search" type="search" name="search">
+      </div>
+    </div>
+    <div class="filters" role="group" aria-label="Filter requests">
+      <button class="btn btn-quiet" type="button" aria-pressed="true">All</button>
+      <button class="btn btn-quiet" type="button" aria-pressed="false">Open</button>
+      <button class="btn btn-quiet" type="button" aria-pressed="false">Closed</button>
+    </div>
+  </div>
+
+  <section class="card">
+    <table>
+      <thead>
+        <tr>
+          <th class="col-request" scope="col">Request</th>
+          <th class="col-requester" scope="col">Requester</th>
+          <th class="col-status" scope="col">Status</th>
+          <th class="col-priority" scope="col">Priority</th>
+          <th class="col-updated" scope="col">Updated</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="request">Laptop refresh for design</td>
+          <td class="requester">Maya Chen</td>
+          <td><span class="status"><span class="dot open" aria-hidden="true"></span>Open</span></td>
+          <td class="priority-high">High</td>
+          <td class="updated">2h ago</td>
+        </tr>
+        <tr>
+          <td class="request">Q4 travel budget</td>
+          <td class="requester">Leo Park</td>
+          <td><span class="status"><span class="dot done" aria-hidden="true"></span>Approved</span></td>
+          <td class="priority-medium">Medium</td>
+          <td class="updated">5h ago</td>
+        </tr>
+        <tr>
+          <td class="request">VPN access for contractors</td>
+          <td class="requester">Ana Ruiz</td>
+          <td><span class="status"><span class="dot done" aria-hidden="true"></span>Closed</span></td>
+          <td class="priority-high">High</td>
+          <td class="updated">1d ago</td>
+        </tr>
+        <tr>
+          <td class="request">New hire onboarding</td>
+          <td class="requester">Sam Ito</td>
+          <td><span class="status"><span class="dot open" aria-hidden="true"></span>Open</span></td>
+          <td class="priority-medium">Medium</td>
+          <td class="updated">1d ago</td>
+        </tr>
+        <tr>
+          <td class="request">Office move</td>
+          <td class="requester">Kai Lee</td>
+          <td><span class="status"><span class="dot" aria-hidden="true"></span>In review</span></td>
+          <td class="priority-low">Low</td>
+          <td class="updated">2d ago</td>
+        </tr>
+        <tr>
+          <td class="request">Security training</td>
+          <td class="requester">Ava Brooks</td>
+          <td><span class="status"><span class="dot open" aria-hidden="true"></span>Open</span></td>
+          <td class="priority-low">Low</td>
+          <td class="updated">3d ago</td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+</div>
+</body>
+</html>

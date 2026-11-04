@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Working Session</title>
+<style>
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #FFFFFF;
+    color: #0B1416;
+    font-family: "Archivo", system-ui, sans-serif;
+    font-size: 16px;
+    line-height: 1.5;
+  }
+  #component {
+    width: 100%;
+    max-width: 432px;
+    padding: 48px 32px 32px;
+    background: #FFFFFF;
+    border: 1px solid #9CC3EA;
+    border-radius: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
+  .label {
+    margin: 0;
+    font-size: 12px;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    color: #0263AC;
+  }
+  h2 {
+    margin: 0;
+    font-family: "Unbounded", "Archivo", system-ui, sans-serif;
+    font-weight: 500;
+    font-size: 28px;
+    line-height: 1.2;
+    letter-spacing: -0.02em;
+  }
+  .header { display: flex; flex-direction: column; gap: 12px; }
+  .price { display: flex; align-items: baseline; gap: 8px; margin: 0; }
+  .amount {
+    font-family: "Unbounded", "Archivo", system-ui, sans-serif;
+    font-weight: 300;
+    font-size: 46px;
+    line-height: 1.1;
+    letter-spacing: -0.03em;
+  }
+  .unit { font-size: 14px; color: #55656A; }
+  .description { margin: 0; font-size: 16px; color: #55656A; }
+  ul {
+    margin: 0;
+    padding: 24px 0 0;
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    border-top: 1px solid #9CC3EA;
+  }
+  li { display: flex; align-items: center; gap: 12px; font-size: 16px; }
+  li svg { flex: none; width: 24px; height: 24px; color: #0263AC; }
+  .button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 48px;
+    padding: 12px 32px;
+    border-radius: 999px;
+    background: #0B1416;
+    color: #FFFFFF;
+    font-family: inherit;
+    font-size: 16px;
+    font-weight: 500;
+    text-decoration: none;
+    transition: background-color 180ms cubic-bezier(0.2, 0.7, 0.2, 1);
+  }
+  .button:hover { background: #0263AC; }
+  .button:focus-visible { outline: 2px solid #0263AC; outline-offset: 4px; }
+</style>
+</head>
+<body>
+  <div id="component">
+    <div class="header">
+      <p class="label">One-on-One</p>
+      <h2>Working Session</h2>
+    </div>
+    <p class="price"><span class="amount">$150</span><span class="unit">per hour</span></p>
+    <p class="description">One focused hour on your project. Bring a problem or a rough idea and we move it forward together.</p>
+    <ul>
+      <li>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>
+        60 minutes on a video call
+      </li>
+      <li>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>
+        Live design and build feedback
+      </li>
+      <li>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>
+        Written notes and next steps
+      </li>
+    </ul>
+    <a class="button" href="#book">Book a Session</a>
+  </div>
+</body>
+</html>

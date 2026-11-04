@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Harbor Overview</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+/* Tokens from tokens.css (light theme), only the ones used here */
+:root {
+  --paper: #FFFFFF;
+  --sand: #EEF4FA;
+  --card: #FFFFFF;
+  --ink: #0B1416;
+  --ink-rgb: 11, 20, 22;
+  --muted: #55656A;
+  --accent-text: #0263AC;
+  --accent-tint: #E6EFF7;
+  --font-display: 'Unbounded', system-ui, sans-serif;
+  --font-body: 'Archivo', system-ui, -apple-system, sans-serif;
+  --font-label: 'Archivo', system-ui, sans-serif;
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 24px;
+  --space-6: 32px;
+  --space-7: 48px;
+  --space-8: 64px;
+  --radius-sm: 8px;
+  --radius-card: 16px;
+  --radius-pill: 999px;
+  --tracking-tight: -0.02em;
+  --tracking-label: 0.14em;
+  --text-hero: clamp(1.5rem, 3.34vw, 3rem);
+  --text-display-xl: clamp(2rem, 4vw, 3.5rem);
+  --text-step: clamp(1.375rem, 1.9vw, 1.75rem);
+  --text-body: 1rem;
+  --text-small: 0.875rem;
+  --text-label: 0.75rem;
+  --ease: cubic-bezier(0.2, 0.7, 0.2, 1);
+  --dur-fast: 120ms;
+}
+
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--paper); }
+
+#component {
+  width: 1280px;
+  min-height: 800px;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: var(--text-body);
+}
+
+.topnav {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-4) var(--space-8);
+  background: var(--sand);
+  border-bottom: 1px solid rgba(var(--ink-rgb), 0.1);
+}
+.topnav a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  padding: 0 var(--space-4);
+  border-radius: var(--radius-pill);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: var(--text-body);
+  font-weight: 500;
+  text-decoration: none;
+  transition: background var(--dur-fast) var(--ease);
+}
+.topnav a:hover { background: rgba(var(--ink-rgb), 0.06); }
+.topnav a[aria-current="page"] {
+  background: var(--accent-tint);
+  color: var(--accent-text);
+  font-weight: 600;
+}
+
+main { padding: var(--space-7) var(--space-8) var(--space-8); }
+
+h1 {
+  margin: 0;
+  font-family: var(--font-display);
+  font-weight: 300;
+  font-size: var(--text-display-xl);
+  line-height: 1.1;
+  letter-spacing: var(--tracking-tight);
+  text-transform: uppercase;
+}
+
+.stats {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--space-6);
+  margin: var(--space-7) 0 0;
+  padding: 0;
+}
+.tile {
+  margin: 0;
+  padding: var(--space-6);
+  background: var(--card);
+  border: 1px solid rgba(var(--ink-rgb), 0.1);
+  border-radius: var(--radius-card);
+}
+.tile dt {
+  font-family: var(--font-label);
+  font-size: var(--text-label);
+  font-weight: 500;
+  letter-spacing: var(--tracking-label);
+  text-transform: uppercase;
+  color: var(--accent-text);
+}
+.tile dd {
+  display: flex;
+  align-items: baseline;
+  gap: var(--space-2);
+  margin: var(--space-5) 0 0;
+  font-family: var(--font-display);
+  font-weight: 300;
+  font-size: var(--text-hero);
+  line-height: 1.1;
+}
+.tile dd span {
+  font-family: var(--font-body);
+  font-weight: 400;
+  font-size: var(--text-small);
+  color: var(--muted);
+}
+
+.activity { margin-top: var(--space-7); }
+h2 {
+  margin: 0;
+  font-family: var(--font-display);
+  font-weight: 300;
+  font-size: var(--text-step);
+  line-height: 1.2;
+  text-transform: uppercase;
+}
+.activity ul {
+  list-style: none;
+  margin: var(--space-5) 0 0;
+  padding: var(--space-2) var(--space-6);
+  background: var(--card);
+  border: 1px solid rgba(var(--ink-rgb), 0.1);
+  border-radius: var(--radius-card);
+}
+.activity li {
+  display: flex;
+  align-items: center;
+  min-height: 56px;
+  font-size: var(--text-body);
+}
+.activity li + li { border-top: 1px solid rgba(var(--ink-rgb), 0.1); }
+.activity b { font-weight: 600; margin-right: var(--space-1); }
+</style>
+</head>
+<body>
+<div id="component">
+  <nav class="topnav" aria-label="Main">
+    <a href="#" aria-current="page">Overview</a>
+    <a href="#">Requests</a>
+    <a href="#">Team</a>
+    <a href="#">Settings</a>
+  </nav>
+
+  <main>
+    <h1>Overview</h1>
+
+    <dl class="stats">
+      <div class="tile">
+        <dt>Active users</dt>
+        <dd>1,284</dd>
+      </div>
+      <div class="tile">
+        <dt>Open requests</dt>
+        <dd>37</dd>
+      </div>
+      <div class="tile">
+        <dt>Average response</dt>
+        <dd>2.4 <span>hours</span></dd>
+      </div>
+      <div class="tile">
+        <dt>Uptime</dt>
+        <dd>99.9%</dd>
+      </div>
+    </dl>
+
+    <section class="activity" aria-labelledby="activity-title">
+      <h2 id="activity-title">Recent activity</h2>
+      <ul>
+        <li><b>Maya Chen</b> opened Laptop refresh for design</li>
+        <li><b>Leo Park</b> approved Q4 travel budget</li>
+        <li><b>Ana Ruiz</b> closed VPN access for contractors</li>
+        <li><b>Sam Ito</b> commented on New hire onboarding</li>
+        <li><b>Kai Lee</b> assigned Office move to Facilities</li>
+      </ul>
+    </section>
+  </main>
+</div>
+</body>
+</html>

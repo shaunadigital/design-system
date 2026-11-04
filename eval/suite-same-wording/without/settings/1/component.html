@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Workspace settings</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+  * { box-sizing: border-box; }
+  body { margin: 0; background: #fff; color: #0B1416; font-family: "Archivo", Arial, sans-serif; font-size: 16px; line-height: 1.5; }
+  #component { width: 1280px; padding: 64px 0 96px; }
+  .page { width: 720px; margin: 0 auto; }
+  h1, h2 { font-family: "Unbounded", "Archivo", Arial, sans-serif; font-weight: 300; text-transform: uppercase; margin: 0; }
+  h1 { font-size: 32px; line-height: 1.2; margin-bottom: 40px; }
+  h2 { font-size: 18px; letter-spacing: 0.02em; margin-bottom: 24px; }
+  section { border-top: 1px solid #0B1416; padding: 32px 0 40px; }
+  .field { margin-bottom: 20px; }
+  label.lbl { display: block; font-weight: 600; margin-bottom: 6px; }
+  input[type="text"] { width: 100%; height: 44px; padding: 0 12px; font: inherit; color: #0B1416; background: #fff; border: 1px solid #0B1416; border-radius: 4px; }
+  input[type="text"]:focus-visible, .switch input:focus-visible + .track, button:focus-visible { outline: 3px solid #0263AC; outline-offset: 2px; }
+  button { font: inherit; font-weight: 600; height: 44px; padding: 0 24px; border-radius: 4px; cursor: pointer; }
+  .primary { background: #0263AC; color: #fff; border: 2px solid #0263AC; }
+  .danger { background: #fff; color: #0B1416; border: 2px solid #0B1416; }
+  .row { display: flex; align-items: center; justify-content: space-between; padding: 14px 0; border-bottom: 1px solid #0B1416; }
+  .row:first-of-type { border-top: 1px solid #0B1416; }
+  .switch { position: relative; display: flex; align-items: center; justify-content: space-between; width: 100%; cursor: pointer; }
+  .switch input { position: absolute; opacity: 0; width: 52px; height: 28px; right: 0; margin: 0; cursor: pointer; }
+  .track { flex: none; width: 52px; height: 28px; border: 2px solid #0B1416; border-radius: 14px; background: #fff; position: relative; }
+  .track::after { content: ""; position: absolute; top: 3px; left: 3px; width: 18px; height: 18px; border-radius: 50%; background: #0B1416; }
+  .switch input:checked + .track { background: #0263AC; border-color: #0263AC; }
+  .switch input:checked + .track::after { left: 27px; background: #fff; }
+  .state { font-size: 14px; margin-right: 12px; min-width: 24px; text-align: right; }
+  .state::before { content: "Off"; }
+  .switch input:checked ~ .state::before { content: "On"; }
+  .right { display: flex; align-items: center; }
+  .danger-text { margin: 0 0 20px; }
+</style>
+</head>
+<body>
+<div id="component">
+  <main class="page">
+    <h1>Workspace settings</h1>
+
+    <section aria-labelledby="general">
+      <h2 id="general">General</h2>
+      <div class="field">
+        <label class="lbl" for="name">Workspace name</label>
+        <input type="text" id="name" value="Harbor Ops">
+      </div>
+      <div class="field">
+        <label class="lbl" for="url">Workspace URL</label>
+        <input type="text" id="url" value="harbor.app/ops">
+      </div>
+      <button type="button" class="primary">Save Changes</button>
+    </section>
+
+    <section aria-labelledby="notifications">
+      <h2 id="notifications">Notifications</h2>
+      <div class="row">
+        <label class="switch">
+          <span>Email me when a request is assigned to me</span>
+          <span class="right"><input type="checkbox" role="switch" checked><span class="track"></span><span class="state" style="order:-1"></span></span>
+        </label>
+      </div>
+      <div class="row">
+        <label class="switch">
+          <span>Weekly summary</span>
+          <span class="right"><input type="checkbox" role="switch"><span class="track"></span><span class="state" style="order:-1"></span></span>
+        </label>
+      </div>
+      <div class="row">
+        <label class="switch">
+          <span>Product updates</span>
+          <span class="right"><input type="checkbox" role="switch"><span class="track"></span><span class="state" style="order:-1"></span></span>
+        </label>
+      </div>
+    </section>
+
+    <section aria-labelledby="danger">
+      <h2 id="danger">Danger zone</h2>
+      <p class="danger-text">Deleting a workspace removes all of its requests for everyone.</p>
+      <button type="button" class="danger">Delete Workspace</button>
+    </section>
+  </main>
+</div>
+</body>
+</html>

@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Chat menu</title>
+<style>
+  /* Tokens from tokens.css (generated from tokens/tokens.json), only the ones used here */
+  :root {
+    --paper: #FFFFFF;
+    --card: #FFFFFF;
+    --ink: #0B1416;
+    --ink-rgb: 11, 20, 22;
+    --muted: #55656A;
+    --accent: #0263AC;
+    --accent-tint: #E6EFF7;
+    --accent-line: #9CC3EA;
+    --plate-hover: #E3ECF5;
+    --shadow-rgb: 11, 20, 22;
+    --font-body: 'Archivo', system-ui, -apple-system, sans-serif;
+    --font-label: 'Archivo', system-ui, sans-serif;
+    --space-1: 4px;
+    --space-2: 8px;
+    --space-3: 12px;
+    --space-4: 16px;
+    --space-5: 24px;
+    --radius-sm: 8px;
+    --radius-md: 12px;
+    --radius-card: 16px;
+    --radius-pill: 999px;
+    --tracking-caps: 0.1em;
+    --text-body: 1rem;
+    --text-small: 0.875rem;
+    --text-label: 0.75rem;
+    --ease: cubic-bezier(0.2, 0.7, 0.2, 1);
+    --dur-fast: 120ms;
+    --dur-base: 180ms;
+    color-scheme: light;
+  }
+  :root[data-theme="dusk"] {
+    color-scheme: dark;
+    --paper: #0E1618;
+    --card: #172327;
+    --ink: #E9EFEF;
+    --ink-rgb: 233, 239, 239;
+    --muted: #9DAEB1;
+    --accent: #6FAAE6;
+    --accent-tint: #13283A;
+    --accent-line: #2D5B85;
+    --plate-hover: #1A2A36;
+    --shadow-rgb: 0, 0, 0;
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    min-height: 100vh;
+    display: grid;
+    place-items: center;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: var(--font-body);
+    font-size: var(--text-body);
+  }
+
+  #component {
+    width: 280px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--space-2);
+  }
+
+  /* Trigger, shown pressed because the menu is open */
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+    min-height: 44px;
+    max-width: 100%;
+    padding: 0 var(--space-4);
+    border: 1px solid var(--accent-line);
+    border-radius: var(--radius-pill);
+    background: var(--accent-tint);
+    color: var(--ink);
+    font: 500 var(--text-body)/1.2 var(--font-body);
+    cursor: pointer;
+    transition: background var(--dur-fast) var(--ease), border-color var(--dur-fast) var(--ease);
+  }
+  .btn:hover { background: var(--plate-hover); }
+  .btn:focus-visible,
+  .item:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+  }
+  .btn [data-user-content] {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  .btn .chev { flex: none; transform: rotate(180deg); }
+
+  .menu {
+    width: 100%;
+    margin: 0;
+    padding: var(--space-2);
+    border: 1px solid var(--accent-line);
+    border-radius: var(--radius-card);
+    background: var(--card);
+    box-shadow: 0 8px 24px rgba(var(--shadow-rgb), 0.14), 0 2px 6px rgba(var(--shadow-rgb), 0.08);
+  }
+
+  .item {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    width: 100%;
+    min-height: 44px;
+    padding: 0 var(--space-3);
+    border: 0;
+    border-radius: var(--radius-md);
+    background: transparent;
+    color: var(--ink);
+    font: 500 var(--text-body)/1.2 var(--font-body);
+    text-align: left;
+    cursor: pointer;
+    transition: background var(--dur-fast) var(--ease);
+  }
+  .item:hover { background: var(--plate-hover); }
+  .item svg { flex: none; }
+
+  .sep {
+    height: 1px;
+    margin: var(--space-2) var(--space-3);
+    background: var(--accent-line);
+    border: 0;
+  }
+
+  .item--danger { font-weight: 700; }
+
+  @media (prefers-reduced-motion: reduce) {
+    * { transition: none !important; }
+  }
+</style>
+</head>
+<body>
+  <div id="component">
+    <button class="btn" type="button" aria-haspopup="menu" aria-expanded="true" aria-controls="chat-menu" aria-label="Chat options">
+      <span data-user-content>Trip planning for Oʻahu</span>
+      <svg class="chev" width="24" height="24" viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M6 9.5 12 15.5 18 9.5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </button>
+
+    <div class="menu" id="chat-menu" role="menu" aria-label="Chat options">
+      <button class="item" type="button" role="menuitem">
+        <svg width="24" height="24" viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M15.2 4.3a2 2 0 0 1 2.8 0l1.7 1.7a2 2 0 0 1 0 2.8L9.4 19.1 4 20l.9-5.4z" fill="currentColor"/>
+          <path d="m13.6 6.9 3.5 3.5" stroke="var(--card)" stroke-width="1.6" stroke-linecap="round"/>
+        </svg>
+        Rename
+      </button>
+      <button class="item" type="button" role="menuitem">
+        <svg width="24" height="24" viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M8 11.2 16 7M8 12.8l8 4.2" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+          <circle cx="6.5" cy="12" r="3.5" fill="currentColor"/>
+          <circle cx="17.5" cy="6" r="3.5" fill="currentColor"/>
+          <circle cx="17.5" cy="18" r="3.5" fill="currentColor"/>
+        </svg>
+        Share
+      </button>
+      <button class="item" type="button" role="menuitem">
+        <svg width="24" height="24" viewBox="0 0 24 24" aria-hidden="true">
+          <rect x="3" y="4" width="18" height="5" rx="1.5" fill="currentColor"/>
+          <path d="M4.5 10.5h15V18a2 2 0 0 1-2 2h-11a2 2 0 0 1-2-2z" fill="currentColor"/>
+          <rect x="9" y="13" width="6" height="2" rx="1" fill="var(--card)"/>
+        </svg>
+        Archive
+      </button>
+      <hr class="sep">
+      <button class="item item--danger" type="button" role="menuitem">
+        <svg width="24" height="24" viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M9 3.5h6a1 1 0 0 1 1 1V6H8V4.5a1 1 0 0 1 1-1z" fill="currentColor"/>
+          <rect x="3.5" y="5.5" width="17" height="2.5" rx="1.25" fill="currentColor"/>
+          <path d="M5.5 9h13l-.8 9.6a2 2 0 0 1-2 1.9H8.3a2 2 0 0 1-2-1.9z" fill="currentColor"/>
+          <path d="M10 11.5v6M14 11.5v6" stroke="var(--card)" stroke-width="1.6" stroke-linecap="round"/>
+        </svg>
+        Delete
+      </button>
+    </div>
+  </div>
+</body>
+</html>

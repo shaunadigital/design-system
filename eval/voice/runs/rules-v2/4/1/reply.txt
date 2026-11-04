@@ -1,0 +1,1 @@
+Shauna ran 240 page builds on Claude. Her system passed all 120 pages, with 7 button styles. The standard design file passed 118 of 120, but produced 30 button styles. Want the details?

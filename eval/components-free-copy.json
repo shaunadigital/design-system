@@ -1,0 +1,7 @@
+{
+ "card": "card for booking a one-hour working session at $150 an hour, with a short description, three things that are included, and a button to book it",
+ "menu": "dropdown menu for a chat, shown open below the button that opens it, with the options Rename, Share, Archive and Delete",
+ "dialog": "confirmation dialog, shown open, that asks \"Delete this chat?\" with one sentence of explanation and Cancel and Delete buttons",
+ "sidebar": "left sidebar for a chat app with a New Chat button, a \"Recent\" label and five recent chats, one of them the active chat",
+ "composer": "chat message composer: a text box with the placeholder \"Message Claude\", a button to attach a file and a send button"
+}

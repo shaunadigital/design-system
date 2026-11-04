@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=1280">
+<title>Harbor: Overview</title>
+<style>
+:root {
+  --paper: #FFFFFF;
+  --card: #FFFFFF;
+  --ink: #0B1416;
+  --ink-rgb: 11, 20, 22;
+  --muted: #55656A;
+  --accent-text: #0263AC;
+  --accent: #0263AC;
+  --font-display: 'Unbounded', system-ui, sans-serif;
+  --font-body: 'Archivo', system-ui, -apple-system, sans-serif;
+  --font-label: 'Archivo', system-ui, sans-serif;
+  --font-hero: 'Unbounded', system-ui, sans-serif;
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 24px;
+  --space-6: 32px;
+  --space-7: 48px;
+  --space-8: 64px;
+  --radius-sm: 8px;
+  --radius-card: 16px;
+  --tracking-label: 0.14em;
+  --text-hero: clamp(1.5rem, 3.34vw, 3rem);
+  --text-heading: clamp(1.75rem, 3.2vw, 2.875rem);
+  --text-step: clamp(1.375rem, 1.9vw, 1.75rem);
+  --text-small: 0.875rem;
+  --text-label: 0.75rem;
+  --ease: cubic-bezier(0.2, 0.7, 0.2, 1);
+  --dur-fast: 120ms;
+  color-scheme: light;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--paper);
+}
+
+#component {
+  width: 1280px;
+  min-height: 100vh;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: var(--text-small);
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+#component h1,
+#component h2,
+#component p,
+#component ul,
+#component dl,
+#component dd {
+  margin: 0;
+  padding: 0;
+}
+
+#component ul { list-style: none; }
+
+.topbar {
+  height: 64px;
+  background: var(--paper);
+  border-bottom: 1px solid rgba(var(--ink-rgb), 0.1);
+}
+
+.wrap {
+  max-width: 1184px;
+  margin: 0 auto;
+  padding: 0 var(--space-6);
+}
+
+.topbar .wrap {
+  height: 100%;
+}
+
+.topbar ul {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  height: 100%;
+  margin-left: calc(-1 * var(--space-3));
+}
+
+.topbar a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  padding: 0 var(--space-3);
+  border-radius: var(--radius-sm);
+  font-size: var(--text-small);
+  font-weight: 500;
+  color: var(--ink);
+  text-decoration: none;
+  transition: color var(--dur-fast) var(--ease);
+}
+
+.topbar a:hover { color: var(--accent-text); }
+.topbar a[aria-current="page"] { color: var(--accent-text); }
+.topbar a:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+main.wrap {
+  padding-top: var(--space-7);
+  padding-bottom: var(--space-8);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6);
+}
+
+.page-title {
+  font-family: var(--font-display);
+  font-weight: 300;
+  font-size: var(--text-heading);
+  line-height: 1.1;
+  text-transform: uppercase;
+  color: var(--ink);
+}
+
+.stats {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--space-6);
+}
+
+.card {
+  background: var(--card);
+  border: 1px solid rgba(var(--ink-rgb), 0.1);
+  border-radius: var(--radius-card);
+  padding: var(--space-5);
+}
+
+.stat {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.label {
+  font-family: var(--font-label);
+  font-weight: 500;
+  font-size: var(--text-label);
+  letter-spacing: var(--tracking-label);
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.value {
+  display: flex;
+  align-items: baseline;
+  gap: var(--space-2);
+  font-family: var(--font-hero);
+  font-weight: 300;
+  font-size: var(--text-hero);
+  line-height: 1.1;
+  color: var(--ink);
+}
+
+.unit {
+  font-family: var(--font-body);
+  font-weight: 400;
+  font-size: var(--text-small);
+  letter-spacing: 0;
+  color: var(--muted);
+}
+
+.activity {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.section-title {
+  font-family: var(--font-display);
+  font-weight: 300;
+  font-size: var(--text-step);
+  line-height: 1.2;
+  text-transform: uppercase;
+  color: var(--ink);
+}
+
+.activity .card {
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
+.activity li {
+  display: flex;
+  align-items: center;
+  min-height: 52px;
+  font-size: var(--text-small);
+  color: var(--ink);
+  border-bottom: 1px solid rgba(var(--ink-rgb), 0.1);
+}
+
+.activity li:last-child { border-bottom: 0; }
+.activity strong { font-weight: 600; }
+</style>
+</head>
+<body>
+<div id="component">
+  <header class="topbar">
+    <div class="wrap">
+      <nav aria-label="Main">
+        <ul>
+          <li><a href="#overview" aria-current="page">Overview</a></li>
+          <li><a href="#requests">Requests</a></li>
+          <li><a href="#team">Team</a></li>
+          <li><a href="#settings">Settings</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main class="wrap" id="overview">
+    <h1 class="page-title">Overview</h1>
+
+    <section aria-label="Key figures">
+      <dl class="stats">
+        <div class="card stat">
+          <dt class="label">Active users</dt>
+          <dd class="value">1,284</dd>
+        </div>
+        <div class="card stat">
+          <dt class="label">Open requests</dt>
+          <dd class="value">37</dd>
+        </div>
+        <div class="card stat">
+          <dt class="label">Average response</dt>
+          <dd class="value">2.4 <span class="unit">hours</span></dd>
+        </div>
+        <div class="card stat">
+          <dt class="label">Uptime</dt>
+          <dd class="value">99.9%</dd>
+        </div>
+      </dl>
+    </section>
+
+    <section class="activity" aria-labelledby="activity-title">
+      <h2 class="section-title" id="activity-title">Recent activity</h2>
+      <div class="card">
+        <ul>
+          <li><span><strong>Maya Chen</strong> opened Laptop refresh for design</span></li>
+          <li><span><strong>Leo Park</strong> approved Q4 travel budget</span></li>
+          <li><span><strong>Ana Ruiz</strong> closed VPN access for contractors</span></li>
+          <li><span><strong>Sam Ito</strong> commented on New hire onboarding</span></li>
+          <li><span><strong>Kai Lee</strong> assigned Office move to Facilities</span></li>
+        </ul>
+      </div>
+    </section>
+  </main>
+</div>
+</body>
+</html>

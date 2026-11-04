@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Requests</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+:root {
+  --paper: #FFFFFF;
+  --card: #FFFFFF;
+  --ink: #0B1416;
+  --ink-rgb: 11, 20, 22;
+  --shadow-rgb: 11, 20, 22;
+  --muted: #55656A;
+  --accent: #0263AC;
+  --accent-text: #0263AC;
+  --accent-tint: #E6EFF7;
+  --on-ink: #FFFFFF;
+  --font-display: 'Unbounded', system-ui, sans-serif;
+  --font-body: 'Archivo', system-ui, -apple-system, sans-serif;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 24px;
+  --space-6: 32px;
+  --space-7: 48px;
+  --radius-md: 12px;
+  --radius-card: 16px;
+  --radius-pill: 999px;
+  --tracking-label: 0.14em;
+  --text-heading: clamp(1.75rem, 3.2vw, 2.875rem);
+  --text-body: 1rem;
+  --text-small: 0.875rem;
+  --text-label: 0.75rem;
+  --ease: cubic-bezier(0.2, 0.7, 0.2, 1);
+  --dur-base: 180ms;
+}
+
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--paper); color: var(--ink); font-family: var(--font-body); }
+
+#component {
+  width: 1280px;
+  min-height: 800px;
+  background: var(--paper);
+  padding: var(--space-7) var(--space-6);
+}
+.page { max-width: 1120px; margin: 0 auto; display: flex; flex-direction: column; gap: var(--space-6); }
+
+.top { display: flex; align-items: center; justify-content: space-between; }
+h1 {
+  margin: 0;
+  font-family: var(--font-display);
+  font-weight: 300;
+  font-size: var(--text-heading);
+  line-height: 1.1;
+  text-transform: uppercase;
+}
+
+.btn {
+  display: inline-flex; align-items: center; justify-content: center;
+  height: 44px; padding: 0 20px;
+  border-radius: var(--radius-pill);
+  font: 600 var(--text-small) var(--font-body);
+  color: var(--ink);
+  background: none; border: 1.5px solid transparent;
+  cursor: pointer;
+  transition: background var(--dur-base) var(--ease), border-color var(--dur-base) var(--ease);
+}
+.btn:focus-visible, .field input:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.btn--primary { background: var(--ink); color: var(--on-ink); border-color: var(--ink); }
+.btn--secondary { border-color: var(--ink); }
+.btn--quiet:hover { background: var(--accent-tint); }
+
+.card {
+  background: var(--card);
+  border: 1px solid rgba(var(--ink-rgb), 0.1);
+  border-radius: var(--radius-card);
+  overflow: hidden;
+}
+
+.toolbar {
+  display: flex; align-items: flex-end; justify-content: space-between;
+  padding: var(--space-5);
+  border-bottom: 1px solid rgba(var(--ink-rgb), 0.1);
+}
+.field { display: flex; flex-direction: column; gap: var(--space-2); }
+.field label {
+  font: 500 var(--text-label) var(--font-body);
+  letter-spacing: var(--tracking-label);
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.search { position: relative; width: 360px; }
+.search svg { position: absolute; left: var(--space-3); top: 12px; width: 20px; height: 20px; color: var(--muted); }
+.search input {
+  width: 100%; height: 44px;
+  padding: 0 12px 0 44px;
+  font: inherit; font-size: var(--text-body); color: var(--ink);
+  background: var(--paper);
+  border: 1px solid rgba(var(--ink-rgb), 0.2);
+  border-radius: var(--radius-md);
+}
+.search input::placeholder { color: var(--muted); }
+.filters { display: flex; gap: var(--space-2); }
+
+table { width: 100%; border-collapse: collapse; font-size: var(--text-small); }
+th {
+  height: 52px; padding: 0 var(--space-5);
+  text-align: left;
+  font: 500 var(--text-label) var(--font-body);
+  letter-spacing: var(--tracking-label);
+  text-transform: uppercase;
+  color: var(--muted);
+  border-bottom: 1px solid rgba(var(--ink-rgb), 0.1);
+}
+td {
+  height: 52px; padding: 0 var(--space-5);
+  border-bottom: 1px solid rgba(var(--ink-rgb), 0.1);
+  white-space: nowrap;
+}
+tbody tr:last-child td { border-bottom: 0; }
+td.name { font-weight: 600; }
+td.muted { color: var(--muted); }
+.pill {
+  display: inline-block; padding: 2px 10px;
+  border-radius: var(--radius-pill);
+  background: var(--accent-tint); color: var(--accent-text);
+  font-size: var(--text-label); font-weight: 600;
+}
+</style>
+</head>
+<body>
+<div id="component">
+  <main class="page">
+    <div class="top">
+      <h1>Requests</h1>
+      <button class="btn btn--primary" type="button">New Request</button>
+    </div>
+
+    <section class="card">
+      <div class="toolbar">
+        <div class="field search">
+          <label for="search">Search requests</label>
+          <div style="position:relative">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+            <input id="search" type="search" placeholder="Search requests">
+          </div>
+        </div>
+        <div class="filters" role="group" aria-label="Filter requests">
+          <button class="btn btn--secondary" type="button" aria-pressed="true">All</button>
+          <button class="btn btn--quiet" type="button" aria-pressed="false">Open</button>
+          <button class="btn btn--quiet" type="button" aria-pressed="false">Closed</button>
+        </div>
+      </div>
+
+      <table>
+        <thead>
+          <tr><th>Request</th><th>Requester</th><th>Status</th><th>Priority</th><th>Updated</th></tr>
+        </thead>
+        <tbody>
+          <tr><td class="name">Laptop refresh for design</td><td>Maya Chen</td><td><span class="pill">Open</span></td><td>High</td><td class="muted">2h ago</td></tr>
+          <tr><td class="name">Q4 travel budget</td><td>Leo Park</td><td><span class="pill">Approved</span></td><td>Medium</td><td class="muted">5h ago</td></tr>
+          <tr><td class="name">VPN access for contractors</td><td>Ana Ruiz</td><td><span class="pill">Closed</span></td><td>High</td><td class="muted">1d ago</td></tr>
+          <tr><td class="name">New hire onboarding</td><td>Sam Ito</td><td><span class="pill">Open</span></td><td>Medium</td><td class="muted">1d ago</td></tr>
+          <tr><td class="name">Office move</td><td>Kai Lee</td><td><span class="pill">In review</span></td><td>Low</td><td class="muted">2d ago</td></tr>
+          <tr><td class="name">Security training</td><td>Ava Brooks</td><td><span class="pill">Open</span></td><td>Low</td><td class="muted">3d ago</td></tr>
+        </tbody>
+      </table>
+    </section>
+  </main>
+</div>
+</body>
+</html>

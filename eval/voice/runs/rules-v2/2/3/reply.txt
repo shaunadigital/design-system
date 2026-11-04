@@ -1,0 +1,1 @@
+Seven checks run on every build. The main ones are text contrast in both day and dusk themes, colour, type and spacing coming only from tokens, and alt text on images. Want the other four?
