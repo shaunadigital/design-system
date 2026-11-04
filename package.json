@@ -10,7 +10,7 @@
     "eval:voice": "bash eval/voice/run.sh"
   },
   "author": "Shauna Arnold",
-  "license": "SEE LICENSE",
+  "license": "MIT",
   "dependencies": {
     "@modelcontextprotocol/sdk": "^1.32.2",
     "zod": "^3.25.76"

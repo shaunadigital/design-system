@@ -69,3 +69,7 @@ Finished answers are kept and skipped on the next run, so only new groups run. T
 This is the system from the shauna.dev repo, kept in step with it. The site's own pages and client work are not part of this repository.
 
 Shauna Arnold, product designer and developer, Honolulu. [shauna.dev](https://shauna.dev)
+
+## Licence
+
+MIT. See LICENSE.
