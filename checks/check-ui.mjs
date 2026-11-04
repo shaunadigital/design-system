@@ -24,7 +24,8 @@ const themes = { day: { ...tokens.color, ...tokens.art }, dusk: { ...tokens.colo
 const lowPairs = Object.entries(themes).flatMap(([name, all]) => tokens.contrast.pairs.map(([f, b]) => [f, b, ratio(all[f], all[b])])
   .filter(([, , r]) => r < 4.5).map(([f, b, r]) => `${name}: ${f} on ${b} is ${r.toFixed(2)}:1`));
 const srcFiles = walk(join(root, 'src')).filter((p) => /src\/(styles\/v2\.css|components\/v2\/|components\/blog\/|layouts\/LayoutV2|pages\/(blog\/index|blog\/\[slug\]|index|system|resume|work\/rescue-platform|work\/ai-design-systems|work\/outreach-app|work\/retail-brand-programs)\.astro)/.test(p));
-// --accent (3.73:1) is for graphics only: logo mark, accent period, arrows. Mark those lines `/* graphic */`.
+// --accent is for graphics only (logo mark, accent period, arrows); text uses --accent-text, which holds 4.5:1 in
+// both themes. Mark graphic uses of --accent with `/* graphic */`.
 const reefText = srcFiles.flatMap((f) => readFileSync(f, 'utf8').split('\n').map((l, i) => [l, i + 1])
   .filter(([l]) => /(^|[^-])color:\s*var\(--accent\)/.test(l) && !l.includes('/* graphic */'))
   .map(([, n]) => `${f.replace(root, '')}:${n} uses --accent for text (mark graphic uses with /* graphic */)`));
@@ -57,7 +58,22 @@ for (const f of srcFiles) {
     }
   });
 }
+// Serif for headlines only (2026-11-03, Shauna): DM Serif Display never pairs with a size under 28px. A rule that
+// sets --font-display or --font-hero with a smaller text token fails. A documented exception (pull quote, ribbon)
+// carries `/* serif-ok: why */` inside the rule.
+const serifSmall = [];
+const smallSizes = /font-size:\s*var\(--text-(step|lead|body-l|body|small|label)\)/;
+for (const f of srcFiles) {
+  const s = readFileSync(f, 'utf8');
+  const css = f.endsWith('.css') ? s : [...s.matchAll(/<style[^>]*>([\s\S]*?)<\/style>/g)].map((m) => m[1]).join('\n');
+  for (const m of css.matchAll(/([^{}]*)\{([^{}]*)\}/g)) {
+    if (/var\(--font-(display|hero)\)/.test(m[2]) && smallSizes.test(m[2]) && !m[2].includes('serif-ok')) {
+      serifSmall.push(`${f.replace(root, '')}: "${m[1].trim().split('\n').pop()}" sets the serif under 28px (use LINE Seed 700, see DESIGN.md Type)`);
+    }
+  }
+}
 check('Colour, typography, and spacing come from shared tokens', raw);
+check('The serif is only for headlines, never under 28px', serifSmall);
 
 // 3. Buttons: Title Case, no em dashes in any copy
 const small = new Set(['a', 'an', 'and', 'the', 'of', 'to', 'with', 'for', 'in', 'on', 'at', 'by', 'or', 'nor', 'but', 'as', 'per', 'via', 'vs']);

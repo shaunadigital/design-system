@@ -11,7 +11,7 @@ More and more of an interface is now built by AI, and AI doesn't learn a team's 
 | `tokens/tokens.json` | Every colour, size, space, radius and motion value, for Day and Dusk themes. The one source. |
 | `DESIGN.md` | The rules, written for people and for Claude. Claude reads this before it builds any UI. |
 | `scripts/tokens.mjs` | Turns the token file into CSS (`build/tokens.css`). The build fails if a colour drifts from its role. |
-| `checks/check-ui.mjs` | The seven checks that run on every build of shauna.dev: contrast in both themes, tokens only, button wording, labels and alt text, motion, hover, and the one phone frame. |
+| `checks/check-ui.mjs` | The seven checks that run on every build of shauna.dev: contrast in both themes, tokens only, button wording, labels and alt text, motion, hover, and the one phone frame. It runs against the built site, so here it's for reading; `check_html` in the server runs the same static rules on any snippet. |
 | `mcp/server.mjs` | A small server Claude can connect to. It reads the tokens and rules, and checks Claude's own work before it hands it over. |
 | `eval/` | The tests that measured whether Claude follows the system, with every build, script and score. |
 | `figma-plugin/` | Rebuilds the Figma library's variables and base components from the same token file. |

@@ -1,6 +1,6 @@
 # Design Systems That AI Follows eval: does Claude use the design system correctly?
 
-Run on 2026-10-19 for the UI Checks case study (/work/ui-checks). Every number on that page comes from this folder.
+Run on 2026-10-19 for the case study now at /work/ai-design-systems/. Every number on that page comes from this folder.
 
 ## The question
 
