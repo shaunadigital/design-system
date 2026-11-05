@@ -1,0 +1,42 @@
+[
+  {
+    "id": "contrast",
+    "name": "Text contrast stays at or above 4.5:1 in day and dusk, including interactive states",
+    "description": "Every text and background pair in tokens.json holds 4.5:1 in both themes, and --accent is never used for text."
+  },
+  {
+    "id": "tokens",
+    "name": "Colour, typography, and spacing come from shared tokens",
+    "description": "No raw colour values in style code, every font size is a --text-* token, and every letter-spacing is a --tracking-* token or 0."
+  },
+  {
+    "id": "serif",
+    "name": "The serif is only for headlines, never under 28px",
+    "description": "DM Serif Display is never set with a text size under 28px, unless the rule is marked serif-ok with a reason."
+  },
+  {
+    "id": "buttons",
+    "name": "Buttons use consistent casing and language",
+    "description": "Button labels are in Title Case, unless a person wrote them, and no page copy has an em dash."
+  },
+  {
+    "id": "labels",
+    "name": "Images include alternative text and controls have accessible labels",
+    "description": "Every image has an alt attribute, and every link and button has a name."
+  },
+  {
+    "id": "motion",
+    "name": "Motion follows one system and respects reduced-motion preferences",
+    "description": "There is a reduced-motion rule, autoplaying video can be paused, and transitions use the duration tokens."
+  },
+  {
+    "id": "hover",
+    "name": "Only links and buttons move on hover",
+    "description": "Anything that lifts or slides on hover is a link or a button."
+  },
+  {
+    "id": "phone-frame",
+    "name": "Phone screens use the one phone frame",
+    "description": "Every phone-sized screenshot or video sits inside the one phone frame component."
+  }
+]

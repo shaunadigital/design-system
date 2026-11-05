@@ -22,17 +22,22 @@
     "url": "https://github.com/shaunadigital/design-system"
   },
   "bin": {
-    "design-system-mcp": "mcp/server.mjs"
+    "design-system-mcp": "mcp/server.mjs",
+    "design-system-check-ui": "checks/check-ui.mjs"
   },
   "exports": {
     "./tokens.json": "./tokens/tokens.json",
     "./tokens.css": "./build/tokens.css",
-    "./DESIGN.md": "./DESIGN.md"
+    "./DESIGN.md": "./DESIGN.md",
+    "./check-ui": "./checks/check-ui.mjs",
+    "./checks.json": "./checks/checks.json",
+    "./package.json": "./package.json"
   },
   "files": [
     "tokens",
     "build",
     "DESIGN.md",
+    "checks",
     "mcp",
     "eval/voice/check.mjs",
     "scripts"

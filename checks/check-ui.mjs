@@ -1,17 +1,54 @@
-// npm run check:ui · runs after every build (see package.json). Fails the build
+#!/usr/bin/env node
+// check-ui · runs after every build of a site that uses this system. Fails the build
 // when a v2 page breaks a rule in DESIGN.md, whether a person or Claude wrote it.
-import { readFileSync, readdirSync, statSync } from 'node:fs';
-import { join } from 'node:path';
+//
+//   design-system-check-ui [--root <site>] [--config <file.json>]
+//
+// --root is the site to check (default: the current directory). --config is a JSON file, read relative to the
+// current directory, that can set any of the keys in DEFAULTS below. The tokens come from this package unless the
+// config names a "tokens" file in the site.
+import { readFileSync, readdirSync, statSync, existsSync } from 'node:fs';
+import { join, resolve, relative } from 'node:path';
 
-const root = new URL('..', import.meta.url).pathname;
-const tokens = JSON.parse(readFileSync(join(root, 'tokens/tokens.json')));
+const arg = (flag) => {
+  const i = process.argv.indexOf(flag);
+  if (i < 0) return null;
+  const v = process.argv[i + 1];
+  if (!v || v.startsWith('--')) { console.error(`check-ui: ${flag} needs a value`); process.exit(2); }
+  return v;
+};
+// What a site checks by default: shauna.dev's v2 pages. A path ending in / means every file under it.
+const DEFAULTS = {
+  dist: 'dist',
+  src: [
+    'src/styles/v2.css', 'src/components/v2/', 'src/components/blog/', 'src/layouts/LayoutV2.astro',
+    'src/pages/blog/index.astro', 'src/pages/blog/[slug].astro', 'src/pages/index.astro', 'src/pages/system.astro',
+    'src/pages/resume.astro', 'src/pages/work/rescue-platform.astro', 'src/pages/work/ai-design-systems.astro',
+    'src/pages/work/outreach-app.astro', 'src/pages/work/retail-brand-programs.astro',
+  ],
+  reducedMotionCss: 'src/styles/v2.css',
+};
+const root = resolve(arg('--root') ?? process.cwd());
+const configPath = arg('--config');
+const config = { ...DEFAULTS, ...(configPath ? JSON.parse(readFileSync(resolve(configPath), 'utf8')) : {}) };
+const tokens = JSON.parse(readFileSync(config.tokens ? resolve(root, config.tokens) : new URL('../tokens/tokens.json', import.meta.url), 'utf8'));
+const NAMES = Object.fromEntries(JSON.parse(readFileSync(new URL('./checks.json', import.meta.url), 'utf8')).map((c) => [c.id, c.name]));
+const rel = (f) => relative(root, f);
 const results = [];
-const check = (name, problems) => results.push({ name, problems });
+const check = (id, problems) => {
+  if (!NAMES[id]) throw new Error(`check-ui: no check "${id}" in checks/checks.json`);
+  results.push({ name: NAMES[id], problems });
+};
 
-// Pages built with the v2 system carry data-system="v2" on <html>.
 const walk = (d) => readdirSync(d).flatMap((f) => { const p = join(d, f); return statSync(p).isDirectory() ? walk(p) : [p]; });
-const pages = walk(join(root, 'dist')).filter((p) => p.endsWith('.html'))
-  .map((p) => ({ p: p.replace(join(root, 'dist'), ''), html: readFileSync(p, 'utf8') }))
+const dist = resolve(root, config.dist);
+if (!existsSync(dist)) { console.error(`check-ui: no built site at ${dist}. Build first, or pass --root.`); process.exit(1); }
+// A listed path that doesn't exist fails, so a renamed page can't quietly drop out of the checks.
+const missing = config.src.filter((s) => !existsSync(resolve(root, s)));
+if (missing.length) { console.error(`check-ui: these source paths don't exist under ${root}:\n  ${missing.join('\n  ')}`); process.exit(1); }
+// Pages built with the v2 system carry data-system="v2" on <html>.
+const pages = walk(dist).filter((p) => p.endsWith('.html'))
+  .map((p) => ({ p: '/' + relative(dist, p), html: readFileSync(p, 'utf8') }))
   .filter((x) => x.html.includes('data-system="v2"'));
 const strip = (h) => h.replace(/<script[\s\S]*?<\/script>|<style[\s\S]*?<\/style>/g, '');
 const text = (h) => strip(h).replace(/<[^>]+>/g, ' ').replace(/&[a-z#0-9]+;/gi, ' ');
@@ -23,20 +60,20 @@ const ratio = (a, b) => { const [x, y] = [lum(a), lum(b)].sort((m, n) => n - m);
 const themes = { day: { ...tokens.color, ...tokens.art }, dusk: { ...tokens.color, ...tokens.art, ...tokens.dusk.color, ...tokens.dusk.art } };
 const lowPairs = Object.entries(themes).flatMap(([name, all]) => tokens.contrast.pairs.map(([f, b]) => [f, b, ratio(all[f], all[b])])
   .filter(([, , r]) => r < 4.5).map(([f, b, r]) => `${name}: ${f} on ${b} is ${r.toFixed(2)}:1`));
-const srcFiles = walk(join(root, 'src')).filter((p) => /src\/(styles\/v2\.css|components\/v2\/|components\/blog\/|layouts\/LayoutV2|pages\/(blog\/index|blog\/\[slug\]|index|system|resume|work\/rescue-platform|work\/ai-design-systems|work\/outreach-app|work\/retail-brand-programs)\.astro)/.test(p));
+const srcFiles = [...new Set(config.src.flatMap((s) => { const p = resolve(root, s); return statSync(p).isDirectory() ? walk(p) : [p]; }))];
 // --accent is for graphics only (logo mark, accent period, arrows); text uses --accent-text, which holds 4.5:1 in
 // both themes. Mark graphic uses of --accent with `/* graphic */`.
 const reefText = srcFiles.flatMap((f) => readFileSync(f, 'utf8').split('\n').map((l, i) => [l, i + 1])
   .filter(([l]) => /(^|[^-])color:\s*var\(--accent\)/.test(l) && !l.includes('/* graphic */'))
-  .map(([, n]) => `${f.replace(root, '')}:${n} uses --accent for text (mark graphic uses with /* graphic */)`));
-check('Text contrast stays at or above 4.5:1 in day and dusk, including interactive states', [...lowPairs, ...reefText]);
+  .map(([, n]) => `${rel(f)}:${n} uses --accent for text (mark graphic uses with /* graphic */)`));
+check('contrast', [...lowPairs, ...reefText]);
 
 // 2. Tokens only: no raw colour literals in v2 style code
 const raw = [];
 for (const f of srcFiles) {
   const s = readFileSync(f, 'utf8');
   const css = f.endsWith('.css') ? s : [...s.matchAll(/<style[^>]*>([\s\S]*?)<\/style>/g)].map((m) => m[1]).join('\n');
-  for (const m of css.matchAll(/#[0-9a-fA-F]{3,8}\b|rgba?\(\s*\d/g)) raw.push(`${f.replace(root, '')}: ${m[0]}`);
+  for (const m of css.matchAll(/#[0-9a-fA-F]{3,8}\b|rgba?\(\s*\d/g)) raw.push(`${rel(f)}: ${m[0]}`);
 }
 // Type: every font-size is a --text-* token (print pt sizes and frame-scaled cqw sizes excepted).
 for (const f of srcFiles) {
@@ -44,7 +81,7 @@ for (const f of srcFiles) {
   s.split('\n').forEach((l, i) => {
     for (const m of l.matchAll(/font-size:\s*([^;}"]+)/g)) {
       const v = m[1].trim();
-      if (!v.startsWith('var(--text-') && !/pt\b|cqw/.test(v)) raw.push(`${f.replace(root, '')}:${i + 1} font-size ${v} is not on the type scale`);
+      if (!v.startsWith('var(--text-') && !/pt\b|cqw/.test(v)) raw.push(`${rel(f)}:${i + 1} font-size ${v} is not on the type scale`);
     }
   });
 }
@@ -54,7 +91,7 @@ for (const f of srcFiles) {
   s.split('\n').forEach((l, i) => {
     for (const m of l.matchAll(/letter-spacing:\s*([^;}"]+)/g)) {
       const v = m[1].trim();
-      if (!v.startsWith('var(--tracking-') && !/^(0|normal)$/.test(v)) raw.push(`${f.replace(root, '')}:${i + 1} letter-spacing ${v} is not a tracking token`);
+      if (!v.startsWith('var(--tracking-') && !/^(0|normal)$/.test(v)) raw.push(`${rel(f)}:${i + 1} letter-spacing ${v} is not a tracking token`);
     }
   });
 }
@@ -68,12 +105,12 @@ for (const f of srcFiles) {
   const css = f.endsWith('.css') ? s : [...s.matchAll(/<style[^>]*>([\s\S]*?)<\/style>/g)].map((m) => m[1]).join('\n');
   for (const m of css.matchAll(/([^{}]*)\{([^{}]*)\}/g)) {
     if (/var\(--font-(display|hero)\)/.test(m[2]) && smallSizes.test(m[2]) && !m[2].includes('serif-ok')) {
-      serifSmall.push(`${f.replace(root, '')}: "${m[1].trim().split('\n').pop()}" sets the serif under 28px (use LINE Seed 700, see DESIGN.md Type)`);
+      serifSmall.push(`${rel(f)}: "${m[1].trim().split('\n').pop()}" sets the serif under 28px (use LINE Seed 700, see DESIGN.md Type)`);
     }
   }
 }
-check('Colour, typography, and spacing come from shared tokens', raw);
-check('The serif is only for headlines, never under 28px', serifSmall);
+check('tokens', raw);
+check('serif', serifSmall);
 
 // 3. Buttons: Title Case, no em dashes in any copy
 const small = new Set(['a', 'an', 'and', 'the', 'of', 'to', 'with', 'for', 'in', 'on', 'at', 'by', 'or', 'nor', 'but', 'as', 'per', 'via', 'vs']);
@@ -88,7 +125,7 @@ for (const { p, html } of pages) {
   }
   if (text(html).includes('—')) btnProblems.push(`${p}: contains an em dash`);
 }
-check('Buttons use consistent casing and language', [...new Set(btnProblems)]);
+check('buttons', [...new Set(btnProblems)]);
 
 // 4. Alt text and accessible names
 const a11y = [];
@@ -99,17 +136,17 @@ for (const { p, html } of pages) {
     if (!name && !/aria-label="[^"]+"/.test(m[2])) a11y.push(`${p}: <${m[1]}> with no label`);
   }
 }
-check('Images include alternative text and controls have accessible labels', a11y);
+check('labels', a11y);
 
 // 5. Motion
 const motion = [];
-const css = readFileSync(join(root, 'src/styles/v2.css'), 'utf8');
-if (!/prefers-reduced-motion:\s*reduce/.test(css)) motion.push('v2.css has no reduced-motion rule');
+const css = readFileSync(resolve(root, config.reducedMotionCss), 'utf8');
+if (!/prefers-reduced-motion:\s*reduce/.test(css)) motion.push(`${config.reducedMotionCss} has no reduced-motion rule`);
 for (const { p, html } of pages) {
   if (/<video\b[^>]*autoplay/.test(html) && !/data-pause/.test(html)) motion.push(`${p}: autoplaying video without a pause button`);
   if (/transition:[^;]*\b\d+m?s\b/.test(html.match(/<style[\s\S]*?<\/style>/g)?.join('') ?? '')) motion.push(`${p}: a transition uses a raw duration`);
 }
-check('Motion follows one system and respects reduced-motion preferences', motion);
+check('motion', motion);
 
 // 6. Hover: only things you can click move on hover. The hovered element must be a link,
 // a button or a .btn; anything else that lifts or slides on hover promises a click it can't keep.
@@ -120,11 +157,11 @@ for (const f of srcFiles) {
     if (!/transform|translate/.test(m[2]) || /transform:\s*none/.test(m[2])) continue;
     for (const sel of m[1].split(',').filter((x) => x.includes(':hover'))) {
       const hovered = sel.split(':hover')[0].trim().split(/[\s>+~]+/).pop();
-      if (!/^(a|button)\b|\.btn\b|\[href\]/.test(hovered)) hover.push(`${f.replace(root, '')}: "${sel.trim()}" moves on hover but is not a link or button`);
+      if (!/^(a|button)\b|\.btn\b|\[href\]/.test(hovered)) hover.push(`${rel(f)}: "${sel.trim()}" moves on hover but is not a link or button`);
     }
   }
 }
-check('Only links and buttons move on hover', [...new Set(hover)]);
+check('hover', [...new Set(hover)]);
 
 // 7. Phone frames (2026-10-24): every phone screen (a 390 x 844 or 780 x 1688 image or video) sits inside the
 // one PhoneFrame component, so every phone on the site has the same bezel and corners. List thumbnails that crop a
@@ -138,7 +175,7 @@ for (const { p, html } of pages) {
     if (!/class="phone-screen/.test(before)) frames.push(`${p}: a phone screen outside PhoneFrame (${(tag.match(/(src|poster)="([^"]+)"/) || [])[2] || tag.slice(0, 60)})`);
   }
 }
-check('Phone screens use the one phone frame', frames);
+check('phone-frame', frames);
 
 console.log(`\n$ npm run check:ui   (${pages.length} pages)`);
 let failed = 0;
@@ -147,6 +184,6 @@ for (const r of results) {
   for (const x of r.problems) console.log(`    ${x}`);
   failed += r.problems.length;
 }
-if (!pages.length) { console.log('✗ No v2 pages found in dist/'); process.exit(1); }
+if (!pages.length) { console.log(`✗ No v2 pages found in ${rel(dist) || dist}`); process.exit(1); }
 if (failed) { console.log(`\n${failed} problem(s). Build failed.`); process.exit(1); }
 console.log('\nAll checks passed.');

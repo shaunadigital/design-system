@@ -1,6 +1,12 @@
-// Generates build/tokens.css from tokens/tokens.json (on shauna.dev it writes src/styles/tokens.css before every build),
-// so the CSS can never disagree with the token file Claude and people read.
+// Generates tokens.css from tokens/tokens.json, so the CSS can never disagree with the token file Claude and people
+// read. Writes build/tokens.css in this package, or wherever --out says (a path relative to the current directory):
+//   node scripts/tokens.mjs --out src/styles/tokens.css
 import { readFileSync, writeFileSync, mkdirSync } from 'node:fs';
+import { dirname, relative, resolve } from 'node:path';
+import { fileURLToPath } from 'node:url';
+const outAt = process.argv.indexOf('--out');
+if (outAt > -1 && (!process.argv[outAt + 1] || process.argv[outAt + 1].startsWith('--'))) { console.error('tokens: --out needs a path'); process.exit(2); }
+const out = outAt > -1 ? resolve(process.argv[outAt + 1]) : fileURLToPath(new URL('../build/tokens.css', import.meta.url));
 const t = JSON.parse(readFileSync(new URL('../tokens/tokens.json', import.meta.url)));
 const rgb = (h) => [1, 3, 5].map((i) => parseInt(h.slice(i, i + 2), 16)).join(', ');
 // Base and roles (2026-11-02): every role's Day value must be its base colour, so the palette stays small.
@@ -27,6 +33,6 @@ lines.push(`  --ease: ${t.motion.ease};`, `  --dur-fast: ${t.motion.fast};`, `  
 lines.push('', ':root { color-scheme: light; }', ':root[data-theme="dusk"] {', '  color-scheme: dark;');
 for (const [k, v] of Object.entries({ ...t.dusk.color, ...t.dusk.art })) lines.push(`  --${k}: ${v};`, `  --${k}-rgb: ${rgb(v)};`);
 lines.push('}');
-mkdirSync(new URL('../build/', import.meta.url), { recursive: true });
-writeFileSync(new URL('../build/tokens.css', import.meta.url), lines.join('\n') + '\n');
-console.log(`tokens.css: ${Object.keys(t.color).length + Object.keys(t.art).length} colours (${Object.keys(t.dusk.color).length + Object.keys(t.dusk.art).length} re-set for dusk), ${t.space.length} spaces`);
+mkdirSync(dirname(out), { recursive: true });
+writeFileSync(out, lines.join('\n') + '\n');
+console.log(`${relative(process.cwd(), out)}: ${Object.keys(t.color).length + Object.keys(t.art).length} colours (${Object.keys(t.dusk.color).length + Object.keys(t.dusk.art).length} re-set for dusk), ${t.space.length} spaces`);
