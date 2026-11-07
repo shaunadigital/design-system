@@ -178,26 +178,29 @@ for (const { p, html } of pages) {
 }
 check('phone-frame', frames);
 
-// 8. Touch targets (2026-11-06, Shauna): every .btn, in every kind, is at least 44 x 44. Added after the Quiet button
-// failed its own rule in Round 4b: padding 0 2px and no minimum width made "No" 28px wide.
-// CSS rules are always checked, so a build with no browser still catches a kind that can't hold 44px. With Playwright
-// (installed, or PLAYWRIGHT_MODULE set to its index.mjs) the built pages are also rendered at desktop and phone width:
-// each real .btn is measured, with hidden parts and dialogs opened, plus a "No" in each kind, because a kind can be
-// too small and still pass on a page where every label happens to be long.
+// 8. Touch targets (2026-11-06, Shauna): every .btn, button, toggle and form control is at least 44 x 44. Added after
+// the Quiet button failed its own rule in Round 4b: padding 0 2px and no minimum width made "No" 28px wide.
+// CSS rules are always checked, so a build with no browser still catches a kind or a button class set under 44px. With
+// Playwright (installed, or PLAYWRIGHT_MODULE set to its index.mjs) the built pages are also rendered at desktop and
+// phone width: each real control is measured, with hidden parts and dialogs opened, plus a "No" in each .btn kind,
+// because a kind can be too small and still pass on a page where every label happens to be long.
+// A control can draw a smaller shape at rest (see ThemeToggle.astro), as long as the element you tap is 44 x 44.
 const MIN_TARGET = 44;
 const SHORTEST_LABEL = 16; // about what a two-letter label takes at --text-body
 const targets = new Set();
+const buttonClasses = new Set(srcFiles.flatMap((f) => [...readFileSync(f, 'utf8').matchAll(/<button\b[^>]*?class(?::list)?=(?:"([^"]*)"|\{\[([^\]]*)\])/g)]
+  .flatMap((m) => (m[1] ?? [...m[2].matchAll(/'([\w-]+)'/g)].map((c) => c[1]).join(' ')).split(/\s+/).filter(Boolean))));
 for (const f of srcFiles) {
   const s = readFileSync(f, 'utf8');
   const css = f.endsWith('.css') ? s : [...s.matchAll(/<style[^>]*>([\s\S]*?)<\/style>/g)].map((m) => m[1]).join('\n');
-  for (const m of css.replace(/\/\*[\s\S]*?\*\//g, '').matchAll(/([^{}]*\.btn[^{}]*)\{([^{}]*)\}/g)) {
-    const sel = m[1].split(',').map((x) => x.trim()).find((x) => /\.btn(--[\w-]+)?$/.test(x));
+  for (const m of css.replace(/\/\*[\s\S]*?\*\//g, '').matchAll(/([^{}]*)\{([^{}]*)\}/g)) {
+    const sel = m[1].split(',').map((x) => x.trim()).find((x) => /\.btn(--[\w-]+)?$/.test(x) || buttonClasses.has(x.match(/^\.([\w-]+)$/)?.[1]));
     if (!sel) continue;
     const px = (prop) => { const v = m[2].match(new RegExp(`(?:^|[;\\s])${prop}:\\s*([\\d.]+)(?:px)?\\s*(?:;|$)`)); return v ? Number(v[1]) : null; };
     const where = `${rel(f)}: "${sel}"`;
     for (const prop of ['height', 'min-height', 'width', 'min-width']) if (px(prop) !== null && px(prop) < MIN_TARGET) targets.add(`${where} sets ${prop} under ${MIN_TARGET}px`);
     const pad = m[2].match(/(?:^|[;\s])padding:\s*([^;]+)/)?.[1].trim().split(/\s+/);
-    if (!pad || !pad.every((v) => /^[\d.]+(px)?$/.test(v)) || px('min-width') >= MIN_TARGET) continue;
+    if (!sel.includes('.btn') || !pad || !pad.every((v) => /^[\d.]+(px)?$/.test(v)) || px('min-width') >= MIN_TARGET) continue;
     const [, right = pad[0], , left = right] = pad;
     const sides = parseFloat(left) + parseFloat(right);
     if (sides + SHORTEST_LABEL < MIN_TARGET) targets.add(`${where} has ${sides}px side padding and no min-width, so a short label is under ${MIN_TARGET}px wide`);
@@ -230,7 +233,7 @@ if (browser) {
     for (const { p } of pages) {
       await tab.goto(origin + p, { waitUntil: 'load' });
       const found = await tab.evaluate(async (min) => {
-        document.querySelectorAll('[hidden]').forEach((e) => e.removeAttribute('hidden'));
+        document.querySelectorAll('[hidden]:not(input)').forEach((e) => e.removeAttribute('hidden'));
         document.querySelectorAll('dialog:not([open])').forEach((d) => d.setAttribute('open', ''));
         const kinds = new Set(['']);
         for (const sheet of document.styleSheets) { let rules = []; try { rules = sheet.cssRules; } catch { /* another site's stylesheet */ } for (const rule of rules) for (const k of rule.selectorText?.match(/\.btn--[\w-]+/g) ?? []) kinds.add(k.slice(1)); }
@@ -240,8 +243,8 @@ if (browser) {
         for (const k of kinds) for (const tag of ['button', 'a']) { const e = document.createElement(tag); e.className = `btn ${k}`.trim(); e.textContent = 'No'; box.append(e); }
         document.body.append(box);
         await document.fonts.ready;
-        const all = [...document.querySelectorAll('.btn')].filter((e) => e.getClientRects().length);
-        return { count: all.length, small: all.filter((e) => e.offsetWidth < min || e.offsetHeight < min).map((e) => ({ probe: !!e.closest('[data-probe]'), name: `${e.tagName.toLowerCase()}.${[...e.classList].join('.')}`, text: e.innerText.trim().slice(0, 40), w: e.offsetWidth, h: e.offsetHeight })) };
+        const all = [...document.querySelectorAll('.btn, button, [role=button], [role=switch], [role=tab], [role=menuitem], [role=checkbox], summary, input:not([type=hidden]), select, textarea')].filter((e) => e.getClientRects().length);
+        return { count: all.length, small: all.filter((e) => e.offsetWidth < min || e.offsetHeight < min).map((e) => ({ probe: !!e.closest('[data-probe]'), name: [e.tagName.toLowerCase(), ...e.classList].join('.'), text: (e.getAttribute('aria-label') || e.innerText || '').trim().replace(/\s+/g, ' ').slice(0, 40), w: e.offsetWidth, h: e.offsetHeight })) };
       }, MIN_TARGET);
       measured += found.count;
       for (const b of found.small) targets.add(b.probe ? `${b.name} is ${b.w}x${b.h} with the label "${b.text}"` : `${p} at ${width}px: ${b.name} "${b.text}" is ${b.w}x${b.h}`);
@@ -250,7 +253,7 @@ if (browser) {
   }
   await browser.close();
   server.close();
-  targetNote = `Rendered ${pages.length} pages at 1440px and 390px: ${measured} buttons measured, test labels included.`;
+  targetNote = `Rendered ${pages.length} pages at 1440px and 390px: ${measured} controls measured, test labels included.`;
 }
 check('touch-targets', [...targets]);
 console.log(`\n${targetNote}`);

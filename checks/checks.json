@@ -41,7 +41,7 @@
   },
   {
     "id": "touch-targets",
-    "name": "Buttons are at least 44 x 44px",
-    "description": "Every .btn in every kind is at least 44 x 44px, checked in the CSS rules and, with Playwright, on rendered pages at desktop and phone width, including a two-letter label in each kind."
+    "name": "Buttons and controls are at least 44 x 44px",
+    "description": "Every .btn in every kind, every other button, toggle and form control is at least 44 x 44px, checked in the CSS rules and, with Playwright, on rendered pages at desktop and phone width, including a two-letter label in each .btn kind."
   }
 ]
