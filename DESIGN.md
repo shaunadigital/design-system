@@ -164,7 +164,7 @@ A builder needs only this file and `tokens.css`.
   - Primary (`.btn .btn--fill`): `--ink` fill, `--on-ink` text, the `--accent` shape behind it. One per screen.
   - Secondary (`.btn`): `--card` fill, 1px `--ink` border, `--ink` text, the `--accent` shape behind it.
   - Quiet (`.btn .btn--text`): no fill, no border, no shape, bold underlined `--ink` text, for Cancel, Skip and row
-    actions.
+    actions. At least 44px wide, so a short label like "No" still meets the target size.
   - No other button styles: no teal fills at rest, no pills, no square corners, no small buttons. Destructive actions
     use Secondary and there is no red. The one exception is the confirm dialog (Components), where the main action is
     Primary and is named for what it does ("Delete Chat").
@@ -190,7 +190,7 @@ button { font: inherit; color: inherit; cursor: pointer; border: 0; background: 
 .btn--fill:hover, .btn--fill:focus-visible { background: var(--accent); border-color: var(--accent); color: var(--white); }
 
 /* Quiet */
-.btn--text { padding: 0 2px; border: 0; border-radius: 0; background: none; box-shadow: none; font-weight: 600; text-decoration: underline; text-decoration-thickness: 1.5px; text-underline-offset: 6px; }
+.btn--text { min-width: 44px; justify-content: center; padding: 0 2px; border: 0; border-radius: 0; background: none; box-shadow: none; font-weight: 600; text-decoration: underline; text-decoration-thickness: 1.5px; text-underline-offset: 6px; }
 .btn--text:hover, .btn--text:focus-visible { background: none; color: var(--accent-text); box-shadow: none; }
 
 /* Any kind, disabled */
