@@ -1,0 +1,9 @@
+{
+  "name": "shauna.dev: add states and cover",
+  "id": "shauna-dev-add-states",
+  "api": "1.0.0",
+  "main": "code.js",
+  "editorType": ["figma"],
+  "documentAccess": "dynamic-page",
+  "networkAccess": { "allowedDomains": ["none"] }
+}
