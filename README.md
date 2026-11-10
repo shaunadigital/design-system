@@ -22,6 +22,7 @@ More and more of an interface is now built by AI, and AI doesn't learn a team's 
 | Test | Without the system | With the system |
 |---|---|---|
 | Whole product, 12 pages built 10 times each (round 2) | 118 of 120 pages passed, but 30 different button styles and 16 field styles | 120 of 120 passed, with 7 button styles and 4 field styles |
+| 12 new screens the rules were never written from, on Sonnet and Opus (round 4b) | 35 and 26 button styles, 16 and 14 field styles | 3 and 4 button styles, 2 field styles |
 | Spoken answers, 12 visitor questions | 77 of 180 answers easy to listen to | 60 of 60 with the final rules |
 
 Each test's own README in `eval/` has the method, every number and what each failure taught.
@@ -45,7 +46,7 @@ Tools the server offers:
 
 ## Use it in a project
 
-shauna.dev is moving to install this as a package. Until then it keeps its own copies of these files, in sync with this repository. To install it in a project:
+shauna.dev keeps its own copies of these files, synced from this repository. To install it in a project:
 
 ```
 npm install github:shaunadigital/design-system
@@ -101,7 +102,7 @@ Finished answers are kept and skipped on the next run, so only new groups run. T
 
 ## Where it comes from
 
-This repository is the one source for the system. shauna.dev is moving to install it as a package, and until then it keeps its own copies in sync with this one. The site's own pages and client work are not part of this repository.
+This repository is the one source for the system. shauna.dev copies its files from here. The site's own pages and client work are not part of this repository.
 
 Shauna Arnold, product designer and developer, Honolulu. [shauna.dev](https://shauna.dev)
 
