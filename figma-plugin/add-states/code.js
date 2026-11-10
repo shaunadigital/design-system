@@ -1,7 +1,8 @@
 // One-time add-on for the shauna.dev Design System file. Adds only; deletes nothing.
 // Safe to run twice: anything already added is skipped.
 // Adds: Button Focus and Disabled states; Chat composer Listening and Speaking;
-// Reply status Interrupted; a cover frame on the Tokens page set as the file thumbnail.
+// Reply status Interrupted; a cover frame on the Tokens page set as the file thumbnail;
+// a Dusk preview frame on the Components page, using a second colour collection.
 (async () => {
   const log = [];
   const find = (parent, name) => parent.children.find((c) => c.name === name);
@@ -107,6 +108,69 @@
       await figma.setFileThumbnailNodeAsync(cover);
       log.push('Cover and thumbnail');
     }
+    // Dusk preview: a second colour collection with the dusk values, and a frame of components rebound to it.
+    // The free plan allows one mode per collection, so dusk lives in its own collection instead of a mode.
+    const DUSK = {"paper": "#0E1618", "sand": "#131E21", "card": "#172327", "ink": "#E9EFEF", "muted": "#9DAEB1", "accent-text": "#9CCFD6", "accent": "#5FB3BF", "accent-line": "#2A5C63", "wash": "#1D2A2E", "chrome-dot": "#3B4B50", "on-ink": "#0E1618", "deep": "#060C0E", "shadow": "#000000", "live": "#EE8D9A", "felt-deep": "#0F1C1F", "pin-shadow": "#000000"};
+    await figma.setCurrentPageAsync(compPage);
+    if (!find(compPage, 'Dusk')) {
+      const cols = await figma.variables.getLocalVariableCollectionsAsync();
+      let duskCol = cols.find((c) => c.name === 'Color (Dusk)');
+      if (!duskCol) duskCol = figma.variables.createVariableCollection('Color (Dusk)');
+      const dayVars = colorVars.filter((v) => !v.variableCollectionId || v.variableCollectionId !== duskCol.id);
+      const existing = colorVars.filter((v) => v.variableCollectionId === duskCol.id);
+      const toDusk = new Map();
+      const hex = (h) => ({ r: parseInt(h.slice(1, 3), 16) / 255, g: parseInt(h.slice(3, 5), 16) / 255, b: parseInt(h.slice(5, 7), 16) / 255 });
+      for (const v of dayVars) {
+        const key = v.name.split('/').pop().toLowerCase();
+        if (!DUSK[key]) continue;
+        let dv = existing.find((e) => e.name === v.name);
+        if (!dv) { dv = figma.variables.createVariable(v.name, duskCol, 'COLOR'); dv.scopes = v.scopes; }
+        dv.setValueForMode(duskCol.modes[0].modeId, hex(DUSK[key]));
+        toDusk.set(v.id, dv);
+      }
+      const frame = figma.createAutoLayout('VERTICAL', { name: 'Dusk', itemSpacing: 40 });
+      frame.paddingTop = frame.paddingBottom = frame.paddingLeft = frame.paddingRight = 64;
+      const paperDay = dayVars.find((v) => v.name.split('/').pop().toLowerCase() === 'paper');
+      let bg = { type: 'SOLID', color: hex(DUSK.paper) };
+      if (paperDay && toDusk.get(paperDay.id)) bg = figma.variables.setBoundVariableForPaint(bg, 'color', toDusk.get(paperDay.id));
+      frame.fills = [bg];
+      const title = figma.createText(); title.fontName = { family: 'LINE Seed JP', style: 'Bold' }; title.fontSize = 32;
+      title.characters = 'Dusk: the same components, at night';
+      title.fills = [{ type: 'SOLID', color: hex(DUSK.ink) }];
+      frame.appendChild(title);
+      const pick = (setName, variant) => {
+        const n = compPage.children.find((c) => c.name === setName);
+        if (!n) return null;
+        if (n.type === 'COMPONENT') return n;
+        return variant ? find(n, variant) : n.defaultVariant;
+      };
+      const row = figma.createAutoLayout('HORIZONTAL', { name: 'Buttons', itemSpacing: 16 }); row.fills = [];
+      for (const v of ['Style=Fill, State=Default', 'Style=Default, State=Default', 'Style=Text, State=Default', 'Style=Fill, State=Focus']) {
+        const c = pick('Button', v); if (c) row.appendChild(c.createInstance());
+      }
+      frame.appendChild(row);
+      for (const [setName, v] of [['Chat composer', 'State=Ready'], ['Chat composer', 'State=Streaming'], ['Reply status', 'State=Error']]) {
+        const c = pick(setName, v); if (c) frame.appendChild(c.createInstance());
+      }
+      const row2 = figma.createAutoLayout('HORIZONTAL', { name: 'Menu, dialog, sidebar', itemSpacing: 32 }); row2.fills = [];
+      for (const n of ['Sidebar', 'Menu', 'Dialog']) { const c = pick(n); if (c) row2.appendChild(c.createInstance()); }
+      frame.appendChild(row2);
+      // Rebind every Day colour inside the frame to its Dusk twin
+      let swapped = 0;
+      const swapPaints = (paints) => paints.map((p) => {
+        const id = p.boundVariables && p.boundVariables.color && p.boundVariables.color.id;
+        const dv = id && toDusk.get(id);
+        if (!dv) return p; swapped++; return figma.variables.setBoundVariableForPaint(p, 'color', dv);
+      });
+      for (const n of frame.findAll(() => true)) {
+        if ('fills' in n && Array.isArray(n.fills) && n.fills.length) n.fills = swapPaints(n.fills);
+        if ('strokes' in n && Array.isArray(n.strokes) && n.strokes.length) n.strokes = swapPaints(n.strokes);
+      }
+      const right = compPage.children.filter((c) => c !== frame).reduce((a, c) => Math.max(a, c.x + c.width), 0);
+      frame.x = right + 160; frame.y = 0;
+      log.push(`Dusk frame (${swapped} colours switched)`);
+    }
+
     figma.closePlugin(log.length ? `Added: ${log.join(', ')}` : 'Nothing to add. Everything is already there.');
   } catch (e) {
     figma.closePlugin(`Stopped: ${e.message}`);
