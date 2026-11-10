@@ -110,25 +110,27 @@
     }
     // Dusk preview: a second colour collection with the dusk values, and a frame of components rebound to it.
     // The free plan allows one mode per collection, so dusk lives in its own collection instead of a mode.
+    const autoFrame = (dir, props) => { const f = figma.createFrame(); f.layoutMode = dir; f.primaryAxisSizingMode = 'AUTO'; f.counterAxisSizingMode = 'AUTO'; Object.assign(f, props); return f; };
     const DUSK = {"paper": "#0E1618", "sand": "#131E21", "card": "#172327", "ink": "#E9EFEF", "muted": "#9DAEB1", "accent-text": "#9CCFD6", "accent": "#5FB3BF", "accent-line": "#2A5C63", "wash": "#1D2A2E", "chrome-dot": "#3B4B50", "on-ink": "#0E1618", "deep": "#060C0E", "shadow": "#000000", "live": "#EE8D9A", "felt-deep": "#0F1C1F", "pin-shadow": "#000000"};
     await figma.setCurrentPageAsync(compPage);
     if (!find(compPage, 'Dusk')) {
       const cols = await figma.variables.getLocalVariableCollectionsAsync();
       let duskCol = cols.find((c) => c.name === 'Color (Dusk)');
       if (!duskCol) duskCol = figma.variables.createVariableCollection('Color (Dusk)');
-      const dayVars = colorVars.filter((v) => !v.variableCollectionId || v.variableCollectionId !== duskCol.id);
-      const existing = colorVars.filter((v) => v.variableCollectionId === duskCol.id);
+      const keepCols = new Set(cols.filter((c) => c.name === 'Color' || c.name === 'Component').map((c) => c.id));
+      const dayVars = colorVars.filter((v) => keepCols.has(v.variableCollectionId));
+      const existing = (await figma.variables.getLocalVariablesAsync('COLOR')).filter((v) => v.variableCollectionId === duskCol.id);
       const toDusk = new Map();
       const hex = (h) => ({ r: parseInt(h.slice(1, 3), 16) / 255, g: parseInt(h.slice(3, 5), 16) / 255, b: parseInt(h.slice(5, 7), 16) / 255 });
       for (const v of dayVars) {
         const key = v.name.split('/').pop().toLowerCase();
         if (!DUSK[key]) continue;
         let dv = existing.find((e) => e.name === v.name);
-        if (!dv) { dv = figma.variables.createVariable(v.name, duskCol, 'COLOR'); dv.scopes = v.scopes; }
+        if (!dv) { dv = figma.variables.createVariable(v.name, duskCol, 'COLOR'); dv.scopes = v.scopes; existing.push(dv); }
         dv.setValueForMode(duskCol.modes[0].modeId, hex(DUSK[key]));
         toDusk.set(v.id, dv);
       }
-      const frame = figma.createAutoLayout('VERTICAL', { name: 'Dusk', itemSpacing: 40 });
+      const frame = autoFrame('VERTICAL', { name: 'Dusk', itemSpacing: 40 });
       frame.paddingTop = frame.paddingBottom = frame.paddingLeft = frame.paddingRight = 64;
       const paperDay = dayVars.find((v) => v.name.split('/').pop().toLowerCase() === 'paper');
       let bg = { type: 'SOLID', color: hex(DUSK.paper) };
@@ -144,7 +146,7 @@
         if (n.type === 'COMPONENT') return n;
         return variant ? find(n, variant) : n.defaultVariant;
       };
-      const row = figma.createAutoLayout('HORIZONTAL', { name: 'Buttons', itemSpacing: 16 }); row.fills = [];
+      const row = autoFrame('HORIZONTAL', { name: 'Buttons', itemSpacing: 16 }); row.fills = [];
       for (const v of ['Style=Fill, State=Default', 'Style=Default, State=Default', 'Style=Text, State=Default', 'Style=Fill, State=Focus']) {
         const c = pick('Button', v); if (c) row.appendChild(c.createInstance());
       }
@@ -152,7 +154,7 @@
       for (const [setName, v] of [['Chat composer', 'State=Ready'], ['Chat composer', 'State=Streaming'], ['Reply status', 'State=Error']]) {
         const c = pick(setName, v); if (c) frame.appendChild(c.createInstance());
       }
-      const row2 = figma.createAutoLayout('HORIZONTAL', { name: 'Menu, dialog, sidebar', itemSpacing: 32 }); row2.fills = [];
+      const row2 = autoFrame('HORIZONTAL', { name: 'Menu, dialog, sidebar', itemSpacing: 32 }); row2.fills = [];
       for (const n of ['Sidebar', 'Menu', 'Dialog']) { const c = pick(n); if (c) row2.appendChild(c.createInstance()); }
       frame.appendChild(row2);
       // Rebind every Day colour inside the frame to its Dusk twin
@@ -169,6 +171,26 @@
       const right = compPage.children.filter((c) => c !== frame).reduce((a, c) => Math.max(a, c.x + c.width), 0);
       frame.x = right + 160; frame.y = 0;
       log.push(`Dusk frame (${swapped} colours switched)`);
+    }
+
+    // Tidy: keep grown sets from overlapping their neighbours; give dusk focus rings the dusk accent.
+    await figma.setCurrentPageAsync(compPage);
+    const below = (top, node) => { if (top && node && node.y < top.y + top.height + 40 && node.x < top.x + top.width && node.x + node.width > top.x) { node.y = top.y + top.height + 80; log.push(`Moved ${node.name}`); } };
+    below(compPage.children.find((n) => n.name === 'Button'), compPage.children.find((n) => n.name === 'Card'));
+    below(compPage.children.find((n) => n.name === 'Chat composer'), compPage.children.find((n) => n.name === 'Reply status'));
+    const duskFrame = find(compPage, 'Dusk');
+    if (duskFrame) {
+      const all = await figma.variables.getLocalVariablesAsync('COLOR');
+      const cs = await figma.variables.getLocalVariableCollectionsAsync();
+      const duskC = cs.find((c) => c.name === 'Color (Dusk)');
+      const dayIds = new Set(cs.filter((c) => c.name === 'Color' || c.name === 'Component').map((c) => c.id));
+      const byName = new Map(all.filter((v) => duskC && v.variableCollectionId === duskC.id).map((v) => [v.name, v]));
+      const twin = new Map(all.filter((v) => dayIds.has(v.variableCollectionId) && byName.has(v.name)).map((v) => [v.id, byName.get(v.name)]));
+      let fx = 0;
+      for (const n of duskFrame.findAll((x) => 'effects' in x && x.effects.length)) {
+        n.effects = n.effects.map((e) => { const id = e.boundVariables && e.boundVariables.color && e.boundVariables.color.id; const d = id && twin.get(id); if (!d) return e; fx++; return figma.variables.setBoundVariableForEffect(e, 'color', d); });
+      }
+      if (fx) log.push(`Dusk focus rings (${fx})`);
     }
 
     figma.closePlugin(log.length ? `Added: ${log.join(', ')}` : 'Nothing to add. Everything is already there.');
