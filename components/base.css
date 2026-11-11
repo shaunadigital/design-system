@@ -1,0 +1,71 @@
+/* Base styles and the three button kinds, ported from shauna.dev/src/styles/v2.css (2026-11-11). Every value comes from build/tokens.css. */
+
+/* Layout values that are not design tokens */
+:root {
+  --line: rgba(var(--ink-rgb), 0.12);
+  --line-soft: rgba(var(--ink-rgb), 0.10);
+  --gutter: clamp(20px, calc(7vw - 37px), 64px);  /* 20px on phones, 64px at 1440 */
+  --max: 1440px;
+  --btn-offset: 7px;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { -webkit-font-smoothing: antialiased; scroll-behavior: smooth; scroll-padding-top: 88px; }
+body { font-family: var(--font-body); font-size: var(--text-body); line-height: 1.65; background: var(--paper); color: var(--ink); overflow-x: hidden; }
+img, video { display: block; max-width: 100%; }
+a { color: inherit; text-decoration: none; }
+ul, ol { list-style: none; }
+button { font: inherit; color: inherit; cursor: pointer; border: 0; background: none; }
+::selection { background: var(--accent); color: var(--on-ink); }
+:focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; border-radius: 4px; }
+
+.wrap { max-width: var(--max); margin: 0 auto; padding-inline: var(--gutter); }
+.label { font-family: var(--font-label); font-size: var(--text-label); font-weight: 700; letter-spacing: var(--tracking-label); text-transform: uppercase; color: var(--accent-text); }
+.meta { font-family: var(--font-label); font-size: var(--text-label); letter-spacing: var(--tracking-label); text-transform: uppercase; color: var(--muted); font-weight: 700; }
+.subtitle { font-family: var(--font-label); font-size: var(--text-small); line-height: 1.4; color: var(--muted); }
+.muted { color: var(--muted); }
+.arrow { color: var(--accent); /* graphic */ }
+.text-link { font-size: var(--text-body); font-weight: 500; border-bottom: 1px solid var(--ink); padding-bottom: 2px; align-self: flex-start; transition: color var(--dur-base) var(--ease), border-color var(--dur-base) var(--ease); }
+.text-link:hover { color: var(--accent-text); border-color: var(--accent-text); }
+.sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+
+/* Buttons (2026-10-20, Shauna: pills read as generic): a soft-cornered rectangle with a same-shape offset
+   behind; on hover the shape slides home. One button per area; everything else is .btn--text. */
+.btn {
+  display: inline-flex; align-items: center; gap: 8px; min-height: 44px; padding: 0 20px;
+  border: 1px solid var(--ink); border-radius: var(--radius-sm); background: var(--card); color: var(--ink);
+  font-size: var(--text-body); font-weight: 500; white-space: nowrap;
+  box-shadow: var(--btn-offset) calc(var(--btn-offset) * -1) 0 0 var(--shape, var(--accent));
+  transition: background var(--dur-base) var(--ease), color var(--dur-base) var(--ease), box-shadow var(--dur-slow) var(--ease), border-color var(--dur-base) var(--ease);
+}
+.btn:hover, .btn:focus-visible { background: var(--ink); color: var(--on-ink); box-shadow: 0 0 0 0 var(--shape, var(--accent)); }
+/* Filled: ink at rest with the accent shape behind; on hover the shape slides home and fills it. */
+.btn--fill { background: var(--ink); color: var(--on-ink); border-color: var(--ink); --shape: var(--accent); }
+.btn--fill:hover, .btn--fill:focus-visible { background: var(--accent); border-color: var(--accent); color: var(--white); }
+/* Plain: a quiet outlined button with no shape behind it. */
+.btn--plain { border-width: 1.5px; box-shadow: none; }
+.btn--plain:hover, .btn--plain:focus-visible { box-shadow: none; }
+.btn--ink { --shape: var(--ink); }
+/* Text: the second action in an area. No box, a bold label and an underline that turns blue on hover. */
+.btn--text { min-width: 44px; justify-content: center; padding: 0 2px; border: 0; border-radius: 0; background: none; box-shadow: none; font-weight: 600; text-decoration: underline; text-decoration-thickness: 1.5px; text-underline-offset: 6px; }
+.btn--text:hover, .btn--text:focus-visible { background: none; color: var(--accent-text); box-shadow: none; }
+
+/* Item and card titles (2026-11-03, Shauna): serif is for headlines only, so titles of cards, rows and list items
+   are LINE Seed JP 700 at body-l. Use the class, or the same five properties in a scoped rule. */
+.t-item { font-family: var(--font-body); font-weight: 700; font-size: var(--text-body-l); line-height: 1.35; letter-spacing: 0; text-wrap: balance; }
+
+.h2 { font-family: var(--font-display); font-weight: 400; font-size: var(--text-heading); line-height: 1.05; letter-spacing: var(--tracking-snug); text-wrap: balance; }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
+}
+
+/* The logo wordmark (tokens.json "wordmark"): LINE Seed JP caps, as on shauna.digital (2026-10-24). Where it is used, set only size and colour. */
+.wordmark { font-family: var(--font-body); font-weight: var(--wordmark-weight); text-transform: uppercase; letter-spacing: var(--tracking-wordmark); line-height: 1; white-space: nowrap; }
+/* Logo lockup (2026-10-20, shared spec with shauna.digital, option B of the brand review): S mark + .wordmark,
+   all in em of the name's font-size from the --wordmark-* tokens. Set only font-size and the S colour where it is used:
+   accent on light, --mark-on-deep on the dark footer. Name never under --wordmark-min; below that use the S alone. */
+/* Two weights (2026-10-21, Shauna): the first name ExtraBold, the rest Regular; shauna.digital does the same. */
+.wordmark-2 { font-weight: var(--wordmark-weight-2); }
+.lockup { display: inline-flex; align-items: center; gap: var(--wordmark-gap); line-height: 1; }
+.lockup-s { height: var(--wordmark-mark); width: auto; flex: none; }

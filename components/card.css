@@ -1,0 +1,12 @@
+/* Cards, from DESIGN.md "Screens": --card, 1px border in rgba(var(--ink-rgb), 0.14), --radius-card, padding --space-5.
+   Never on a tinted panel. Titles use .t-item (LINE Seed JP 700); the serif is for headlines and big numbers only. */
+.card { background: var(--card); border: 1px solid rgba(var(--ink-rgb), 0.14); border-radius: var(--radius-card); padding: var(--space-5); }
+.card-title { margin-bottom: var(--space-1); }
+.card-sub { color: var(--muted); font-size: var(--text-small); }
+.card-actions { display: flex; align-items: center; gap: var(--space-5); margin-top: var(--space-5); }
+
+/* A stat: label, a big serif number, a muted note. Used by the proposal card pattern. */
+.stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: var(--space-4); padding: var(--space-4) 0; margin-top: var(--space-5); border-block: 1px solid rgba(var(--ink-rgb), 0.14); }
+.stat-value { font-family: var(--font-display); font-size: var(--text-step); line-height: 1.1; margin-top: var(--space-1); }
+.stat-value--key { color: var(--accent-text); font-size: var(--text-title); }
+.stat-note { color: var(--muted); font-size: var(--text-small); }

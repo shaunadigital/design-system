@@ -1,0 +1,126 @@
+/* Ported from shauna.dev Composer.astro. Every class is cmp- prefixed. */
+  /* Global on purpose: messages, chips and actions are built in script and never get Astro's scope attribute. Every class is cmp- prefixed. */
+  .cmp-demo { --cmp-line: rgba(var(--ink-rgb), 0.14); --cmp-line-soft: rgba(var(--ink-rgb), 0.08); display: grid; grid-template-columns: minmax(0, 8fr) minmax(0, 4fr); gap: var(--space-7); align-items: start; }
+
+  .cmp { position: relative; display: flex; flex-direction: column; height: 620px; background: var(--card); border: 1px solid var(--cmp-line); border-radius: var(--radius-card); box-shadow: 0 30px 60px -40px rgba(var(--shadow-rgb), 0.35); overflow: hidden; }
+  .cmp-top { display: flex; align-items: center; gap: var(--space-2); padding: var(--space-3) var(--space-5); border-bottom: 1px solid var(--cmp-line-soft); }
+  .cmp-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--chrome-dot); transition: background var(--dur-base) var(--ease); }
+  .cmp[data-state='streaming'] .cmp-dot { background: var(--accent); /* graphic */ animation: cmp-pulse calc(var(--dur-slow) * 4) var(--ease) infinite; }
+  .cmp[data-state='listening'] .cmp-dot, .cmp[data-state='speaking'] .cmp-dot { background: var(--accent); /* graphic */ animation: cmp-pulse calc(var(--dur-slow) * 4) var(--ease) infinite; }
+  .cmp[data-state='error'] .cmp-dot { background: transparent; box-shadow: inset 0 0 0 2px var(--ink); }
+  .cmp-state { margin-left: auto; color: var(--accent-text); }
+
+  .cmp-thread { flex: 1; overflow-y: auto; padding: var(--space-5); scroll-padding-bottom: var(--space-5); overscroll-behavior: contain; }
+  .cmp-thread:focus-visible { outline-offset: -3px; }
+  .cmp-empty { display: flex; flex-direction: column; gap: var(--space-3); max-width: 440px; margin: var(--space-7) auto 0; text-align: center; align-items: center; }
+  .cmp-empty-h { font-family: var(--font-body); font-weight: 700; font-size: var(--text-body-l); line-height: 1.35; letter-spacing: 0; text-wrap: balance; }
+  .cmp-empty[hidden] { display: none; }
+  .cmp-sugs { display: flex; flex-wrap: wrap; justify-content: center; gap: var(--space-2); margin-top: var(--space-3); }
+  .cmp-sug { min-height: 44px; padding: 0 var(--space-4); border: 1px solid var(--cmp-line); border-radius: var(--radius-pill); background: var(--paper); font-size: var(--text-small); transition: border-color var(--dur-base) var(--ease), background var(--dur-base) var(--ease); }
+  .cmp-sug:hover { border-color: var(--accent-line); background: var(--sand); }
+
+  .cmp-msgs { display: flex; flex-direction: column; gap: var(--space-5); }
+  .cmp-msg { display: flex; flex-direction: column; gap: var(--space-2); max-width: 86%; animation: cmp-in var(--dur-slow) var(--ease) backwards; }
+  .cmp-msg--you { align-self: flex-end; align-items: flex-end; }
+  .cmp-msg--you .cmp-body { padding: var(--space-3) var(--space-4); border-radius: var(--radius-card) var(--radius-card) var(--radius-sm) var(--radius-card); background: var(--ink); color: var(--on-ink); white-space: pre-wrap; overflow-wrap: anywhere; }
+  .cmp-msg--reply .cmp-body { font-size: var(--text-body); line-height: 1.65; overflow-wrap: anywhere; }
+  .cmp-msg--reply.is-err .cmp-body { color: var(--muted); }
+  .cmp-caret { display: inline-block; width: 0.5em; height: 1.05em; margin-left: 2px; vertical-align: text-bottom; border-radius: 2px; background: var(--accent); /* graphic */ animation: cmp-blink calc(var(--dur-slow) * 3) steps(1) infinite; }
+  .cmp-tags { display: flex; flex-wrap: wrap; justify-content: flex-end; gap: var(--space-1); }
+  .cmp-tag { padding: 2px var(--space-2); border-radius: var(--radius-sm); font-size: var(--text-small); background: var(--sand); color: var(--muted); }
+  .cmp-tag--ctx { background: var(--sand); color: var(--accent-text); }
+  .cmp-acts { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-3); }
+  .cmp-note { font-size: var(--text-small); color: var(--muted); }
+  .cmp-note.is-err { color: var(--ink); font-weight: 700; padding-left: var(--space-3); border-left: 3px solid var(--ink); }
+  .cmp-act { min-height: 44px; padding: 0 var(--space-3); border: 1px solid var(--cmp-line); border-radius: var(--radius-pill); background: var(--card); font-size: var(--text-small); font-weight: 500; transition: border-color var(--dur-base) var(--ease), background var(--dur-base) var(--ease); }
+  .cmp-act:hover { border-color: var(--ink); background: var(--paper); }
+
+  .cmp-jump { position: absolute; left: 50%; bottom: 150px; transform: translateX(-50%); display: inline-flex; align-items: center; gap: var(--space-2); min-height: 44px; padding: 0 var(--space-4); border-radius: var(--radius-pill); background: var(--ink); color: var(--on-ink); font-size: var(--text-small); font-weight: 500; box-shadow: 0 10px 24px -12px rgba(var(--shadow-rgb), 0.6); }
+  .cmp-jump[hidden] { display: none; }
+
+  .cmp-box { position: relative; margin: 0 var(--space-4) var(--space-4); padding: var(--space-3); border: 1px solid var(--cmp-line); border-radius: var(--radius-card); background: var(--paper); transition: border-color var(--dur-base) var(--ease), box-shadow var(--dur-base) var(--ease); }
+  .cmp-box:focus-within { border-color: var(--accent-text); box-shadow: 0 0 0 3px var(--sand); }
+  .cmp-drop { position: absolute; inset: 0; z-index: 2; display: grid; place-items: center; border: 2px dashed var(--accent); /* graphic */ border-radius: inherit; background: rgba(var(--sand-rgb), 0.94); color: var(--accent-text); font-weight: 500; opacity: 0; pointer-events: none; transition: opacity var(--dur-base) var(--ease); }
+  .cmp-box.is-drop .cmp-drop { opacity: 1; }
+  .cmp-chips { display: flex; flex-wrap: wrap; gap: var(--space-2); margin-bottom: var(--space-2); }
+  .cmp-chips[hidden] { display: none; }
+  .cmp-chip { display: inline-flex; align-items: center; gap: var(--space-2); max-width: 100%; min-height: 44px; padding-left: var(--space-3); border: 1px solid var(--cmp-line); border-radius: var(--radius-sm); background: var(--card); font-size: var(--text-small); animation: cmp-in var(--dur-base) var(--ease) backwards; }
+  .cmp-chip--ctx { border-color: var(--accent-line); background: var(--sand); color: var(--accent-text); }
+  .cmp-chip.is-bad { border: 1px dashed var(--ink); background: var(--wash); }
+  .cmp-chip-n { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; max-width: 220px; }
+  .cmp-chip-m { font-size: var(--text-small); color: var(--muted); white-space: nowrap; }
+  .cmp-chip.is-bad .cmp-chip-m { color: var(--ink); font-weight: 500; }
+  .cmp-chip-x { width: 44px; height: 42px; flex: none; display: grid; place-items: center; border-radius: var(--radius-sm); font-size: var(--text-body-l); line-height: 1; color: inherit; }
+  .cmp-chip-x:hover { background: rgba(var(--ink-rgb), 0.07); }
+
+  .cmp-input { display: block; width: 100%; min-height: 44px; max-height: 200px; margin: -6px 0; padding: 10px var(--space-1); border: 0; background: transparent; resize: none; font: inherit; font-size: var(--text-body); line-height: 1.5; color: var(--ink); outline: none; }
+  .cmp-input::placeholder { color: var(--muted); }
+  .cmp-input.is-interim { color: var(--muted); }
+  .cmp-mic[aria-pressed='true'] { background: var(--ink); color: var(--on-ink); }
+  .cmp-mic[hidden] { display: none; }
+  .cmp-cap { padding: var(--space-2) var(--space-3); border-left: 3px solid var(--accent); /* graphic */ background: var(--sand); font-size: var(--text-small); line-height: 1.5; }
+  .cmp-bar { display: flex; align-items: center; gap: var(--space-3); margin-top: var(--space-2); }
+  .cmp-tools { display: flex; align-items: center; gap: var(--space-1); }
+  .cmp-icon, .cmp-ctx-btn { display: inline-flex; align-items: center; justify-content: center; gap: var(--space-2); height: 44px; border-radius: var(--radius-pill); color: var(--ink); transition: background var(--dur-base) var(--ease); }
+  .cmp-icon { width: 44px; }
+  .cmp-ctx-btn { padding: 0 var(--space-3) 0 10px; font-size: var(--text-small); font-weight: 500; }
+  .cmp-icon:hover, .cmp-ctx-btn:hover, .cmp-ctx-btn[aria-expanded='true'] { background: rgba(var(--ink-rgb), 0.06); }
+  .cmp-hint { flex: 1; min-width: 0; font-size: var(--text-small); color: var(--muted); text-align: right; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .cmp-send { width: 44px; height: 44px; flex: none; display: grid; place-items: center; border-radius: 50%; background: var(--ink); color: var(--on-ink); transition: background var(--dur-base) var(--ease), opacity var(--dur-base) var(--ease); }
+  .cmp-send:disabled { background: var(--chrome-dot); color: var(--muted); cursor: not-allowed; }
+  .cmp-send:not(:disabled):hover { background: var(--accent-text); }
+  .cmp-send > span { grid-area: 1 / 1; display: grid; place-items: center; transition: opacity var(--dur-base) var(--ease), transform var(--dur-base) var(--ease); }
+  .cmp-send .i-stop, .cmp[data-state='streaming'] .cmp-send .i-send { opacity: 0; transform: scale(0.6); }
+  .cmp[data-state='streaming'] .cmp-send .i-stop { opacity: 1; transform: none; }
+
+  .cmp-ctx { position: relative; }
+  .cmp-menu { position: absolute; left: 0; bottom: calc(100% + var(--space-2)); z-index: 3; min-width: 220px; padding: var(--space-1); border: 1px solid var(--cmp-line); border-radius: var(--radius-md); background: var(--card); box-shadow: 0 18px 40px -20px rgba(var(--shadow-rgb), 0.45); animation: cmp-in var(--dur-base) var(--ease); }
+  .cmp-menu[hidden] { display: none; }
+  .cmp-menu li { display: flex; align-items: center; gap: var(--space-3); min-height: 44px; padding: 0 var(--space-3); border-radius: var(--radius-sm); font-size: var(--text-small); cursor: pointer; outline: none; }
+  .cmp-menu li:hover, .cmp-menu li:focus-visible { background: var(--sand); }
+  .cmp-menu li:focus-visible { box-shadow: inset 0 0 0 2px var(--accent); }
+  .cmp-check { width: 16px; height: 16px; flex: none; border: 1.5px solid var(--muted); border-radius: 4px; display: grid; place-items: center; }
+  .cmp-menu li[aria-checked='true'] .cmp-check { background: var(--accent-text); border-color: var(--accent-text); }
+  .cmp-menu li[aria-checked='true'] .cmp-check::after { content: ''; width: 8px; height: 4px; margin-top: -2px; border: 2px solid var(--on-ink); border-top: 0; border-right: 0; transform: rotate(-45deg); }
+
+  .cmp-side { display: flex; flex-direction: column; gap: var(--space-6); }
+  .cmp-seg { border: 0; display: flex; flex-direction: column; gap: var(--space-3); }
+  .cmp-seg-row { display: grid; grid-template-columns: repeat(3, 1fr); padding: var(--space-1); border: 1px solid var(--cmp-line); border-radius: var(--radius-pill); background: var(--card); }
+  .cmp-seg-row label { position: relative; }
+  .cmp-seg-row input { position: absolute; opacity: 0; inset: 0; cursor: pointer; }
+  .cmp-seg-row span { display: grid; place-items: center; min-height: 44px; border-radius: var(--radius-pill); font-size: var(--text-small); font-weight: 500; transition: background var(--dur-base) var(--ease), color var(--dur-base) var(--ease); }
+  .cmp-seg-row input:checked + span { background: var(--ink); color: var(--on-ink); }
+  .cmp-seg-row input:focus-visible + span { outline: 3px solid var(--accent); outline-offset: 2px; }
+  .cmp-sw { border: 0; display: flex; flex-direction: column; gap: var(--space-1); }
+  .cmp-sw legend { margin-bottom: var(--space-2); }
+  .cmp-sw-row { position: relative; display: flex; align-items: center; gap: var(--space-3); min-height: 44px; font-size: var(--text-small); font-weight: 500; cursor: pointer; }
+  .cmp-sw-row input { position: absolute; opacity: 0; width: 44px; height: 44px; left: -2px; margin: 0; cursor: pointer; }
+  .cmp-sw-t { position: relative; width: 40px; height: 24px; flex: none; border-radius: var(--radius-pill); background: var(--chrome-dot); transition: background var(--dur-base) var(--ease); }
+  .cmp-sw-t::after { content: ''; position: absolute; top: 3px; left: 3px; width: 18px; height: 18px; border-radius: 50%; background: var(--paper); transition: transform var(--dur-base) var(--ease); }
+  .cmp-sw-row input:checked + .cmp-sw-t { background: var(--ink); }
+  .cmp-sw-row input:checked + .cmp-sw-t::after { transform: translateX(16px); }
+  .cmp-sw-row input:focus-visible + .cmp-sw-t { outline: 3px solid var(--accent); outline-offset: 2px; }
+  .cmp-sw-row.is-off { opacity: 0.5; cursor: not-allowed; }
+  .cmp-side-p { font-size: var(--text-small); line-height: 1.55; }
+  .cmp-keys { display: flex; flex-direction: column; margin-top: var(--space-3); }
+  .cmp-keys dt { white-space: nowrap; }
+  .cmp-keys div { display: grid; grid-template-columns: 140px 1fr; gap: var(--space-3); padding: 10px 0; border-top: 1px solid var(--cmp-line); font-size: var(--text-small); }
+  .cmp-keys kbd { display: inline-block; min-width: 24px; padding: 1px 6px; border: 1px solid var(--cmp-line); border-bottom-width: 2px; border-radius: 6px; background: var(--card); font-family: var(--font-body); font-size: var(--text-small); text-align: center; }
+
+  @keyframes cmp-in { from { opacity: 0; transform: translateY(6px); } }
+  @keyframes cmp-blink { 50% { opacity: 0; } }
+  @keyframes cmp-pulse { 50% { opacity: 0.35; } }
+  @media (prefers-reduced-motion: reduce) {
+    .cmp-msg, .cmp-chip, .cmp-menu { animation: none; }
+    .cmp-caret, .cmp[data-state='streaming'] .cmp-dot, .cmp[data-state='listening'] .cmp-dot, .cmp[data-state='speaking'] .cmp-dot { animation: none; }
+  }
+  @media (max-width: 979px) {
+    .cmp-demo { grid-template-columns: 1fr; }
+    .cmp { height: min(620px, 78svh); }
+    .cmp-hint { display: none; }
+    .cmp-bar { justify-content: space-between; }
+    .cmp-msg { max-width: 92%; }
+    .cmp-chip-n { max-width: 150px; }
+  }
+  /* Phones and tablets without a keyboard: the shortcut list is noise. */
+  @media (hover: none) and (max-width: 979px) { .cmp-kb { display: none; } }

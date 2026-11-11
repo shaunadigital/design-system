@@ -1,0 +1,61 @@
+/* Ported from shauna.dev AppShell.astro (was Astro-scoped; every class is as- prefixed). */
+  /* Frame: sidebar 280px on the left, the open chat on the right. Under 720px the sidebar folds behind Chats. */
+  .as { --as-line: rgba(var(--ink-rgb), 0.14); position: relative; display: grid; grid-template-columns: 280px minmax(0, 1fr); min-height: 460px; border: 1px solid var(--as-line); border-radius: var(--radius-card); background: var(--card); }
+  .as-top { display: none; }
+
+  /* Sidebar: --sand, padding 16px. New Chat full width, then a label 24px below, rows 4px apart. */
+  .as-side { display: flex; flex-direction: column; gap: var(--space-1); padding: var(--space-4); background: var(--sand); border-right: 1px solid var(--as-line); border-radius: var(--radius-card) 0 0 var(--radius-card); }
+  .as-new { justify-content: center; width: calc(100% - var(--btn-offset)); margin-bottom: var(--space-4); }
+  .as-label { margin: var(--space-2) 0 var(--space-1); padding: 0 var(--space-3); font-family: var(--font-label); font-size: var(--text-label); font-weight: 700; letter-spacing: var(--tracking-label); text-transform: uppercase; color: var(--muted); }
+  .as-list { display: flex; flex-direction: column; gap: var(--space-1); margin: 0; padding: 0; list-style: none; }
+  .as-row { position: relative; display: flex; align-items: center; border-radius: var(--radius-sm); }
+  .as-link { flex: 1; min-width: 0; display: flex; align-items: center; gap: var(--space-2); min-height: 44px; padding: 0 44px 0 var(--space-3); border-radius: var(--radius-sm); color: var(--ink); font-size: var(--text-small); text-decoration: none; transition: background var(--dur-fast) var(--ease); }
+  .as-title { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .as-link:hover { background: rgba(var(--ink-rgb), 0.06); }
+  /* Active chat: white row, bold, and aria-current. Never colour alone. */
+  .as-link[aria-current='page'] { background: var(--card); font-weight: 700; box-shadow: inset 3px 0 0 var(--ink); }
+  .as-link:focus-visible, .as-more:focus-visible, .as-toggle:focus-visible { outline: 2px solid var(--accent-text); outline-offset: -2px; }
+  .as-pin { display: inline-flex; color: var(--accent-text); }
+  .as-pin[hidden] { display: none; }
+  .as-more { position: absolute; right: 0; top: 0; width: 44px; height: 44px; display: grid; place-items: center; border: 0; border-radius: var(--radius-sm); background: none; color: var(--muted); cursor: pointer; transition: color var(--dur-fast) var(--ease), background var(--dur-fast) var(--ease); }
+  .as-more:hover, .as-more[aria-expanded='true'] { color: var(--ink); background: rgba(var(--ink-rgb), 0.08); }
+  .as-restore[hidden] { display: none; }
+  .as-restore { align-self: flex-start; margin-top: auto; padding-top: var(--space-4); font-size: var(--text-small); }
+
+  .as-main { padding: var(--space-6); }
+  .as-main-h { margin: 0 0 var(--space-3); }
+  .as-main-p { max-width: 46ch; color: var(--muted); font-size: var(--text-body); }
+
+  /* Menu: same spec as the composer's Context menu. 220px, 4px padding, --radius-md, rows 44px. */
+  .as-menu { position: absolute; z-index: 4; width: 220px; margin: 0; padding: var(--space-1); list-style: none; border: 1px solid var(--as-line); border-radius: var(--radius-md); background: var(--card); box-shadow: 0 18px 40px -20px rgba(var(--shadow-rgb), 0.45); animation: as-in var(--dur-base) var(--ease); }
+  .as-menu[hidden] { display: none; }
+  .as-menu [role='menuitem'] { display: flex; align-items: center; min-height: 44px; padding: 0 var(--space-3); border-radius: var(--radius-sm); font-size: var(--text-small); color: var(--ink); cursor: pointer; outline: none; }
+  .as-menu [role='menuitem']:hover, .as-menu [role='menuitem']:focus-visible { background: var(--sand); }
+  .as-menu [role='menuitem']:focus-visible { box-shadow: inset 0 0 0 2px var(--accent-text); }
+  .as-sep { height: 1px; margin: var(--space-1) var(--space-2); background: var(--as-line); }
+
+  /* Dialog: up to 440px, padding 32px, --radius-card. Title then message 12px apart, buttons 32px below,
+     the quiet one first and the main action last. */
+  .as-dlg { margin: auto; width: min(440px, calc(100vw - 2 * var(--space-4))); padding: var(--space-6); border: 0; border-radius: var(--radius-card); background: var(--card); color: var(--ink); box-shadow: 0 24px 48px -24px rgba(var(--shadow-rgb), 0.35); }
+  .as-dlg[open] { animation: as-in var(--dur-slow) var(--ease); }
+  .as-dlg::backdrop { background: rgba(var(--ink-rgb), 0.4); }
+  .as-dlg-h { margin: 0; }
+  .as-dlg-p { margin: var(--space-3) 0 0; color: var(--muted); font-size: var(--text-body); }
+  .as-field { margin-top: var(--space-5); }
+  .as-field[hidden] { display: none; }
+  .as-field-l { display: block; margin-bottom: var(--space-2); font-family: var(--font-label); font-size: var(--text-label); font-weight: 700; letter-spacing: var(--tracking-label); text-transform: uppercase; color: var(--muted); }
+  .as-input { width: 100%; min-height: 44px; padding: 0 var(--space-3); border: 1px solid var(--as-line); border-radius: var(--radius-sm); background: var(--paper); color: var(--ink); font: inherit; font-size: var(--text-body); }
+  .as-input:focus { outline: 2px solid var(--accent-text); outline-offset: 1px; }
+  .as-actions { display: flex; justify-content: flex-end; align-items: center; gap: var(--space-5); margin-top: var(--space-6); }
+  .as-actions .btn:disabled { opacity: 0.45; cursor: not-allowed; box-shadow: none; }
+
+  @keyframes as-in { from { opacity: 0; transform: translateY(4px); } }
+
+  @media (max-width: 720px) {
+    .as { grid-template-columns: minmax(0, 1fr); }
+    .as-top { display: flex; padding: var(--space-2); border-bottom: 1px solid var(--as-line); }
+    .as-toggle { display: inline-flex; align-items: center; gap: var(--space-2); min-height: 44px; padding: 0 var(--space-3); border: 0; border-radius: var(--radius-sm); background: none; color: var(--ink); font: inherit; font-size: var(--text-small); font-weight: 700; cursor: pointer; }
+    .as-side { display: none; border-right: 0; border-bottom: 1px solid var(--as-line); border-radius: 0; }
+    .as--open .as-side { display: flex; }
+  }
+  @media (prefers-reduced-motion: reduce) { .as-menu, .as-dlg[open] { animation: none; } }

@@ -1,0 +1,17 @@
+/* Form fields, from DESIGN.md "Screens": inputs, selects and text areas use the site's type, never the browser's.
+   44px tall (text areas 112px), 1px border, --radius-sm, --paper fill, 2px --accent-text focus ring.
+   Labels sit 8px above in the label style. Fields stack 24px apart. */
+.field { display: flex; flex-direction: column; gap: var(--space-2); }
+.field + .field { margin-top: var(--space-5); }
+.field-label { font-family: var(--font-label); font-size: var(--text-label); font-weight: 700; letter-spacing: var(--tracking-label); text-transform: uppercase; color: var(--muted); }
+.field-input {
+  font: inherit; font-size: var(--text-body); color: var(--ink);
+  min-height: 44px; padding: 0 var(--space-3);
+  background: var(--paper); border: 1px solid rgba(var(--ink-rgb), 0.14); border-radius: var(--radius-sm);
+  transition: border-color var(--dur-fast) var(--ease), box-shadow var(--dur-fast) var(--ease);
+}
+.field-input::placeholder { color: var(--muted); }
+.field-input:focus-visible { outline: none; border-color: var(--accent-text); box-shadow: 0 0 0 2px var(--accent-text); }
+textarea.field-input { min-height: 112px; padding: var(--space-3); resize: vertical; line-height: 1.5; }
+select.field-input { appearance: none; padding-right: var(--space-7); background-image: linear-gradient(45deg, transparent 50%, var(--ink) 50%), linear-gradient(135deg, var(--ink) 50%, transparent 50%); background-position: calc(100% - 20px) 50%, calc(100% - 15px) 50%; background-size: 5px 5px; background-repeat: no-repeat; }
+.field-input:disabled { color: var(--muted); background: var(--wash); cursor: not-allowed; }

@@ -7,7 +7,9 @@
     "prepare": "node scripts/tokens.mjs",
     "mcp": "node mcp/server.mjs",
     "test": "node eval/voice/score.mjs --test && node mcp/test.mjs",
-    "eval:voice": "bash eval/voice/run.sh"
+    "eval:voice": "bash eval/voice/run.sh",
+    "storybook": "storybook dev -p 6006",
+    "build-storybook": "storybook build -o storybook-static"
   },
   "author": "Shauna Arnold",
   "license": "MIT",
@@ -41,5 +43,14 @@
     "mcp",
     "eval/voice/check.mjs",
     "scripts"
-  ]
+  ],
+  "devDependencies": {
+    "@storybook/addon-a11y": "^10.6.7",
+    "@storybook/addon-docs": "^10.6.7",
+    "@storybook/html-vite": "^10.6.7",
+    "axe-core": "^4.14.0",
+    "storybook": "^10.6.7",
+    "typescript": "^7.0.2",
+    "vite": "^8.3.8"
+  }
 }

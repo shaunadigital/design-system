@@ -1,0 +1,29 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+<Meta title="Start Here" />
+
+# Shauna Arnold's design system
+
+The system behind [shauna.dev](https://shauna.dev/system/), written for three readers: people, Figma and AI coding tools.
+One token file feeds all three. The written rules live in `DESIGN.md`, the build fails when a page breaks one, and an
+MCP server lets Claude read the tokens and check its own work before handing it over.
+
+This Storybook shows every component and its states, in both themes.
+
+- **Theme:** switch Day and Dusk in the toolbar. Every colour comes from `tokens.json`, so nothing is restyled by hand.
+- **Accessibility:** each story runs an automated accessibility check (the Accessibility tab). Every control is at least
+  44px, and every text colour meets WCAG AA in both themes.
+- **Rules:** each component's page quotes its spec from `DESIGN.md`, the same text Claude reads.
+
+## Where things live
+
+| In the repo | What it is |
+|---|---|
+| `tokens/tokens.json` | Every colour, size, space, radius and motion value. The one source. |
+| `DESIGN.md` | The rules and component specs, for people and for Claude. |
+| `components/` | The components as plain HTML, CSS and TypeScript, usable in any project. |
+| `checks/` | The nine build checks. |
+| `mcp/server.mjs` | The server Claude connects to: tokens, rules, component specs and `check_html`. |
+| `eval/` | The tests that measured whether Claude follows the system. |
+
+Code: [github.com/shaunadigital/design-system](https://github.com/shaunadigital/design-system)
